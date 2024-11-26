@@ -12,6 +12,7 @@
 		231254172CF4EE0A0045E052 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 231254162CF4EE0A0045E052 /* Assets.xcassets */; };
 		2312541A2CF4EE0A0045E052 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 231254192CF4EE0A0045E052 /* Preview Assets.xcassets */; };
 		231254242CF4EE0B0045E052 /* EventoriasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231254232CF4EE0B0045E052 /* EventoriasTests.swift */; };
+		23B3043D2CF5D61600106980 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23B3043C2CF5D61500106980 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +33,7 @@
 		231254192CF4EE0A0045E052 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2312541F2CF4EE0A0045E052 /* EventoriasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventoriasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		231254232CF4EE0B0045E052 /* EventoriasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasTests.swift; sourceTree = "<group>"; };
+		23B3043C2CF5D61500106980 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				231254122CF4EDFE0045E052 /* EventoriasApp.swift */,
 				231254142CF4EDFE0045E052 /* ContentView.swift */,
 				231254162CF4EE0A0045E052 /* Assets.xcassets */,
+				23B3043C2CF5D61500106980 /* GoogleService-Info.plist */,
 				231254182CF4EE0A0045E052 /* Preview Content */,
 			);
 			path = Eventorias;
@@ -204,6 +207,7 @@
 			files = (
 				2312541A2CF4EE0A0045E052 /* Preview Assets.xcassets in Resources */,
 				231254172CF4EE0A0045E052 /* Assets.xcassets in Resources */,
+				23B3043D2CF5D61600106980 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
