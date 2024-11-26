@@ -14,7 +14,7 @@ struct RegistrationView: View {
     var body: some View {
         VStack {
             
-            Text("Authentification")
+            Text("Registration")
             
             VStack (alignment: .leading){
                 Text("Email")
