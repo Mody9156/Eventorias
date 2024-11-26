@@ -36,12 +36,14 @@ struct RegistrationView: View {
                         .foregroundColor(.white)
                 }
                 
-                Button {
-                    
-                    authentificationViewModel.registerUser(email: email, password: password)
-                    
-                } label: {
-                    Text("Registration")
+                ZStack {
+                    Button {
+                        
+                        authentificationViewModel.registerUser(email: email, password: password)
+                        
+                    } label: {
+                        Text("Registration")
+                }
                 }
                 
                 
