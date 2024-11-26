@@ -94,9 +94,9 @@
 		231254112CF4EDFE0045E052 /* Eventorias */ = {
 			isa = PBXGroup;
 			children = (
-				23F67F062CF5C65900819AEB /* ViewModel */,
-				23F67F052CF5C63D00819AEB /* View */,
 				23F67F042CF5C62B00819AEB /* Model */,
+				23F67F052CF5C63D00819AEB /* View */,
+				23F67F062CF5C65900819AEB /* ViewModel */,
 				231254122CF4EDFE0045E052 /* EventoriasApp.swift */,
 				231254142CF4EDFE0045E052 /* ContentView.swift */,
 				231254162CF4EE0A0045E052 /* Assets.xcassets */,
