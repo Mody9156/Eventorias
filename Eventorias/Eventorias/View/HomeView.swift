@@ -12,9 +12,9 @@ struct HomeView: View {
     @State var toggleRegistre : Bool = false
     var body: some View {
         ZStack {
-            Color.gray.ignoresSafeArea()
+            Color("Background").ignoresSafeArea()
             VStack {
-                Image(systemName: "globe")
+                Image("Logo")
                     .imageScale(.large)
                     .foregroundColor(.accentColor)
                 
@@ -52,7 +52,7 @@ struct ActionButtonView: View {
                 .frame(width:200, height: 50)
             
             HStack {
-                Image("Logo")
+                Image("letter")
                 
                 Button(action: {
                     
