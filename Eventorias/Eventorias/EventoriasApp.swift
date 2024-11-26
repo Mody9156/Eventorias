@@ -15,7 +15,7 @@ class AppDelegate : NSObject, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        if let emulatorHost = ProcessInfo.processInfo.environment["FIREBASE_AUTH_EMULATOR_HOST"] {
+        if ProcessInfo.processInfo.environment["FIREBASE_AUTH_EMULATOR_HOST"] != nil {
                     Auth.auth().useEmulator(withHost:"localhost", port: 9099)
                 }
         
