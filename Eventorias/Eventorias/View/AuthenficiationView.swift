@@ -9,17 +9,17 @@ import SwiftUI
 
 struct AuthenficiationView: View {
     @State var email = ""
-    @State var name = ""
+    @State var password = ""
     var body: some View {
         VStack {
             
             Text("Authentification")
             
             VStack (alignment: .leading){
-                Text("Name")
-                TextField("name", text:$name)
                 Text("Email")
-                TextField("email", text:$email)
+                TextField("name", text:$email)
+                Text("Password")
+                TextField("password", text:$password)
             }
                 Button {
                     
