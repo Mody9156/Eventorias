@@ -12,7 +12,7 @@ struct AuthenficiationView: View {
     @State var name = ""
     var body: some View {
         VStack {
-            Spacer()
+            
             Text("Authentification")
             
             VStack (alignment: .leading){
