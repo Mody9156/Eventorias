@@ -20,14 +20,20 @@ struct RegistrationView: View {
             VStack {
                 Text("Registration")
                 .font(.title)
+                .foregroundColor(.white)
                 
                 VStack (alignment: .leading){
                     Text("Email")
+                        .foregroundColor(.white)
+                    
                     TextField("email", text:$email)
+                        .foregroundColor(.white)
                     
                     Text("Password")
-                    SecureField("password", text:$password)
+                        .foregroundColor(.white)
                     
+                    SecureField("password", text:$password)
+                        .foregroundColor(.white)
                 }
                 
                 Button {
