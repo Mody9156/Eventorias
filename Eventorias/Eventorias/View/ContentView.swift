@@ -24,7 +24,7 @@ struct ContentView: View {
                     Text("Sign in with email")
                 }
                 .sheet(isPresented: $toggle, content: {
-                    AuthenficiationView()
+                    AuthenficiationView( authentificationViewModel: AuthentificationViewModel())
                
             })
 
