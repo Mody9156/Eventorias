@@ -14,11 +14,13 @@ struct AuthenficiationView: View {
         VStack {
             Text("Authentification")
             
-            Text("Name")
-            TextField("name", text:$name)
+            VStack (alignment: .leading){
+                Text("Name")
+                TextField("name", text:$name)
+                Text("Email")
+                TextField("email", text:$email)
+            }
             
-            Text("Email")
-            TextField("email", text:$email)
         }.padding()
         
     }
