@@ -16,6 +16,12 @@ struct ContentView: View {
                     .imageScale(.large)
                     .foregroundColor(.accentColor)
                 Text("EVENTORIAS")
+                Button(action: {}) {
+                    HStack{
+                        Image(systemName: "")
+                        Text("Sign in with email")
+                    }
+                }
             }
             .padding()
         }
