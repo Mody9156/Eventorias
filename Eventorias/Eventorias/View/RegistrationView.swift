@@ -15,6 +15,7 @@ struct RegistrationView: View {
         VStack {
             
             Text("Registration")
+                .font(.title)
             
             VStack (alignment: .leading){
                 Text("Email")
