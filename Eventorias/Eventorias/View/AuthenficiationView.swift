@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct AuthenficiationView: View {
-    
+    @State var email = ""
+    @State var name = ""
     var body: some View {
         Text("Hello, World!")
     }
