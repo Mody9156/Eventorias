@@ -11,32 +11,37 @@ struct RegistrationView: View {
     @State var email = ""
     @State var password = ""
     @StateObject var authentificationViewModel : AuthentificationViewModel
+    @Environment(\.dismiss) var dismiss
+    
     
     var body: some View {
-        VStack {
-            Text("Registration")
-            .font(.title)
-            
-            VStack (alignment: .leading){
-                Text("Email")
-                TextField("email", text:$email)
-                
-                Text("Password")
-                SecureField("password", text:$password)
-                
-            }
-            
-            Button {
-                
-                authentificationViewModel.registerUser(email: email, password: password)
-                
-            } label: {
+        ZStack {
+            Color("Background").ignoresSafeArea()
+            VStack {
                 Text("Registration")
+                .font(.title)
+                
+                VStack (alignment: .leading){
+                    Text("Email")
+                    TextField("email", text:$email)
+                    
+                    Text("Password")
+                    SecureField("password", text:$password)
+                    
+                }
+                
+                Button {
+                    
+                    authentificationViewModel.registerUser(email: email, password: password)
+                    
+                } label: {
+                    Text("Registration")
+                }
+                
+                
             }
-            
-            
+            .padding()
         }
-        .padding()
     }
 }
 
