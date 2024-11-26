@@ -94,6 +94,7 @@
 		231254112CF4EDFE0045E052 /* Eventorias */ = {
 			isa = PBXGroup;
 			children = (
+				23F67F042CF5C62B00819AEB /* Model */,
 				231254122CF4EDFE0045E052 /* EventoriasApp.swift */,
 				231254142CF4EDFE0045E052 /* ContentView.swift */,
 				231254162CF4EE0A0045E052 /* Assets.xcassets */,
@@ -125,6 +126,13 @@
 				2312542F2CF4EE0B0045E052 /* EventoriasUITestsLaunchTests.swift */,
 			);
 			path = EventoriasUITests;
+			sourceTree = "<group>";
+		};
+		23F67F042CF5C62B00819AEB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
