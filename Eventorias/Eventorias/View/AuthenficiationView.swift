@@ -23,7 +23,7 @@ struct AuthenficiationView: View {
                 SecureField("password", text:$password)
             }
                 Button {
-                    authentificationViewModel.login(email:email, password: password)
+                    authentificationViewModel.login(email: email)
                 } label: {
                     Text("Connexion")
                 }

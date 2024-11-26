@@ -10,9 +10,9 @@ import FirebaseAuth
 
 class AuthentificationViewModel : ObservableObject {
     
-    func login(email : String ,password : String){
+    func login(email : String){
         
-        Auth.auth().signIn(withEmail: email, password: password){ result , error in
+        Auth.auth().fetchSignInMethods(forEmail: email){ result , error in
             if error != nil {
                 let error = error?.localizedDescription
                 print("Voici votre erreur : \(error)")
