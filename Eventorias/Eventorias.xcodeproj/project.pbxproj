@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		231254132CF4EDFE0045E052 /* EventoriasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231254122CF4EDFE0045E052 /* EventoriasApp.swift */; };
-		231254152CF4EDFE0045E052 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231254142CF4EDFE0045E052 /* ContentView.swift */; };
+		231254152CF4EDFE0045E052 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231254142CF4EDFE0045E052 /* HomeView.swift */; };
 		231254172CF4EE0A0045E052 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 231254162CF4EE0A0045E052 /* Assets.xcassets */; };
 		2312541A2CF4EE0A0045E052 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 231254192CF4EE0A0045E052 /* Preview Assets.xcassets */; };
 		231254242CF4EE0B0045E052 /* EventoriasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231254232CF4EE0B0045E052 /* EventoriasTests.swift */; };
@@ -36,7 +36,7 @@
 /* Begin PBXFileReference section */
 		2312540F2CF4EDFE0045E052 /* Eventorias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventorias.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		231254122CF4EDFE0045E052 /* EventoriasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasApp.swift; sourceTree = "<group>"; };
-		231254142CF4EDFE0045E052 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		231254142CF4EDFE0045E052 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		231254162CF4EE0A0045E052 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		231254192CF4EE0A0045E052 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2312541F2CF4EE0A0045E052 /* EventoriasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventoriasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,7 +128,7 @@
 		23F67F052CF5C63D00819AEB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				231254142CF4EDFE0045E052 /* ContentView.swift */,
+				231254142CF4EDFE0045E052 /* HomeView.swift */,
 				23B304492CF6043300106980 /* ListView.swift */,
 				23B3044B2CF6066E00106980 /* AuthenficiationView.swift */,
 			);
@@ -254,7 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				231254152CF4EDFE0045E052 /* ContentView.swift in Sources */,
+				231254152CF4EDFE0045E052 /* HomeView.swift in Sources */,
 				231254132CF4EDFE0045E052 /* EventoriasApp.swift in Sources */,
 				23B3044C2CF6066E00106980 /* AuthenficiationView.swift in Sources */,
 				23B3044E2CF611EC00106980 /* AuthentificationViewModel.swift in Sources */,

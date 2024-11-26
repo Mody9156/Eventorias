@@ -14,7 +14,8 @@ class AuthentificationViewModel : ObservableObject {
         
         Auth.auth().signIn(withEmail: email, password: password){ result , error in
             if error != nil {
-                print("error")
+                let error = error?.localizedDescription
+                print("Voici votre erreur : \(error)")
             }else{
                 print("Great")
             }

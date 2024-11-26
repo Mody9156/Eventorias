@@ -20,7 +20,7 @@ struct AuthenficiationView: View {
                 Text("Email")
                 TextField("name", text:$email)
                 Text("Password")
-                TextField("password", text:$password)
+                SecureField("password", text:$password)
             }
                 Button {
                     authentificationViewModel.login(email:email, password: password)
