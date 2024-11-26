@@ -12,6 +12,7 @@ struct AuthenficiationView: View {
     @State var name = ""
     var body: some View {
         VStack {
+            Spacer()
             Text("Authentification")
             
             VStack (alignment: .leading){
@@ -20,6 +21,12 @@ struct AuthenficiationView: View {
                 Text("Email")
                 TextField("email", text:$email)
             }
+                Button {
+                    
+                } label: {
+                    Text("Connexion")
+                }
+        
             
         }.padding()
         
