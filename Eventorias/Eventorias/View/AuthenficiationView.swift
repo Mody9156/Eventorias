@@ -10,6 +10,7 @@ import SwiftUI
 struct AuthenficiationView: View {
     @State var email = ""
     @State var password = ""
+    @StateObject var authentificationViewModel : AuthentificationViewModel
     var body: some View {
         VStack {
             
@@ -22,7 +23,7 @@ struct AuthenficiationView: View {
                 TextField("password", text:$password)
             }
                 Button {
-                    
+                    authentificationViewModel.login(email, password: password)
                 } label: {
                     Text("Connexion")
                 }
