@@ -8,13 +8,32 @@
 import SwiftUI
 
 struct RegistrationView: View {
+    @State var email = ""
+    @StateObject var authentificationViewModel : AuthentificationViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            
+            Text("Authentification")
+            
+            VStack (alignment: .leading){
+                Text("Email")
+                TextField("name", text:$email)
+                
+            }
+            Button {
+                
+            } label: {
+                Text("Registration")
+            }
+            
+            
+        }.padding()
     }
 }
 
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView()
+        RegistrationView(authentificationViewModel: AuthentificationViewModel())
     }
 }
