@@ -15,7 +15,7 @@ struct AuthenficiationView: View {
             Text("Authentification")
             TextField("name", text:$name)
             TextField("email", text:$email)
-        }
+        }.padding()
         
     }
 }
