@@ -10,7 +10,7 @@ import FirebaseAuth
 
 class AuthentificationViewModel : ObservableObject {
     
-    func login(_ email : String ,password : String){
+    func login(email : String ,password : String){
         
         Auth.auth().signIn(withEmail: email, password: password){ result , error in
             if error != nil {
