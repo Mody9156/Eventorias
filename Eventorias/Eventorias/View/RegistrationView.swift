@@ -13,14 +13,13 @@ struct RegistrationView: View {
     @StateObject var authentificationViewModel : AuthentificationViewModel
     @Environment(\.dismiss) var dismiss
     
-    
     var body: some View {
         ZStack {
             Color("Background").ignoresSafeArea()
             VStack {
                 Text("Registration")
-                .font(.title)
-                .foregroundColor(.white)
+                    .font(.title)
+                    .foregroundColor(.white)
                 
                 VStack (alignment: .leading){
                     Text("Email")
@@ -37,16 +36,16 @@ struct RegistrationView: View {
                 }
                 
                 ZStack {
+                    Rectangle()
+                        .frame(width:200, height: 50)
+                        .foregroundColor(Color("Button"))
+                    
                     Button {
-                        
                         authentificationViewModel.registerUser(email: email, password: password)
-                        
                     } label: {
                         Text("Registration")
+                    }
                 }
-                }
-                
-                
             }
             .padding()
         }
