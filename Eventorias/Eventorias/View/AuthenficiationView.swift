@@ -23,7 +23,7 @@ struct AuthenficiationView: View {
                 TextField("password", text:$password)
             }
                 Button {
-                    authentificationViewModel.login(email, password: password)
+                    authentificationViewModel.login(email:email, password: password)
                 } label: {
                     Text("Connexion")
                 }
@@ -36,6 +36,6 @@ struct AuthenficiationView: View {
 
 struct AuthenficiationView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthenficiationView()
+        AuthenficiationView( authentificationViewModel: AuthentificationViewModel())
     }
 }
