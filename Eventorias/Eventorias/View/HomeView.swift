@@ -17,7 +17,11 @@ struct HomeView: View {
                 Image(systemName: "globe")
                     .imageScale(.large)
                     .foregroundColor(.accentColor)
+                
                 Text("EVENTORIAS")
+                    .font(.title)
+                    .bold()
+                    .foregroundColor(.white)
                 
                 VStack {
                  
@@ -45,7 +49,7 @@ struct ActionButtonView: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .frame(width:200,height: 50)
+                .frame(width:200, height: 50)
             
             HStack {
                 Image("letter")
@@ -64,7 +68,8 @@ struct ActionButtonView: View {
                     }
                     
                 })
+                
             }
-        }
+        }.padding()
     }
 }
