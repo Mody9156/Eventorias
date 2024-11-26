@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var toggle : Bool = false
     var body: some View {
         ZStack {
             Color.gray.ignoresSafeArea()
@@ -16,14 +17,18 @@ struct ContentView: View {
                     .imageScale(.large)
                     .foregroundColor(.accentColor)
                 Text("EVENTORIAS")
+                
                 Button(action: {
-                    AuthenficiationView()
+                    toggle.toggle()
                 }) {
-                    HStack{
-                        Image(systemName: "")
-                        Text("Sign in with email")
-                    }
+                    Text("Sign in with email")
                 }
+                .sheet(isPresented: $toggle, content: {
+                    AuthenficiationView()
+               
+            })
+
+                
             }
             .padding()
         }
