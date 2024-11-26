@@ -37,19 +37,20 @@ struct HomeView: View {
                         })
                         
                     }
-                        
                 
                     ZStack {
                         Rectangle()
                             .frame(width:200,height: 50)
-                            .background(Color.red)
+                            
                         
                         HStack {
+                            Image("letter")
                             Button(action: {
                                 
                                 toggleRegistre.toggle()
                             }) {
                                 Text("Registre")
+                                    .foregroundColor(.white)
                             }
                             .sheet(isPresented: $toggleRegistre, content: {
                                 RegistrationView(authentificationViewModel: AuthentificationViewModel())
