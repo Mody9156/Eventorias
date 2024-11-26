@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State var toggle : Bool = false
+    @State var toggleRegistre : Bool = false
     var body: some View {
         ZStack {
             Color.gray.ignoresSafeArea()
@@ -18,15 +19,45 @@ struct HomeView: View {
                     .foregroundColor(.accentColor)
                 Text("EVENTORIAS")
                 
-                Button(action: {
-                    toggle.toggle()
-                }) {
-                    Text("Sign in with email")
+                VStack {
+                        
+                    ZStack {
+                        Rectangle()
+                            .frame(width:200,height: 50)
+                            .background(Color.red)
+                        
+                        Button(action: {
+                                toggle.toggle()
+                            }) {
+                                Text("Sign in with email")
+                            }
+                            .sheet(isPresented: $toggle, content: {
+                                AuthenficiationView( authentificationViewModel: AuthentificationViewModel())
+                           
+                        })
+                        
+                    }
+                        
+                
+                    ZStack {
+                        Rectangle()
+                            .frame(width:200,height: 50)
+                            .background(Color.red)
+                        
+                        HStack {
+                            Button(action: {
+                                
+                                toggleRegistre.toggle()
+                            }) {
+                                Text("Registre")
+                            }
+                            .sheet(isPresented: $toggleRegistre, content: {
+                                RegistrationView(authentificationViewModel: AuthentificationViewModel())
+                           
+                        })
+                        }
+                    }
                 }
-                .sheet(isPresented: $toggle, content: {
-                    AuthenficiationView( authentificationViewModel: AuthentificationViewModel())
-               
-            })
 
                 
             }
