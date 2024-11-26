@@ -50,6 +50,7 @@ struct ActionButtonView: View {
         ZStack {
             Rectangle()
                 .frame(width:200, height: 50)
+                .foregroundColor(.red)
             
             HStack {
                 Image("letter")
@@ -59,7 +60,7 @@ struct ActionButtonView: View {
                     toggle.toggle()
                 }) {
                     Text(name)
-                        .foregroundColor(.white)
+                        .foregroundColor(Color("Button"))
                 }
                 .sheet(isPresented: $toggle, content: {
                     if name == "Registre" {
