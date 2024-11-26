@@ -20,25 +20,9 @@ struct HomeView: View {
                 Text("EVENTORIAS")
                 
                 VStack {
-                        
-                    ZStack {
-                        Rectangle()
-                            .frame(width:200,height: 50)
-                            .background(Color.red)
-                        
-                        Button(action: {
-                                toggle.toggle()
-                            }) {
-                                Text("Sign in with email")
-                            }
-                            .sheet(isPresented: $toggle, content: {
-                                AuthenficiationView( authentificationViewModel: AuthentificationViewModel())
-                           
-                        })
-                        
-                    }
-                
-                    ActionButtonView()
+                 
+                    ActionButtonView(toggle: $toggleRegistre,name: "Sign in with email")
+                    ActionButtonView(toggle: $toggleRegistre,name: "Registre")
                 }
 
                 
@@ -55,6 +39,9 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct ActionButtonView: View {
+    @Binding var toggle : Bool
+    @State var name : String
+
     var body: some View {
         ZStack {
             Rectangle()
@@ -64,13 +51,17 @@ struct ActionButtonView: View {
                 Image("letter")
                 Button(action: {
                     
-                    toggleRegistre.toggle()
+                    toggle.toggle()
                 }) {
-                    Text("Registre")
+                    Text(name)
                         .foregroundColor(.white)
                 }
-                .sheet(isPresented: $toggleRegistre, content: {
-                    RegistrationView(authentificationViewModel: AuthentificationViewModel())
+                .sheet(isPresented: $toggle, content: {
+                    if name == "Registre" {
+                        RegistrationView(authentificationViewModel: AuthentificationViewModel())
+                    }else{
+                        AuthenficiationView( authentificationViewModel: AuthentificationViewModel())
+                    }
                     
                 })
             }
