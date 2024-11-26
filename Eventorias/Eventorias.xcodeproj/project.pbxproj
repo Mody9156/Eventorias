@@ -21,6 +21,7 @@
 		23B3044A2CF6043300106980 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B304492CF6043300106980 /* ListView.swift */; };
 		23B3044C2CF6066E00106980 /* AuthenficiationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B3044B2CF6066E00106980 /* AuthenficiationView.swift */; };
 		23B3044E2CF611EC00106980 /* AuthentificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B3044D2CF611EC00106980 /* AuthentificationViewModel.swift */; };
+		23B304502CF61FEE00106980 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B3044F2CF61FEE00106980 /* RegistrationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		23B304492CF6043300106980 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		23B3044B2CF6066E00106980 /* AuthenficiationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenficiationView.swift; sourceTree = "<group>"; };
 		23B3044D2CF611EC00106980 /* AuthentificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationViewModel.swift; sourceTree = "<group>"; };
+		23B3044F2CF61FEE00106980 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				231254142CF4EDFE0045E052 /* HomeView.swift */,
 				23B304492CF6043300106980 /* ListView.swift */,
 				23B3044B2CF6066E00106980 /* AuthenficiationView.swift */,
+				23B3044F2CF61FEE00106980 /* RegistrationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				231254152CF4EDFE0045E052 /* HomeView.swift in Sources */,
 				231254132CF4EDFE0045E052 /* EventoriasApp.swift in Sources */,
 				23B3044C2CF6066E00106980 /* AuthenficiationView.swift in Sources */,
+				23B304502CF61FEE00106980 /* RegistrationView.swift in Sources */,
 				23B3044E2CF611EC00106980 /* AuthentificationViewModel.swift in Sources */,
 				23B3044A2CF6043300106980 /* ListView.swift in Sources */,
 			);
