@@ -12,6 +12,8 @@ struct AuthenficiationView: View {
     @State var name = ""
     var body: some View {
         Text("Hello, World!")
+        TextField("name", text:$name)
+        TextField("email", text:$email)
     }
 }
 
