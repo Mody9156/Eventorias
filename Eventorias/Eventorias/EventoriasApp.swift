@@ -18,6 +18,7 @@ class AppDelegate : NSObject, UIApplicationDelegate {
         if ProcessInfo.processInfo.environment["FIREBASE_AUTH_EMULATOR_HOST"] != nil {
                     Auth.auth().useEmulator(withHost:"localhost", port: 9099)
                 }
+        
         let useEmulator = UserDefaults.standard.bool(forKey: "useEmulator")
         if useEmulator {
             let settings = Firestore.firestore().settings

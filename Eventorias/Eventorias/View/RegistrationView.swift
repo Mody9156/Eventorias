@@ -9,27 +9,34 @@ import SwiftUI
 
 struct RegistrationView: View {
     @State var email = ""
+    @State var password = ""
     @StateObject var authentificationViewModel : AuthentificationViewModel
     
     var body: some View {
         VStack {
-            
             Text("Registration")
-                .font(.title)
+            .font(.title)
             
             VStack (alignment: .leading){
                 Text("Email")
-                TextField("name", text:$email)
+                TextField("email", text:$email)
+                
+                Text("Password")
+                SecureField("password", text:$password)
                 
             }
+            
             Button {
+                
+                authentificationViewModel.registerUser(email: email, password: password)
                 
             } label: {
                 Text("Registration")
             }
             
             
-        }.padding()
+        }
+        .padding()
     }
 }
 
