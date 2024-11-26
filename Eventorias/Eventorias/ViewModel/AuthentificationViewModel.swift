@@ -22,4 +22,15 @@ class AuthentificationViewModel : ObservableObject {
         }
     }
     
+    func registerUser(email:String,passord:String){
+        Auth.auth().createUser(withEmail: email, password: passord){ result , error in
+            if error != nil {
+                let error = error?.localizedDescription
+                print("Voici votre erreur : \(error)")
+            }else{
+                print("Great")
+            }
+        }
+    }
+    
 }

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct AuthenficiationView: View {
     @State var email = ""
-    @State var password = ""
     @StateObject var authentificationViewModel : AuthentificationViewModel
+    
     var body: some View {
         VStack {
             
