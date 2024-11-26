@@ -19,6 +19,7 @@
 		23B304462CF5E14600106980 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 23B304452CF5E14600106980 /* FirebaseFirestore */; };
 		23B304482CF5E14600106980 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 23B304472CF5E14600106980 /* FirebaseFirestoreSwift */; };
 		23B3044A2CF6043300106980 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B304492CF6043300106980 /* ListView.swift */; };
+		23B3044C2CF6066E00106980 /* AuthenficiationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B3044B2CF6066E00106980 /* AuthenficiationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		231254232CF4EE0B0045E052 /* EventoriasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasTests.swift; sourceTree = "<group>"; };
 		23B3043C2CF5D61500106980 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		23B304492CF6043300106980 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		23B3044B2CF6066E00106980 /* AuthenficiationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenficiationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 			children = (
 				231254142CF4EDFE0045E052 /* ContentView.swift */,
 				23B304492CF6043300106980 /* ListView.swift */,
+				23B3044B2CF6066E00106980 /* AuthenficiationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 			files = (
 				231254152CF4EDFE0045E052 /* ContentView.swift in Sources */,
 				231254132CF4EDFE0045E052 /* EventoriasApp.swift in Sources */,
+				23B3044C2CF6066E00106980 /* AuthenficiationView.swift in Sources */,
 				23B3044A2CF6043300106980 /* ListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
