@@ -25,7 +25,7 @@ struct HomeView: View {
                 
                 VStack {
                  
-                    ActionButtonView(toggle: $toggleRegistre,name: "Sign in with email")
+                    ActionButtonView(toggle: $toggle,name: "Sign in with email")
                     ActionButtonView(toggle: $toggleRegistre,name: "Registre")
                 }
 
