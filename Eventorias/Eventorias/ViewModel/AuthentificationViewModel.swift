@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+class AuthentificationViewModel : ObservableObject {
+    
+    func login(_ email : String ,password : String){
+        
+    }
+    
+}
