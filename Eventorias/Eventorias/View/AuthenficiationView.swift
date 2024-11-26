@@ -13,7 +13,11 @@ struct AuthenficiationView: View {
     var body: some View {
         VStack {
             Text("Authentification")
+            
+            Text("Name")
             TextField("name", text:$name)
+            
+            Text("Email")
             TextField("email", text:$email)
         }.padding()
         
