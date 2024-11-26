@@ -52,7 +52,8 @@ struct ActionButtonView: View {
                 .frame(width:200, height: 50)
             
             HStack {
-                Image("letter")
+                Image("Logo")
+                
                 Button(action: {
                     
                     toggle.toggle()
