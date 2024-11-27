@@ -19,34 +19,40 @@ struct AuthenficiationView: View {
     @FocusState private var focusedField : Field?
 
     var body: some View {
-        VStack {
-            Text("Authentification")
+        ZStack {
+            Color("Background").ignoresSafeArea()
             
-            VStack (alignment: .leading){
-                Text("Email")
-                TextField("name", text:$email)
-                    .focused($focusedField, equals: .email)
+            VStack {
+                Text("Authentification")
                 
-                Text("Password")
-                SecureField("password", text: $password)
-                    .focused($focusedField, equals: .password)
-            }
-            
-            Button {
-                authentificationViewModel.login(email: email, password: password)
-                
-                if authentificationViewModel.isAuthenticated{
-                    dismiss()
+                VStack (alignment: .leading){
+                    Text("Email")
+                    TextField("name", text:$email)
+                        .focused($focusedField, equals: .email)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    Text("Password")
+                    SecureField("password", text: $password)
+                        .focused($focusedField, equals: .password)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
                 
-            } label: {
-                Text("Connexion")
+                Button {
+                    authentificationViewModel.login(email: email, password: password)
+                    
+                    if authentificationViewModel.isAuthenticated{
+                        dismiss()
+                    }
+                    
+                } label: {
+                    Text("Connexion")
+                }
+                if let error = authentificationViewModel.errorMessage {
+                    Text(error)
+                    .foregroundColor(.red)
             }
-            if let error = authentificationViewModel.errorMessage {
-                Text(error)
-                .foregroundColor(.red)
+            }.padding()
         }
-        }.padding()
     }
 }
 
