@@ -13,7 +13,10 @@ struct HomeView: View {
     @State var showOtherButton : Bool = false
     var body: some View {
         ZStack {
-            Color("Background").ignoresSafeArea()
+            Color("Background")
+                .ignoresSafeArea()
+                .opacity(showOtherButton ? 0.5: 1)
+                
             VStack {
                 if !showOtherButton {
                     Image("Logo")
