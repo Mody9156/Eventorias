@@ -31,6 +31,7 @@ class AuthentificationViewModel : ObservableObject {
                 // Connexion réussie
                 self.errorMessage = nil
                 self.isAuthenticated = true
+                print("Graduation")
             }
         }
     }

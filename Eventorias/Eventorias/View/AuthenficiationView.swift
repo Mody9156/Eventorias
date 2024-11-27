@@ -20,6 +20,9 @@ struct AuthenficiationView: View {
             VStack (alignment: .leading){
                 Text("Email")
                 TextField("name", text:$email)
+                
+                Text("Password")
+                SecureField("password", text: $password)
             }
                 Button {
                     authentificationViewModel.login(email: email, password: password)
