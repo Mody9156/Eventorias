@@ -28,7 +28,7 @@ struct AuthenficiationView: View {
             Button {
                 authentificationViewModel.login(email: email, password: password)
                 
-                if authentificationViewModel.errorMessage == nil {
+                if authentificationViewModel.isAuthenticated{
                     dismiss()
                 }
                 
