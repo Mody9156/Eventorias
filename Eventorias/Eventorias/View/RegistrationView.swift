@@ -46,8 +46,10 @@ struct RegistrationView: View {
                         Text("Registration")
                     }
                 }
-                Text("")
+                if let error = authentificationViewModel.errorMessage {
+                    Text(error)
                     .foregroundColor(.red)
+            }
             }
             .padding()
         }
