@@ -13,24 +13,24 @@ import FirebaseCore
 class AuthentificationViewModel : ObservableObject {
     @Published var errorMessage: String? = nil
 
-    func login(email : String){
+    func login(email : String,password:String){
         guard !email.isEmpty else {
                    self.errorMessage = "L'email ou le mot de passe ne peuvent pas être vides."
             
             print("L'email ou le mot de passe ne peuvent pas être vides.")
                    return
                }
-        
-//        Auth.auth().signIn(withCustomToken: <#T##String#>){ user , error in
-//            if let error = error  {
-//                self.errorMessage = error.localizedDescription
-//                print("Voici votre erreur : \(self.errorMessage ?? "Erreur inconnue")")
-//            }else{
-//                self.errorMessage = nil
-//                print("L'email est déjà enregistré, vous pouvez vous connecter.\(String(describing: result))")
-//            }
-            
-//        }
+        Auth.auth().signIn(withEmail: email, password: password){ result , error in
+            if result != nil && self.errorMessage == nil {
+               print("L'email est déjà enregistré, vous pouvez vous connecter.\(String(describing: result))")
+                self.errorMessage = nil
+            }else{
+                if let error = error  {
+                    self.errorMessage = error.localizedDescription
+                    print("Voici votre erreur : \(self.errorMessage ?? "Erreur inconnue")")
+                }
+            }
+        }
     }
     
     func registerUser(email:String,password:String){
