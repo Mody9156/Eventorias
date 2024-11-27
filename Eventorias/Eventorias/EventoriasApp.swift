@@ -35,10 +35,17 @@ class AppDelegate : NSObject, UIApplicationDelegate {
 @main
 struct EventoriasApp: App {
     @UIApplicationDelegateAdaptor (AppDelegate.self) var delegate
+    @StateObject var authentificationViewModel = AuthentificationViewModel()
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                HomeView()
+                if !authentificationViewModel.isAuthenticated {
+                    HomeView()
+                }else{
+                    ListView()
+                }
+                
+                
             }
         }
     }
