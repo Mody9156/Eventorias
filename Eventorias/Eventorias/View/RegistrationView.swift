@@ -46,6 +46,8 @@ struct RegistrationView: View {
                         Text("Registration")
                     }
                 }
+                Text("")
+                    
             }
             .padding()
         }
