@@ -12,9 +12,18 @@ struct ListView: View {
     
     var body: some View {
         NavigationStack {
-            Text("Searching for \(searchText) ")
-                .navigationTitle("Searchable Example")
+            VStack{
+                HStack{
+                    Image(systemName: "")
+                    Text("Sorting")
+                    Spacer()
+                }
+                
+                Spacer()
+                
+            }
         }
+        .searchable(text: $searchText)
     }
 }
 
