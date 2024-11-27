@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @State var toggle : Bool = false
     @State var toggleRegistre : Bool = false
+    @State var showOtherButton : Bool = false
     var body: some View {
         ZStack {
             Color("Background").ignoresSafeArea()
@@ -24,9 +25,9 @@ struct HomeView: View {
                     .foregroundColor(.white)
                 
                 VStack {
-                  
-                            Button(action:{}){
-                                
+                            Button(action:{
+                                showOtherButton.toggle()
+                            }){
                                 ZStack {
                                     Rectangle()
                                         .frame(width:200, height: 50)
@@ -35,13 +36,9 @@ struct HomeView: View {
                                     Image("letter")
                                 }
                             }
-                        
-                  
 //                    ActionButtonView(toggle: $toggle,name: "Sign in with email")
 //                    ActionButtonView(toggle: $toggleRegistre,name: "Registre")
                 }
-
-                
             }
             .padding()
         }
