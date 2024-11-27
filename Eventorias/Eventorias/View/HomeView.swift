@@ -15,7 +15,7 @@ struct HomeView: View {
         ZStack {
             Color("Background").ignoresSafeArea()
             VStack {
-                if showOtherButton {
+                if !showOtherButton {
                     Image("Logo")
                         .imageScale(.large)
                         .foregroundColor(.accentColor)
@@ -30,12 +30,23 @@ struct HomeView: View {
                             Button(action:{
                                 showOtherButton.toggle()
                             }){
-                                ZStack {
-                                    Rectangle()
-                                        .frame(width:200, height: 50)
-                                        .foregroundColor(Color("Button"))
-                                    
-                                    Image("letter")
+                                if !showOtherButton {
+                                    ZStack {
+                                        Rectangle()
+                                            .frame(width:200, height: 50)
+                                            .foregroundColor(Color("Button"))
+                                        
+                                        Image("letter")
+                                    }
+                                }else{
+                                    ZStack {
+                                        Rectangle()
+                                            .frame(width:200, height: 50)
+                                            .foregroundColor(Color("Button"))
+                                        
+                                        Image("xmark.circle.fill")
+                                            .foregroundColor(.white)
+                                    }
                                 }
                             }
 //                    ActionButtonView(toggle: $toggle,name: "Sign in with email")
