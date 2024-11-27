@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct AuthenficiationView: View {
+    enum Field : Hashable {
+        case email,password
+    }
+    
     @State var email = ""
     @State var password = ""
     @StateObject var authentificationViewModel : AuthentificationViewModel
     @Environment(\.dismiss) var dismiss
-    
+    @FocusState private var focusedField : Field?
+
     var body: some View {
         VStack {
             Text("Authentification")
@@ -20,9 +25,11 @@ struct AuthenficiationView: View {
             VStack (alignment: .leading){
                 Text("Email")
                 TextField("name", text:$email)
+                    .focused($focusedField, equals: .email)
                 
                 Text("Password")
                 SecureField("password", text: $password)
+                    .focused($focusedField, equals: .password)
             }
             
             Button {
