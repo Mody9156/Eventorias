@@ -24,7 +24,9 @@ struct HomeView: View {
                     .foregroundColor(.white)
                 
                 VStack {
-                 
+                    Button(action:{}){
+                        Img("Letter")
+                    }
 //                    ActionButtonView(toggle: $toggle,name: "Sign in with email")
 //                    ActionButtonView(toggle: $toggleRegistre,name: "Registre")
                 }
