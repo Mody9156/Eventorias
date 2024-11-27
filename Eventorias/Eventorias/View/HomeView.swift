@@ -27,31 +27,39 @@ struct HomeView: View {
                 }
                 
                 VStack {
-                            Button(action:{
-                                showOtherButton.toggle()
-                            }){
-                                if !showOtherButton {
-                                    ZStack {
-                                        Rectangle()
-                                            .frame(width:200, height: 50)
-                                            .foregroundColor(Color("Button"))
-                                        
-                                        Image("letter")
-                                    }
-                                }else{
-                                        Image(systemName:"xmark.circle.fill")
-                                            .resizable()
-                                            .foregroundStyle(.white,.red)
-                                            .frame(width: 100, height: 100)
-                                }
-                            }
-//                    ActionButtonView(toggle: $toggle,name: "Sign in with email")
-//                    ActionButtonView(toggle: $toggleRegistre,name: "Registre")
+                    if showOtherButton {
+                     ActionButtonView(toggle: $toggle,name: "Sign in with email")
                 }
-            }
-            .padding()
+                
+                Button(action:{
+                    showOtherButton.toggle()
+                }){
+ 
+                    if !showOtherButton {
+                        ZStack {
+                            Rectangle()
+                                .frame(width:200, height: 50)
+                                .foregroundColor(Color("Button"))
+                             Image("letter")
+                        }
+                        
+                    }else{
+                        
+                        Image(systemName:"xmark.circle")
+                            .resizable()
+                            .foregroundStyle(Color("Button"),Color("Button"))
+                            .frame(width: 100, height: 100)
+                     }
+                 }
+                
+                if showOtherButton {
+                    ActionButtonView(toggle: $toggleRegistre,name: "Registre")
+                }
+             }
         }
+        .padding()
     }
+  }
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -63,16 +71,14 @@ struct ContentView_Previews: PreviewProvider {
 struct ActionButtonView: View {
     @Binding var toggle : Bool
     @State var name : String
-
+    
     var body: some View {
         ZStack {
             Rectangle()
                 .frame(width:200, height: 50)
                 .foregroundColor(Color("Button"))
             
-            
             HStack {
-                Image("letter")
                 
                 Button(action: {
                     
@@ -87,9 +93,7 @@ struct ActionButtonView: View {
                     }else{
                         AuthenficiationView( authentificationViewModel: AuthentificationViewModel())
                     }
-                    
                 })
-                
             }
         }.padding()
     }
