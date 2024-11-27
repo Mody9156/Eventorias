@@ -38,7 +38,7 @@ struct EventoriasApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                HomeView()
+                ListView()
             }
         }
     }
