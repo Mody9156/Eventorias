@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AuthenficiationView: View {
     @State var email = ""
+    @State var password = ""
     @StateObject var authentificationViewModel : AuthentificationViewModel
     
     var body: some View {
@@ -21,7 +22,7 @@ struct AuthenficiationView: View {
                 TextField("name", text:$email)
             }
                 Button {
-                    authentificationViewModel.login(email: email)
+                    authentificationViewModel.login(email: email, password: password)
                 } label: {
                     Text("Connexion")
                 }

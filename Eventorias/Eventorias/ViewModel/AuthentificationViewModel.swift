@@ -14,7 +14,7 @@ class AuthentificationViewModel : ObservableObject {
     @Published var errorMessage: String? = nil
     @Published var isAuthenticated : Bool = false
     
-    func login(email : String,password:String){
+    func login(email : String,password:String) {
         //Validation du mail et du mot de passe
         guard !email.isEmpty, !password.isEmpty else {
                    self.errorMessage = "Veuillez remplir tout les champs."
@@ -35,7 +35,7 @@ class AuthentificationViewModel : ObservableObject {
         }
     }
     
-    func registerUser(email:String,password:String){
+    func registerUser(email:String,password:String) {
         
         guard !email.isEmpty, !password.isEmpty else {
                    self.errorMessage = "L'email ou le mot de passe ne peuvent pas être vides."
