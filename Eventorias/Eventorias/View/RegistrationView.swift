@@ -34,7 +34,6 @@ struct RegistrationView: View {
                         .foregroundColor(.white)
                     
                     TextField("email", text:$email)
-                        .foregroundColor(.white)
                         .focused($focusedField, equals: .email)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
@@ -42,7 +41,6 @@ struct RegistrationView: View {
                         .foregroundColor(.white)
                     
                     SecureField("password", text:$password)
-                        .foregroundColor(.white)
                         .focused($focusedField, equals: .password)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
