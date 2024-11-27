@@ -20,32 +20,44 @@ struct AuthenficiationView: View {
 
     var body: some View {
         ZStack {
-            Color("Background").ignoresSafeArea()
+            Color("Background")
+                .ignoresSafeArea()
             
             VStack {
                 Text("Authentification")
                 
                 VStack (alignment: .leading){
                     Text("Email")
+                        .foregroundColor(.white)
+                    
                     TextField("name", text:$email)
                         .focused($focusedField, equals: .email)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     Text("Password")
+                        .foregroundColor(.white)
+                    
                     SecureField("password", text: $password)
                         .focused($focusedField, equals: .password)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
                 
-                Button {
-                    authentificationViewModel.login(email: email, password: password)
-                    
-                    if authentificationViewModel.isAuthenticated{
-                        dismiss()
-                    }
-                    
-                } label: {
-                    Text("Connexion")
+                ZStack {
+                        Rectangle()
+                            .frame(width:200, height: 50)
+                            .foregroundColor(Color("Button"))
+                        
+                    Button {
+                        authentificationViewModel.login(email: email, password: password)
+                        
+                        if authentificationViewModel.isAuthenticated{
+                            dismiss()
+                        }
+                        
+                    } label: {
+                        Text("Connexion")
+                            .foregroundColor(.white)
+                }
                 }
                 if let error = authentificationViewModel.errorMessage {
                     Text(error)
