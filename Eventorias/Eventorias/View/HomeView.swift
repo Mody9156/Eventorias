@@ -39,14 +39,10 @@ struct HomeView: View {
                                         Image("letter")
                                     }
                                 }else{
-                                    ZStack {
-                                        Circle()
-                                            .frame(width:showOtherButton ? 400 : 200 , height: showOtherButton ? 100 : 50)
-                                            .foregroundColor(Color("Button"))
-                                        
                                         Image(systemName:"xmark.circle.fill")
-                                            .foregroundColor(.white)
-                                    }
+                                            .resizable()
+                                            .foregroundStyle(.white,.red)
+                                            .frame(width: 100, height: 100)
                                 }
                             }
 //                    ActionButtonView(toggle: $toggle,name: "Sign in with email")
