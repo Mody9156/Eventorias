@@ -12,10 +12,9 @@ struct AuthenficiationView: View {
     @State var password = ""
     @StateObject var authentificationViewModel : AuthentificationViewModel
     @Environment(\.dismiss) var dismiss
-
+    
     var body: some View {
         VStack {
-            
             Text("Authentification")
             
             VStack (alignment: .leading){
@@ -25,19 +24,22 @@ struct AuthenficiationView: View {
                 Text("Password")
                 SecureField("password", text: $password)
             }
-                Button {
-                    authentificationViewModel.login(email: email, password: password)
-                    
-                    if authentificationViewModel.errorMessage == nil {
-                        dismiss()
-                    }
-                } label: {
-                    Text("Connexion")
-                }
-        
             
+            Button {
+                authentificationViewModel.login(email: email, password: password)
+                
+                if authentificationViewModel.errorMessage == nil {
+                    dismiss()
+                }
+                
+            } label: {
+                Text("Connexion")
+            }
+            if let error = authentificationViewModel.errorMessage {
+                Text(error)
+                .foregroundColor(.red)
+        }
         }.padding()
-        
     }
 }
 
