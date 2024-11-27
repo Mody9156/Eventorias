@@ -40,12 +40,12 @@ struct HomeView: View {
                                     }
                                 }else{
                                     ZStack {
-                                        Rectangle()
-                                            .frame(width:200, height: 50)
+                                        Circle()
+                                            .frame(width:showOtherButton ? 400 : 200 , height: showOtherButton ? 100 : 50)
                                             .foregroundColor(Color("Button"))
                                         
                                         Image(systemName:"xmark.circle.fill")
-                                            .background(Color.white)
+                                            .foregroundColor(.white)
                                     }
                                 }
                             }
