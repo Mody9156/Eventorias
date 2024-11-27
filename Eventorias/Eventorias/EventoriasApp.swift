@@ -45,7 +45,6 @@ struct EventoriasApp: App {
                     ListView()
                 }
                 
-                
             }
         }
     }
