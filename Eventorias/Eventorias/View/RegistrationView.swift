@@ -47,7 +47,7 @@ struct RegistrationView: View {
                     }
                 }
                 Text("")
-                    
+                    .foregroundColor(.red)
             }
             .padding()
         }
