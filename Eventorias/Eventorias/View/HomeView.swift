@@ -44,8 +44,8 @@ struct HomeView: View {
                                             .frame(width:200, height: 50)
                                             .foregroundColor(Color("Button"))
                                         
-                                        Image("xmark.circle.fill")
-                                            .foregroundColor(.white)
+                                        Image(systemName:"xmark.circle.fill")
+                                            .background(Color.white)
                                     }
                                 }
                             }
