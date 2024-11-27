@@ -15,14 +15,16 @@ struct HomeView: View {
         ZStack {
             Color("Background").ignoresSafeArea()
             VStack {
-                Image("Logo")
-                    .imageScale(.large)
-                    .foregroundColor(.accentColor)
-                
-                Text("EVENTORIAS")
-                    .font(.title)
-                    .bold()
-                    .foregroundColor(.white)
+                if showOtherButton {
+                    Image("Logo")
+                        .imageScale(.large)
+                        .foregroundColor(.accentColor)
+                    
+                    Text("EVENTORIAS")
+                        .font(.title)
+                        .bold()
+                        .foregroundColor(.white)
+                }
                 
                 VStack {
                             Button(action:{
