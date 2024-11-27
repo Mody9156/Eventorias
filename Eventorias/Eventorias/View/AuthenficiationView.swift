@@ -25,6 +25,7 @@ struct AuthenficiationView: View {
             
             VStack {
                 Text("Authentification")
+                    .foregroundColor(.white)
                 
                 VStack (alignment: .leading){
                     Text("Email")
@@ -58,11 +59,13 @@ struct AuthenficiationView: View {
                         Text("Connexion")
                             .foregroundColor(.white)
                 }
+                    
                 }
                 if let error = authentificationViewModel.errorMessage {
                     Text(error)
                     .foregroundColor(.red)
             }
+                
             }.padding()
         }
     }
