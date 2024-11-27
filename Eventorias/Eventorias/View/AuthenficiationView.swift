@@ -11,7 +11,8 @@ struct AuthenficiationView: View {
     @State var email = ""
     @State var password = ""
     @StateObject var authentificationViewModel : AuthentificationViewModel
-    
+    @Environment(\.dismiss) var dismiss
+
     var body: some View {
         VStack {
             
@@ -26,6 +27,10 @@ struct AuthenficiationView: View {
             }
                 Button {
                     authentificationViewModel.login(email: email, password: password)
+                    
+                    if authentificationViewModel.errorMessage == nil {
+                        dismiss()
+                    }
                 } label: {
                     Text("Connexion")
                 }
