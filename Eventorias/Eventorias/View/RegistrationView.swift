@@ -29,10 +29,11 @@ struct RegistrationView: View {
                 VStack (alignment: .leading){
                     Text("Email")
                         .foregroundColor(.white)
-                        .focused($focusedField, equals: .email)
-                    
+                        
                     TextField("email", text:$email)
                         .foregroundColor(.white)
+                        .focused($focusedField, equals: .email)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                     
                     Text("Password")
                         .foregroundColor(.white)
@@ -40,6 +41,7 @@ struct RegistrationView: View {
                     SecureField("password", text:$password)
                         .foregroundColor(.white)
                         .focused($focusedField, equals: .password)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
                 
                 ZStack {
@@ -54,6 +56,7 @@ struct RegistrationView: View {
                         }
                     } label: {
                         Text("Registration")
+                            .foregroundColor(.white)
                     }
                 }
                 if let error = authentificationViewModel.errorMessage {
