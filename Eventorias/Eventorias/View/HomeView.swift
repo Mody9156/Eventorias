@@ -25,8 +25,8 @@ struct HomeView: View {
                 
                 VStack {
                  
-                    ActionButtonView(toggle: $toggle,name: "Sign in with email")
-                    ActionButtonView(toggle: $toggleRegistre,name: "Registre")
+//                    ActionButtonView(toggle: $toggle,name: "Sign in with email")
+//                    ActionButtonView(toggle: $toggleRegistre,name: "Registre")
                 }
 
                 
@@ -51,6 +51,7 @@ struct ActionButtonView: View {
             Rectangle()
                 .frame(width:200, height: 50)
                 .foregroundColor(Color("Button"))
+            
             
             HStack {
                 Image("letter")
