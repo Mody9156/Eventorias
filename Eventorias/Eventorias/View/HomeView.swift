@@ -11,11 +11,12 @@ struct HomeView: View {
     @State var toggle : Bool = false
     @State var toggleRegistre : Bool = false
     @State var showOtherButton : Bool = false
+    @FocusState private var focusedField : Field?
+    
     var body: some View {
         ZStack {
             Color("Background")
                 .ignoresSafeArea()
-                .opacity(showOtherButton ? 0.5: 1)
                 
             VStack {
                 if !showOtherButton {
@@ -43,9 +44,9 @@ struct HomeView: View {
                             Rectangle()
                                 .frame(width:200, height: 50)
                                 .foregroundColor(Color("Button"))
+                            
                              Image("letter")
                         }
-                        
                     }else{
                         
                         Image(systemName:"xmark.circle")
