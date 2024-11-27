@@ -52,6 +52,8 @@ struct HomeView: View {
                             .resizable()
                             .foregroundStyle(Color("Button"),Color("Button"))
                             .frame(width: 100, height: 100)
+                            .opacity(0.4)
+                            .padding()
                      }
                  }
                 
