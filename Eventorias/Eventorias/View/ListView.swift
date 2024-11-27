@@ -14,7 +14,7 @@ struct ListView: View {
         NavigationStack {
             VStack{
                 HStack{
-                    Image(systemName: "")
+                    Image("Sort")
                     Text("Sorting")
                     Spacer()
                 }
