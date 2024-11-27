@@ -17,10 +17,13 @@ struct RegistrationView: View {
     @StateObject var authentificationViewModel : AuthentificationViewModel
     @Environment(\.dismiss) var dismiss
     @FocusState private var focusedField : Field?
-
+    
     var body: some View {
         ZStack {
-            Color("Background").ignoresSafeArea()
+            Color("Background")
+                .ignoresSafeArea()
+                .opacity(0.8)
+            
             VStack {
                 Text("Registration")
                     .font(.title)
@@ -29,7 +32,7 @@ struct RegistrationView: View {
                 VStack (alignment: .leading){
                     Text("Email")
                         .foregroundColor(.white)
-                        
+                    
                     TextField("email", text:$email)
                         .foregroundColor(.white)
                         .focused($focusedField, equals: .email)
@@ -61,8 +64,8 @@ struct RegistrationView: View {
                 }
                 if let error = authentificationViewModel.errorMessage {
                     Text(error)
-                    .foregroundColor(.red)
-            }
+                        .foregroundColor(.red)
+                }
             }
             .padding()
         }

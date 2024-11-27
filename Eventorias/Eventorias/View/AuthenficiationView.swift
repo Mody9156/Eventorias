@@ -17,11 +17,12 @@ struct AuthenficiationView: View {
     @StateObject var authentificationViewModel : AuthentificationViewModel
     @Environment(\.dismiss) var dismiss
     @FocusState private var focusedField : Field?
-
+    
     var body: some View {
         ZStack {
             Color("Background")
                 .ignoresSafeArea()
+                .opacity(0.8)
             
             VStack {
                 Text("Authentification")
@@ -45,10 +46,10 @@ struct AuthenficiationView: View {
                 }
                 
                 ZStack {
-                        Rectangle()
-                            .frame(width:200, height: 50)
-                            .foregroundColor(Color("Button"))
-                        
+                    Rectangle()
+                        .frame(width:200, height: 50)
+                        .foregroundColor(Color("Button"))
+                    
                     Button {
                         authentificationViewModel.login(email: email, password: password)
                         
@@ -59,13 +60,13 @@ struct AuthenficiationView: View {
                     } label: {
                         Text("Connexion")
                             .foregroundColor(.white)
-                }
+                    }
                     
                 }
                 if let error = authentificationViewModel.errorMessage {
                     Text(error)
-                    .foregroundColor(.red)
-            }
+                        .foregroundColor(.red)
+                }
                 
             }.padding()
         }
