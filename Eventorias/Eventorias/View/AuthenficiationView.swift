@@ -25,6 +25,7 @@ struct AuthenficiationView: View {
             
             VStack {
                 Text("Authentification")
+                    .font(.title)
                     .foregroundColor(.white)
                 
                 VStack (alignment: .leading){
