@@ -11,7 +11,6 @@ struct HomeView: View {
     @State var toggle : Bool = false
     @State var toggleRegistre : Bool = false
     @State var showOtherButton : Bool = false
-    @FocusState private var focusedField : Field?
     
     var body: some View {
         ZStack {

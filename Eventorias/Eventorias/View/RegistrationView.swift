@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct RegistrationView: View {
+    enum Field : Hashable {
+        case email,password
+    }
+    
     @State var email = ""
     @State var password = ""
     @StateObject var authentificationViewModel : AuthentificationViewModel
     @Environment(\.dismiss) var dismiss
-    
+    @FocusState private var focusedField : Field?
+
     var body: some View {
         ZStack {
             Color("Background").ignoresSafeArea()
@@ -24,6 +29,7 @@ struct RegistrationView: View {
                 VStack (alignment: .leading){
                     Text("Email")
                         .foregroundColor(.white)
+                        .focused($focusedField, equals: .email)
                     
                     TextField("email", text:$email)
                         .foregroundColor(.white)
@@ -33,6 +39,7 @@ struct RegistrationView: View {
                     
                     SecureField("password", text:$password)
                         .foregroundColor(.white)
+                        .focused($focusedField, equals: .password)
                 }
                 
                 ZStack {
