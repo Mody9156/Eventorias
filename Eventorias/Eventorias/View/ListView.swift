@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct ListView: View {
+    @State var searchText : String = ""
+    
     var body: some View {
-        Text("Hello, World!")
+        NavigationStack {
+            Text("Searching for \(searchText) ")
+                .navigationTitle("Searchable Example")
+        }
     }
 }
 
