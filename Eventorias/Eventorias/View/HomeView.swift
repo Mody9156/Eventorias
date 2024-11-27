@@ -24,8 +24,16 @@ struct HomeView: View {
                     .foregroundColor(.white)
                 
                 VStack {
-                    Button(action:{}){
-                        Img("Letter")
+                    ZStack {
+                        ZStack {
+                            Rectangle()
+                                .frame(width:200, height: 50)
+                                .foregroundColor(Color("Button"))
+                            
+                            Button(action:{}){
+                                Image("letter")
+                            }
+                        }
                     }
 //                    ActionButtonView(toggle: $toggle,name: "Sign in with email")
 //                    ActionButtonView(toggle: $toggleRegistre,name: "Registre")
