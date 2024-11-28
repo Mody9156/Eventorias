@@ -41,7 +41,7 @@ struct HomeView: View {
                     
                     VStack {
                         
-                        ExtractedView()
+                         fetchCredentials()
                         
                         ZStack {
                             Rectangle()
@@ -110,7 +110,7 @@ struct ActionButtonView: View {
     }
 }
 
-struct ExtractedView: View {
+struct fetchCredentials: View {
     var body: some View {
         VStack (alignment: .leading){
             Text("Email")
