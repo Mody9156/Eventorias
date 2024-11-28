@@ -38,7 +38,17 @@ class AuthentificationViewModel : ObservableObject {
             
 //        }
         firebaseAuthenticationManager.signIn(email: email, password: password){ result in
-            
+            switch result {
+            case .success(let result):
+                self.errorMessage = nil
+                self.isAuthenticated = true
+                print("Graduation")
+                break
+            case .failure(let error):
+                self.errorMessage = error.localizedDescription
+                self.isAuthenticated = false
+                break
+            }
         }
         
     }
