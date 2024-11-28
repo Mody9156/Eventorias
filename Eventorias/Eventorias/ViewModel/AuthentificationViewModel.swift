@@ -42,7 +42,7 @@ class AuthentificationViewModel : ObservableObject {
             case .success(let result):
                 self.errorMessage = nil
                 self.isAuthenticated = true
-                print("Graduation")
+                print("Graduation \(result) à été créer avec succée")
                 break
             case .failure(let error):
                 self.errorMessage = error.localizedDescription
@@ -50,7 +50,6 @@ class AuthentificationViewModel : ObservableObject {
                 break
             }
         }
-        
     }
     
     func registerUser(email:String,password:String) {
