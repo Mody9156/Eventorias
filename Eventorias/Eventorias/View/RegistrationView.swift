@@ -27,8 +27,9 @@ struct RegistrationView: View {
                 
                 ZStack {
                     Rectangle()
-                        .frame(width:200, height: 50)
+                        .frame(width:.infinity, height: 50)
                         .foregroundColor(Color("Button"))
+                        
                     
                     Button {
                         authentificationViewModel.registerUser(email: email, password: password)
