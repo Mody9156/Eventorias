@@ -18,7 +18,6 @@ struct HomeView: View {
                 .ignoresSafeArea()
                 
             VStack {
-                if !showOtherButton {
                     Image("Logo")
                         .imageScale(.large)
                         .foregroundColor(.accentColor)
@@ -27,39 +26,14 @@ struct HomeView: View {
                         .font(.title)
                         .bold()
                         .foregroundColor(.white)
-                }
                 
                 VStack {
-                    if showOtherButton {
-                     ActionButtonView(toggle: $toggle,name: "Sign in with email")
-                }
-                
-                Button(action:{
-                    showOtherButton.toggle()
-                }){
- 
-                    if !showOtherButton {
-                        ZStack {
-                            Rectangle()
-                                .frame(width:200, height: 50)
-                                .foregroundColor(Color("Button"))
-                            
-                             Image("letter")
-                        }
-                    }else{
-                        
-                        Image(systemName:"xmark.circle")
-                            .resizable()
-                            .foregroundStyle(Color("Button"),Color("Button"))
-                            .frame(width: 100, height: 100)
-                            .opacity(0.4)
-                            .padding()
-                     }
-                 }
-                
-                if showOtherButton {
+                    
+                    HStack {
+                        Image("letter")
+                        ActionButtonView(toggle: $toggle,name: "Sign in with email")
+                    }
                     ActionButtonView(toggle: $toggleRegistre,name: "Registre")
-                }
              }
         }
         .padding()
@@ -79,6 +53,7 @@ struct ActionButtonView: View {
     
     var body: some View {
         ZStack {
+           
             Rectangle()
                 .frame(width:200, height: 50)
                 .foregroundColor(Color("Button"))

@@ -27,7 +27,6 @@ class AppDelegate : NSObject, UIApplicationDelegate {
             Auth.auth().useEmulator(withHost: "localhost", port: 9099)
         }
     }
-     
         return true
     }
 }
