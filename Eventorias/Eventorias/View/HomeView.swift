@@ -28,6 +28,7 @@ struct HomeView: View {
                 .ignoresSafeArea()
             
             VStack {
+                Spacer()
                 Image("Logo")
                     .imageScale(.large)
                     .foregroundColor(.accentColor)
@@ -78,6 +79,8 @@ struct HomeView: View {
                     }
                     
                 }.padding()
+                
+                Spacer()
                 
                 ActionButtonView(toggle: $toggleRegistre)
             }
