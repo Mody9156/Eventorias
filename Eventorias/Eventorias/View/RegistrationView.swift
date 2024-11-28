@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct RegistrationView: View {
-    enum Field : Hashable {
-        case email,password
-    }
-    
     @State var email = ""
     @State var password = ""
     @StateObject var authentificationViewModel : AuthentificationViewModel
     @Environment(\.dismiss) var dismiss
     @FocusState private var focusedField : Field?
+    
+    enum Field : Hashable {
+        case email,password
+    }
     
     var body: some View {
         ZStack {
@@ -29,21 +29,7 @@ struct RegistrationView: View {
                     .font(.title)
                     .foregroundColor(.white)
                 
-                VStack (alignment: .leading){
-                    Text("Email")
-                        .foregroundColor(.white)
-                    
-                    TextField("email", text:$email)
-                        .focused($focusedField, equals: .email)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                    
-                    Text("Password")
-                        .foregroundColor(.white)
-                    
-                    SecureField("password", text:$password)
-                        .focused($focusedField, equals: .password)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                }
+                                AuthFieldsView()
                 
                 ZStack {
                     Rectangle()
@@ -73,5 +59,25 @@ struct RegistrationView: View {
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
         RegistrationView(authentificationViewModel: AuthentificationViewModel())
+    }
+}
+
+struct AuthFieldsView: View {
+    var body: some View {
+        VStack (alignment: .leading){
+            Text("Email")
+                .foregroundColor(.white)
+            
+            TextField("email", text:$email)
+                .focused($focusedField, equals: .email)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            Text("Password")
+                .foregroundColor(.white)
+            
+            SecureField("password", text:$password)
+                .focused($focusedField, equals: .password)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+        }
     }
 }
