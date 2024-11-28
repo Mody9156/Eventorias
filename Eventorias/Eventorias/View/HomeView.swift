@@ -34,7 +34,6 @@ struct HomeView: View {
                         .foregroundColor(.white)
                     
                     VStack {
-                        
                         fetchCredentials(email: $email, password: $password)
                         
                         ZStack {
@@ -49,7 +48,6 @@ struct HomeView: View {
                                 HStack {
                                     Image(systemName:"person.fill")
                                         .foregroundColor(.white)
-                                    
                                     Text("Sign in with email")
                                         .foregroundColor(.white)
                                 }
@@ -68,10 +66,8 @@ struct HomeView: View {
                     ActionButtonView(toggle: $toggleRegistre)
                 }
                 .padding()
-                
             }
         }
-        
     }
 }
 
@@ -90,11 +86,10 @@ struct ActionButtonView: View {
                 .frame(width:.infinity, height: 50)
                 .foregroundColor(Color("Button"))
             
-                NavigationLink {
-                    RegistrationView(authentificationViewModel: AuthentificationViewModel())
-                } label: {
-                    HStack {
-
+            NavigationLink {
+                RegistrationView(authentificationViewModel: AuthentificationViewModel())
+            } label: {
+                HStack {
                     Image("letter")
                     Text("Registre")
                         .foregroundColor(.white)
@@ -111,7 +106,7 @@ struct fetchCredentials: View {
         case email,password
     }
     @FocusState private var focusedField : Field?
-
+    
     var body: some View {
         VStack (alignment: .leading){
             Text("Email")
