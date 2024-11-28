@@ -35,7 +35,7 @@ struct HomeView: View {
                     
                     VStack {
                         
-                         fetchCredentials()
+                        fetchCredentials(email: $email, password: $password)
                         
                         ZStack {
                             Rectangle()
