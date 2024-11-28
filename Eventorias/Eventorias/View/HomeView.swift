@@ -11,16 +11,10 @@ struct HomeView: View {
     @State var toggle : Bool = false
     @State var toggleRegistre : Bool = false
     @State var showOtherButton : Bool = false
-    
-    enum Field : Hashable {
-        case email,password
-    }
-    
     @State var email = ""
     @State var password = ""
     @StateObject var authentificationViewModel : AuthentificationViewModel
     @Environment(\.dismiss) var dismiss
-    @FocusState private var focusedField : Field?
     
     var body: some View {
         NavigationStack {
@@ -111,6 +105,13 @@ struct ActionButtonView: View {
 }
 
 struct fetchCredentials: View {
+    @Binding var email : String
+    @Binding var password : String
+    enum Field : Hashable {
+        case email,password
+    }
+    @FocusState private var focusedField : Field?
+
     var body: some View {
         VStack (alignment: .leading){
             Text("Email")
