@@ -37,7 +37,7 @@ struct EventoriasApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                    HomeView()
+                HomeView(authentificationViewModel: AuthentificationViewModel())
             }
         }
     }

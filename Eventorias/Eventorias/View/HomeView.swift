@@ -73,13 +73,12 @@ struct HomeView: View {
                                 Button {
                                     authentificationViewModel.login(email: email, password: password)
                                     
-                                    if authentificationViewModel.isAuthenticated{
-                                        dismiss()
-                                    }
-                                    
                                 } label: {
-                                    Text("Connexion")
-                                        .foregroundColor(.white)
+                                    HStack {
+                                        Image("Letter")
+                                        Text("Sign in with email")
+                                            .foregroundColor(.white)
+                                    }
                                 }
                                 
                             }
@@ -91,9 +90,9 @@ struct HomeView: View {
                         }.padding()
                     }
 
-                    
+//                    AuthenficiationView
 //                        ActionButtonView(toggle: $toggle,name: "Sign in with email")
-                    ActionButtonView(toggle: $toggleRegistre,name: "Registre")
+//                    ActionButtonView(toggle: $toggleRegistre,name: "Registre")
              }
         }
         .padding()
@@ -106,34 +105,34 @@ struct ContentView_Previews: PreviewProvider {
         HomeView(authentificationViewModel: AuthentificationViewModel())
     }
 }
-
-struct ActionButtonView: View {
-    @Binding var toggle : Bool
-    @State var name : String
-    
-    var body: some View {
-        ZStack {
-           
-            Rectangle()
-                .frame(width:200, height: 50)
-                .foregroundColor(Color("Button"))
-            
-            HStack {
-               
-                Button(action: {
-                    
-                    toggle.toggle()
-                }) {
-                    Image(name != "Registre" ? "letter" : "")
-                        Text(name)
-                            .foregroundColor(.white)
-                }
-                .sheet(isPresented: $toggle, content: {
-                    if name == "Registre" {
-                        RegistrationView(authentificationViewModel: AuthentificationViewModel())
-                    }
-                })
-            }
-        }.padding()
-    }
-}
+//
+//struct ActionButtonView: View {
+//    @Binding var toggle : Bool
+//    @State var name : String
+//
+//    var body: some View {
+//        ZStack {
+//
+//            Rectangle()
+//                .frame(width:200, height: 50)
+//                .foregroundColor(Color("Button"))
+//
+//            HStack {
+//
+//                Button(action: {
+//
+//                    toggle.toggle()
+//                }) {
+//                    Image(name != "Registre" ? "letter" : "")
+//                        Text(name)
+//                            .foregroundColor(.white)
+//                }
+//                .sheet(isPresented: $toggle, content: {
+//                    if name == "Registre" {
+//                        RegistrationView(authentificationViewModel: AuthentificationViewModel())
+//                    }
+//                })
+//            }
+//        }.padding()
+//    }
+//}
