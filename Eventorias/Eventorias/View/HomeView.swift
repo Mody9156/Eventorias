@@ -45,10 +45,7 @@ struct HomeView: View {
                             .opacity(0.8)
                         
                         VStack {
-                            Text("Authentification")
-                                .font(.title)
-                                .foregroundColor(.white)
-                            
+                         
                             VStack (alignment: .leading){
                                 Text("Email")
                                     .foregroundColor(.white)
