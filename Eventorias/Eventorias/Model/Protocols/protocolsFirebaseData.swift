@@ -8,5 +8,6 @@
 import Foundation
 
 protocol protocolsFirebaseData{
-    
+    func login(email : String,password:String)
+    func registerUser(email:String,password:String)
 }
