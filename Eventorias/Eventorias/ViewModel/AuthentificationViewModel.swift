@@ -23,7 +23,7 @@ class AuthentificationViewModel : ObservableObject {
                    return
                }
         //Connexion avec Firebase
-        firebaseAuthenticationManager.auth().signIn(withEmail: email, password: password){ result , error in
+//        firebaseAuthenticationManager.signIn().signIn(withEmail: email, password: password){ result , error in
 //            if let error = error {
 //                // Gestion des erreurs de connexion
 //                self.errorMessage = error.localizedDescription
@@ -34,7 +34,13 @@ class AuthentificationViewModel : ObservableObject {
 //                self.isAuthenticated = true
 //                print("Graduation")
 //            }
+           
+            
+//        }
+        firebaseAuthenticationManager.signIn(email: email, password: password){ result in
+            
         }
+        
     }
     
     func registerUser(email:String,password:String) {
