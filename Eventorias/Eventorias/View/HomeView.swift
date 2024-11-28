@@ -66,7 +66,7 @@ struct HomeView: View {
                             
                         } label: {
                             HStack {
-                                Image("letter")
+                                Image(systemName:"person.fill")
                                 Text("Sign in with email")
                                     .foregroundColor(.white)
                             }
@@ -111,7 +111,7 @@ struct ActionButtonView: View {
                     
                     toggle.toggle()
                 }) {
-                    Image("Registre")
+                    Image("letter")
                     Text("Registre")
                         .foregroundColor(.white)
                 }
