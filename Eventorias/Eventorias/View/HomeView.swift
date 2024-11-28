@@ -11,14 +11,19 @@ struct HomeView: View {
     @State var toggle : Bool = false
     @State var toggleRegistre : Bool = false
     @State var showOtherButton : Bool = false
+    @State var email = ""
+    @State var password = ""
+    @StateObject var authentificationViewModel : AuthentificationViewModel
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        ZStack {
-            Color("Background")
-                .ignoresSafeArea()
+        NavigationStack {
+            ZStack {
+                Color("Background")
+                    .ignoresSafeArea()
                 
-            VStack {
-                if !showOtherButton {
+                VStack {
+                    Spacer()
                     Image("Logo")
                         .imageScale(.large)
                         .foregroundColor(.accentColor)
@@ -27,79 +32,97 @@ struct HomeView: View {
                         .font(.title)
                         .bold()
                         .foregroundColor(.white)
-                }
-                
-                VStack {
-                    if showOtherButton {
-                     ActionButtonView(toggle: $toggle,name: "Sign in with email")
-                }
-                
-                Button(action:{
-                    showOtherButton.toggle()
-                }){
- 
-                    if !showOtherButton {
+                    
+                    VStack {
+                        fetchCredentials(email: $email, password: $password)
+                        
                         ZStack {
                             Rectangle()
-                                .frame(width:200, height: 50)
+                                .frame(width:.infinity, height: 50)
                                 .foregroundColor(Color("Button"))
                             
-                             Image("letter")
+                            Button {
+                                authentificationViewModel.login(email: email, password: password)
+                                
+                            } label: {
+                                HStack {
+                                    Image(systemName:"person.fill")
+                                        .foregroundColor(.white)
+                                    Text("Sign in with email")
+                                        .foregroundColor(.white)
+                                }
+                            }
                         }
-                    }else{
+                        .padding(.top)
                         
-                        Image(systemName:"xmark.circle")
-                            .resizable()
-                            .foregroundStyle(Color("Button"),Color("Button"))
-                            .frame(width: 100, height: 100)
-                            .opacity(0.4)
-                            .padding()
-                     }
-                 }
-                
-                if showOtherButton {
-                    ActionButtonView(toggle: $toggleRegistre,name: "Registre")
+                        if let error = authentificationViewModel.errorMessage {
+                            Text(error)
+                                .foregroundColor(.red)
+                        }
+                        
+                    }.padding()
+                    
+                    Spacer()
+                    
+                    ActionButtonView(toggle: $toggleRegistre)
                 }
-             }
+                .padding()
+            }
         }
-        .padding()
     }
-  }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(authentificationViewModel: AuthentificationViewModel())
     }
 }
 
 struct ActionButtonView: View {
     @Binding var toggle : Bool
-    @State var name : String
     
     var body: some View {
         ZStack {
             Rectangle()
-                .frame(width:200, height: 50)
+                .frame(width:.infinity, height: 50)
                 .foregroundColor(Color("Button"))
             
-            HStack {
-                
-                Button(action: {
-                    
-                    toggle.toggle()
-                }) {
-                    Text(name)
+            NavigationLink {
+                RegistrationView(authentificationViewModel: AuthentificationViewModel())
+            } label: {
+                HStack {
+                    Image("letter")
+                    Text("Registre")
                         .foregroundColor(.white)
                 }
-                .sheet(isPresented: $toggle, content: {
-                    if name == "Registre" {
-                        RegistrationView(authentificationViewModel: AuthentificationViewModel())
-                    }else{
-                        AuthenficiationView( authentificationViewModel: AuthentificationViewModel())
-                    }
-                })
             }
         }.padding()
+    }
+}
+
+struct fetchCredentials: View {
+    @Binding var email : String
+    @Binding var password : String
+    enum Field : Hashable {
+        case email,password
+    }
+    @FocusState private var focusedField : Field?
+    
+    var body: some View {
+        VStack (alignment: .leading){
+            Text("Email")
+                .foregroundColor(.white)
+            
+            TextField("name", text:$email)
+                .focused($focusedField, equals: .email)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            Text("Password")
+                .foregroundColor(.white)
+            
+            SecureField("password", text: $password)
+                .focused($focusedField, equals: .password)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+        }
     }
 }

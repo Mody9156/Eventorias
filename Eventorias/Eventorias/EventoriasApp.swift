@@ -27,7 +27,6 @@ class AppDelegate : NSObject, UIApplicationDelegate {
             Auth.auth().useEmulator(withHost: "localhost", port: 9099)
         }
     }
-     
         return true
     }
 }
@@ -38,9 +37,7 @@ struct EventoriasApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                    HomeView()
-                
-                
+                HomeView(authentificationViewModel: AuthentificationViewModel())
             }
         }
     }

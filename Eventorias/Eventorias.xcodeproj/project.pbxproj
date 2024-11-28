@@ -19,10 +19,11 @@
 		23B304462CF5E14600106980 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 23B304452CF5E14600106980 /* FirebaseFirestore */; };
 		23B304482CF5E14600106980 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 23B304472CF5E14600106980 /* FirebaseFirestoreSwift */; };
 		23B3044A2CF6043300106980 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B304492CF6043300106980 /* ListView.swift */; };
-		23B3044C2CF6066E00106980 /* AuthenficiationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B3044B2CF6066E00106980 /* AuthenficiationView.swift */; };
 		23B3044E2CF611EC00106980 /* AuthentificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B3044D2CF611EC00106980 /* AuthentificationViewModel.swift */; };
 		23B304502CF61FEE00106980 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B3044F2CF61FEE00106980 /* RegistrationView.swift */; };
 		23ECD8452CF7832800EA4BC4 /* EventEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ECD8442CF7832800EA4BC4 /* EventEntry.swift */; };
+		23F1FA952CF86E4F0092B83C /* protocolsFirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F1FA942CF86E4F0092B83C /* protocolsFirebaseData.swift */; };
+		23F1FA992CF887DF0092B83C /* FirebaseAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F1FA982CF887DE0092B83C /* FirebaseAuthenticationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,10 +46,11 @@
 		231254232CF4EE0B0045E052 /* EventoriasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasTests.swift; sourceTree = "<group>"; };
 		23B3043C2CF5D61500106980 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		23B304492CF6043300106980 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
-		23B3044B2CF6066E00106980 /* AuthenficiationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenficiationView.swift; sourceTree = "<group>"; };
 		23B3044D2CF611EC00106980 /* AuthentificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationViewModel.swift; sourceTree = "<group>"; };
 		23B3044F2CF61FEE00106980 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		23ECD8442CF7832800EA4BC4 /* EventEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEntry.swift; sourceTree = "<group>"; };
+		23F1FA942CF86E4F0092B83C /* protocolsFirebaseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = protocolsFirebaseData.swift; sourceTree = "<group>"; };
+		23F1FA982CF887DE0092B83C /* FirebaseAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,9 +124,19 @@
 			path = EventoriasTests;
 			sourceTree = "<group>";
 		};
+		23F1FA932CF86CD90092B83C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				23F1FA942CF86E4F0092B83C /* protocolsFirebaseData.swift */,
+				23F1FA982CF887DE0092B83C /* FirebaseAuthenticationManager.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		23F67F042CF5C62B00819AEB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				23F1FA932CF86CD90092B83C /* Protocols */,
 				23ECD8442CF7832800EA4BC4 /* EventEntry.swift */,
 			);
 			path = Model;
@@ -135,7 +147,6 @@
 			children = (
 				231254142CF4EDFE0045E052 /* HomeView.swift */,
 				23B304492CF6043300106980 /* ListView.swift */,
-				23B3044B2CF6066E00106980 /* AuthenficiationView.swift */,
 				23B3044F2CF61FEE00106980 /* RegistrationView.swift */,
 			);
 			path = View;
@@ -263,8 +274,9 @@
 				231254152CF4EDFE0045E052 /* HomeView.swift in Sources */,
 				231254132CF4EDFE0045E052 /* EventoriasApp.swift in Sources */,
 				23ECD8452CF7832800EA4BC4 /* EventEntry.swift in Sources */,
-				23B3044C2CF6066E00106980 /* AuthenficiationView.swift in Sources */,
+				23F1FA992CF887DF0092B83C /* FirebaseAuthenticationManager.swift in Sources */,
 				23B304502CF61FEE00106980 /* RegistrationView.swift in Sources */,
+				23F1FA952CF86E4F0092B83C /* protocolsFirebaseData.swift in Sources */,
 				23B3044E2CF611EC00106980 /* AuthentificationViewModel.swift in Sources */,
 				23B3044A2CF6043300106980 /* ListView.swift in Sources */,
 			);
