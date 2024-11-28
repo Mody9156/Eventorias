@@ -17,7 +17,6 @@ struct RegistrationView: View {
         ZStack {
             Color("Background")
                 .ignoresSafeArea()
-                .opacity(0.8)
             
             VStack {
                 Text("Registration")
