@@ -122,9 +122,17 @@
 			path = EventoriasTests;
 			sourceTree = "<group>";
 		};
+		23F1FA932CF86CD90092B83C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		23F67F042CF5C62B00819AEB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				23F1FA932CF86CD90092B83C /* Protocols */,
 				23ECD8442CF7832800EA4BC4 /* EventEntry.swift */,
 			);
 			path = Model;
