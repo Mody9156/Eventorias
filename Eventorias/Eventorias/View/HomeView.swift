@@ -41,21 +41,7 @@ struct HomeView: View {
                     
                     VStack {
                         
-                        VStack (alignment: .leading){
-                            Text("Email")
-                                .foregroundColor(.white)
-                            
-                            TextField("name", text:$email)
-                                .focused($focusedField, equals: .email)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                            
-                            Text("Password")
-                                .foregroundColor(.white)
-                            
-                            SecureField("password", text: $password)
-                                .focused($focusedField, equals: .password)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                        }
+                        ExtractedView()
                         
                         ZStack {
                             Rectangle()
@@ -121,5 +107,25 @@ struct ActionButtonView: View {
                 }
             }
         }.padding()
+    }
+}
+
+struct ExtractedView: View {
+    var body: some View {
+        VStack (alignment: .leading){
+            Text("Email")
+                .foregroundColor(.white)
+            
+            TextField("name", text:$email)
+                .focused($focusedField, equals: .email)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            Text("Password")
+                .foregroundColor(.white)
+            
+            SecureField("password", text: $password)
+                .focused($focusedField, equals: .password)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+        }
     }
 }
