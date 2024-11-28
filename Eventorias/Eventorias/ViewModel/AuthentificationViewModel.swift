@@ -22,28 +22,16 @@ class AuthentificationViewModel : ObservableObject {
             print(String(describing:errorMessage))
                    return
                }
-        //Connexion avec Firebase
-//        firebaseAuthenticationManager.signIn().signIn(withEmail: email, password: password){ result , error in
-//            if let error = error {
-//                // Gestion des erreurs de connexion
-//                self.errorMessage = error.localizedDescription
-//                self.isAuthenticated = false
-//            } else {
-//                // Connexion réussie
-//                self.errorMessage = nil
-//                self.isAuthenticated = true
-//                print("Graduation")
-//            }
-           
-            
-//        }
+        
         firebaseAuthenticationManager.signIn(email: email, password: password){ result in
             switch result {
+                // Connexion réussie
             case .success(let result):
                 self.errorMessage = nil
                 self.isAuthenticated = true
-                print("Graduation \(result) à été créer avec succée")
+                print("Graduation \(result) Vous venez de vous connecter")
                 break
+                // Connexion échoue
             case .failure(let error):
                 self.errorMessage = error.localizedDescription
                 self.isAuthenticated = false
@@ -58,31 +46,20 @@ class AuthentificationViewModel : ObservableObject {
                    self.errorMessage = "L'email ou le mot de passe ne peuvent pas être vides."
                    return
                }
-        //Création d'un compte utilisateur
-//        Auth.auth().createUser(withEmail: email, password: password){ result , error in
-//            if let error = error  {
-//                self.errorMessage = error.localizedDescription
-//                print("Voici votre erreur : \(self.errorMessage ?? "Erreur inconnue")")
-//            }else{
-//                self.errorMessage = nil
-//                print("Utilisateur créé avec succès!")
-//            }
-//        }
-        
+
         firebaseAuthenticationManager.createUser(email: email, password: password){ result in
             switch result {
+                // Création réussie
             case .success(let result) :
                 self.errorMessage = nil
                 print("Utilisateur \(result) a été créé avec succès!")
                 break
+                // Création échoue
             case .failure(let error) :
                 self.errorMessage = error.localizedDescription
                 print("Voici votre erreur : \(self.errorMessage ?? "Erreur inconnue")")
                 break
             }
         }
-        
-        
-        
     }
 }
