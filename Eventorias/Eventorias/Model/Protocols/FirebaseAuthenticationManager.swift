@@ -27,7 +27,17 @@ class FirebaseAuthenticationManager :protocolsFirebaseData {
     }
     
     func createUser(email: String, password: String, completion: @escaping (Result<Any, Error>) -> Void) {
-        <#code#>
+        Auth.auth().createUser(withEmail: email, password: password){ result , error in
+            if let error = error  {
+                completion(.failure(error))
+            }
+            
+            if let result = result {
+                completion(.success(result))
+            }else{
+                completion(.failure(NSError(domain: "CreateError", code: -1,userInfo: [NSLocalizedDescriptionKey:"Unknown error occurred."])))
+            }
+        }
     }
     
     
