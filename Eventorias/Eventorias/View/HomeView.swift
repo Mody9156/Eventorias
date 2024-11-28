@@ -108,15 +108,15 @@ struct ActionButtonView: View {
                 .frame(width:.infinity, height: 50)
                 .foregroundColor(Color("Button"))
             
-            HStack {
                 NavigationLink {
                     RegistrationView(authentificationViewModel: AuthentificationViewModel())
                 } label: {
+                    HStack {
+
                     Image("letter")
                     Text("Registre")
                         .foregroundColor(.white)
                 }
-
             }
         }.padding()
     }
