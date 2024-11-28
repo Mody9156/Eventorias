@@ -23,71 +23,73 @@ struct HomeView: View {
     @FocusState private var focusedField : Field?
     
     var body: some View {
-        ZStack {
-            Color("Background")
-                .ignoresSafeArea()
-            
-            VStack {
-                Spacer()
-                Image("Logo")
-                    .imageScale(.large)
-                    .foregroundColor(.accentColor)
-                
-                Text("EVENTORIAS")
-                    .font(.title)
-                    .bold()
-                    .foregroundColor(.white)
+        NavigationStack {
+            ZStack {
+                Color("Background")
+                    .ignoresSafeArea()
                 
                 VStack {
+                    Spacer()
+                    Image("Logo")
+                        .imageScale(.large)
+                        .foregroundColor(.accentColor)
                     
-                    VStack (alignment: .leading){
-                        Text("Email")
-                            .foregroundColor(.white)
-                        
-                        TextField("name", text:$email)
-                            .focused($focusedField, equals: .email)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                        
-                        Text("Password")
-                            .foregroundColor(.white)
-                        
-                        SecureField("password", text: $password)
-                            .focused($focusedField, equals: .password)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                    }
+                    Text("EVENTORIAS")
+                        .font(.title)
+                        .bold()
+                        .foregroundColor(.white)
                     
-                    ZStack {
-                        Rectangle()
-                            .frame(width:.infinity, height: 50)
-                            .foregroundColor(Color("Button"))
+                    VStack {
                         
-                        Button {
-                            authentificationViewModel.login(email: email, password: password)
+                        VStack (alignment: .leading){
+                            Text("Email")
+                                .foregroundColor(.white)
                             
-                        } label: {
-                            HStack {
-                                Image(systemName:"person.fill")
-                                    .foregroundColor(.white)
+                            TextField("name", text:$email)
+                                .focused($focusedField, equals: .email)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                            
+                            Text("Password")
+                                .foregroundColor(.white)
+                            
+                            SecureField("password", text: $password)
+                                .focused($focusedField, equals: .password)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                        }
+                        
+                        ZStack {
+                            Rectangle()
+                                .frame(width:.infinity, height: 50)
+                                .foregroundColor(Color("Button"))
+                            
+                            Button {
+                                authentificationViewModel.login(email: email, password: password)
                                 
-                                Text("Sign in with email")
-                                    .foregroundColor(.white)
+                            } label: {
+                                HStack {
+                                    Image(systemName:"person.fill")
+                                        .foregroundColor(.white)
+                                    
+                                    Text("Sign in with email")
+                                        .foregroundColor(.white)
+                                }
                             }
                         }
-                    }
+                        
+                        if let error = authentificationViewModel.errorMessage {
+                            Text(error)
+                                .foregroundColor(.red)
+                        }
+                        
+                    }.padding()
                     
-                    if let error = authentificationViewModel.errorMessage {
-                        Text(error)
-                            .foregroundColor(.red)
-                    }
+                    Spacer()
                     
-                }.padding()
+                    ActionButtonView(toggle: $toggleRegistre)
+                }
+                .padding()
                 
-                Spacer()
-                
-                ActionButtonView(toggle: $toggleRegistre)
             }
-            .padding()
-            
         }
         
     }
