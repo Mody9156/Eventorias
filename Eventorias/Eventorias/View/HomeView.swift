@@ -53,6 +53,7 @@ struct HomeView: View {
                                 }
                             }
                         }
+                        .padding(.top)
                         
                         if let error = authentificationViewModel.errorMessage {
                             Text(error)
