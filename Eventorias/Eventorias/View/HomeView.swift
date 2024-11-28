@@ -75,7 +75,7 @@ struct HomeView: View {
                                     
                                 } label: {
                                     HStack {
-                                        Image("Letter")
+                                        Image("letter")
                                         Text("Sign in with email")
                                             .foregroundColor(.white)
                                     }
