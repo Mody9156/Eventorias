@@ -30,7 +30,7 @@ struct HomeView: View {
                 VStack {
                     
                     HStack {
-                        Image("letter")
+                        
                         ActionButtonView(toggle: $toggle,name: "Sign in with email")
                     }
                     ActionButtonView(toggle: $toggleRegistre,name: "Registre")
@@ -59,13 +59,14 @@ struct ActionButtonView: View {
                 .foregroundColor(Color("Button"))
             
             HStack {
-                
+               
                 Button(action: {
                     
                     toggle.toggle()
                 }) {
-                    Text(name)
-                        .foregroundColor(.white)
+                    Image(name != "Registre" ? "letter" : "")
+                        Text(name)
+                            .foregroundColor(.white)
                 }
                 .sheet(isPresented: $toggle, content: {
                     if name == "Registre" {
