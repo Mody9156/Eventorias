@@ -12,11 +12,6 @@ struct RegistrationView: View {
     @State var password = ""
     @StateObject var authentificationViewModel : AuthentificationViewModel
     @Environment(\.dismiss) var dismiss
-    @FocusState private var focusedField : Field?
-    
-    enum Field : Hashable {
-        case email,password
-    }
     
     var body: some View {
         ZStack {
@@ -63,6 +58,14 @@ struct RegistrationView_Previews: PreviewProvider {
 }
 
 struct AuthFieldsView: View {
+    @Binding var email : String
+    @Binding var password : String
+    @FocusState private var focusedField : Field?
+    
+    enum Field : Hashable {
+        case email,password
+    }
+    
     var body: some View {
         VStack (alignment: .leading){
             Text("Email")
