@@ -15,14 +15,13 @@ class FirebaseAuthenticationManager :protocolsFirebaseData {
     func signIn(email: String, password: String, completion: @escaping (Result<Any, Error>) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password){ result , error in
             if let error = error {
-                // Gestion des erreurs de connexion
-
                 completion(.failure(error))
-            } else {
-                // Connexion réussie
-                self.errorMessage = nil
-                self.isAuthenticated = true
-                print("Graduation")
+                return
+            }
+            if let result = result {
+                completion(.success(result))
+            }else{
+                completion(.failure(NSError(domain: "AuthError", code: -1, userInfo: [NSLocalizedDescriptionKey :"Unknown error occurred."])))
             }
         }
     }
