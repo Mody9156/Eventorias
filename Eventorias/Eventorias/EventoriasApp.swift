@@ -39,8 +39,6 @@ struct EventoriasApp: App {
         WindowGroup {
             NavigationStack {
                     HomeView()
-                
-                
             }
         }
     }
