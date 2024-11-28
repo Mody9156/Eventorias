@@ -13,6 +13,7 @@ import FirebaseCore
 class AuthentificationViewModel : ObservableObject {
     @Published var errorMessage: String? = nil
     @Published var isAuthenticated : Bool = false
+    let firebaseAuthenticationManager : protocolsFirebaseData = FirebaseAuthenticationManager()
     
     func login(email : String,password:String) {
         //Validation du mail et du mot de passe
@@ -22,17 +23,17 @@ class AuthentificationViewModel : ObservableObject {
                    return
                }
         //Connexion avec Firebase
-        Auth.auth().signIn(withEmail: email, password: password){ result , error in
-            if let error = error {
-                // Gestion des erreurs de connexion
-                self.errorMessage = error.localizedDescription
-                self.isAuthenticated = false
-            } else {
-                // Connexion réussie
-                self.errorMessage = nil
-                self.isAuthenticated = true
-                print("Graduation")
-            }
+        firebaseAuthenticationManager.auth().signIn(withEmail: email, password: password){ result , error in
+//            if let error = error {
+//                // Gestion des erreurs de connexion
+//                self.errorMessage = error.localizedDescription
+//                self.isAuthenticated = false
+//            } else {
+//                // Connexion réussie
+//                self.errorMessage = nil
+//                self.isAuthenticated = true
+//                print("Graduation")
+//            }
         }
     }
     
