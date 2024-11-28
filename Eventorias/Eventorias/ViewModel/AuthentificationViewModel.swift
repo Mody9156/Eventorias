@@ -60,14 +60,30 @@ class AuthentificationViewModel : ObservableObject {
                    return
                }
         //Création d'un compte utilisateur
-        Auth.auth().createUser(withEmail: email, password: password){ result , error in
-            if let error = error  {
+//        Auth.auth().createUser(withEmail: email, password: password){ result , error in
+//            if let error = error  {
+//                self.errorMessage = error.localizedDescription
+//                print("Voici votre erreur : \(self.errorMessage ?? "Erreur inconnue")")
+//            }else{
+//                self.errorMessage = nil
+//                print("Utilisateur créé avec succès!")
+//            }
+//        }
+        
+        firebaseAuthenticationManager.createUser(email: email, password: password){ result in
+            switch result {
+            case .success(let result) :
+                self.errorMessage = nil
+                print("Utilisateur \(result) a été créé avec succès!")
+                break
+            case .failure(let error) :
                 self.errorMessage = error.localizedDescription
                 print("Voici votre erreur : \(self.errorMessage ?? "Erreur inconnue")")
-            }else{
-                self.errorMessage = nil
-                print("Utilisateur créé avec succès!")
+                break
             }
         }
+        
+        
+        
     }
 }
