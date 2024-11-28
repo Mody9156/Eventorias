@@ -37,60 +37,54 @@ struct HomeView: View {
                     .bold()
                     .foregroundColor(.white)
                 
-                ZStack {
-                    Color("Background")
-                        .ignoresSafeArea()
-                        .opacity(0.8)
-                    VStack {
+                VStack {
+                    
+                    VStack (alignment: .leading){
+                        Text("Email")
+                            .foregroundColor(.white)
                         
-                        VStack (alignment: .leading){
-                            Text("Email")
-                                .foregroundColor(.white)
-                            
-                            TextField("name", text:$email)
-                                .focused($focusedField, equals: .email)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                            
-                            Text("Password")
-                                .foregroundColor(.white)
-                            
-                            SecureField("password", text: $password)
-                                .focused($focusedField, equals: .password)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                        }
+                        TextField("name", text:$email)
+                            .focused($focusedField, equals: .email)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
                         
-                        ZStack {
-                            Rectangle()
-                                .frame(width:200, height: 50)
-                                .foregroundColor(Color("Button"))
+                        Text("Password")
+                            .foregroundColor(.white)
+                        
+                        SecureField("password", text: $password)
+                            .focused($focusedField, equals: .password)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
+                    
+                    ZStack {
+                        Rectangle()
+                            .frame(width:.infinity, height: 50)
+                            .foregroundColor(Color("Button"))
+                        
+                        Button {
+                            authentificationViewModel.login(email: email, password: password)
                             
-                            Button {
-                                authentificationViewModel.login(email: email, password: password)
-                                
-                            } label: {
-                                HStack {
-                                    Image("letter")
-                                    Text("Sign in with email")
-                                        .foregroundColor(.white)
-                                }
+                        } label: {
+                            HStack {
+                                Image("letter")
+                                Text("Sign in with email")
+                                    .foregroundColor(.white)
                             }
-                            
                         }
-                        if let error = authentificationViewModel.errorMessage {
-                            Text(error)
-                                .foregroundColor(.red)
-                        }
-                        
-                    }.padding()
-                }
+                    }
+                    
+                    if let error = authentificationViewModel.errorMessage {
+                        Text(error)
+                            .foregroundColor(.red)
+                    }
+                    
+                }.padding()
                 
-                //                    AuthenficiationView
-                //                        ActionButtonView(toggle: $toggle,name: "Sign in with email")
-                //                    ActionButtonView(toggle: $toggleRegistre,name: "Registre")
-                
+                ActionButtonView(toggle: $toggleRegistre)
             }
             .padding()
+            
         }
+        
     }
 }
 
@@ -99,34 +93,29 @@ struct ContentView_Previews: PreviewProvider {
         HomeView(authentificationViewModel: AuthentificationViewModel())
     }
 }
-//
-//struct ActionButtonView: View {
-//    @Binding var toggle : Bool
-//    @State var name : String
-//
-//    var body: some View {
-//        ZStack {
-//
-//            Rectangle()
-//                .frame(width:200, height: 50)
-//                .foregroundColor(Color("Button"))
-//
-//            HStack {
-//
-//                Button(action: {
-//
-//                    toggle.toggle()
-//                }) {
-//                    Image(name != "Registre" ? "letter" : "")
-//                        Text(name)
-//                            .foregroundColor(.white)
-//                }
-//                .sheet(isPresented: $toggle, content: {
-//                    if name == "Registre" {
-//                        RegistrationView(authentificationViewModel: AuthentificationViewModel())
-//                    }
-//                })
-//            }
-//        }.padding()
-//    }
-//}
+
+struct ActionButtonView: View {
+    @Binding var toggle : Bool
+    
+    var body: some View {
+        ZStack {
+            Rectangle()
+                .frame(width:.infinity, height: 50)
+                .foregroundColor(Color("Button"))
+            
+            HStack {
+                Button(action: {
+                    
+                    toggle.toggle()
+                }) {
+                    Image("Registre")
+                    Text("Registre")
+                        .foregroundColor(.white)
+                }
+                .sheet(isPresented: $toggle, content: {
+                    RegistrationView(authentificationViewModel: AuthentificationViewModel())
+                })
+            }
+        }.padding()
+    }
+}
