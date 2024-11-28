@@ -26,75 +26,72 @@ struct HomeView: View {
         ZStack {
             Color("Background")
                 .ignoresSafeArea()
-                
+            
             VStack {
-                    Image("Logo")
-                        .imageScale(.large)
-                        .foregroundColor(.accentColor)
-                    
-                    Text("EVENTORIAS")
-                        .font(.title)
-                        .bold()
-                        .foregroundColor(.white)
+                Image("Logo")
+                    .imageScale(.large)
+                    .foregroundColor(.accentColor)
                 
-                VStack {
-                    
-                    ZStack {
-                        Color("Background")
-                            .ignoresSafeArea()
-                            .opacity(0.8)
+                Text("EVENTORIAS")
+                    .font(.title)
+                    .bold()
+                    .foregroundColor(.white)
+                
+                ZStack {
+                    Color("Background")
+                        .ignoresSafeArea()
+                        .opacity(0.8)
+                    VStack {
                         
-                        VStack {
-                         
-                            VStack (alignment: .leading){
-                                Text("Email")
-                                    .foregroundColor(.white)
-                                
-                                TextField("name", text:$email)
-                                    .focused($focusedField, equals: .email)
-                                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                                
-                                Text("Password")
-                                    .foregroundColor(.white)
-                                
-                                SecureField("password", text: $password)
-                                    .focused($focusedField, equals: .password)
-                                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                            }
+                        VStack (alignment: .leading){
+                            Text("Email")
+                                .foregroundColor(.white)
                             
-                            ZStack {
-                                Rectangle()
-                                    .frame(width:200, height: 50)
-                                    .foregroundColor(Color("Button"))
+                            TextField("name", text:$email)
+                                .focused($focusedField, equals: .email)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                            
+                            Text("Password")
+                                .foregroundColor(.white)
+                            
+                            SecureField("password", text: $password)
+                                .focused($focusedField, equals: .password)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                        }
+                        
+                        ZStack {
+                            Rectangle()
+                                .frame(width:200, height: 50)
+                                .foregroundColor(Color("Button"))
+                            
+                            Button {
+                                authentificationViewModel.login(email: email, password: password)
                                 
-                                Button {
-                                    authentificationViewModel.login(email: email, password: password)
-                                    
-                                } label: {
-                                    HStack {
-                                        Image("letter")
-                                        Text("Sign in with email")
-                                            .foregroundColor(.white)
-                                    }
+                            } label: {
+                                HStack {
+                                    Image("letter")
+                                    Text("Sign in with email")
+                                        .foregroundColor(.white)
                                 }
-                                
-                            }
-                            if let error = authentificationViewModel.errorMessage {
-                                Text(error)
-                                    .foregroundColor(.red)
                             }
                             
-                        }.padding()
-                    }
-
-//                    AuthenficiationView
-//                        ActionButtonView(toggle: $toggle,name: "Sign in with email")
-//                    ActionButtonView(toggle: $toggleRegistre,name: "Registre")
-             }
+                        }
+                        if let error = authentificationViewModel.errorMessage {
+                            Text(error)
+                                .foregroundColor(.red)
+                        }
+                        
+                    }.padding()
+                }
+                
+                //                    AuthenficiationView
+                //                        ActionButtonView(toggle: $toggle,name: "Sign in with email")
+                //                    ActionButtonView(toggle: $toggleRegistre,name: "Registre")
+                
+            }
+            .padding()
         }
-        .padding()
     }
-  }
 }
 
 struct ContentView_Previews: PreviewProvider {
