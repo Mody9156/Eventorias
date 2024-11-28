@@ -37,6 +37,8 @@ struct RegistrationView: View {
                             dismiss()
                         }
                     } label: {
+                        Image(systemName:"person.fill")
+                            .foregroundColor(.white)
                         Text("Registration")
                             .foregroundColor(.white)
                     }
