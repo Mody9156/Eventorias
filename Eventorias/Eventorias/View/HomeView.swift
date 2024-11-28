@@ -12,6 +12,16 @@ struct HomeView: View {
     @State var toggleRegistre : Bool = false
     @State var showOtherButton : Bool = false
     
+    enum Field : Hashable {
+        case email,password
+    }
+    
+    @State var email = ""
+    @State var password = ""
+    @StateObject var authentificationViewModel : AuthentificationViewModel
+    @Environment(\.dismiss) var dismiss
+    @FocusState private var focusedField : Field?
+    
     var body: some View {
         ZStack {
             Color("Background")
@@ -29,10 +39,60 @@ struct HomeView: View {
                 
                 VStack {
                     
-                    HStack {
+                    ZStack {
+                        Color("Background")
+                            .ignoresSafeArea()
+                            .opacity(0.8)
                         
-                        ActionButtonView(toggle: $toggle,name: "Sign in with email")
+                        VStack {
+                            Text("Authentification")
+                                .font(.title)
+                                .foregroundColor(.white)
+                            
+                            VStack (alignment: .leading){
+                                Text("Email")
+                                    .foregroundColor(.white)
+                                
+                                TextField("name", text:$email)
+                                    .focused($focusedField, equals: .email)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                
+                                Text("Password")
+                                    .foregroundColor(.white)
+                                
+                                SecureField("password", text: $password)
+                                    .focused($focusedField, equals: .password)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                            }
+                            
+                            ZStack {
+                                Rectangle()
+                                    .frame(width:200, height: 50)
+                                    .foregroundColor(Color("Button"))
+                                
+                                Button {
+                                    authentificationViewModel.login(email: email, password: password)
+                                    
+                                    if authentificationViewModel.isAuthenticated{
+                                        dismiss()
+                                    }
+                                    
+                                } label: {
+                                    Text("Connexion")
+                                        .foregroundColor(.white)
+                                }
+                                
+                            }
+                            if let error = authentificationViewModel.errorMessage {
+                                Text(error)
+                                    .foregroundColor(.red)
+                            }
+                            
+                        }.padding()
                     }
+
+                    
+//                        ActionButtonView(toggle: $toggle,name: "Sign in with email")
                     ActionButtonView(toggle: $toggleRegistre,name: "Registre")
              }
         }
@@ -43,7 +103,7 @@ struct HomeView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(authentificationViewModel: AuthentificationViewModel())
     }
 }
 
@@ -71,8 +131,6 @@ struct ActionButtonView: View {
                 .sheet(isPresented: $toggle, content: {
                     if name == "Registre" {
                         RegistrationView(authentificationViewModel: AuthentificationViewModel())
-                    }else{
-                        AuthenficiationView( authentificationViewModel: AuthentificationViewModel())
                     }
                 })
             }
