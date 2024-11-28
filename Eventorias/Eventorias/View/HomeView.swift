@@ -67,6 +67,8 @@ struct HomeView: View {
                         } label: {
                             HStack {
                                 Image(systemName:"person.fill")
+                                    .foregroundColor(.white)
+                                
                                 Text("Sign in with email")
                                     .foregroundColor(.white)
                             }
@@ -107,17 +109,14 @@ struct ActionButtonView: View {
                 .foregroundColor(Color("Button"))
             
             HStack {
-                Button(action: {
-                    
-                    toggle.toggle()
-                }) {
+                NavigationLink {
+                    RegistrationView(authentificationViewModel: AuthentificationViewModel())
+                } label: {
                     Image("letter")
                     Text("Registre")
                         .foregroundColor(.white)
                 }
-                .sheet(isPresented: $toggle, content: {
-                    RegistrationView(authentificationViewModel: AuthentificationViewModel())
-                })
+
             }
         }.padding()
     }
