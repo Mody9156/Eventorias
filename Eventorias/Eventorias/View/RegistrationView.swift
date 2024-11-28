@@ -24,7 +24,7 @@ struct RegistrationView: View {
                     .font(.title)
                     .foregroundColor(.white)
                 
-                                AuthFieldsView()
+                AuthFieldsView(email: $email, password: $password)
                 
                 ZStack {
                     Rectangle()
