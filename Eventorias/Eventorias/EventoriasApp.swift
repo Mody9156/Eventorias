@@ -34,15 +34,15 @@ class AppDelegate : NSObject, UIApplicationDelegate {
 @main
 struct EventoriasApp: App {
     @UIApplicationDelegateAdaptor (AppDelegate.self) var delegate
-    @StateObject private var authentificationViewModel = AuthentificationViewModel({})
+    @StateObject private var mainAuth = MainAuth()
 
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                if authentificationViewModel.isAuthenticated {
+                if mainAuth.authentificated {
                     ListView()
                 }else{
-                    HomeView(authentificationViewModel: AuthentificationViewModel({}))
+                    HomeView(authentificationViewModel: mainAuth.authentificationViewModel)
                         .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity),removal: .move(edge: .top).combined(with: .opacity)))
                 }
             }

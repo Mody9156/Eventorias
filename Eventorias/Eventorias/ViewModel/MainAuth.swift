@@ -15,10 +15,10 @@ class MainAuth:ObservableObject {
     }
    
     
-    var homeView : HomeView {
-        return HomeView(authentificationViewModel: AuthentificationViewModel({ [weak self] in
+    var authentificationViewModel : AuthentificationViewModel {
+        return AuthentificationViewModel { [weak self] in
             self?.authentificated = true
-        }))
+        }
     }
     
 }
