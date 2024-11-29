@@ -14,7 +14,6 @@ struct HomeView: View {
     @State var email = ""
     @State var password = ""
     @StateObject var authentificationViewModel : AuthentificationViewModel
-    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationStack {
@@ -84,7 +83,7 @@ struct ActionButtonView: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .frame( height: 50)
+                .frame(height: 50)
                 .foregroundColor(Color("Button"))
             
             NavigationLink {

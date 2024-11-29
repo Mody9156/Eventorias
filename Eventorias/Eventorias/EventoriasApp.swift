@@ -40,7 +40,15 @@ struct EventoriasApp: App {
         WindowGroup {
             NavigationStack {
                 if mainAuth.isAuthenticated {
-                    ListView()
+                    
+                    TabView {
+                            ListView()
+                            .tabItem {
+                                Label("Events", systemImage: "")
+                            }
+                        
+                    }
+                    
                 }else{
                     HomeView(authentificationViewModel: mainAuth.authentificationViewModel)
                         .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity),removal: .move(edge: .top).combined(with: .opacity)))

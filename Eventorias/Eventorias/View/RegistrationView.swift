@@ -33,8 +33,8 @@ struct RegistrationView: View {
                     
                     Button {
                         authentificationViewModel.registerUser(email: email, password: password)
-                        if authentificationViewModel.errorMessage == nil {
-                            dismiss()
+                        if authentificationViewModel.isAuthenticated {
+                            // change
                         }
                         
                     } label: {
