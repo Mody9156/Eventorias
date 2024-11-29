@@ -42,7 +42,7 @@ struct EventoriasApp: App {
 //                if mainAuth.isAuthenticated {
 //                    
 //                    TabView {
-                            ListView()
+                ListView(eventEntry: [EventEntry(id: "", picture: "", title: "", dateString: "", poster: "")])
 //                            .tabItem {
 //                                HStack {
 //                                    Text("Events")

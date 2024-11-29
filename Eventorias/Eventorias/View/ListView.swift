@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListView: View {
     @State var searchText : String = ""
-    private var eventEntry : [EventEntry]
+    var eventEntry : [EventEntry]
     
     var body: some View {
         NavigationStack {
@@ -19,7 +19,7 @@ struct ListView: View {
                         
                         VStack {
                             CustomButton()
-                            ForEach(eventEntry) { entry in
+                            ForEach(eventEntry,id: \.dateString) { entry in
                                 HStack {
                                     Image(entry.picture)
                                         .resizable()
@@ -48,7 +48,7 @@ struct ListView: View {
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListView()
+        ListView(eventEntry: [EventEntry(id: "", picture: "", title: "", dateString: "", poster: "")])
     }
 }
 
