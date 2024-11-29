@@ -7,17 +7,17 @@
 
 import Foundation
 
-class MainAuth:ObservableObject {
-    @Published var authentificated : Bool
+class MainSessionManager:ObservableObject {
+    @Published var isAuthenticated : Bool
     
     init(){
-       authentificated = false
+       isAuthenticated = false
     }
    
     
     var authentificationViewModel : AuthentificationViewModel {
         return AuthentificationViewModel { [weak self] in
-            self?.authentificated = true
+            self?.isAuthenticated = true
         }
     }
     

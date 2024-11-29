@@ -11,7 +11,6 @@ struct RegistrationView: View {
     @State var email = ""
     @State var password = ""
     @StateObject var authentificationViewModel : AuthentificationViewModel
-    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ZStack {
@@ -33,9 +32,7 @@ struct RegistrationView: View {
                     
                     Button {
                         authentificationViewModel.registerUser(email: email, password: password)
-                        if authentificationViewModel.isAuthenticated{
-                            dismiss()
-                        }
+                        
                     } label: {
                         Image(systemName:"person.fill")
                             .foregroundColor(.white)
