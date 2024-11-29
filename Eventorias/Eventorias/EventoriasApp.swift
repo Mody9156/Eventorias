@@ -35,7 +35,7 @@ class AppDelegate : NSObject, UIApplicationDelegate {
 struct EventoriasApp: App {
     @UIApplicationDelegateAdaptor (AppDelegate.self) var delegate
     @StateObject private var authentificationViewModel = AuthentificationViewModel()
-    
+
     var body: some Scene {
         WindowGroup {
             NavigationStack {
