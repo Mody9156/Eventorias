@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListView: View {
     @State var searchText : String = ""
-    private var 
+    private var eventEntry : [EventEntry]
     
     var body: some View {
         NavigationStack {
@@ -19,7 +19,9 @@ struct ListView: View {
                         
                         VStack {
                             CustomButton()
-                            
+                            ForEach(eventEntry) { entry in
+                                Image(entry.picture)
+                            }
                             Spacer()
                             
                         }
