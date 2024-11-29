@@ -21,6 +21,7 @@
 		23B3044A2CF6043300106980 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B304492CF6043300106980 /* ListView.swift */; };
 		23B3044E2CF611EC00106980 /* AuthentificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B3044D2CF611EC00106980 /* AuthentificationViewModel.swift */; };
 		23B304502CF61FEE00106980 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B3044F2CF61FEE00106980 /* RegistrationView.swift */; };
+		23E95D162CF9BBC60024AA49 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E95D152CF9BBC60024AA49 /* AuthToken.swift */; };
 		23ECD8452CF7832800EA4BC4 /* EventEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ECD8442CF7832800EA4BC4 /* EventEntry.swift */; };
 		23F1FA952CF86E4F0092B83C /* protocolsFirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F1FA942CF86E4F0092B83C /* protocolsFirebaseData.swift */; };
 		23F1FA992CF887DF0092B83C /* FirebaseAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F1FA982CF887DE0092B83C /* FirebaseAuthenticationManager.swift */; };
@@ -49,6 +50,7 @@
 		23B3044D2CF611EC00106980 /* AuthentificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationViewModel.swift; sourceTree = "<group>"; };
 		23B3044F2CF61FEE00106980 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		23E95D132CF9B6130024AA49 /* Eventorias.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Eventorias.entitlements; sourceTree = "<group>"; };
+		23E95D152CF9BBC60024AA49 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		23ECD8442CF7832800EA4BC4 /* EventEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEntry.swift; sourceTree = "<group>"; };
 		23F1FA942CF86E4F0092B83C /* protocolsFirebaseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = protocolsFirebaseData.swift; sourceTree = "<group>"; };
 		23F1FA982CF887DE0092B83C /* FirebaseAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationManager.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 		23E95D142CF9BB1A0024AA49 /* Token */ = {
 			isa = PBXGroup;
 			children = (
+				23E95D152CF9BBC60024AA49 /* AuthToken.swift */,
 			);
 			path = Token;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				23F1FA952CF86E4F0092B83C /* protocolsFirebaseData.swift in Sources */,
 				23B3044E2CF611EC00106980 /* AuthentificationViewModel.swift in Sources */,
 				23B3044A2CF6043300106980 /* ListView.swift in Sources */,
+				23E95D162CF9BBC60024AA49 /* AuthToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
