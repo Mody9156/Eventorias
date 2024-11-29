@@ -20,7 +20,19 @@ struct ListView: View {
                         VStack {
                             CustomButton()
                             ForEach(eventEntry) { entry in
-                                Image(entry.picture)
+                                HStack {
+                                    Image(entry.picture)
+                                        .resizable()
+                                        .frame(width: 50,height: 50)
+                                        .overlay(Circle())
+                                    
+                                    HStack{
+                                        Text(entry.title)
+                                        Text(entry.dateString)
+                                    }
+                                    Image(entry.poster)
+                                        .cornerRadius(20)
+                                }
                             }
                             Spacer()
                             
