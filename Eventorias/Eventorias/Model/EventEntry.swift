@@ -20,7 +20,7 @@ struct EventEntry : Identifiable, Codable{
 
 extension EventEntry {
     static let eventEntry  = [
-        EventEntry(picture: "", title: "", dateString: "", poster: ""),
+        EventEntry(picture: "MusicFestival", title: "Music festival", dateString: "June 15, 2024", poster: ""),
         EventEntry(picture: "", title: "", dateString: "", poster: ""),
         EventEntry(picture: "", title: "", dateString: "", poster: "")
     ]
