@@ -21,6 +21,7 @@ class FirebaseAuthenticationManager :protocolsFirebaseData {
             if let result = result {
                 var uid = result.user.uid
                 print("id : \(uid)")
+                Auth.auth().signIn(withCustomToken: uid)
                 completion(.success(result))
                 
             }else{
