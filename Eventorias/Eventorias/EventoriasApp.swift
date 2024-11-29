@@ -44,7 +44,11 @@ struct EventoriasApp: App {
                     TabView {
                             ListView()
                             .tabItem {
-                                Label("Events", systemImage: "")
+                                HStack {
+                                    Text("Events")
+                                    Image("event")
+                                }
+                               
                             }
                         
                     }
