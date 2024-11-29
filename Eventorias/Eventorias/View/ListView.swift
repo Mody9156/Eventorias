@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ListView: View {
     @State var searchText : String = ""
+    private var 
     
     var body: some View {
         NavigationStack {
@@ -18,6 +19,7 @@ struct ListView: View {
                         
                         VStack {
                             CustomButton()
+                            
                             Spacer()
                             
                         }
