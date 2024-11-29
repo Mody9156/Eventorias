@@ -32,7 +32,7 @@ class AuthentificationViewModel : ObservableObject {
             case .success(let result):
                 self.errorMessage = nil
                 self.isAuthenticated = true
-                onLoginSucceed()
+                self.onLoginSucceed()
                 print("Graduation \(result) Vous venez de vous connecter")
                 break
                 // Connexion échoue
