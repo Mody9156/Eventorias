@@ -34,7 +34,7 @@ class AppDelegate : NSObject, UIApplicationDelegate {
 @main
 struct EventoriasApp: App {
     @UIApplicationDelegateAdaptor (AppDelegate.self) var delegate
-    @StateObject private var authentificationViewModel = AuthentificationViewModel()
+    @StateObject private var authentificationViewModel = AuthentificationViewModel({})
 
     var body: some Scene {
         WindowGroup {
@@ -42,7 +42,9 @@ struct EventoriasApp: App {
                 if authentificationViewModel.isAuthenticated {
                     ListView()
                 }else{
-                    HomeView(authentificationViewModel: AuthentificationViewModel())
+                    HomeView(authentificationViewModel: AuthentificationViewModel({}))
+                        .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity),
+                                                                        removal: .move(edge: .top).combined(with: .opacity)))
                 }
             }
         }
