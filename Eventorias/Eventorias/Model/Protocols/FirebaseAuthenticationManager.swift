@@ -21,11 +21,14 @@ class FirebaseAuthenticationManager :protocolsFirebaseData {
             if let result = result {
                 var uid = result.user.uid
                 print("id : \(uid)")
-                Auth.auth().signIn(withCustomToken: uid)
                 completion(.success(result))
                 
             }else{
-                completion(.failure(NSError(domain: "AuthError", code: -1, userInfo: [NSLocalizedDescriptionKey :"Unknown error occurred."])))
+                completion(.failure(NSError(
+                    domain: "AuthError",
+                    code: -1,
+                    userInfo: [NSLocalizedDescriptionKey :"Unknown error occurred."]
+                )))
             }
         }
     }
