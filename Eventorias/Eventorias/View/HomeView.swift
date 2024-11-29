@@ -96,7 +96,8 @@ struct ActionButtonView: View {
                         .foregroundColor(.white)
                 }
             }
-        }.padding()
+        }
+        .padding()
     }
 }
 
