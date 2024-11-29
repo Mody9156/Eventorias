@@ -57,7 +57,7 @@ struct RegistrationView: View {
 
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView(authentificationViewModel: AuthentificationViewModel())
+        RegistrationView(authentificationViewModel: AuthentificationViewModel({}))
     }
 }
 

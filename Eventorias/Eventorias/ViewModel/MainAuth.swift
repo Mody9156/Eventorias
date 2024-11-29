@@ -14,6 +14,9 @@ class MainAuth:ObservableObject {
        authentificated = false
     }
    
-//   
+    
+    var homeView : HomeView {
+        return HomeView(authentificationViewModel: AuthentificationViewModel({}))
+    }
     
 }

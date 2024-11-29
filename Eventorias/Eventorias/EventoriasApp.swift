@@ -43,8 +43,7 @@ struct EventoriasApp: App {
                     ListView()
                 }else{
                     HomeView(authentificationViewModel: AuthentificationViewModel({}))
-                        .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity),
-                                                                        removal: .move(edge: .top).combined(with: .opacity)))
+                        .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity),removal: .move(edge: .top).combined(with: .opacity)))
                 }
             }
         }

@@ -74,7 +74,7 @@ struct HomeView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(authentificationViewModel: AuthentificationViewModel())
+        HomeView(authentificationViewModel: AuthentificationViewModel({}))
     }
 }
 
@@ -88,7 +88,7 @@ struct ActionButtonView: View {
                 .foregroundColor(Color("Button"))
             
             NavigationLink {
-                RegistrationView(authentificationViewModel: AuthentificationViewModel())
+                RegistrationView(authentificationViewModel: AuthentificationViewModel({}))
             } label: {
                 HStack {
                     Image("letter")
