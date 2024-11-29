@@ -27,15 +27,16 @@ struct RegistrationView: View {
                 
                 ZStack {
                     Rectangle()
-                        .frame(width:.infinity, height: 50)
+                        .frame(height: 50)
                         .foregroundColor(Color("Button"))
                         
                     
                     Button {
                         authentificationViewModel.registerUser(email: email, password: password)
-                        if authentificationViewModel.isAuthenticated{
-                            dismiss()
+                        if authentificationViewModel.isAuthenticated {
+                            // change
                         }
+                        
                     } label: {
                         Image(systemName:"person.fill")
                             .foregroundColor(.white)
@@ -57,7 +58,7 @@ struct RegistrationView: View {
 
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView(authentificationViewModel: AuthentificationViewModel())
+        RegistrationView(authentificationViewModel: AuthentificationViewModel({}))
     }
 }
 

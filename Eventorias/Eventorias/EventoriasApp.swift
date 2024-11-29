@@ -34,10 +34,29 @@ class AppDelegate : NSObject, UIApplicationDelegate {
 @main
 struct EventoriasApp: App {
     @UIApplicationDelegateAdaptor (AppDelegate.self) var delegate
+    @StateObject private var mainAuth = MainSessionManager()
+
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                HomeView(authentificationViewModel: AuthentificationViewModel())
+//                if mainAuth.isAuthenticated {
+//                    
+//                    TabView {
+                ListView(eventEntry: [EventEntry(id: "", picture: "", title: "", dateString: "", poster: "")])
+//                            .tabItem {
+//                                HStack {
+//                                    Text("Events")
+//                                    Image("event")
+//                                }
+//
+//                            }
+//
+//                    }
+//
+//                }else{
+//                    HomeView(authentificationViewModel: mainAuth.authentificationViewModel)
+//                        .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity),removal: .move(edge: .top).combined(with: .opacity)))
+//                }
             }
         }
     }

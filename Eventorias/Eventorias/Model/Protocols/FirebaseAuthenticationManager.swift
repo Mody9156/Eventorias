@@ -18,10 +18,16 @@ class FirebaseAuthenticationManager :protocolsFirebaseData {
                 completion(.failure(error))
                 return
             }
+            
             if let result = result {
                 completion(.success(result))
+                
             }else{
-                completion(.failure(NSError(domain: "AuthError", code: -1, userInfo: [NSLocalizedDescriptionKey :"Unknown error occurred."])))
+                completion(.failure(NSError(
+                    domain: "AuthError",
+                    code: -1,
+                    userInfo: [NSLocalizedDescriptionKey :"Unknown error occurred."]
+                )))
             }
         }
     }

@@ -14,7 +14,6 @@ struct HomeView: View {
     @State var email = ""
     @State var password = ""
     @StateObject var authentificationViewModel : AuthentificationViewModel
-    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationStack {
@@ -38,7 +37,7 @@ struct HomeView: View {
                         
                         ZStack {
                             Rectangle()
-                                .frame(width:.infinity, height: 50)
+                                .frame(height: 50)
                                 .foregroundColor(Color("Button"))
                             
                             Button {
@@ -74,7 +73,7 @@ struct HomeView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(authentificationViewModel: AuthentificationViewModel())
+        HomeView(authentificationViewModel: AuthentificationViewModel({}))
     }
 }
 
@@ -84,11 +83,11 @@ struct ActionButtonView: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .frame(width:.infinity, height: 50)
+                .frame(height: 50)
                 .foregroundColor(Color("Button"))
             
             NavigationLink {
-                RegistrationView(authentificationViewModel: AuthentificationViewModel())
+                RegistrationView(authentificationViewModel: AuthentificationViewModel({}))
             } label: {
                 HStack {
                     Image("letter")
@@ -96,7 +95,8 @@ struct ActionButtonView: View {
                         .foregroundColor(.white)
                 }
             }
-        }.padding()
+        }
+        .padding()
     }
 }
 

@@ -7,13 +7,16 @@
 
 import Foundation
 import FirebaseAuth
-import FirebaseFirestore
-import FirebaseCore
 
 class AuthentificationViewModel : ObservableObject {
     @Published var errorMessage: String? = nil
     @Published var isAuthenticated : Bool = false
+    @Published var onLoginSucceed : (() -> ())
     let firebaseAuthenticationManager : protocolsFirebaseData = FirebaseAuthenticationManager()
+  
+    init(_ callback:@escaping (() -> ())) {
+        self.onLoginSucceed = callback
+    }
     
     func login(email : String,password:String) {
         //Validation du mail et du mot de passe
@@ -29,6 +32,7 @@ class AuthentificationViewModel : ObservableObject {
             case .success(let result):
                 self.errorMessage = nil
                 self.isAuthenticated = true
+                self.onLoginSucceed()
                 print("Graduation \(result) Vous venez de vous connecter")
                 break
                 // Connexion échoue

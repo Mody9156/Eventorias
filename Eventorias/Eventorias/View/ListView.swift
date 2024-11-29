@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ListView: View {
     @State var searchText : String = ""
+    var eventEntry : [EventEntry]
     
     var body: some View {
         NavigationStack {
@@ -18,19 +19,36 @@ struct ListView: View {
                         
                         VStack {
                             CustomButton()
+                            ForEach(eventEntry,id: \.dateString) { entry in
+                                HStack {
+                                    Image(entry.picture)
+                                        .resizable()
+                                        .frame(width: 50,height: 50)
+                                        .overlay(Circle())
+                                    
+                                    HStack{
+                                        Text(entry.title)
+                                        Text(entry.dateString)
+                                    }
+                                    Image(entry.poster)
+                                        .cornerRadius(20)
+                                }
+                            }
                             Spacer()
                             
                         }
                         .padding()
                     }
-                    .searchable(text: $searchText)
+                    .searchable(text: $searchText, prompt: "Search")
+              
+                   
         }
     }
 }
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListView()
+        ListView(eventEntry: [EventEntry(id: "", picture: "", title: "", dateString: "", poster: "")])
     }
 }
 
