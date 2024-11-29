@@ -6,9 +6,6 @@
 //
 
 import Foundation
-import FirebaseAuth
-import FirebaseFirestore
-import FirebaseCore
 
 class AuthentificationViewModel : ObservableObject {
     @Published var errorMessage: String? = nil
