@@ -16,7 +16,9 @@ class MainAuth:ObservableObject {
    
     
     var homeView : HomeView {
-        return HomeView(authentificationViewModel: AuthentificationViewModel({}))
+        return HomeView(authentificationViewModel: AuthentificationViewModel({ [weak self] in
+            self?.authentificated = true
+        }))
     }
     
 }
