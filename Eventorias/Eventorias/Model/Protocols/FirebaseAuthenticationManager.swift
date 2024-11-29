@@ -18,6 +18,7 @@ class FirebaseAuthenticationManager :protocolsFirebaseData {
                 completion(.failure(error))
                 return
             }
+            
             if let result = result {
                 var uid = result.user.uid
                 print("id : \(uid)")
