@@ -19,7 +19,10 @@ class FirebaseAuthenticationManager :protocolsFirebaseData {
                 return
             }
             if let result = result {
+                var uid = result.user.uid
+                print("id : \(uid)")
                 completion(.success(result))
+                
             }else{
                 completion(.failure(NSError(domain: "AuthError", code: -1, userInfo: [NSLocalizedDescriptionKey :"Unknown error occurred."])))
             }
