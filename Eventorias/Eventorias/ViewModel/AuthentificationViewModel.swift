@@ -11,8 +11,10 @@ import FirebaseAuth
 class AuthentificationViewModel : ObservableObject {
     @Published var errorMessage: String? = nil
     @Published var isAuthenticated : Bool = false
+    @Published var onLoginSucceed : (() -> ())
     let firebaseAuthenticationManager : protocolsFirebaseData = FirebaseAuthenticationManager()
   
+    
     func login(email : String,password:String) {
         //Validation du mail et du mot de passe
         guard !email.isEmpty, !password.isEmpty else {

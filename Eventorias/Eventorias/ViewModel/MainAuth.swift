@@ -8,5 +8,12 @@
 import Foundation
 
 class MainAuth:ObservableObject {
-    @Published var 
+    @Published var authentificated : Bool
+    
+    init(){
+       authentificated = false
+    }
+   
+//   
+    
 }
