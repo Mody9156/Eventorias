@@ -21,6 +21,7 @@ class FirebaseAuthenticationManager :protocolsFirebaseData {
             if let result = result {
                 var uid = result.user.uid
                 print("id : \(uid)")
+                AuthToken.addToken(uid)
                 completion(.success(result))
                 
             }else{
