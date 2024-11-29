@@ -10,7 +10,6 @@ import FirebaseAuth
 
 class AuthentificationViewModel : ObservableObject {
     @Published var errorMessage: String? = nil
-    @Published var isAuthenticated : Bool = false
     @Published var onLoginSucceed : (() -> ())
     let firebaseAuthenticationManager : protocolsFirebaseData = FirebaseAuthenticationManager()
   
@@ -31,14 +30,12 @@ class AuthentificationViewModel : ObservableObject {
                 // Connexion réussie
             case .success(let result):
                 self.errorMessage = nil
-                self.isAuthenticated = true
                 self.onLoginSucceed()
                 print("Graduation \(result) Vous venez de vous connecter")
                 break
                 // Connexion échoue
             case .failure(let error):
                 self.errorMessage = error.localizedDescription
-                self.isAuthenticated = false
                 break
             }
         }

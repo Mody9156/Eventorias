@@ -38,7 +38,7 @@ struct HomeView: View {
                         
                         ZStack {
                             Rectangle()
-                                .frame(width:.infinity, height: 50)
+                                .frame(width:.infinity)
                                 .foregroundColor(Color("Button"))
                             
                             Button {
