@@ -23,7 +23,7 @@ struct ListView: View {
                         }
                         .padding()
                     }
-                    .searchable(text: $searchText)
+                    .searchable(text: $searchText, prompt: "Rechercher un élèment")
         }
     }
 }
