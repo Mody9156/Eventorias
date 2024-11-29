@@ -38,7 +38,7 @@ struct HomeView: View {
                         
                         ZStack {
                             Rectangle()
-                                .frame(width:.infinity)
+                                .frame(height: 50)
                                 .foregroundColor(Color("Button"))
                             
                             Button {
@@ -84,7 +84,7 @@ struct ActionButtonView: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .frame(width:.infinity, height: 50)
+                .frame( height: 50)
                 .foregroundColor(Color("Button"))
             
             NavigationLink {
