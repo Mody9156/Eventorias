@@ -18,4 +18,8 @@ struct AuthToken {
     static func retrieve() -> String?{
         return UserDefaults.standard.string(forKey: tokenKey)
     }
+    
+    static func dete(){
+        UserDefaults.standard.removeObject(forKey: tokenKey)
+    }
 }
