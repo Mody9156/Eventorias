@@ -46,9 +46,7 @@ struct EventoriasApp: App {
                             .tabItem {
                                 HStack {
                                     Text("Events")
-                                        .foregroundColor(.red)
                                     Image("event")
-                                        .foregroundColor(.red)
                                 }
                                
                             }
