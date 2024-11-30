@@ -14,42 +14,36 @@ struct ListView: View {
         NavigationStack {
             VStack {
                 ZStack(alignment: .leading) {
-                            Color("Background")
-                                .ignoresSafeArea()
-                            
-                                CustomButton()
-                    List {
-                        Section {
-                            ForEach(EventEntry.eventEntry) { entry in
-                                            HStack {
-                                                Image(entry.picture)
-                                                    .resizable()
-                                                    .frame(width: 50,height: 50)
-                                                
-                                                HStack{
-                                                    Text(entry.title)
-                                                        .foregroundColor(.white)
-                                                    Text(entry.dateString)
-                                                        .foregroundColor(.white)
-                                                }
-                                                Image(entry.poster)
-                                                    .cornerRadius(20)
-                                            }
+                    Color("Background")
+                        .ignoresSafeArea()
+                    
+                    CustomButton()
+                  
+                            List(EventEntry.eventEntry) { entry in
+                                HStack {
+                                    Image(entry.picture)
+                                        .resizable()
+                                        .frame(width: 50,height: 50)
+                                    
+                                    HStack{
+                                        Text(entry.title)
+                                            .foregroundColor(.white)
+                                        Text(entry.dateString)
+                                            .foregroundColor(.white)
+                                    }
+                                    Image(entry.poster)
+                                        .cornerRadius(20)
+                                }
                             }
-                        }
-                        .listRowBackground(
-                            Capsule()
-                                .fill(Color("BackgroundDocument"))
-                                .padding()
-                        )
-                    }
-                    Divider()
-                                Spacer()
-                           
-                        }
+                            .listRowBackground((Color("BackgroundDocument")))
+                            .padding()
+                      
+                    Spacer()
+                    
+                }
             }
-            
-        }.searchable(text: $searchText, prompt: "Search")
+            .searchable(text: $searchText, prompt: "Search")
+        }
     }
 }
 
