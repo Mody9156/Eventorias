@@ -9,48 +9,55 @@ import SwiftUI
 
 struct ListView: View {
     @State var searchText : String = ""
-    var eventEntry : [EventEntry]
     
     var body: some View {
         NavigationStack {
-                    ZStack(alignment: .leading) {
-                        Color("Background")
-                            .ignoresSafeArea()
-                        
-                        VStack {
-                            CustomButton()
-                            List(eventEntry) { entry in
-                                HStack {
-                                    Image(entry.picture)
-                                        .resizable()
-                                        .frame(width: 50,height: 50)
-//                                        .overlay(Circle())
-                                    
-                                    HStack{
-                                        Text(entry.title)
-                                            .foregroundColor(.white)
-                                        Text(entry.dateString)
-                                            .foregroundColor(.white)
-                                    }
-                                    Image(entry.poster)
-                                        .cornerRadius(20)
-                                }
+            VStack {
+                ZStack(alignment: .leading) {
+                            Color("Background")
+                                .ignoresSafeArea()
+                            
+                                CustomButton()
+                    List {
+                        Section {
+                            ForEach(EventEntry.eventEntry) { entry in
+                                            HStack {
+                                                Image(entry.picture)
+                                                    .resizable()
+                                                    .frame(width: 50,height: 50)
+                                                
+                                                HStack{
+                                                    Text(entry.title)
+                                                        .foregroundColor(.white)
+                                                    Text(entry.dateString)
+                                                        .foregroundColor(.white)
+                                                }
+                                                Image(entry.poster)
+                                                    .cornerRadius(20)
+                                            }
                             }
-                            Spacer()
                         }
-                        .padding()
+                        .listRowBackground(
+                            Capsule()
+                                .fill(Color("BackgroundDocument"))
+                                .padding()
+                        )
                     }
-                    .searchable(text: $searchText, prompt: "Search")
-                   
-        }
+                    Divider()
+                                Spacer()
+                           
+                        }
+            }
+            
+        }.searchable(text: $searchText, prompt: "Search")
     }
 }
 
-struct ListView_Previews: PreviewProvider {
-    static var previews: some View {
-        ListView(eventEntry: [EventEntry(picture: "TechConference", title: "Tech conference", dateString: "August 5, 2024", poster: "TechConferencePoster")])
-    }
-}
+//struct ListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ListView()
+//    }
+//}
 
 struct CustomButton: View {
     var body: some View {
