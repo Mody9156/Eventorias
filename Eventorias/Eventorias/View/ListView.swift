@@ -14,12 +14,12 @@ struct ListView: View {
     var body: some View {
         NavigationStack {
                     ZStack(alignment: .leading) {
-                        Color("Background")
-                            .ignoresSafeArea()
+//                        Color("Background")
+//                            .ignoresSafeArea()
                         
                         VStack {
                             CustomButton()
-                            ForEach(eventEntry,id: \.dateString) { entry in
+                            ForEach(eventEntry,id: \.self) { entry in
                                 HStack {
                                     Image(entry.picture)
                                         .resizable()
@@ -35,7 +35,6 @@ struct ListView: View {
                                 }
                             }
                             Spacer()
-                            
                         }
                         .padding()
                     }
