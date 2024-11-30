@@ -47,7 +47,7 @@ struct ListView: View {
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListView(eventEntry: [EventEntry(id: "", picture: "", title: "", dateString: "", poster: "")])
+        ListView(eventEntry: [EventEntry(picture: "TechConference", title: "Tech conference", dateString: "August 5, 2024", poster: "TechConferencePoster")])
     }
 }
 
