@@ -45,6 +45,7 @@ struct ListView: View {
                                                     .multilineTextAlignment(.leading)
                                                     .foregroundColor(.white)
                                             }
+                                            Spacer()
                                             Image(entry.poster)
                                                 .resizable()
                                                 .frame(width: 136, height: 80)
