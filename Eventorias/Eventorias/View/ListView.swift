@@ -14,21 +14,23 @@ struct ListView: View {
     var body: some View {
         NavigationStack {
                     ZStack(alignment: .leading) {
-//                        Color("Background")
-//                            .ignoresSafeArea()
+                        Color("Background")
+                            .ignoresSafeArea()
                         
                         VStack {
                             CustomButton()
-                            ForEach(eventEntry,id:\.id) { entry in
+                            List(eventEntry) { entry in
                                 HStack {
                                     Image(entry.picture)
                                         .resizable()
                                         .frame(width: 50,height: 50)
-                                        .overlay(Circle())
+//                                        .overlay(Circle())
                                     
                                     HStack{
                                         Text(entry.title)
+                                            .foregroundColor(.white)
                                         Text(entry.dateString)
+                                            .foregroundColor(.white)
                                     }
                                     Image(entry.poster)
                                         .cornerRadius(20)
