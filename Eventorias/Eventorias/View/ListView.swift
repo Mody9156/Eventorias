@@ -40,7 +40,6 @@ struct ListView: View {
                         .padding()
                     }
                     .searchable(text: $searchText, prompt: "Search")
-              
                    
         }
     }

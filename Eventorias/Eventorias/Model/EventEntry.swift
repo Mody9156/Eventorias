@@ -15,7 +15,6 @@ struct EventEntry : Identifiable, Codable{
     var title : String
     var dateString : String
     var poster : String
-    
 }
 
 extension EventEntry {
