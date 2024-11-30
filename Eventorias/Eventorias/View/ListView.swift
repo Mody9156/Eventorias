@@ -19,7 +19,7 @@ struct ListView: View {
                         
                         VStack {
                             CustomButton()
-                            ForEach(eventEntry,id: \.self) { entry in
+                            ForEach(eventEntry,id:\.id) { entry in
                                 HStack {
                                     Image(entry.picture)
                                         .resizable()
