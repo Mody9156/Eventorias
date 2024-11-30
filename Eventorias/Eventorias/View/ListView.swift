@@ -30,25 +30,29 @@ struct ListView: View {
                                                 .resizable()
                                                 .frame(width: 40,height: 40)
                                             
-                                            HStack{
+                                            VStack{
                                                 Text(entry.title)
                                                     .font(.custom("Inter-Medium", size: 16))
                                                     .lineSpacing(24 - 16)
                                                     .fontWeight(.medium)
                                                     .multilineTextAlignment(.leading)
-                                                    .underline(true, color: .primary)
+                                                    .foregroundColor(.white)
                                                 
                                                 Text(entry.dateString)
                                                     .font(.custom("Inter-Regular", size: 14))
                                                     .lineSpacing(20 - 14)
                                                     .fontWeight(.regular)
                                                     .multilineTextAlignment(.leading)
-                                                    .underline(true, color: .primary)        
-
+                                                    .foregroundColor(.white)
                                             }
                                             Image(entry.poster)
-                                                .frame(height: 80)
-                                                .cornerRadius(20)
+                                                .resizable()
+                                                .frame(width: 136, height: 80)
+                                                .cornerRadius(12) 
+                                                .opacity(0) 
+                                                .position(x: 238, y: 177)
+                                            
+
                                         }
                                     }
                                 }
