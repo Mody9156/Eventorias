@@ -17,29 +17,44 @@ struct ListView: View {
                     Color("Background")
                         .ignoresSafeArea()
                     
-                    CustomButton()
-                  
-                            List(EventEntry.eventEntry) { entry in
-                                HStack {
-                                    Image(entry.picture)
-                                        .resizable()
-                                        .frame(width: 50,height: 50)
+                    VStack {
+                        CustomButton()
+
+                        ForEach(EventEntry.eventEntry) { entry in
+                                NavigationLink {
+                                    Text(entry.title)
+                                } label: {
                                     
-                                    HStack{
-                                        Text(entry.title)
-                                            .foregroundColor(.white)
-                                        Text(entry.dateString)
-                                            .foregroundColor(.white)
+                                        HStack {
+                                            Image(entry.picture)
+                                                .resizable()
+                                                .frame(width: 40,height: 40)
+                                            
+                                            HStack{
+                                                Text(entry.title)
+                                                    .font(.custom("Inter-Medium", size: 16))
+                                                    .lineSpacing(24 - 16)
+                                                    .fontWeight(.medium)
+                                                    .multilineTextAlignment(.leading)
+                                                    .underline(true, color: .primary)
+                                                
+                                                Text(entry.dateString)
+                                                    .font(.custom("Inter-Regular", size: 14))
+                                                    .lineSpacing(20 - 14)
+                                                    .fontWeight(.regular)
+                                                    .multilineTextAlignment(.leading)
+                                                    .underline(true, color: .primary)        
+
+                                            }
+                                            Image(entry.poster)
+                                                .frame(height: 80)
+                                                .cornerRadius(20)
+                                        }
                                     }
-                                    Image(entry.poster)
-                                        .cornerRadius(20)
                                 }
-                            }
-                            .listRowBackground((Color("BackgroundDocument")))
-                            .padding()
-                      
+                    .padding()
+                    }
                     Spacer()
-                    
                 }
             }
             .searchable(text: $searchText, prompt: "Search")
