@@ -49,7 +49,6 @@ struct ListView: View {
                                                 .resizable()
                                                 .frame(width: 136, height: 80)
                                                 .cornerRadius(12)
-                                                .position(x: 238, y: 177)
                                             
                                         }
                                     }
