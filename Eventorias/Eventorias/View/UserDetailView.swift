@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct UserDetailView: View {
+    let eventEntry : EventEntry
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
@@ -15,6 +16,6 @@ struct UserDetailView: View {
 
 struct UserDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        UserDetailView()
+        UserDetailView(eventEntry: EventEntry(picture: "", title: "", dateString: "", poster: ""))
     }
 }
