@@ -11,8 +11,8 @@ struct UserDetailView: View {
     let eventEntry : EventEntry
     var body: some View {
         VStack {
-            Text(eventEntry.title)
-        }
+            Image(eventEntry.poster)
+        }.navigationTitle(eventEntry.title)
     }
 }
 
