@@ -12,12 +12,16 @@ struct UserDetailView: View {
     var body: some View {
         VStack {
             Image(eventEntry.poster)
+                .resizable()
+                .frame(width: 358, height: 364)
+            
+            
         }.navigationTitle(eventEntry.title)
     }
 }
 
 struct UserDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        UserDetailView(eventEntry: EventEntry(picture: "", title: "", dateString: "", poster: ""))
+        UserDetailView(eventEntry: EventEntry(picture: "MusicFestival", title: "Music festival", dateString: "June 15, 2024", poster: "MusicFestivalPoster"))
     }
 }
