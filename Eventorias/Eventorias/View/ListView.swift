@@ -22,7 +22,7 @@ struct ListView: View {
 
                         ForEach(EventEntry.eventEntry) { entry in
                                 NavigationLink {
-                                    Text(entry.title)
+                                    UserDetailView(eventEntry: entry)
                                 } label: {
                                     
                                         HStack {
