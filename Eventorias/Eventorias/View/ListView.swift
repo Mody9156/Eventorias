@@ -75,26 +75,28 @@ struct ListView: View {
                                         .background(Color(""))
                                         .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
                                         .foregroundColor(.white)
-                                     
+                                    
                                 }
                                 .overlay(
-                                   
-                                        HStack{
-                                            if searchText.isEmpty {
+                                    
+                                    HStack{
+                                        if searchText.isEmpty {
                                             Image(systemName:"magnifyingglass")
                                                 .foregroundColor(.white)
                                             Text("Search")
                                                 .foregroundColor(.white)
                                             Spacer()
-                                                if !searchText.isEmpty{
-                                                    Button(action:{}){
-                                                        Image(systemName:"xmark.circle.fill")
-                                                            .foregroundColor(Color("BackgroundDocument"))
-                                                    }
+                                            if !searchText.isEmpty{
+                                                Button(action:{
+                                                    searchText = ""
+                                                }){
+                                                    Image(systemName:"xmark.circle.fill")
+                                                        .foregroundColor(Color("BackgroundDocument"))
                                                 }
+                                            }
                                         }
                                     }
-                                   
+                                    
                                 )
                                 .padding()
                                 
