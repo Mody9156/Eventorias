@@ -62,7 +62,7 @@ struct ListView: View {
                     Spacer()
                 }
             }
-            .searchable(text: $searchText, prompt: "Search")
+           
         }
     }
 }
