@@ -9,7 +9,6 @@ import Foundation
 import FirebaseFirestoreSwift
 
 struct EventEntry : Identifiable, Codable,Hashable{
-//    @DocumentID // lier automatiquement un champ d'une structure à l'ID d'un document Firestore.
     var id = UUID()
     var picture : String
     var title : String
