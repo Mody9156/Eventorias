@@ -26,18 +26,17 @@ struct ListView: View {
                     
                     VStack(alignment: .leading) {
                         CustomButton()
+                            .padding()
                         
                         List {
                             Section {
                                 ForEach(EventEntry.eventEntry,id: \.self) { entry in
-                                    NavigationLink {
-                                        UserDetailView(eventEntry: entry)
-                                    } label: {
-                                        
+                                   
                                         HStack {
                                             Image(entry.picture)
                                                 .resizable()
                                                 .frame(width: 40,height: 40)
+                                                .padding()
                                             
                                             VStack{
                                                 Text(entry.title)
@@ -60,27 +59,33 @@ struct ListView: View {
                                                 .resizable()
                                                 .frame(width: 136, height: 80)
                                                 .cornerRadius(12)
-                                        }
-                                        .listRowBackground(
-                                            Capsule()
-                                                .fill(Color("BackgroundDocument"))
-                                                .padding(2)
-                                        )
-                                    }
+                                        
+                                        }.overlay(NavigationLink(destination: {
+                                            UserDetailView(eventEntry: entry)
+                                        }, label: {
+                                            EmptyView()
+                                        }))
                                 }
                                 
-                                .padding()
                             }
-                            .frame(width: 358, height: 80)
+                            .listRowBackground(
+                                RoundedRectangle(cornerRadius:16)
+                                    .fill(Color("BackgroundDocument"))
+                                    .frame(width: 358, height: 80)
+
+                                    .padding(2)
+                            )
+
+                            
                         }
                         .listStyle(GroupedListStyle())
                         .scrollContentBackground(.hidden)
                         .background(Color("Background"))
                         
+                        
                     }
                     .toolbar(content: myTollBarContent)
-                    .padding()
-                }
+                                    }
                 //                ZStack {
                 //                    RoundedRectangle(cornerRadius: 16)
                 //                      .fill(.red)
