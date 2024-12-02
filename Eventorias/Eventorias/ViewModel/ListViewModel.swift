@@ -9,9 +9,9 @@ import Foundation
 
 class ListViewModel : ObservableObject {
     @Published
-    var errorMessage = ""
+    var errorMessage :String? = ""
     
-   private var eventoriasRepository : EventoriasRepository = EventoriasRepository()
+    private var eventoriasRepository : EventoriasRepository = EventoriasRepository()
     
     func formatDateString(eventEntry:EventEntry) -> String {
         let date = Date.stringFromDate(eventEntry.dateCreation)
@@ -23,11 +23,11 @@ class ListViewModel : ObservableObject {
         
         do{
             try eventoriasRepository.addEvenement(eventEntry)
+            errorMessage = nil
             
         } catch{
             print(error)
             errorMessage = error.localizedDescription
         }
     }
-    
 }
