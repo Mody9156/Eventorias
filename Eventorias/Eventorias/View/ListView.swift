@@ -27,7 +27,7 @@ struct ListView: View {
                     VStack(alignment: .leading) {
                         CustomButton()
                         
-                        ForEach(EventEntry.eventEntry) { entry in
+                        ForEach(EventEntry.eventEntry,id: \.self) { entry in
                             NavigationLink {
                                 UserDetailView(eventEntry: entry)
                             } label: {
@@ -72,7 +72,7 @@ struct ListView: View {
 
         }.onAppear{
             Task{
-                try await   listViewModel.addEventEntry(eventEntry)
+                try await listViewModel.addEventEntry(eventEntry)
             }
         }
     }
