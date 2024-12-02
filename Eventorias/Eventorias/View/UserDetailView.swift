@@ -17,7 +17,8 @@ struct UserDetailView: View {
                 
                 VStack {
                     Image(eventEntry.poster)
-    //                    .frame(width: 358, height: 364)
+                        .resizable()
+                        .frame(width: 358, height: 364)
                     Text(eventEntry.dateString)
                         .foregroundColor(.white)
                     
