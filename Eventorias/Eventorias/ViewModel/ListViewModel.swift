@@ -13,7 +13,6 @@ class ListViewModel : ObservableObject {
         let date = Date.stringFromDate(eventEntry.dateCreation)
         
         return date
-        
     }
     
 }

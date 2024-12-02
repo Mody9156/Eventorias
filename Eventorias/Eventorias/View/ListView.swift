@@ -15,6 +15,7 @@ struct ListView: View {
     @State var searchText : String = ""
     @State var isAactive : Bool = false
     @FocusState var focused : focusedTexfield?
+    @StateObject var listViewModel : ListViewModel
     
     var body: some View {
         NavigationStack {
