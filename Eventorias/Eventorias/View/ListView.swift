@@ -63,7 +63,7 @@ struct ListView: View {
                         }
                         .padding()
                     }
-                    .toolbar(content: myTollBarcontent)
+                    .toolbar(content: myTollBarContent)
                     .padding()
                 }
             }
@@ -77,7 +77,7 @@ struct ListView: View {
     }
     
     @ToolbarContentBuilder
-    func myTollBarcontent()-> some ToolbarContent {
+    func myTollBarContent()-> some ToolbarContent {
         ToolbarItem(placement:.navigationBarLeading){
             HStack {
                 ZStack {
@@ -136,7 +136,6 @@ struct ListView: View {
         }
         
         ToolbarItem(placement: .bottomBar) {
-                Spacer()
                 Button(action:{}){
                     ZStack {
                         RoundedRectangle(cornerRadius: 16)
