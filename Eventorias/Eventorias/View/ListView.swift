@@ -69,23 +69,7 @@ struct ListView: View {
                                     .background(Color(""))
                                     .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
                                     .foregroundColor(.white)
-                                    .overlay(
-                                        HStack{
-                                            Text("Search")
-                                                .foregroundColor(.white)
-                                                .padding(.leading,35)
-                                            Spacer()
-                                            if !searchText.isEmpty {
-                                                Button(action: {
-                                                    searchText = "" // Efface le texte
-                                                }) {
-                                                    Image(systemName: "delete.left")
-                                                        .foregroundColor(.gray)
-                                                        .padding(.trailing, 10)
-                                                }
-                                            }
-                                        }
-                                    )
+                                    
                                 
                                 
                                 if !searchText.isEmpty {
