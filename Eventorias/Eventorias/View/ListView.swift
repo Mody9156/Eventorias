@@ -136,7 +136,15 @@ struct ListView: View {
             }
         }
         ToolbarItem(placement: .bottomBar) {
-            Image(systemName: "")
+            ZStack {
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(.red)
+                    .frame(width: 56, height: 56)
+                
+                
+                Image(systemName: "plus")
+                    .foregroundColor(.white)
+            }
         }
     }
 }
