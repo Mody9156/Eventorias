@@ -17,7 +17,7 @@ struct ListView: View {
                     Color("Background")
                         .ignoresSafeArea()
                     
-                    VStack {
+                    VStack(alignment: .leading) {
                         CustomButton()
                         
                         ForEach(EventEntry.eventEntry) { entry in
