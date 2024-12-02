@@ -19,7 +19,8 @@ class ListViewModel : ObservableObject {
         return date
     }
     
-    func addEventEntry(_ eventEntry : EventEntry ){
+    @MainActor
+    func addEventEntry(_ eventEntry : EventEntry ) async throws {
         
         do{
             try eventoriasRepository.addEvenement(eventEntry)
