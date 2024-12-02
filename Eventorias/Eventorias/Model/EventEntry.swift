@@ -15,9 +15,7 @@ struct EventEntry : Identifiable, Codable,Hashable{
     var title : String
     var dateCreationString : String
     var dateCreation : Date {
-        let dateFormatter = ISO8601DateFormatter()
-        dateFormatter.formatOptions = [.withFullDate]
-        return  dateFormatter.date(from: dateCreationString) ?? Date.now
+        Date.dateFromString(dateCreationString) ?? Date.now
         
     }
     var poster : String
