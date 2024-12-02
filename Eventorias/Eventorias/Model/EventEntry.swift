@@ -9,7 +9,8 @@ import Foundation
 import FirebaseFirestoreSwift
 
 struct EventEntry : Identifiable, Codable,Hashable{
-    var id = UUID()
+    @DocumentID
+    var id :String?
     var picture : String
     var title : String
     var dateCreationString : String
