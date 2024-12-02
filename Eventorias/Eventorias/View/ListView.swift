@@ -10,7 +10,7 @@ import SwiftUI
 struct ListView: View {
     @State var searchText : String = ""
     var isActive : String {
-      return  "\(Image(systemName: "magnifyingglass"))Search"
+        return  "\(Image(systemName: "magnifyingglass"))Search"
     }
     
     var body: some View {
@@ -22,7 +22,7 @@ struct ListView: View {
                     
                     VStack(alignment: .leading) {
                         CustomButton()
-                            
+                        
                         
                         ForEach(EventEntry.eventEntry) { entry in
                             NavigationLink {
@@ -64,16 +64,30 @@ struct ListView: View {
                     .toolbar{
                         ToolbarItem(placement:.navigationBarLeading){
                             HStack{
-                                TextField(text: $searchText, label: {
-                                        Label("Search", systemImage: "delete.left")
-                                        .foregroundColor(.white)
-                                })
+                                TextField("", text: $searchText)
                                     .font(.system(size: 22, weight: .light, design: .default))
                                     .background(Color(""))
                                     .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
                                     .foregroundColor(.white)
-                                    
-                                  
+                                    .overlay(
+                                        HStack{
+                                            Text("Search")
+                                                .foregroundColor(.white)
+                                                .padding(.leading,35)
+                                            Spacer()
+                                            if !searchText.isEmpty {
+                                                Button(action: {
+                                                    searchText = "" // Efface le texte
+                                                }) {
+                                                    Image(systemName: "delete.left")
+                                                        .foregroundColor(.gray)
+                                                        .padding(.trailing, 10)
+                                                }
+                                            }
+                                        }
+                                    )
+                                
+                                
                                 if !searchText.isEmpty {
                                     
                                     Button {
@@ -81,7 +95,7 @@ struct ListView: View {
                                         searchText = ""
                                     } label: {
                                         Image(systemName: "delete.left")
-                                         .foregroundColor(.white)
+                                            .foregroundColor(.white)
                                     }
                                 }
                             }
@@ -92,7 +106,7 @@ struct ListView: View {
                     Spacer()
                 }
             }
-           
+            
         }
     }
 }
