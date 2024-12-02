@@ -28,58 +28,61 @@ struct ListView: View {
                         CustomButton()
                         
                         List {
-                            ForEach(EventEntry.eventEntry,id: \.self) { entry in
-                                            NavigationLink {
-                                                UserDetailView(eventEntry: entry)
-                                            } label: {
+                            Section {
+                                ForEach(EventEntry.eventEntry,id: \.self) { entry in
+                                    NavigationLink {
+                                        UserDetailView(eventEntry: entry)
+                                    } label: {
+                                        
+                                        HStack {
+                                            Image(entry.picture)
+                                                .resizable()
+                                                .frame(width: 40,height: 40)
+                                            
+                                            VStack{
+                                                Text(entry.title)
+                                                    .font(.custom("Inter-Medium", size: 16))
+                                                    .lineSpacing(24 - 16)
+                                                    .fontWeight(.medium)
+                                                    .multilineTextAlignment(.leading)
+                                                    .foregroundColor(.white)
                                                 
-                                                Section {
-                                                    HStack {
-                                                        Image(entry.picture)
-                                                            .resizable()
-                                                            .frame(width: 40,height: 40)
-                                                        
-                                                        VStack{
-                                                            Text(entry.title)
-                                                                .font(.custom("Inter-Medium", size: 16))
-                                                                .lineSpacing(24 - 16)
-                                                                .fontWeight(.medium)
-                                                                .multilineTextAlignment(.leading)
-                                                                .foregroundColor(.white)
-                                                            
-                                                            Text("\(listViewModel.formatDateString(eventEntry: eventEntry))")
-                                                                .font(.custom("Inter-Regular", size: 14))
-                                                                .lineSpacing(20 - 14)
-                                                                .fontWeight(.regular)
-                                                                .multilineTextAlignment(.leading)
-                                                                .foregroundColor(.white)
-                                                        }
-                                                        .padding()
-                                                        Spacer()
-                                                        Image(entry.poster)
-                                                            .resizable()
-                                                            .frame(width: 136, height: 80)
-                                                            .cornerRadius(12)
-                                                    }
-                                                }
+                                                Text("\(listViewModel.formatDateString(eventEntry: eventEntry))")
+                                                    .font(.custom("Inter-Regular", size: 14))
+                                                    .lineSpacing(20 - 14)
+                                                    .fontWeight(.regular)
+                                                    .multilineTextAlignment(.leading)
+                                                    .foregroundColor(.white)
+                                            }
+                                            .padding()
+                                            Spacer()
+                                            Image(entry.poster)
+                                                .resizable()
+                                                .frame(width: 136, height: 80)
+                                                .cornerRadius(12)
                                         }
                                     }
-                                    .listStyle(GroupedListStyle())
-                                    
+                                }
+                                
                                 .padding()
+                            }
+                            .frame(width: 358, height: 80)
                         }
+                        .listStyle(GroupedListStyle())
+                        .scrollContentBackground(.hidden)
+                        .background(Color.mint.edgesIgnoringSafeArea(.all))
                         
                     }
                     .toolbar(content: myTollBarContent)
                     .padding()
                 }
-//                ZStack {
-//                    RoundedRectangle(cornerRadius: 16)
-//                      .fill(.red)
-//                      .frame(width: 56, height: 56)
-//                       Image(systemName: "plus")
-//                         .foregroundColor(.white)
-//                    }
+                //                ZStack {
+                //                    RoundedRectangle(cornerRadius: 16)
+                //                      .fill(.red)
+                //                      .frame(width: 56, height: 56)
+                //                       Image(systemName: "plus")
+                //                         .foregroundColor(.white)
+                //                    }
             }
             Spacer()
             
@@ -148,7 +151,7 @@ struct ListView: View {
                 }
             }
         }
-       
+        
     }
 }
 
