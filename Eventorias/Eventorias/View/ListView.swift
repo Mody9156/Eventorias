@@ -56,14 +56,14 @@ struct ListView: View {
                                 }
                             }
                         }
-                        .toolbar{
-                            ToolbarItem(placement:.navigationBarLeading){
-                                HStack{
-                                    TextField("\(Image(systemName: "magnifyingglass"))Search", text: $searchText)
-                                }
+                        .padding()
+                    }
+                    .toolbar{
+                        ToolbarItem(placement:.navigationBarLeading){
+                            HStack{
+                                TextField("\(Image(systemName: "magnifyingglass"))Search", text: $searchText)
                             }
                         }
-                        .padding()
                     }
                     .padding()
                     Spacer()
