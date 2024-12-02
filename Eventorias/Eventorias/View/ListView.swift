@@ -11,7 +11,7 @@ struct ListView: View {
     enum focusedTexfield : Hashable {
         case searchable
     }
-    
+    let eventEntry :EventEntry
     @State var searchText : String = ""
     @State var isAactive : Bool = false
     @FocusState var focused : focusedTexfield?
@@ -45,7 +45,7 @@ struct ListView: View {
                                             .multilineTextAlignment(.leading)
                                             .foregroundColor(.white)
                                         
-                                        Text("\()")
+                                        Text("\(listViewModel.formatDateString(eventEntry: eventEntry))")
                                             .font(.custom("Inter-Regular", size: 14))
                                             .lineSpacing(20 - 14)
                                             .fontWeight(.regular)
