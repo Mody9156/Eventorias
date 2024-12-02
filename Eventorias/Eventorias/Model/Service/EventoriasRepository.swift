@@ -13,4 +13,7 @@ public class EventoriasRepository : ObservableObject {
     @Published
     var eventEntry = [EventEntry]()
     
+    func addEvenement(_ eventEntry:EventEntry ) throws {
+        
+    }
 }
