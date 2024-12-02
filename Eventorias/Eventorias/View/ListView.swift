@@ -135,6 +135,9 @@ struct ListView: View {
                 }
             }
         }
+        ToolbarItem(placement: .bottomBar) {
+            <#code#>
+        }
     }
 }
 
