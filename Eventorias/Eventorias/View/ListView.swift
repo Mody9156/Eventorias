@@ -63,10 +63,21 @@ struct ListView: View {
                             HStack{
                                 TextField("\(Image(systemName: "magnifyingglass"))Search", text: $searchText)
                                     .font(.system(size: 22, weight: .light, design: .default))
-                                    .textFieldStyle(.plain)
-                                    .background(Color.gray.opacity(0.2))
+                                    .background(Color(""))
                                     .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
+                                  
+                                if !searchText.isEmpty {
+                                    
+                                    Button {
+                                        print("Button pressed")
+                                        searchText = ""
+                                    } label: {
+                                        Image(systemName: "delete.left")
+                                         .foregroundColor(.white)
+                                    }
+                                }
                             }
+                            .frame(width: 300, height: 26)
                         }
                     }
                     .padding()
