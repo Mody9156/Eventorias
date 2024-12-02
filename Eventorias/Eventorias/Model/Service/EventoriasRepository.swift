@@ -6,7 +6,8 @@
 //
 
 import Foundation
-
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 public class EventoriasRepository : ObservableObject {
     
