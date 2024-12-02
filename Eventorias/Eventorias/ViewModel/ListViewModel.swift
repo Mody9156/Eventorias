@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+class ListViewModel : ObservableObject {
+    
+    func formatDateString(eventEntry:EventEntry) -> String {
+        
+    }
+    
+}

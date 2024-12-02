@@ -134,6 +134,13 @@
 			path = EventoriasTests;
 			sourceTree = "<group>";
 		};
+		237F60E92CFE0ABE00B9AD01 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		23E95D142CF9BB1A0024AA49 /* Token */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +161,7 @@
 		23F67F042CF5C62B00819AEB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				237F60E92CFE0ABE00B9AD01 /* Extension */,
 				23E95D142CF9BB1A0024AA49 /* Token */,
 				23F1FA932CF86CD90092B83C /* Protocols */,
 				23ECD8442CF7832800EA4BC4 /* EventEntry.swift */,
