@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ListView: View {
     @State var searchText : String = ""
+    var isActive : String {
+      return  "\(Image(systemName: "magnifyingglass"))Search"
+    }
     
     var body: some View {
         NavigationStack {
@@ -61,10 +64,17 @@ struct ListView: View {
                     .toolbar{
                         ToolbarItem(placement:.navigationBarLeading){
                             HStack{
-                                TextField("\(Image(systemName: "magnifyingglass"))Search", text: $searchText)
+                                TextField(text: $searchText, label: {
+                                    HStack {
+                                        Image(systemName: "magnifyingglass")
+                                        Text("Search")
+                                    } .foregroundColor(.white)
+                                })
                                     .font(.system(size: 22, weight: .light, design: .default))
                                     .background(Color(""))
                                     .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
+                                    .foregroundColor(.white)
+                                    
                                   
                                 if !searchText.isEmpty {
                                     
