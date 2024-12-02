@@ -45,7 +45,7 @@ struct ListView: View {
                                                     .fontWeight(.medium)
                                                     .multilineTextAlignment(.leading)
                                                     .foregroundColor(.white)
-                                                    .padding()
+                                                
                                                 
                                                 Text("\(listViewModel.formatDateString(eventEntry: eventEntry))")
                                                     .font(.custom("Inter-Regular", size: 14))
@@ -73,6 +73,7 @@ struct ListView: View {
                                 RoundedRectangle(cornerRadius:16)
                                     .fill(Color("BackgroundDocument"))
                                     .frame(width: 358, height: 80)
+
                                     .padding(2)
                             )
 
