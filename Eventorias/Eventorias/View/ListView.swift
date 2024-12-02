@@ -71,8 +71,9 @@ struct ListView: View {
             Spacer()
 
         }.onAppear{
-            
-          try await   listViewModel.addEventEntry(eventEntry)
+            Task{
+                try await   listViewModel.addEventEntry(eventEntry)
+            }
         }
     }
     
