@@ -63,47 +63,54 @@ struct ListView: View {
                     }
                     .toolbar{
                         ToolbarItem(placement:.navigationBarLeading){
-                            ZStack {
-                                Rectangle()
-                                    .frame(width: 358, height: 35)
-                                    .foregroundColor(Color("BackgroundDocument"))
-                                    .cornerRadius(10)
-                                
-                                HStack{
-                                    if searchText.isEmpty{
-                                        Image(systemName:"magnifyingglass")
-                                            .foregroundColor(.white)
-                                    }
+                            HStack {
+                                ZStack {
+                                    Rectangle()
+                                        .frame(width: 358, height: 35)
+                                        .foregroundColor(Color("BackgroundDocument"))
+                                        .cornerRadius(10)
                                     
-                                    TextField("", text: $searchText)
-                                        .font(.system(size: 22, weight: .light, design: .default))
-                                        .background(Color(""))
-                                        .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
-                                        .foregroundColor(.white)
-                                        .overlay(
-                                            
-                                            HStack{
-                                                if searchText.isEmpty {
-                                                    Text("Search")
-                                                        .foregroundColor(.white)
-                                                    Spacer()
-                                                    if !searchText.isEmpty{
-                                                        Button(action:{
-                                                            searchText = ""
-                                                        }){
-                                                            Image(systemName:"xmark.circle.fill")
-                                                                .foregroundColor(Color("BackgroundDocument"))
+                                    HStack{
+                                            Image(systemName:"magnifyingglass")
+                                                .foregroundColor(.white)
+                                        
+                                        TextField("", text: $searchText)
+                                            .font(.system(size: 22, weight: .light, design: .default))
+                                            .background(Color(""))
+                                            .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
+                                            .foregroundColor(.white)
+                                            .overlay(
+                                                
+                                                HStack{
+                                                    if searchText.isEmpty {
+                                                        Text("Search")
+                                                            .foregroundColor(.white)
+                                                        Spacer()
+                                                        if !searchText.isEmpty{
+                                                            Button(action:{
+                                                                searchText = ""
+                                                            }){
+                                                                Image(systemName:"xmark.circle.fill")
+                                                                    .foregroundColor(Color("BackgroundDocument"))
+                                                            }
                                                         }
                                                     }
                                                 }
-                                            }
-                                            
-                                        )
-                                    Text("Annuler")
+                                                
+                                            )
+                                       
+                                    }
+                                    
+                                    .padding()
+                                    
                                 }
-                                
-                                .padding()
-                                
+                            }
+                            
+                            if !searchText.isEmpty {
+                                Button(action:{}){
+                                    Text("Annuler")
+                                        .foregroundColor(.blue)
+                                }
                             }
                         }
                     }
