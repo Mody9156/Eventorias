@@ -61,6 +61,11 @@ struct ListView: View {
                                                 .frame(width: 136, height: 80)
                                                 .cornerRadius(12)
                                         }
+                                        .listRowBackground(
+                                            Capsule()
+                                                .fill(Color("BackgroundDocument"))
+                                                .padding(2)
+                                        )
                                     }
                                 }
                                 
@@ -70,7 +75,7 @@ struct ListView: View {
                         }
                         .listStyle(GroupedListStyle())
                         .scrollContentBackground(.hidden)
-                        .background(Color.mint.edgesIgnoringSafeArea(.all))
+                        .background(Color("Background"))
                         
                     }
                     .toolbar(content: myTollBarContent)
