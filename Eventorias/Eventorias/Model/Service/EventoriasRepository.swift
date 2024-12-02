@@ -15,6 +15,9 @@ public class EventoriasRepository : ObservableObject {
     var eventEntry = [EventEntry]()
     
     func addEvenement(_ eventEntry:EventEntry ) throws {
-        
+       try Firestore
+            .firestore()
+            .collection("eventorias")
+            .addDocument(from: eventEntry)
     }
 }
