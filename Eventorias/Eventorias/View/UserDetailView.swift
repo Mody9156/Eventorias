@@ -11,18 +11,24 @@ struct UserDetailView: View {
     let eventEntry : EventEntry
     var body: some View {
         VStack {
-            Image(eventEntry.poster)
-                .resizable()
-                .frame(width: 358, height: 364)
+            ZStack {
+                Color("Background")
+                    .ignoresSafeArea()
                 
-            
-            
-        }.navigationTitle(eventEntry.title)
+                VStack {
+                    Image(eventEntry.poster)
+                                   
+                    Text(eventEntry.dateCreationString)
+                        .foregroundColor(.white)
+                    
+                }
+            }
+        }
     }
 }
-
-struct UserDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        UserDetailView(eventEntry: EventEntry(picture: "MusicFestival", title: "Music festival", dateString: "June 15, 2024", poster: "MusicFestivalPoster"))
-    }
-}
+//
+//struct UserDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        UserDetailView(eventEntry: EventEntry(picture: "MusicFestival", title: "Music festival", dateString: "June 15, 2024", poster: "ArtExhibitionPoster"))
+//    }
+//}
