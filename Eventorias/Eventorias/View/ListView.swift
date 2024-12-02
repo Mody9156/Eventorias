@@ -19,43 +19,43 @@ struct ListView: View {
                     
                     VStack {
                         CustomButton()
-
+                        
                         ForEach(EventEntry.eventEntry) { entry in
-                                NavigationLink {
-                                    UserDetailView(eventEntry: entry)
-                                } label: {
+                            NavigationLink {
+                                UserDetailView(eventEntry: entry)
+                            } label: {
+                                
+                                HStack {
+                                    Image(entry.picture)
+                                        .resizable()
+                                        .frame(width: 40,height: 40)
                                     
-                                        HStack {
-                                            Image(entry.picture)
-                                                .resizable()
-                                                .frame(width: 40,height: 40)
-                                            
-                                            VStack{
-                                                Text(entry.title)
-                                                    .font(.custom("Inter-Medium", size: 16))
-                                                    .lineSpacing(24 - 16)
-                                                    .fontWeight(.medium)
-                                                    .multilineTextAlignment(.leading)
-                                                    .foregroundColor(.white)
-                                                
-                                                Text(entry.dateString)
-                                                    .font(.custom("Inter-Regular", size: 14))
-                                                    .lineSpacing(20 - 14)
-                                                    .fontWeight(.regular)
-                                                    .multilineTextAlignment(.leading)
-                                                    .foregroundColor(.white)
-                                            }
-                                            .padding()
-                                            Spacer()
-                                            Image(entry.poster)
-                                                .resizable()
-                                                .frame(width: 136, height: 80)
-                                                .cornerRadius(12)
-                                            
-                                        }
+                                    VStack{
+                                        Text(entry.title)
+                                            .font(.custom("Inter-Medium", size: 16))
+                                            .lineSpacing(24 - 16)
+                                            .fontWeight(.medium)
+                                            .multilineTextAlignment(.leading)
+                                            .foregroundColor(.white)
+                                        
+                                        Text(entry.dateString)
+                                            .font(.custom("Inter-Regular", size: 14))
+                                            .lineSpacing(20 - 14)
+                                            .fontWeight(.regular)
+                                            .multilineTextAlignment(.leading)
+                                            .foregroundColor(.white)
                                     }
+                                    .padding()
+                                    Spacer()
+                                    Image(entry.poster)
+                                        .resizable()
+                                        .frame(width: 136, height: 80)
+                                        .cornerRadius(12)
+                                    
                                 }
-                    .padding()
+                            }
+                        }
+                        .padding()
                     }
                     Spacer()
                 }
