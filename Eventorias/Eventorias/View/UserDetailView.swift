@@ -10,7 +10,7 @@ import SwiftUI
 struct UserDetailView: View {
     let eventEntry : EventEntry
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack {
             ZStack {
                 Color("Background")
                     .ignoresSafeArea()
