@@ -65,10 +65,8 @@ struct ListView: View {
                         ToolbarItem(placement:.navigationBarLeading){
                             HStack{
                                 TextField(text: $searchText, label: {
-                                    HStack {
-                                        Image(systemName: "magnifyingglass")
-                                        Text("Search")
-                                    } .foregroundColor(.white)
+                                        Label("Search", systemImage: "delete.left")
+                                        .foregroundColor(.white)
                                 })
                                     .font(.system(size: 22, weight: .light, design: .default))
                                     .background(Color(""))
