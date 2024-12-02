@@ -38,13 +38,14 @@ struct ListView: View {
                                                 .frame(width: 40,height: 40)
                                                 .padding()
                                             
-                                            VStack{
+                                            VStack(alignment:.leading){
                                                 Text(entry.title)
                                                     .font(.custom("Inter-Medium", size: 16))
                                                     .lineSpacing(24 - 16)
                                                     .fontWeight(.medium)
                                                     .multilineTextAlignment(.leading)
                                                     .foregroundColor(.white)
+                                                    .padding()
                                                 
                                                 Text("\(listViewModel.formatDateString(eventEntry: eventEntry))")
                                                     .font(.custom("Inter-Regular", size: 14))
@@ -53,7 +54,7 @@ struct ListView: View {
                                                     .multilineTextAlignment(.leading)
                                                     .foregroundColor(.white)
                                             }
-                                            .padding()
+                                            
                                             Spacer()
                                             Image(entry.poster)
                                                 .resizable()
