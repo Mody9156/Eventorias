@@ -65,16 +65,11 @@ struct ListView: View {
                         ToolbarItem(placement:.navigationBarLeading){
                             ZStack {
                                 Rectangle()
-                                    .frame(width: 300, height: 26)
+                                    .frame(width: 358, height: 35)
                                     .foregroundColor(Color("BackgroundDocument"))
                                     .cornerRadius(10)
                                 
                                 HStack{
-                                    Image(systemName:"magnifyingglass")
-                                        .foregroundColor(.white)
-                                    Text("Search")
-                                        .foregroundColor(.white)
-                                    
                                     TextField("", text: $searchText)
                                         .font(.system(size: 22, weight: .light, design: .default))
                                         .background(Color(""))
@@ -82,6 +77,24 @@ struct ListView: View {
                                         .foregroundColor(.white)
                                      
                                 }
+                                .overlay(
+                                   
+                                        HStack{
+                                            if searchText.isEmpty {
+                                            Image(systemName:"magnifyingglass")
+                                                .foregroundColor(.white)
+                                            Text("Search")
+                                                .foregroundColor(.white)
+                                            Spacer()
+                                                Button(action:{}){
+                                                    Image(systemName:"xmark.circle.fill")
+                                                        .foregroundColor(Color("BackgroundDocument"))
+                                                }
+                                        }
+                                    }
+                                   
+                                )
+                                .padding()
                                 
                             }
                         }
