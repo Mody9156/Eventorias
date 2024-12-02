@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct ListView: View {
-    @State var searchText : String = ""
-    var isActive : String {
-        return  "\(Image(systemName: "magnifyingglass"))Search"
+    enum focusedTexfield : Hashable {
+        case searchable
     }
+    
+    @State var searchText : String = ""
+    @State var isAactive : Bool = false
+    @FocusState var focused : Bool?
     
     var body: some View {
         NavigationStack {
@@ -66,7 +69,7 @@ struct ListView: View {
                             HStack {
                                 ZStack {
                                     Rectangle()
-                                        .frame(width: 358, height: 35)
+                                        .frame(width: isAactive ? 300 : 358, height: 35)
                                         .foregroundColor(Color("BackgroundDocument"))
                                         .cornerRadius(10)
                                     
@@ -86,32 +89,39 @@ struct ListView: View {
                                                         Text("Search")
                                                             .foregroundColor(.white)
                                                         Spacer()
-                                                        if !searchText.isEmpty{
-                                                            Button(action:{
-                                                                searchText = ""
-                                                            }){
-                                                                Image(systemName:"xmark.circle.fill")
-                                                                    .foregroundColor(Color("BackgroundDocument"))
-                                                            }
-                                                        }
+                                                       
                                                     }
                                                 }
-                                                
                                             )
-                                       
+                                            .focused($focused, equals: true)
+                                            .onAppear{
+                                                self.focused = true
+                                            }
+                                            
+                                        
+                                        if !searchText.isEmpty{
+                                            Button(action:{
+                                                searchText = ""
+                                            }){
+                                                Image(systemName:"multiply.circle.fill")
+                                                    .foregroundColor(.white)
+                                            }
+                                        }
                                     }
-                                    
                                     .padding()
                                     
                                 }
-                            }
-                            
-                            if !searchText.isEmpty {
-                                Button(action:{}){
-                                    Text("Annuler")
-                                        .foregroundColor(.blue)
+                                if focused {
+                                    Button(action:{
+                                        isAactive = false
+                                    }){
+                                        Text("Annuler")
+                                            .foregroundColor(.blue)
+                                    }
                                 }
                             }
+                            
+                                
                         }
                     }
                     .padding()
