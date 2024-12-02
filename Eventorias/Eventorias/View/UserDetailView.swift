@@ -14,7 +14,7 @@ struct UserDetailView: View {
             Color("Background")
                 .ignoresSafeArea()
             
-            VStack {
+            VStack(alignment: .leading) {
                 Image(eventEntry.poster)
 //                    .frame(width: 358, height: 364)
                 Text(eventEntry.dateString)
