@@ -36,8 +36,6 @@ public class EventoriasRepository : ObservableObject {
         }
     }
     
-    
-    
     func addEvenement(_ eventEntry:EventEntry ) throws {
        try Firestore
             .firestore()
