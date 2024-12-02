@@ -14,6 +14,7 @@ struct UserDetailView: View {
             Image(eventEntry.poster)
                 .resizable()
                 .frame(width: 358, height: 364)
+                
             
             
         }.navigationTitle(eventEntry.title)
