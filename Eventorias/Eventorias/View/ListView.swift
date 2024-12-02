@@ -14,7 +14,7 @@ struct ListView: View {
     
     @State var searchText : String = ""
     @State var isAactive : Bool = false
-    @FocusState var focused : Bool?
+    @FocusState var focused : focusedTexfield?
     
     var body: some View {
         NavigationStack {
@@ -25,7 +25,7 @@ struct ListView: View {
                     
                     VStack(alignment: .leading) {
                         CustomButton()
-                        
+                       
                         
                         ForEach(EventEntry.eventEntry) { entry in
                             NavigationLink {
@@ -64,66 +64,7 @@ struct ListView: View {
                         }
                         .padding()
                     }
-                    .toolbar{
-                        ToolbarItem(placement:.navigationBarLeading){
-                            HStack {
-                                ZStack {
-                                    Rectangle()
-                                        .frame(width: isAactive ? 300 : 358, height: 35)
-                                        .foregroundColor(Color("BackgroundDocument"))
-                                        .cornerRadius(10)
-                                    
-                                    HStack{
-                                            Image(systemName:"magnifyingglass")
-                                                .foregroundColor(.white)
-                                        
-                                        TextField("", text: $searchText)
-                                            .font(.system(size: 22, weight: .light, design: .default))
-                                            .background(Color(""))
-                                            .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
-                                            .foregroundColor(.white)
-                                            .overlay(
-                                                
-                                                HStack{
-                                                    if searchText.isEmpty {
-                                                        Text("Search")
-                                                            .foregroundColor(.white)
-                                                        Spacer()
-                                                       
-                                                    }
-                                                }
-                                            )
-                                            .focused($focused, equals: true)
-                                            .onAppear{
-                                                self.focused = true
-                                            }
-                                            
-                                        
-                                        if !searchText.isEmpty{
-                                            Button(action:{
-                                                searchText = ""
-                                            }){
-                                                Image(systemName:"multiply.circle.fill")
-                                                    .foregroundColor(.white)
-                                            }
-                                        }
-                                    }
-                                    .padding()
-                                    
-                                }
-                                if focused {
-                                    Button(action:{
-                                        isAactive = false
-                                    }){
-                                        Text("Annuler")
-                                            .foregroundColor(.blue)
-                                    }
-                                }
-                            }
-                            
-                                
-                        }
-                    }
+                    .toolbar(myTollBarcontent() as! Visibility)
                     .padding()
                     Spacer()
                 }
@@ -131,13 +72,76 @@ struct ListView: View {
             
         }
     }
-}
+    @ToolbarContentBuilder
+    func myTollBarcontent()-> some ToolbarContent {
+        ToolbarItem(placement:.navigationBarLeading){
+                    HStack {
+                        ZStack {
+                            Rectangle()
+                                .frame(width: isAactive ? 300 : 358, height: 35)
+                                .foregroundColor(Color("BackgroundDocument"))
+                                .cornerRadius(10)
+                            
+                            HStack{
+                                Image(systemName:"magnifyingglass")
+                                    .foregroundColor(.white)
+                                
+                                TextField("", text: $searchText,onEditingChanged: { changed in
+                                    if changed {
+                                        isAactive = true
+                                    }else{
+                                        isAactive = false
+                                    }
+                                })
+                                .font(.system(size: 22, weight: .light, design: .default))
+                                .background(Color(""))
+                                .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
+                                .foregroundColor(.white)
+                                .overlay(
+                                    
+                                    HStack{
+                                        if searchText.isEmpty {
+                                            Text("Search")
+                                                .foregroundColor(.white)
+                                            Spacer()
+                                            
+                                        }
+                                    }
+                                )
+                                .focused($focused, equals: .searchable)
+                                
+                                if !searchText.isEmpty{
+                                    Button(action:{
+                                        searchText = ""
+                                    }){
+                                        Image(systemName:"multiply.circle.fill")
+                                            .foregroundColor(.white)
+                                    }
+                                }
+                            }
+                            .padding()
+                            
+                        }
+                        if isAactive {
+                            Button(action:{
+                                
+                            }){
+                                Text("Annuler")
+                                    .foregroundColor(.blue)
+                            }
+                            
+                        }
+                    }
+                    
+                }
+            }
+        }
 
-struct ListView_Previews: PreviewProvider {
-    static var previews: some View {
-        ListView()
-    }
-}
+//struct ListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ListView()
+//    }
+//}
 
 struct CustomButton: View {
     var body: some View {
@@ -161,3 +165,4 @@ struct CustomButton: View {
         }
     }
 }
+
