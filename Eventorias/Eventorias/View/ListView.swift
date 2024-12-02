@@ -70,34 +70,38 @@ struct ListView: View {
                                     .cornerRadius(10)
                                 
                                 HStack{
+                                    if searchText.isEmpty{
+                                        Image(systemName:"magnifyingglass")
+                                            .foregroundColor(.white)
+                                    }
+                                    
                                     TextField("", text: $searchText)
                                         .font(.system(size: 22, weight: .light, design: .default))
                                         .background(Color(""))
                                         .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
                                         .foregroundColor(.white)
-                                    
-                                }
-                                .overlay(
-                                    
-                                    HStack{
-                                        if searchText.isEmpty {
-                                            Image(systemName:"magnifyingglass")
-                                                .foregroundColor(.white)
-                                            Text("Search")
-                                                .foregroundColor(.white)
-                                            Spacer()
-                                            if !searchText.isEmpty{
-                                                Button(action:{
-                                                    searchText = ""
-                                                }){
-                                                    Image(systemName:"xmark.circle.fill")
-                                                        .foregroundColor(Color("BackgroundDocument"))
+                                        .overlay(
+                                            
+                                            HStack{
+                                                if searchText.isEmpty {
+                                                    Text("Search")
+                                                        .foregroundColor(.white)
+                                                    Spacer()
+                                                    if !searchText.isEmpty{
+                                                        Button(action:{
+                                                            searchText = ""
+                                                        }){
+                                                            Image(systemName:"xmark.circle.fill")
+                                                                .foregroundColor(Color("BackgroundDocument"))
+                                                        }
+                                                    }
                                                 }
                                             }
-                                        }
-                                    }
-                                    
-                                )
+                                            
+                                        )
+                                    Text("Annuler")
+                                }
+                                
                                 .padding()
                                 
                             }
