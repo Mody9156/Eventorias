@@ -10,18 +10,20 @@ import SwiftUI
 struct UserDetailView: View {
     let eventEntry : EventEntry
     var body: some View {
-        ZStack {
-            Color("Background")
-                .ignoresSafeArea()
-            
-            VStack(alignment: .leading) {
-                Image(eventEntry.poster)
-//                    .frame(width: 358, height: 364)
-                Text(eventEntry.dateString)
-                    .foregroundColor(.white)
+        VStack(alignment: .leading) {
+            ZStack {
+                Color("Background")
+                    .ignoresSafeArea()
                 
-                
-            }.navigationTitle(eventEntry.title)
+                VStack {
+                    Image(eventEntry.poster)
+    //                    .frame(width: 358, height: 364)
+                    Text(eventEntry.dateString)
+                        .foregroundColor(.white)
+                    
+                    
+                }.navigationTitle(eventEntry.title)
+            }
         }
     }
 }
