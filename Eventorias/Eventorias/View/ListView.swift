@@ -65,11 +65,10 @@ struct ListView: View {
                     }
                     .toolbar(content: myTollBarcontent)
                     .padding()
-                   
                 }
             }
             Spacer()
-
+            
         }.onAppear{
             Task{
                 try await listViewModel.addEventEntry(eventEntry)
@@ -140,7 +139,6 @@ struct ListView: View {
                 RoundedRectangle(cornerRadius: 16)
                     .fill(.red)
                     .frame(width: 56, height: 56)
-                
                 
                 Image(systemName: "plus")
                     .foregroundColor(.white)
