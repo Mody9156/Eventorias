@@ -17,7 +17,8 @@ struct UserDetailView: View {
             VStack {
                 Image(eventEntry.poster)
                     .resizable()
-                    .frame(width: 358, height: 364)
+                    .aspectRatio(contentMode: .fit)
+//                    .frame(width: 358, height: 364)
                     
                 
                 
