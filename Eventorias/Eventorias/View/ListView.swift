@@ -63,37 +63,19 @@ struct ListView: View {
                     }
                     .toolbar{
                         ToolbarItem(placement:.navigationBarLeading){
-                            HStack{
-                                TextField("", text: $searchText)
-                                    .font(.system(size: 22, weight: .light, design: .default))
-                                    .background(Color(""))
-                                    .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
-                                    .foregroundColor(.white)
-                                    .overlay(
-                                        HStack{
-                                            if searchText.isEmpty  {
-                                                Image(systemName: "magnifyingglass")
-                                                    .foregroundColor(.gray)
-                                                    .padding(.leading, 10)
-                                                Text("Search")
-                                                    .foregroundColor(.white)
-                                                    .padding(.leading,35)
-                                            }
-                                            Spacer()
-                                            if !searchText.isEmpty {
-                                                Button(action: {
-                                                    searchText = "" // Efface le texte
-                                                }) {
-                                                    Image(systemName: "delete.left.fill")
-                                                        .foregroundColor(.gray)
-                                                        .padding(.trailing, 10)
-                                                }
-                                            }
-                                        }
-                                    )
+                            ZStack {
+                                Rectangle()
+                                    .frame(width: 300, height: 26)
+                                HStack{
+                                    TextField("", text: $searchText)
+                                        .font(.system(size: 22, weight: .light, design: .default))
+                                        .background(Color(""))
+                                        .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
+                                        .foregroundColor(.white)
+                                     
+                                }
                                 
                             }
-                            .frame(width: 300, height: 26)
                         }
                     }
                     .padding()
