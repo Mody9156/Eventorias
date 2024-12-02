@@ -17,6 +17,7 @@ struct ListView: View {
                     Color("Background")
                         .ignoresSafeArea()
                     
+                    VStack {
                         CustomButton()
                         
                         ForEach(EventEntry.eventEntry) { entry in
@@ -55,7 +56,7 @@ struct ListView: View {
                             }
                         }
                         .padding()
-                    
+                    }
                     Spacer()
                 }
             }
