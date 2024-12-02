@@ -86,9 +86,11 @@ struct ListView: View {
                                             Text("Search")
                                                 .foregroundColor(.white)
                                             Spacer()
-                                                Button(action:{}){
-                                                    Image(systemName:"xmark.circle.fill")
-                                                        .foregroundColor(Color("BackgroundDocument"))
+                                                if !searchText.isEmpty{
+                                                    Button(action:{}){
+                                                        Image(systemName:"xmark.circle.fill")
+                                                            .foregroundColor(Color("BackgroundDocument"))
+                                                    }
                                                 }
                                         }
                                     }
