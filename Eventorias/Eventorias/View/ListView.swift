@@ -19,6 +19,7 @@ struct ListView: View {
                     
                     VStack(alignment: .leading) {
                         CustomButton()
+                            
                         
                         ForEach(EventEntry.eventEntry) { entry in
                             NavigationLink {
@@ -57,6 +58,7 @@ struct ListView: View {
                         }
                         .padding()
                     }
+                    .padding()
                     Spacer()
                 }
             }
