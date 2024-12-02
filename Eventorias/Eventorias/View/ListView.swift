@@ -62,7 +62,10 @@ struct ListView: View {
                         ToolbarItem(placement:.navigationBarLeading){
                             HStack{
                                 TextField("\(Image(systemName: "magnifyingglass"))Search", text: $searchText)
-                                    .foregroundColor(.white)
+                                    .font(.system(size: 22, weight: .light, design: .default))
+                                    .textFieldStyle(.plain)
+                                    .background(Color.gray.opacity(0.2))
+                                    .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
                             }
                         }
                     }
