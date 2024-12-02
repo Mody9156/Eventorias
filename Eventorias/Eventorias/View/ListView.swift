@@ -66,7 +66,15 @@ struct ListView: View {
                             ZStack {
                                 Rectangle()
                                     .frame(width: 300, height: 26)
+                                    .foregroundColor(Color("BackgroundDocument"))
+                                    .cornerRadius(10)
+                                
                                 HStack{
+                                    Image(systemName:"magnifyingglass")
+                                        .foregroundColor(.white)
+                                    Text("Search")
+                                        .foregroundColor(.white)
+                                    
                                     TextField("", text: $searchText)
                                         .font(.system(size: 22, weight: .light, design: .default))
                                         .background(Color(""))
@@ -87,11 +95,11 @@ struct ListView: View {
     }
 }
 
-//struct ListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ListView()
-//    }
-//}
+struct ListView_Previews: PreviewProvider {
+    static var previews: some View {
+        ListView()
+    }
+}
 
 struct CustomButton: View {
     var body: some View {
