@@ -8,6 +8,8 @@
 import Foundation
 
 class ListViewModel : ObservableObject {
+    @Published
+    var errorMessage = ""
     
    private var eventoriasRepository : EventoriasRepository = EventoriasRepository()
     
@@ -17,11 +19,14 @@ class ListViewModel : ObservableObject {
         return date
     }
     
-    func addEventEntry(_ eventEntry : EventEntry )-> String{
+    func addEventEntry(_ eventEntry : EventEntry ){
+        
         do{
+            try eventoriasRepository.addEvenement(eventEntry)
             
         } catch{
-            
+            print(error)
+            errorMessage = error.localizedDescription
         }
     }
     
