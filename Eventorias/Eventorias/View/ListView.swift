@@ -163,11 +163,11 @@ struct ListView: View {
             }
         }
     }
-    var filter: [EventEntry] {
+    var filter: [EventEntry]{
         if searchText.isEmpty {
-            return [eventEntry]
+            return EventEntry.eventEntry
         }else{
-            return [eventEntry].filter{$0.title.contains(searchText)}
+            return EventEntry.eventEntry.filter{$0.title.contains(searchText)}
         }
     }
 }

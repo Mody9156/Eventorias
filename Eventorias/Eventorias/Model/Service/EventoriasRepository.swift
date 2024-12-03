@@ -47,15 +47,6 @@ public class EventoriasRepository : ObservableObject {
         try db
             .collection("eventorias")
             .order(by: "title")
-            .getDocuments(completion: { snapshot, error in
-                if let error = error {
-                    print("Erreur : \(error)")
-                    return
-                }
-                
-                for document in snapshot!.documents {
-                    print(document.data())
-                }
-            })
+            
     }
 }

@@ -31,4 +31,8 @@ class ListViewModel : ObservableObject {
             errorMessage = error.localizedDescription
         }
     }
+    
+    func tryEvent(_ eventEntry : EventEntry) throws {
+        
+    }
 }
