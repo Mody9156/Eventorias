@@ -16,6 +16,7 @@ struct ListView: View {
     @State var isAactive : Bool = false
     @FocusState var focused : focusedTexfield?
     @StateObject var listViewModel : ListViewModel
+    @State var tryEvent : Bool = false 
     
     var body: some View {
         NavigationStack {
@@ -171,8 +172,6 @@ struct ListView: View {
         }
     }
 }
-
-
 
 struct ListView_Previews: PreviewProvider {
     
