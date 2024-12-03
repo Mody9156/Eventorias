@@ -33,6 +33,12 @@ class ListViewModel : ObservableObject {
     }
     
     func tryEvent(_ eventEntry : EventEntry) throws {
-        
+        do{
+            try eventoriasRepository.tryEvenement(eventEntry)
+            errorMessage = nil
+        }catch{
+            print(error)
+            errorMessage = error.localizedDescription
+        }
     }
 }
