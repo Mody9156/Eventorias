@@ -13,9 +13,10 @@ public class EventoriasRepository : ObservableObject {
     
     @Published
     var eventEntry = [EventEntry]()
+    var db = Firestore.firestore()
     
     func subscribe(){
-        let query = Firestore.firestore()
+        let query = db
             .collection("eventorias")
         
         query.addSnapshotListener { [weak self] (querySnapshot,error) in
@@ -37,9 +38,24 @@ public class EventoriasRepository : ObservableObject {
     }
     
     func addEvenement(_ eventEntry:EventEntry ) throws {
-       try Firestore
-            .firestore()
+       try db
             .collection("eventorias")
             .addDocument(from: eventEntry)
+    }
+    
+    func trieEvenement(_ eventEntry:EventEntry) throws{
+        try db
+            .collection("eventorias")
+            .order(by: "title")
+            .getDocuments(completion: { snapshot, error in
+                if let error = error {
+                    print("Erreur : \(error)")
+                    return
+                }
+                
+                for document in snapshot!.documents {
+                    print(document.data())
+                }
+            })
     }
 }
