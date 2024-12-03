@@ -30,7 +30,7 @@ struct ListView: View {
                         
                         List {
                             Section {
-                                ForEach(EventEntry.eventEntry,id: \.self) { entry in
+                                ForEach(filter,id: \.self) { entry in
                                    
                                         HStack {
                                             Image(entry.picture)
@@ -163,11 +163,11 @@ struct ListView: View {
             }
         }
     }
-    var filter : [EventEntry] {
+    var filter: [EventEntry] {
         if searchText.isEmpty {
-            return eventEntry
-        }else {
-            return searchText.
+            return [eventEntry]
+        }else{
+            return [eventEntry].filter{$0.title.contains(searchText)}
         }
     }
 }
@@ -175,6 +175,7 @@ struct ListView: View {
 
 
 struct ListView_Previews: PreviewProvider {
+    
     static var previews: some View {
         ListView(eventEntry: EventEntry(picture: "TechConference", title: "Tech conference", dateCreationString: "August 5, 2024", poster: "TechConferencePoster"), listViewModel: ListViewModel())
     }

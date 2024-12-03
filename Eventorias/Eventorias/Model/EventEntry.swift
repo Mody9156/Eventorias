@@ -15,8 +15,10 @@ struct EventEntry : Identifiable, Codable,Hashable{
     var title : String
     var dateCreationString : String
     var dateCreation : Date {
-        Date.dateFromString(dateCreationString) ?? Date.now
-        
+        guard let date = Date.dateFromString(dateCreationString) else{
+            return Date.now
+        }
+        return  date
     }
     var poster : String
 }
