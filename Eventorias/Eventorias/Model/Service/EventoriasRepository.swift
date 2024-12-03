@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-public class EventoriasRepository : ObservableObject {
+public class EventoriasRepository : ObservableObject, EventListRepresentable {
     
     @Published
     var eventEntry = [EventEntry]()
