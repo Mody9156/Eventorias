@@ -162,8 +162,11 @@ struct ListView: View {
                 }
             }
         }
-        
     }
+}
+
+var filter : [EventEntry] {
+    let filterSearch = filter.filter{$0.name == $0.name}
 }
 
 struct ListView_Previews: PreviewProvider {
