@@ -16,7 +16,7 @@ struct ListView: View {
     @State var isAactive : Bool = false
     @FocusState var focused : focusedTexfield?
     @StateObject var listViewModel : ListViewModel
-    @State var tryEvent : Bool = false 
+    @State var tryEvent : Bool = false
     
     var body: some View {
         NavigationStack {
@@ -182,10 +182,11 @@ struct ListView_Previews: PreviewProvider {
 
 struct CustomButton: View {
     @StateObject var listViewModel : ListViewModel
-    
+    @Binding var tryEvent : Bool
     var body: some View {
         Button(action:{
-                 listViewModel.tryEvent()
+                 
+            tryEvent.toggle()
         }){
             ZStack {
                 Rectangle()
