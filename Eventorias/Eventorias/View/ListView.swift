@@ -25,7 +25,7 @@ struct ListView: View {
                         .ignoresSafeArea()
                     
                     VStack(alignment: .leading) {
-                        CustomButton(listViewModel: listViewModel, eventEntry: eventEntry)
+                        CustomButton(listViewModel: listViewModel)
                             .padding()
                         
                         List {
@@ -183,12 +183,11 @@ struct ListView_Previews: PreviewProvider {
 
 struct CustomButton: View {
     @StateObject var listViewModel : ListViewModel
-    let eventEntry :EventEntry
     
     var body: some View {
         Button(action:{
             Task{
-                try listViewModel.tryEvent(eventEntry)
+                try listViewModel.tryEvent()
             }
         }){
             ZStack {

@@ -43,10 +43,10 @@ public class EventoriasRepository : ObservableObject {
             .addDocument(from: eventEntry)
     }
     
-    func tryEvenement(_ eventEntry:EventEntry) throws{
+    func tryEvenement() throws{
         try db
             .collection("eventorias")
-            .order(by: "title",descending: false)
+            .order(by: "title",descending: true)
             .getDocuments(completion: { snapshot, error in
                 if let error = error {
                     print("Erreur : \(error)")
