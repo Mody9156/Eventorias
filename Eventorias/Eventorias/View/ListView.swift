@@ -67,11 +67,6 @@ struct ListView: View {
                                         }, label: {
                                             EmptyView()
                                         }))
-                                }.onAppear{
-                                    if  tryEvent {
-                                        listViewModel.tryEvent()
-                                        
-                                    }
                                 }
                                 
                             }
@@ -191,7 +186,7 @@ struct CustomButton: View {
     var body: some View {
         Button(action:{
                  
-            tryEvent.toggle()
+            listViewModel.tryEvent()
         }){
             ZStack {
                 Rectangle()

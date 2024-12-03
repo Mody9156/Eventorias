@@ -53,9 +53,16 @@ public class EventoriasRepository : ObservableObject {
                     return
                 }
                 
-                for document in snapshot!.documents {
-                    print(document.data())
-                }
+                self.eventEntry = snapshot?.documents.compactMap { document -> EventEntry? in
+                                   let data = document.data()
+                                   let title = data["title"] as? String ?? ""
+                                   let picture = data["picture"] as? String ?? ""
+                                   let poster = data["poster"] as? String ?? ""
+                                   let dateCreationString = data["dateCreationString"] as? String ?? ""
+                    
+                    let event = EventEntry(picture: picture, title: title, dateCreationString: dateCreationString, poster: poster)
+                                   return event
+                               } ?? []
             })
     }
 }
