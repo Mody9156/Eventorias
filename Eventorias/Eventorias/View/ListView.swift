@@ -87,14 +87,16 @@ struct ListView: View {
                         
                     }
                     .toolbar(content: myTollBarContent)
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 16)
-                          .fill(.red)
-                          .frame(width: 56, height: 56)
-                           Image(systemName: "plus")
-                             .foregroundColor(.white)
+                    Button(action:{}) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 16)
+                              .fill(.red)
+                              .frame(width: 56, height: 56)
+                               Image(systemName: "plus")
+                                 .foregroundColor(.white)
                         }
-                                    }
+                    }
+                }
                                 
             }
             Spacer()
