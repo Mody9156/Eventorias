@@ -13,5 +13,7 @@ protocol protocolsFirebaseData{
 }
 
 protocol EventListRepresentable{
-    
+    func addEvenement(_ eventEntry:EventEntry ) throws
+    func tryEvenement()
+    func subscribe()
 }

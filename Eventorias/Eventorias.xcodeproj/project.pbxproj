@@ -162,9 +162,17 @@
 			path = Token;
 			sourceTree = "<group>";
 		};
+		23ED98672CFF694500EE2BCA /* Authentification */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Authentification;
+			sourceTree = "<group>";
+		};
 		23F1FA932CF86CD90092B83C /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				23ED98672CFF694500EE2BCA /* Authentification */,
 				23F1FA942CF86E4F0092B83C /* protocolsFirebaseData.swift */,
 				23F1FA982CF887DE0092B83C /* FirebaseAuthenticationManager.swift */,
 			);
