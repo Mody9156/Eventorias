@@ -151,7 +151,8 @@
 		237F60EC2CFE0FEB00B9AD01 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				237F60ED2CFE105A00B9AD01 /* EventoriasRepository.swift */,
+				23ED98682CFF697D00EE2BCA /* List */,
+				23ED98672CFF694500EE2BCA /* Authentification */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -175,7 +176,7 @@
 		23ED98682CFF697D00EE2BCA /* List */ = {
 			isa = PBXGroup;
 			children = (
-				23ED986B2CFF6B1600EE2BCA /* EventListRepresentable.swift */,
+				237F60ED2CFE105A00B9AD01 /* EventoriasRepository.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -183,8 +184,7 @@
 		23F1FA932CF86CD90092B83C /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				23ED98682CFF697D00EE2BCA /* List */,
-				23ED98672CFF694500EE2BCA /* Authentification */,
+				23ED986B2CFF6B1600EE2BCA /* EventListRepresentable.swift */,
 				23F1FA942CF86E4F0092B83C /* protocolsFirebaseData.swift */,
 			);
 			path = Protocols;
