@@ -26,7 +26,7 @@ struct ListView: View {
                         .ignoresSafeArea()
                     
                     VStack(alignment: .leading) {
-                        CustomButton(listViewModel: listViewModel)
+                        CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
                             .padding()
                         
                         List {
@@ -67,6 +67,11 @@ struct ListView: View {
                                         }, label: {
                                             EmptyView()
                                         }))
+                                }.onAppear{
+                                    if  tryEvent {
+                                        listViewModel.tryEvent()
+                                        
+                                    }
                                 }
                                 
                             }
