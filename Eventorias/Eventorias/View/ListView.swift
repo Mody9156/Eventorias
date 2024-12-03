@@ -84,16 +84,19 @@ struct ListView: View {
                         .scrollContentBackground(.hidden)
                         .background(Color("Background"))
                         
-                        Button(action:{}) {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 16)
-                                  .fill(.red)
-                                  .frame(width: 56, height: 56)
-                                   Image(systemName: "plus")
-                                     .foregroundColor(.white)
+                        HStack {
+                            Spacer()
+                            Button(action:{}) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 16)
+                                      .fill(.red)
+                                      .frame(width: 56, height: 56)
+                                       Image(systemName: "plus")
+                                         .foregroundColor(.white)
+                                }
                             }
+                            .padding()
                         }
-                        .padding()
 
                     }
                     .toolbar(content: myTollBarContent)
