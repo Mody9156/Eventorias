@@ -11,6 +11,9 @@ class ListViewModel : ObservableObject {
     @Published
     var errorMessage :String? = ""
     
+    @Published
+    var eventEntry = EventEntry.eventEntry
+    
     private var eventoriasRepository : EventoriasRepository = EventoriasRepository()
     
     func formatDateString(eventEntry:EventEntry) -> String {
@@ -30,5 +33,10 @@ class ListViewModel : ObservableObject {
             print(error)
             errorMessage = error.localizedDescription
         }
+    }
+    
+    func tryEvent()  {
+        eventoriasRepository.tryEvenement()
+        errorMessage = nil
     }
 }

@@ -16,6 +16,7 @@ struct ListView: View {
     @State var isAactive : Bool = false
     @FocusState var focused : focusedTexfield?
     @StateObject var listViewModel : ListViewModel
+    @State var tryEvent : Bool = false
     
     var body: some View {
         NavigationStack {
@@ -25,12 +26,12 @@ struct ListView: View {
                         .ignoresSafeArea()
                     
                     VStack(alignment: .leading) {
-                        CustomButton()
+                        CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
                             .padding()
                         
                         List {
                             Section {
-                                ForEach(EventEntry.eventEntry,id: \.self) { entry in
+                                ForEach(filter,id: \.self) { entry in
                                    
                                         HStack {
                                             Image(entry.picture)
@@ -82,17 +83,24 @@ struct ListView: View {
                         .scrollContentBackground(.hidden)
                         .background(Color("Background"))
                         
-                        
+                        HStack {
+                            Spacer()
+                            Button(action:{}) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 16)
+                                      .fill(.red)
+                                      .frame(width: 56, height: 56)
+                                       Image(systemName: "plus")
+                                         .foregroundColor(.white)
+                                }
+                            }
+                            .padding()
+                        }
+
                     }
                     .toolbar(content: myTollBarContent)
-                                    }
-                //                ZStack {
-                //                    RoundedRectangle(cornerRadius: 16)
-                //                      .fill(.red)
-                //                      .frame(width: 56, height: 56)
-                //                       Image(systemName: "plus")
-                //                         .foregroundColor(.white)
-                //                    }
+                }
+                                
             }
             Spacer()
             
@@ -161,19 +169,34 @@ struct ListView: View {
                 }
             }
         }
-        
+    }
+    var filter: [EventEntry]{
+        if searchText.isEmpty {
+            return EventEntry.eventEntry
+        }else{
+            return EventEntry.eventEntry.filter{$0.title.contains(searchText)}
+        }
     }
 }
 
 struct ListView_Previews: PreviewProvider {
+<<<<<<< HEAD
+=======
+    
+>>>>>>> details
     static var previews: some View {
         ListView(eventEntry: EventEntry(picture: "TechConference", title: "Tech conference", dateCreationString: "August 5, 2024", poster: "TechConferencePoster"), listViewModel: ListViewModel())
     }
 }
 
 struct CustomButton: View {
+    @StateObject var listViewModel : ListViewModel
+    @Binding var tryEvent : Bool
     var body: some View {
-        Button(action:{}){
+        Button(action:{
+                 
+            listViewModel.tryEvent()
+        }){
             ZStack {
                 Rectangle()
                     .frame(width: 105, height: 35)

@@ -21,6 +21,4 @@ extension Date {
         
         return isoDateFormatter.string(from: date)
     }
-    
-    
 }

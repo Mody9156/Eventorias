@@ -23,7 +23,7 @@ class AppDelegate : NSObject, UIApplicationDelegate {
             settings.host = "localhost:8080"
             settings.isSSLEnabled = false
             Firestore.firestore().settings = settings
-            
+           
             Auth.auth().useEmulator(withHost: "localhost", port: 9099)
         }
     }
@@ -39,24 +39,21 @@ struct EventoriasApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-//                if mainAuth.isAuthenticated {
-//                    
-//                    TabView {
+                if mainAuth.isAuthenticated {
+                    TabView {
                 ListView(eventEntry: EventEntry(picture: "MusicFestival", title: "Music festival", dateCreationString: "June 15, 2024", poster: "MusicFestivalPoster"), listViewModel: ListViewModel())
-//                            .tabItem {
-//                                HStack {
-//                                    Text("Events")
-//                                    Image("event")
-//                                }
-//
-//                            }
-//
-//                    }
-//
-//                }else{
-//                    HomeView(authentificationViewModel: mainAuth.authentificationViewModel)
-//                        .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity),removal: .move(edge: .top).combined(with: .opacity)))
-//                }
+                            .tabItem {
+                                HStack {
+                                    Text("Events")
+                                    Image("event")
+                                }
+                            }
+                    }
+
+                }else{
+                    HomeView(authentificationViewModel: mainAuth.authentificationViewModel)
+                        .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity),removal: .move(edge: .top).combined(with: .opacity)))
+                }
             }
         }
     }
