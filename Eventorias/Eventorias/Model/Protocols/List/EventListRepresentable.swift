@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+protocol EventListRepresentable{
+    func addEvenement(_ eventEntry:EventEntry ) throws
+    func tryEvenement()
+    func subscribe()
+}

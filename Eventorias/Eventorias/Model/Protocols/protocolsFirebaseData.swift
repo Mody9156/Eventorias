@@ -11,9 +11,3 @@ protocol protocolsFirebaseData{
     func signIn(email : String, password:String, completion:@escaping(Result<Any, Error>)-> Void)
     func createUser(email:String, password:String, completion:@escaping(Result<Any,Error>)-> Void)
 }
-
-protocol EventListRepresentable{
-    func addEvenement(_ eventEntry:EventEntry ) throws
-    func tryEvenement()
-    func subscribe()
-}
