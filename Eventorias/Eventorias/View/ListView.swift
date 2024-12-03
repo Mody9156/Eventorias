@@ -186,9 +186,7 @@ struct CustomButton: View {
     
     var body: some View {
         Button(action:{
-            Task{
-                try listViewModel.tryEvent()
-            }
+                 listViewModel.tryEvent()
         }){
             ZStack {
                 Rectangle()
