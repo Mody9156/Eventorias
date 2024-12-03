@@ -76,7 +76,6 @@ struct ListView: View {
 
                                     .padding(2)
                             )
-
                             
                         }
                         .listStyle(GroupedListStyle())
@@ -166,11 +165,11 @@ struct ListView: View {
     }
 }
 
-//struct ListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ListView()
-//    }
-//}
+struct ListView_Previews: PreviewProvider {
+    static var previews: some View {
+        ListView(eventEntry: EventEntry(picture: "TechConference", title: "Tech conference", dateCreationString: "August 5, 2024", poster: "TechConferencePoster"), listViewModel: ListViewModel())
+    }
+}
 
 struct CustomButton: View {
     var body: some View {
