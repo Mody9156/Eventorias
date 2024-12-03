@@ -43,7 +43,7 @@ public class EventoriasRepository : ObservableObject {
             .addDocument(from: eventEntry)
     }
     
-    func trieEvenement(_ eventEntry:EventEntry) throws{
+    func tryEvenement(_ eventEntry:EventEntry) throws{
         try db
             .collection("eventorias")
             .order(by: "title")
