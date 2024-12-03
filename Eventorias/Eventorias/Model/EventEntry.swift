@@ -26,7 +26,7 @@ extension EventEntry {
         EventEntry(picture: "TechConference", title: "Tech conference", dateCreationString: "August 5, 2024", poster: "TechConferencePoster"),
         EventEntry(picture: "FoodFaire", title: "Food fair", dateCreationString: "September 12, 2024", poster: "FoodFairePoster"),
         EventEntry(picture: "BookSigning", title: "Book signing", dateCreationString: "October 3, 2024", poster: "BookSigningPoster"),
-        EventEntry(picture: "FilmScreening", title: "Book signing", dateCreationString: "November 10, 2024", poster: "FilmScreeningPoster.png"),
+        EventEntry(picture: "FilmScreening", title: "Book signing", dateCreationString: "November 10, 2024", poster: "FilmScreeningPoster"),
         EventEntry(picture: "CharityRun", title: "Charity run", dateCreationString: "Octobre 10, 2024", poster: "CharityRunPoster")
     ]
 }
