@@ -46,7 +46,16 @@ public class EventoriasRepository : ObservableObject {
     func tryEvenement(_ eventEntry:EventEntry) throws{
         try db
             .collection("eventorias")
-            .order(by: "title")
-            
+            .order(by: "title",descending: false)
+            .getDocuments(completion: { snapshot, error in
+                if let error = error {
+                    print("Erreur : \(error)")
+                    return
+                }
+                
+                for document in snapshot!.documents {
+                    print(document.data())
+                }
+            })
     }
 }
