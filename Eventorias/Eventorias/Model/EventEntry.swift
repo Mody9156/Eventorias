@@ -19,7 +19,7 @@ struct EventEntry : Identifiable, Codable,Hashable{
     }
     var poster : String
     var description : String
-    var hour : Date
+    var hour : String
     
 }
 extension EventEntry {
