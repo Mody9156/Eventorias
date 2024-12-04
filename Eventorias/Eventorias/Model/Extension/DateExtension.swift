@@ -11,6 +11,7 @@ extension Date {
     static func dateFromString(_ isoString : String)-> Date? {
         let isoDateFormatter = ISO8601DateFormatter()
         isoDateFormatter.formatOptions = [.withFullDate,.withTime, .withTimeZone]
+        
         return isoDateFormatter.date(from: isoString)
     }
     
@@ -27,5 +28,17 @@ extension Date {
         isoDateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return isoDateFormatter.string(from: date)
     }
+    
+    func getDay() -> Int {
+           return Calendar.current.component(.day, from: self)
+       }
+       
+       func getMonth() -> Int {
+           return Calendar.current.component(.month, from: self)
+       }
+       
+       func getYear() -> Int {
+           return Calendar.current.component(.year, from: self)
+       }
 }
 
