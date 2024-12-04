@@ -69,7 +69,7 @@ struct ListView: View {
                                         }))
                                 }
                                 .onAppear{
-                                    print("c'est bien utilisé ")
+                                    listViewModel.fetchData()
                                 }
                             }
                             .listRowBackground(
