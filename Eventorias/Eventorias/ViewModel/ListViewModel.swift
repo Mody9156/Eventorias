@@ -39,4 +39,8 @@ class ListViewModel : ObservableObject {
         eventoriasRepository.tryEvenement()
         errorMessage = nil
     }
+    
+    func fetchData(){
+        eventoriasRepository.subscribe()
+    }
 }
