@@ -17,7 +17,7 @@ extension Date {
     
     static func stringFromDate(_ date : Date ) -> String{
         let isoDateFormatter = DateFormatter()
-        isoDateFormatter.dateFormat = "dd-MM-yyyy"
+        isoDateFormatter.dateFormat = "MM-dd-yyyy"
         
         return isoDateFormatter.string(from: date)
     }
