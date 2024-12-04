@@ -38,9 +38,24 @@ public class EventoriasRepository : ObservableObject, EventListRepresentable {
     }
     
     func addEvenement(_ eventEntry:EventEntry ) throws {
-       try db
-            .collection("eventorias")
-            .addDocument(from: eventEntry)
+        
+        do{
+            try db
+                 .collection("eventorias")
+                 .addDocument(from: eventEntry){ error in
+                     if let error = error {
+                         print("Erreur lors de l'ajout de l'événement : \(error.localizedDescription)")
+                     } else {
+                         print("Événement ajouté avec succès")
+                     }
+                 }
+            
+            print("")
+        }catch{
+            print("Erreur lors de la conversion de l'événement en dictionnaire : \(error.localizedDescription)")
+
+        }
+       
     }
     
     func tryEvenement() {
