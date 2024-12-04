@@ -39,8 +39,8 @@ struct EventoriasApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                if mainAuth.isAuthenticated {
-                    TabView {
+//                if mainAuth.isAuthenticated {
+//                    TabView {
                 ListView(eventEntry: EventEntry(picture: "MusicFestival", title: "Music festival", dateCreationString: "June 15, 2024", poster: "MusicFestivalPoster"), listViewModel: ListViewModel())
                             .tabItem {
                                 HStack {
@@ -48,12 +48,12 @@ struct EventoriasApp: App {
                                     Image("event")
                                 }
                             }
-                    }
-
-                }else{
-                    HomeView(authentificationViewModel: mainAuth.authentificationViewModel)
-                        .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity),removal: .move(edge: .top).combined(with: .opacity)))
-                }
+//
+                /////
+//                }else{
+//                    HomeView(authentificationViewModel: mainAuth.authentificationViewModel)
+//                        .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity),removal: .move(edge: .top).combined(with: .opacity)))
+//                }
             }
         }
     }

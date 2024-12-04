@@ -68,11 +68,7 @@ struct ListView: View {
                                             EmptyView()
                                         }))
                                 }
-                                .onAppear{
-                                    Task{
-                                        try await listViewModel.addEventEntry(eventEntry)
-                                    }
-                                }
+                               
                             }
                             .listRowBackground(
                                 RoundedRectangle(cornerRadius:16)
