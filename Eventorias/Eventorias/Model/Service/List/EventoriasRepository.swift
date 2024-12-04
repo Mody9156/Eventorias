@@ -74,8 +74,11 @@ public class EventoriasRepository : ObservableObject, EventListRepresentable {
                                    let picture = data["picture"] as? String ?? ""
                                    let poster = data["poster"] as? String ?? ""
                                    let dateCreationString = data["dateCreationString"] as? String ?? ""
+                                   let description = data["description"] as?String ?? ""
+                                   let hour = data["hour"] as?String ?? ""
                     
-                    let event = EventEntry(picture: picture, title: title, dateCreationString: dateCreationString, poster: poster)
+                    
+                    let event = EventEntry(picture: picture, title: title, dateCreationString: dateCreationString, poster: poster,description:description, hour:hour)
                                    return event
                                } ?? []
             })
