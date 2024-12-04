@@ -20,4 +20,12 @@ extension Date {
         isoDateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return isoDateFormatter.string(from: date)
     }
+    
+    static func stringFromHour(_ date : Date) -> String {
+        let isoDateFormatter = DateFormatter()
+        isoDateFormatter.dateFormat = "h:mm a"
+        isoDateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        return isoDateFormatter.string(from: date)
+    }
 }
+

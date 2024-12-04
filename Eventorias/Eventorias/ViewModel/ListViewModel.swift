@@ -21,6 +21,11 @@ class ListViewModel : ObservableObject {
         return date
     }
     
+    func formatHourString(eventEntry:EventEntry) -> String{
+        let date = Date.stringFromDate(eventEntry.dateCreation)
+        return date
+    }
+    
     @MainActor
     func addEventEntry(_ eventEntry : EventEntry ) async throws {
         
@@ -42,4 +47,6 @@ class ListViewModel : ObservableObject {
     func fetchData(){
         eventoriasRepository.subscribe()
     }
+    
+    
 }
