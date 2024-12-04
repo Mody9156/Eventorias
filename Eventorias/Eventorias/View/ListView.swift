@@ -69,7 +69,9 @@ struct ListView: View {
                                         }))
                                 }
                                 .onAppear{
-                                    listViewModel.addEventEntry(eventEntry)
+                                    Task{
+                                        try await listViewModel.addEventEntry(eventEntry)
+                                    }
                                 }
                             }
                             .listRowBackground(
