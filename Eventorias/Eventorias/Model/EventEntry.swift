@@ -15,7 +15,7 @@ struct EventEntry : Identifiable, Codable,Hashable{
     var title : String
     var dateCreationString : String
     var dateCreation : Date {
-    Date.dateFromString(dateCreationString) ??  Date.now
+       Date.dateFromString(dateCreationString) ?? Date.now
     }
     var poster : String
     var description : String
@@ -23,6 +23,17 @@ struct EventEntry : Identifiable, Codable,Hashable{
     var hourCreation : Date {
         Date.dateFromString(hour) ?? Date.now
     }
+    
+       enum CodingKeys: String, CodingKey {
+           case picture
+           case title
+           case dateCreationString = "dateCreationString"
+           case poster
+           case description
+           case hour
+           
+       }
+   
     
 }
 extension EventEntry {
