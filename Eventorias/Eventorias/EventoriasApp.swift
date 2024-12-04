@@ -41,7 +41,7 @@ struct EventoriasApp: App {
             NavigationStack {
 //                if mainAuth.isAuthenticated {
 //                    TabView {
-                ListView(eventEntry: EventEntry(picture: "MusicFestival", title: "Music festival", dateCreationString: "June 15, 2024", poster: "MusicFestivalPoster"), listViewModel: ListViewModel())
+                ListView(eventEntry: EventEntry(picture: "MusicFestival", title: "Music festival", dateCreationString: "June 15, 2024", poster: "MusicFestivalPoster",description: "",hour: ""), listViewModel: ListViewModel())
                             .tabItem {
                                 HStack {
                                     Text("Events")
