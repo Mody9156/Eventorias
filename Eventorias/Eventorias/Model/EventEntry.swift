@@ -27,7 +27,8 @@ struct EventEntry : Identifiable, Codable,Hashable{
 }
 extension EventEntry {
     static let eventEntry  = [
-        EventEntry(picture: "MusicFestival", title: "Music festival", dateCreationString: "June-15,-15T12:00:00Z", poster: "MusicFestivalPoster",description:"",hour:""),
+        EventEntry(picture: "MusicFestival", title: "Music festival", dateCreationString: "2024-06-15T12:00:00Z"
+, poster: "MusicFestivalPoster",description:"",hour:""),
         EventEntry(picture: "ArtExhibition", title: "Art exhibition", dateCreationString: "July 20, 2024", poster: "ArtExhibitionPoster",description:"",hour:""),
         EventEntry(picture: "TechConference", title: "Tech conference", dateCreationString: "August 5, 2024", poster: "TechConferencePoster",description:"",hour:""),
         EventEntry(picture: "FoodFaire", title: "Food fair", dateCreationString: "September 12, 2024", poster: "FoodFairePoster",description:"",hour:""),
