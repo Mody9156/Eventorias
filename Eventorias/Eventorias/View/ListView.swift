@@ -47,9 +47,6 @@ struct ListView: View {
                                                     .multilineTextAlignment(.leading)
                                                     .foregroundColor(.white)
                                                 
-                                               
-
-                                                
                                                 Text("\(listViewModel.formatDateString(eventEntry: eventEntry))")
                                                     .font(.custom("Inter-Regular", size: 14))
                                                     .lineSpacing(20 - 14)
