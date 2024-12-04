@@ -69,7 +69,7 @@ struct ListView: View {
                                         }))
                                 }
                                 .onAppear{
-                                    listViewModel.fetchData()
+                                    listViewModel.addEventEntry(eventEntry)
                                 }
                             }
                             .listRowBackground(
