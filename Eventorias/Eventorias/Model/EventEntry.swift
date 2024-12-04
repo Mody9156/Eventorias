@@ -18,7 +18,8 @@ struct EventEntry : Identifiable, Codable,Hashable{
     Date.dateFromString(dateCreationString) ??  Date.now
     }
     var poster : String
-    var description : String 
+    var description : String
+    var hour : Date
     
 }
 extension EventEntry {
