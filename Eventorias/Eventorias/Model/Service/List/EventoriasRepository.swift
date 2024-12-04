@@ -38,9 +38,24 @@ public class EventoriasRepository : ObservableObject, EventListRepresentable {
     }
     
     func addEvenement(_ eventEntry:EventEntry ) throws {
-       try db
-            .collection("eventorias")
-            .addDocument(from: eventEntry)
+        
+        do{
+            try db
+                 .collection("eventorias")
+                 .addDocument(from: eventEntry){ error in
+                     if let error = error {
+                         print("Erreur lors de l'ajout de l'événement : \(error.localizedDescription)")
+                     } else {
+                         print("Événement ajouté avec succès")
+                     }
+                 }
+            
+            print("")
+        }catch{
+            print("Erreur lors de la conversion de l'événement en dictionnaire : \(error.localizedDescription)")
+
+        }
+       
     }
     
     func tryEvenement() {
@@ -59,10 +74,27 @@ public class EventoriasRepository : ObservableObject, EventListRepresentable {
                                    let picture = data["picture"] as? String ?? ""
                                    let poster = data["poster"] as? String ?? ""
                                    let dateCreationString = data["dateCreationString"] as? String ?? ""
+                                   let description = data["description"] as?String ?? ""
+                                   let hour = data["hour"] as?String ?? ""
                     
-                    let event = EventEntry(picture: picture, title: title, dateCreationString: dateCreationString, poster: poster)
+                    
+                    let event = EventEntry(picture: picture, title: title, dateCreationString: dateCreationString, poster: poster,description:description, hour:hour)
                                    return event
                                } ?? []
             })
     }
+    
+//    func fetchData(){
+//        db
+//            .collection("eventorias")
+//            .getDocuments { snapshot, error in
+//                if let error = error {
+//                    print("Erreur lors de la récupération des données : \(error.localizedDescription)")
+//                }else {
+//                    eventEntry = snapshot?.documents.compactMap{ document in
+//                        return document.get("eventoria") as? String
+//                    } ?? []
+//                }
+//            }
+//    }
 }

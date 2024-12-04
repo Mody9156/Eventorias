@@ -47,6 +47,8 @@ struct ListView: View {
                                                     .multilineTextAlignment(.leading)
                                                     .foregroundColor(.white)
                                                 
+                                               
+
                                                 
                                                 Text("\(listViewModel.formatDateString(eventEntry: eventEntry))")
                                                     .font(.custom("Inter-Regular", size: 14))
@@ -68,9 +70,7 @@ struct ListView: View {
                                             EmptyView()
                                         }))
                                 }
-                                .onAppear{
-                                    print("c'est bien utilisé ")
-                                }
+                               
                             }
                             .listRowBackground(
                                 RoundedRectangle(cornerRadius:16)
@@ -107,9 +107,9 @@ struct ListView: View {
             Spacer()
             
         }.onAppear{
-            Task{
-                try await listViewModel.addEventEntry(eventEntry)
-            }
+//            Task{
+//                try await listViewModel.addEventEntry(eventEntry)
+//            }
         }
     }
     
