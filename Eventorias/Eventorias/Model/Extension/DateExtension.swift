@@ -8,16 +8,24 @@
 import Foundation
 
 extension Date {
-    static func dateFromString(_ isoString : String)-> Date? {
+    static func dateFromString(_ isoString : String)-> Date {
         let isoDateFormatter = ISO8601DateFormatter()
-        isoDateFormatter.formatOptions = [.withFullDate]
-        
-        return isoDateFormatter.date(from: isoString)
+        isoDateFormatter.formatOptions = [.withFullDate, .withTime, .withTimeZone]
+        print("Trying to parse: \(isoString)")  // Affiche la chaîne avant de la convertir
+               
+               // Retourner la date ou Date.now si l'analyse échoue
+               if let date = isoDateFormatter.date(from: isoString) {
+                   return date
+               } else {
+                   print("Date parsing failed.")
+                   return Date.now
+               }
     }
     
     static func stringFromDate(_ date : Date ) -> String{
         let isoDateFormatter = DateFormatter()
         isoDateFormatter.dateFormat = "MMM dd, yyyy"
+        print("Date passé à la méthode : \(date)")  // Vérifie ce qui est passé en paramètre
 
         return isoDateFormatter.string(from: date)
     }
