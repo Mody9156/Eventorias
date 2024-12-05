@@ -14,6 +14,7 @@ extension Date {
         print("Trying to parse: \(isoString)")
                
                if let date = isoDateFormatter.date(from: isoString) {
+                   print("super \(date)")
                    return date
                } else {
                    print("Date parsing failed.")
