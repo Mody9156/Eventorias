@@ -83,7 +83,7 @@ struct ListView: View {
                             .scrollContentBackground(.hidden)
                         .background(Color("Background"))
                             
-                            ZStack{
+                            ZStack(alignment:.bottomTrailing) {
                                 HStack{
                                     Spacer()
                                     Button(action:{}) {

@@ -18,7 +18,7 @@ struct UserDetailView: View {
                 VStack {
                     Image(eventEntry.poster)
                                    
-                    Text(eventEntry.dateCreationString)
+                    Text("\(eventEntry.dateCreation)")
                         .foregroundColor(.white)
                     
                 }
