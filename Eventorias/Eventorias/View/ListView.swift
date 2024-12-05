@@ -83,18 +83,20 @@ struct ListView: View {
                             .scrollContentBackground(.hidden)
                         .background(Color("Background"))
                             
-                            HStack {
-                                Spacer()
-                                Button(action:{}) {
-                                    ZStack {
-                                        RoundedRectangle(cornerRadius: 16)
-                                          .fill(.red)
-                                          .frame(width: 56, height: 56)
-                                           Image(systemName: "plus")
-                                             .foregroundColor(.white)
+                            ZStack(alignment:.bottomTrailing) {
+                                HStack {
+                                    Spacer()
+                                    Button(action:{}) {
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 16)
+                                              .fill(.red)
+                                              .frame(width: 56, height: 56)
+                                               Image(systemName: "plus")
+                                                 .foregroundColor(.white)
+                                        }
                                     }
+                                    .padding()
                                 }
-                                .padding()
                             }
                         }
                         
