@@ -22,6 +22,21 @@ extension Date {
                }
     }
     
+    static func hourFromString(_ isoString :String) -> Date{
+        let isoHourFormatter = ISO8601DateFormatter()
+        isoHourFormatter.formatOptions = [.withInternetDateTime]
+        print("Trying to parse: \(isoString)")
+               
+               if let hour = isoHourFormatter.date(from: isoString) {
+                   print("super \(hour)")
+                   return hour
+               } else {
+                   print("Date parsing failed.")
+                   return Date.now
+               }
+        
+    }
+    
     static func stringFromDate(_ date : Date ) -> String{
         let isoDateFormatter = DateFormatter()
         isoDateFormatter.dateFormat = "MMM dd, yyyy"
