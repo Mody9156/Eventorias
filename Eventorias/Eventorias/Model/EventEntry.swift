@@ -21,7 +21,7 @@ struct EventEntry : Identifiable, Codable,Hashable{
     var description : String
     var hour : String
     var hourCreation : Date {
-        Date.dateFromString(hour) 
+        Date.hourFromString(hour) 
 
     }
 }

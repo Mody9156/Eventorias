@@ -21,8 +21,8 @@ class ListViewModel : ObservableObject {
         return date
     }
     
-    func formatHourString(_ eventEntry:Date) -> String{
-        let date = Date.stringFromDate(eventEntry)
+    func formatHourString(_ hour:Date) -> String{
+        let date = Date.stringFromHour(hour)
         return date
     }
     
