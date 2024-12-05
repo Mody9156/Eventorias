@@ -41,6 +41,7 @@ struct EventoriasApp: App {
             NavigationStack {
                 if mainAuth.isAuthenticated {
                     TabView {
+                        Spacer()
                         ListView(eventEntry: EventEntry(picture: "MusicFestival", title: "Music festival", dateCreationString: "June 15, 2024", poster: "MusicFestivalPoster",description: "",hour: ""), listViewModel: ListViewModel())
                             .tabItem {
                                 HStack {
@@ -56,6 +57,7 @@ struct EventoriasApp: App {
                                     Image(systemName:"person")
                                 }
                             }
+                        Spacer()
                     }
                 }else{
                     HomeView(authentificationViewModel: mainAuth.authentificationViewModel)
