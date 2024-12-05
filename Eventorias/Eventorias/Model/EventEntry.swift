@@ -26,14 +26,15 @@ struct EventEntry : Identifiable, Codable,Hashable{
     var category : String
     var place : Adress
     
-    struct Adress : Codable,Hashable{
-        var street: String
-        var city: String
-        var posttalCode: String
-        var country: String
-    }
+  
 }
 
+struct Adress : Codable,Hashable{
+    var street: String
+    var city: String
+    var posttalCode: String
+    var country: String
+}
 
 extension EventEntry {
     static let eventEntry  = [
