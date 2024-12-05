@@ -32,9 +32,10 @@ extension Date {
                    return hour
                } else {
                    print("Date parsing failed.")
-                   return Date.now
+                   let calendar = Calendar.current
+                   let hour = calendar.component(.hour, from: Date())
+                   return Date()
                }
-        
     }
     
     static func stringFromDate(_ date : Date ) -> String{
