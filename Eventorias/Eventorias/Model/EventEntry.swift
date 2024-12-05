@@ -26,7 +26,6 @@ struct EventEntry : Identifiable, Codable,Hashable{
     var category : String
     var place : Adress
     
-  
 }
 
 struct Adress : Codable,Hashable{
