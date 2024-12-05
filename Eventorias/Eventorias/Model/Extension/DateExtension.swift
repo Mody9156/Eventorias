@@ -32,8 +32,7 @@ extension Date {
                    return hour
                } else {
                    print("Date parsing failed.")
-                   let calendar = Calendar.current
-                   let hour = calendar.component(.hour, from: Date())
+            
                    return Date()
                }
     }
