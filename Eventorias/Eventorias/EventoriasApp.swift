@@ -48,6 +48,14 @@ struct EventoriasApp: App {
                                     Image("event")
                                 }
                             }
+                        
+                        ProfileView()
+                            .tabItem{
+                                HStack {
+                                    Text("Profile")
+                                    Image(systemName:"person")
+                                }
+                            }
                     }
                 }else{
                     HomeView(authentificationViewModel: mainAuth.authentificationViewModel)
