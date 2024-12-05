@@ -39,9 +39,9 @@ struct EventoriasApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                if mainAuth.isAuthenticated {
-                    TabView {
-                        Spacer()
+//                if mainAuth.isAuthenticated {
+//                    TabView {
+//                        Spacer()
                         ListView(eventEntry: EventEntry(picture: "MusicFestival", title: "Music festival", dateCreationString: "June 15, 2024", poster: "MusicFestivalPoster",description: "",hour: ""), listViewModel: ListViewModel())
                             .tabItem {
                                 HStack {
@@ -49,20 +49,20 @@ struct EventoriasApp: App {
                                     Image("event")
                                 }
                             }
-                        
-                        ProfileView()
-                            .tabItem{
-                                HStack {
-                                    Text("Profile")
-                                    Image(systemName:"person")
-                                }
-                            }
-                        Spacer()
-                    }
-                }else{
-                    HomeView(authentificationViewModel: mainAuth.authentificationViewModel)
-                        .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity),removal: .move(edge: .top).combined(with: .opacity)))
-                }
+//
+//                        ProfileView()
+//                            .tabItem{
+//                                HStack {
+//                                    Text("Profile")
+//                                    Image(systemName:"person")
+//                                }
+//                            }
+//                        Spacer()
+//                    }
+//                }else{
+//                    HomeView(authentificationViewModel: mainAuth.authentificationViewModel)
+//                        .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity),removal: .move(edge: .top).combined(with: .opacity)))
+//                }
             }
         }
     }
