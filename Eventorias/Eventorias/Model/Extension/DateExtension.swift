@@ -10,7 +10,7 @@ import Foundation
 extension Date {
     static func dateFromString(_ isoString : String)-> Date {
         let isoDateFormatter = ISO8601DateFormatter()
-        isoDateFormatter.formatOptions = [.withDay,.withMonth,.withDay]
+        isoDateFormatter.formatOptions = [.withMonth,.withDay,.withDay]
         print("Trying to parse: \(isoString)")
                
                if let date = isoDateFormatter.date(from: isoString) {

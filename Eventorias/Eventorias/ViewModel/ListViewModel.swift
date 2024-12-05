@@ -16,13 +16,13 @@ class ListViewModel : ObservableObject {
     
     private var eventoriasRepository : EventoriasRepository = EventoriasRepository()
     
-    func formatDateString(eventEntry:EventEntry) -> String {
-        let date = Date.stringFromDate(eventEntry.dateCreation)
+    func formatDateString(_ date:Date) -> String {
+        let date = Date.stringFromDate(date)
         return date
     }
     
-    func formatHourString(eventEntry:EventEntry) -> String{
-        let date = Date.stringFromDate(eventEntry.dateCreation)
+    func formatHourString(_ eventEntry:Date) -> String{
+        let date = Date.stringFromDate(eventEntry)
         return date
     }
     
