@@ -11,9 +11,8 @@ extension Date {
     static func dateFromString(_ isoString : String)-> Date {
         let isoDateFormatter = ISO8601DateFormatter()
         isoDateFormatter.formatOptions = [.withFullDate, .withTime, .withTimeZone]
-        print("Trying to parse: \(isoString)")  // Affiche la chaîne avant de la convertir
+        print("Trying to parse: \(isoString)")
                
-               // Retourner la date ou Date.now si l'analyse échoue
                if let date = isoDateFormatter.date(from: isoString) {
                    return date
                } else {
