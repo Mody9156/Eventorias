@@ -31,6 +31,7 @@
 		23ED986C2CFF6B1600EE2BCA /* EventListRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ED986B2CFF6B1600EE2BCA /* EventListRepresentable.swift */; };
 		23F1FA952CF86E4F0092B83C /* protocolsFirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F1FA942CF86E4F0092B83C /* protocolsFirebaseData.swift */; };
 		23F1FA992CF887DF0092B83C /* FirebaseAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F1FA982CF887DE0092B83C /* FirebaseAuthenticationManager.swift */; };
+		23F6B9872D019991008A8FAB /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F6B9862D019991008A8FAB /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		23ED986B2CFF6B1600EE2BCA /* EventListRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListRepresentable.swift; sourceTree = "<group>"; };
 		23F1FA942CF86E4F0092B83C /* protocolsFirebaseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = protocolsFirebaseData.swift; sourceTree = "<group>"; };
 		23F1FA982CF887DE0092B83C /* FirebaseAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationManager.swift; sourceTree = "<group>"; };
+		23F6B9862D019991008A8FAB /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,7 @@
 				23B304492CF6043300106980 /* ListView.swift */,
 				23B3044F2CF61FEE00106980 /* RegistrationView.swift */,
 				23AA588B2CFD1D4600C45DA8 /* UserDetailView.swift */,
+				23F6B9862D019991008A8FAB /* ProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				23F1FA992CF887DF0092B83C /* FirebaseAuthenticationManager.swift in Sources */,
 				237F60EB2CFE0AEF00B9AD01 /* DateExtension.swift in Sources */,
 				23B304502CF61FEE00106980 /* RegistrationView.swift in Sources */,
+				23F6B9872D019991008A8FAB /* ProfileView.swift in Sources */,
 				237F60EE2CFE105A00B9AD01 /* EventoriasRepository.swift in Sources */,
 				23F1FA952CF86E4F0092B83C /* protocolsFirebaseData.swift in Sources */,
 				23E95D182CF9DF940024AA49 /* MainSessionManager.swift in Sources */,

@@ -29,10 +29,11 @@ struct ListView: View {
                         CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
                             .padding()
                         
-                        List {
-                            Section {
-                                ForEach(filter,id: \.self) { entry in
-                                   
+                        ZStack(alignment: .bottomTrailing) {
+                            List {
+                                Section {
+                                    ForEach(filter,id: \.self) { entry in
+                                        
                                         HStack {
                                             Image(entry.picture)
                                                 .resizable()
@@ -47,7 +48,7 @@ struct ListView: View {
                                                     .multilineTextAlignment(.leading)
                                                     .foregroundColor(.white)
                                                 
-                                                Text("\(listViewModel.formatDateString(eventEntry: eventEntry))")
+                                                Text("\(listViewModel.formatDateString( entry.dateCreation))")
                                                     .font(.custom("Inter-Regular", size: 14))
                                                     .lineSpacing(20 - 14)
                                                     .fontWeight(.regular)
@@ -60,53 +61,58 @@ struct ListView: View {
                                                 .resizable()
                                                 .frame(width: 136, height: 80)
                                                 .cornerRadius(12)
-                                        
+                                            
                                         }.overlay(NavigationLink(destination: {
                                             UserDetailView(eventEntry: entry)
                                         }, label: {
                                             EmptyView()
                                         }))
+                                    }
+                                    
                                 }
-                               
+                                .listRowBackground(
+                                    RoundedRectangle(cornerRadius:16)
+                                        .fill(Color("BackgroundDocument"))
+                                        .frame(width: 358, height: 80)
+                                    
+                                        .padding(2)
+                                )
+                                
                             }
-                            .listRowBackground(
-                                RoundedRectangle(cornerRadius:16)
-                                    .fill(Color("BackgroundDocument"))
-                                    .frame(width: 358, height: 80)
-
-                                    .padding(2)
-                            )
+                            .listStyle(GroupedListStyle())
+                            .scrollContentBackground(.hidden)
+                            .background(Color("Background"))
                             
-                        }
-                        .listStyle(GroupedListStyle())
-                        .scrollContentBackground(.hidden)
-                        .background(Color("Background"))
-                        
-                        HStack {
-                            Spacer()
-                            Button(action:{}) {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 16)
-                                      .fill(.red)
-                                      .frame(width: 56, height: 56)
-                                       Image(systemName: "plus")
-                                         .foregroundColor(.white)
+                            ZStack(alignment:.bottomTrailing) {
+                                HStack{
+                                    Spacer()
+                                    Button(action:{}) {
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 16)
+                                                .fill(.red)
+                                                .frame(width: 56, height: 56)
+                                            Image(systemName: "plus")
+                                                .foregroundColor(.white)
+                                        }
+                                    }
+                                    .padding()
                                 }
                             }
-                            .padding()
                         }
-
+                        
+                        
+                        
                     }
                     .toolbar(content: myTollBarContent)
                 }
-                                
+                
             }
             Spacer()
             
         }.onAppear{
-//            Task{
-//                try await listViewModel.addEventEntry(eventEntry)
-//            }
+            //            Task{
+            //                try await listViewModel.addEventEntry(eventEntry)
+            //            }
         }
     }
     
@@ -190,7 +196,7 @@ struct CustomButton: View {
     @Binding var tryEvent : Bool
     var body: some View {
         Button(action:{
-                 
+            
             listViewModel.tryEvent()
         }){
             ZStack {

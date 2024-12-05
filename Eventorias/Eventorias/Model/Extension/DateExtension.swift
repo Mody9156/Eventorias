@@ -10,15 +10,30 @@ import Foundation
 extension Date {
     static func dateFromString(_ isoString : String)-> Date {
         let isoDateFormatter = ISO8601DateFormatter()
-        isoDateFormatter.formatOptions = [.withFullDate, .withTime, .withTimeZone]
-        print("Trying to parse: \(isoString)")  // Affiche la chaîne avant de la convertir
+        isoDateFormatter.formatOptions = [.withFullDate]
+        print("Trying to parse: \(isoString)")
                
-               // Retourner la date ou Date.now si l'analyse échoue
                if let date = isoDateFormatter.date(from: isoString) {
+                   print("super \(date)")
                    return date
                } else {
                    print("Date parsing failed.")
                    return Date.now
+               }
+    }
+    
+    static func hourFromString(_ isoString :String) -> Date{
+        let isoHourFormatter = ISO8601DateFormatter()
+        isoHourFormatter.formatOptions = [.withInternetDateTime]
+        print("Trying to parse: \(isoString)")
+               
+               if let hour = isoHourFormatter.date(from: isoString) {
+                   print("super \(hour)")
+                   return hour
+               } else {
+                   print("Date parsing failed.")
+            
+                   return Date()
                }
     }
     
