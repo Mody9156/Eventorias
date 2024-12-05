@@ -29,7 +29,7 @@ struct ListView: View {
                         CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
                             .padding()
                         
-                        ZStack(alignment: .topLeading) {
+                        ZStack(alignment: .bottomTrailing) {
                             List {
                                 Section {
                                     ForEach(filter,id: \.self) { entry in
@@ -83,7 +83,7 @@ struct ListView: View {
                             .scrollContentBackground(.hidden)
                         .background(Color("Background"))
                             
-                            ZStack(alignment:.bottomTrailing) {
+                            ZStack{
                                 HStack{
                                     Spacer()
                                     Button(action:{}) {
