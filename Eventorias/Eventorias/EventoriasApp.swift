@@ -41,14 +41,14 @@ struct EventoriasApp: App {
             NavigationStack {
                 if mainAuth.isAuthenticated {
                     TabView {
-                ListView(eventEntry: EventEntry(picture: "MusicFestival", title: "Music festival", dateCreationString: "June 15, 2024", poster: "MusicFestivalPoster",description: "",hour: ""), listViewModel: ListViewModel())
+                        ListView(eventEntry: EventEntry(picture: "MusicFestival", title: "Music festival", dateCreationString: "June 15, 2024", poster: "MusicFestivalPoster",description: "",hour: ""), listViewModel: ListViewModel())
                             .tabItem {
                                 HStack {
                                     Text("Events")
                                     Image("event")
                                 }
                             }
-
+                    }
                 }else{
                     HomeView(authentificationViewModel: mainAuth.authentificationViewModel)
                         .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity),removal: .move(edge: .top).combined(with: .opacity)))
