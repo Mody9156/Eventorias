@@ -28,7 +28,7 @@ struct ListView: View {
                 VStack {
                   
                         VStack(alignment: .leading) {
-                            CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent, filter: $filter)
+                            CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
                                 .padding()
                             
                             ZStack(alignment: .bottomTrailing) {
@@ -183,8 +183,10 @@ struct CustomButton: View {
     var body: some View {
         
         Menu("Sorting \(listViewModel.filter?.rawValue ?? "NONE")") {
-            ForEach(Even){_ in
-                
+            ForEach(ListViewModel.FilterOption.allCases){ filter in
+                Button(filter.rawValue){
+                    
+                }
             }
         }
         
