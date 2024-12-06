@@ -66,9 +66,17 @@ class ListViewModel : ObservableObject {
         eventoriasRepository.subscribe()
     }
     
-    func filterSelected(){
-        
+    func filterSelected(option : FilterOption){
+        switch option {
+        case .priceHigh :
+            
+            break
+        case .priceLow :
+            
+            break
+        }
     }
     
+   
     
 }

@@ -100,19 +100,7 @@ public class EventoriasRepository : ObservableObject {
             }
         }
 
-
-    
-//    func fetchData(){
-//        db
-//            .collection("eventorias")
-//            .getDocuments { snapshot, error in
-//                if let error = error {
-//                    print("Erreur lors de la récupération des données : \(error.localizedDescription)")
-//                }else {
-//                    eventEntry = snapshot?.documents.compactMap{ document in
-//                        return document.get("eventoria") as? String
-//                    } ?? []
-//                }
-//            }
-//    }
+    func getAllProductsSortedByDate()async throws -> [EventEntry]{
+        try await db.collection.order(by:"eventorias")
+    }
 }
