@@ -17,6 +17,13 @@ struct ListView: View {
     @FocusState var focused : focusedTexfield?
     @StateObject var listViewModel : ListViewModel
     @State var tryEvent : Bool = false
+    @State var filter : FilterOption? = nil
+    
+    enum FilterOption{
+        case priceHigh
+        case priceLow
+    }
+    
     
     var body: some View {
         NavigationStack {
@@ -168,18 +175,20 @@ struct ListView: View {
             }
         }
     }
-    var filter:Any{
-       listViewModel.tryEvent(keyword: searchText)
-    }
+//    var filter:Any{
+//       listViewModel.tryEvent(keyword: searchText)
+//    }
 }
 
 
 struct CustomButton: View {
     @StateObject var listViewModel : ListViewModel
     @Binding var tryEvent : Bool
+    @Binding var filter : FilterOption?
+
     var body: some View {
         
-        Menu("Sorting") {
+        Menu("Sorting \(filter?.rawValue ?? "NONE")") {
         }
         
     }
