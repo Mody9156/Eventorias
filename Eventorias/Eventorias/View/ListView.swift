@@ -17,12 +17,7 @@ struct ListView: View {
     @FocusState var focused : focusedTexfield?
     @StateObject var listViewModel : ListViewModel
     @State var tryEvent : Bool = false
-    @State var filter : FilterOption? = nil
     
-    enum FilterOption{
-        case priceHigh
-        case priceLow
-    }
     
     
     var body: some View {
@@ -33,7 +28,7 @@ struct ListView: View {
                 VStack {
                   
                         VStack(alignment: .leading) {
-                            CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
+                            CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent, filter: $filter)
                                 .padding()
                             
                             ZStack(alignment: .bottomTrailing) {
@@ -184,11 +179,13 @@ struct ListView: View {
 struct CustomButton: View {
     @StateObject var listViewModel : ListViewModel
     @Binding var tryEvent : Bool
-    @Binding var filter : FilterOption?
 
     var body: some View {
         
-        Menu("Sorting \(filter?.rawValue ?? "NONE")") {
+        Menu("Sorting \(listViewModel.filter?.rawValue ?? "NONE")") {
+            ForEach(){_ in
+                
+            }
         }
         
     }

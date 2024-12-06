@@ -9,6 +9,13 @@ import Foundation
 import Firebase
 
 class ListViewModel : ObservableObject {
+    enum FilterOption : String {
+        case priceHigh
+        case priceLow
+    }
+    
+    @Published var filter : FilterOption? = nil
+   
     @Published
     var errorMessage :String? = ""
     
