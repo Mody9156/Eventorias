@@ -183,7 +183,7 @@ struct CustomButton: View {
     var body: some View {
         
         Menu("Sorting \(listViewModel.filter?.rawValue ?? "NONE")") {
-            ForEach(ListViewModel.FilterOption.allCases){ filter in
+            ForEach(ListViewModel.FilterOption.allCases,id:\.self){ filter in
                 Button(filter.rawValue){
                     
                 }

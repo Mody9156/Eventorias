@@ -66,5 +66,9 @@ class ListViewModel : ObservableObject {
         eventoriasRepository.subscribe()
     }
     
+    func filterSelected(){
+        
+    }
+    
     
 }
