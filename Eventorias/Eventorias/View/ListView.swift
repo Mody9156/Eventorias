@@ -183,7 +183,7 @@ struct CustomButton: View {
     var body: some View {
         
         Menu("Sorting \(listViewModel.filter?.rawValue ?? "NONE")") {
-            ForEach(){_ in
+            ForEach(Even){_ in
                 
             }
         }
