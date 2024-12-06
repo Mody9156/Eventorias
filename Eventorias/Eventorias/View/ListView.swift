@@ -24,8 +24,7 @@ struct ListView: View {
                 Color("Background")
                     .ignoresSafeArea()
                 VStack {
-                
-                        
+                  
                         VStack(alignment: .leading) {
                             CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
                                 .padding()
