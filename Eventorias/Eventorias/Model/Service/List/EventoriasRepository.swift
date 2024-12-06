@@ -100,8 +100,8 @@ public class EventoriasRepository : ObservableObject {
             }
         }
 
-    func getAllProductsSortedByDate()async throws -> [EventEntry]{
-        try await db.collection("eventorias")
-            .order(by: "title", descending: true)
+    func getAllProductsSortedByDate(descending:Bool) async throws -> [EventEntry]{
+        try  db.collection("eventorias")
+            .order(by: "title", descending: descending)
     }
 }
