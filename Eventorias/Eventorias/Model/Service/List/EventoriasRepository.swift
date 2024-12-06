@@ -100,8 +100,9 @@ public class EventoriasRepository : ObservableObject {
             }
         }
 
-    func getAllProductsSortedByDate(descending:Bool) async throws -> [EventEntry]{
-        try  db.collection("eventorias")
-            .order(by: "title", descending: descending)
-    }
+//    func getAllProductsSortedByDate(descending:Bool) async throws -> [EventEntry] {
+//        var query : Query = db.collection("eventorias")
+//            .order(by: "title", descending: descending)
+//            .getDocuments(as: eventEntry)
+//    }
 }
