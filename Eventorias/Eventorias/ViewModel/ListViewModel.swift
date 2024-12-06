@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 class ListViewModel : ObservableObject {
     @Published
@@ -39,9 +40,19 @@ class ListViewModel : ObservableObject {
         }
     }
     
-    func tryEvent()  {
-        eventoriasRepository.tryEvenement()
-        errorMessage = nil
+    func tryEvent(keyword: String) {
+        eventoriasRepository.searchEvents(by: keyword) { [weak self]  result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let events):
+                    self?.eventEntry = events
+                case .failure(let error):
+                    print("Error :\(error.localizedDescription)")
+                    self?.eventEntry = []
+                }
+                
+            }
+        }
     }
     
     func fetchData(){

@@ -32,7 +32,7 @@ struct ListView: View {
                             ZStack(alignment: .bottomTrailing) {
                                 List {
                                     Section {
-                                        ForEach(listViewModel.tryEvent(),id: \.self) { entry in
+                                        ForEach(EventEntry.eventEntry,id: \.self) { entry in
                                             
                                             HStack {
                                                 Image(entry.picture)
@@ -101,6 +101,8 @@ struct ListView: View {
                         }
                         .toolbar(content: myTollBarContent)
                 }
+            }.onChange(of: searchText) { newValue in
+                listViewModel.tryEvent(keyword: newValue)
             }
             
         }
@@ -123,6 +125,8 @@ struct ListView: View {
                         TextField("", text: $searchText,onEditingChanged: { changed in
                             if changed {
                                 isAactive = true
+                                
+                                
                             }else{
                                 isAactive = false
                             }
@@ -165,13 +169,14 @@ struct ListView: View {
             }
         }
     }
-    var filter: [EventEntry]{
-        if searchText.isEmpty {
-            return EventEntry.eventEntry
-        }else{
-            return EventEntry.eventEntry.filter{$0.title.contains(searchText)}
-        }
-    }
+//    var filter: [EventEntry]{
+//        if searchText.isEmpty {
+//            return EventEntry.eventEntry
+//        }else{
+//          return  listViewModel.tryEvent(keyword: searchText)
+////            return EventEntry.eventEntry.filter{$0.title.contains(searchText)}
+//        }
+//    }
 }
 
 
@@ -181,7 +186,6 @@ struct CustomButton: View {
     var body: some View {
         Button(action:{
             
-            listViewModel.tryEvent()
         }){
             ZStack {
                 Rectangle()

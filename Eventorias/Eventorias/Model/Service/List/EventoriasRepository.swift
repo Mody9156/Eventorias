@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-public class EventoriasRepository : ObservableObject, EventListRepresentable {
+public class EventoriasRepository : ObservableObject {
     
     @Published
     var eventEntry = [EventEntry]()
@@ -58,12 +58,49 @@ public class EventoriasRepository : ObservableObject, EventListRepresentable {
        
     }
     
-    func tryEvenement() {
-         db
-            .collection("eventorias")
-            .order(by: "title", descending: true)
-            
-    }
+        func searchEvents(by keyword: String, completion: @escaping (Result<[EventEntry], Error>) -> Void) {
+            var query: Query = Firestore.firestore().collection("eventorias")
+                .order(by: "title", descending: true)
+
+            if !keyword.isEmpty {
+                query = query.whereField("title", isGreaterThanOrEqualTo: keyword)
+                    .whereField("title", isLessThanOrEqualTo: keyword + "\u{f8ff}")
+            }
+
+            query.addSnapshotListener { snapshot, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+
+                guard let documents = snapshot?.documents else {
+                    completion(.success([]))
+                    return
+                }
+
+                let events = documents.compactMap { doc -> EventEntry? in
+                    let data = doc.data()
+                    return EventEntry(
+                        picture: data["picture"] as? String ?? "",
+                        title: data["title"] as? String ?? "",
+                        dateCreationString: data["dateCreationString"] as? String ?? "",
+                        poster: data["poster"] as? String ?? "",
+                        description: data["description"] as? String ?? "",
+                        hour: data["hour"] as? String ?? "",
+                        category: data["category"] as? String ?? "",
+                        place: Adress(
+                            street: data["street"] as? String ?? "",
+                            city: data["city"] as? String ?? "",
+                            posttalCode: data["posttalCode"] as? String ?? "",
+                            country: data["country"] as? String ?? ""
+                        )
+                    )
+                }
+                completion(.success(events))
+            }
+        }
+
+
     
 //    func fetchData(){
 //        db
