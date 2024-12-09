@@ -181,7 +181,6 @@ struct CustomButton: View {
     @Binding var tryEvent : Bool
 
     var body: some View {
-        
         Menu("Sorting \(listViewModel.filter?.rawValue ?? "NONE")") {
             ForEach(ListViewModel.FilterOption.allCases,id:\.self){ filter in
                 Button(filter.rawValue){
@@ -194,7 +193,6 @@ struct CustomButton: View {
         
     }
 }
-
 
 struct MyPreviewProvider_Previews: PreviewProvider {
     static var previews: some View {
