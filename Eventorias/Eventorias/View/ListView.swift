@@ -18,8 +18,6 @@ struct ListView: View {
     @StateObject var listViewModel : ListViewModel
     @State var tryEvent : Bool = false
     
-    
-    
     var body: some View {
         NavigationStack {
             ZStack (alignment: .leading) {
@@ -104,13 +102,7 @@ struct ListView: View {
                     .toolbar(content: myTollBarContent)
                 }
             }
-        }
-        .onAppear{
-            Task{
-              try? await listViewModel.getAllProducts()
-            }
-        }
-        
+        }        
     }
     
     @ToolbarContentBuilder

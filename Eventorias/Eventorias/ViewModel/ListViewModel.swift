@@ -26,7 +26,6 @@ class ListViewModel : ObservableObject {
     
     private var eventoriasRepository = EventoriasRepository()
   
-   
     func formatDateString(_ date:Date) -> String {
         let date = Date.stringFromDate(date)
         return date
@@ -50,8 +49,6 @@ class ListViewModel : ObservableObject {
         }
     }
     
-     
-    
     func tryEvent(keyword: String) {
         eventoriasRepository.searchEvents(by: keyword) { [weak self]  result in
             DispatchQueue.main.async {
@@ -69,15 +66,9 @@ class ListViewModel : ObservableObject {
     func fetchData(){
         eventoriasRepository.subscribe()
     }
-    
-    func getAllProducts() async throws -> [EventEntry] {
-        let encoding = try await eventoriasRepository.getAllProducts()
-        self.eventEntry = encoding
-        return encoding
-    }
-     
+   
+     // verifier l'incrémentation
     func filterSelected(option : FilterOption) async throws {
-        
         DispatchQueue.main.async {
             self.FilterOption = option
         }
@@ -85,12 +76,10 @@ class ListViewModel : ObservableObject {
         switch option {
         case .noFilter :
             self.eventEntry = try await eventoriasRepository.getAllProducts()
-            
         case .category :
             self.eventEntry = try await eventoriasRepository.getAllProductsSortedByCategory()
         case .date:
             self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate()
-            
         }
     }
 }

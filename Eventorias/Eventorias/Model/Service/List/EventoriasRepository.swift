@@ -108,8 +108,11 @@ public class EventoriasRepository : ObservableObject {
     
     
     func getAllProductsSortedByDate() async throws -> [EventEntry] {
-        try await db.collection("eventorias")
+       let data =  try await db.collection("eventorias")
             .order(by: "dateCreationString").getDocuments(as: EventEntry.self)
+        
+        return data
+        
     }
     
     func getAllProductsSortedByCategory() async throws -> [EventEntry] {
@@ -117,19 +120,19 @@ public class EventoriasRepository : ObservableObject {
             .order(by: "category", descending: true).getDocuments(as: EventEntry.self)
     }
     
+
+    func fetchEvents() async throws -> [EventEntry] {
+        let eventsQuery = db.collection("eventorias")
+        
+        return try await eventsQuery.getDocuments(as: EventEntry.self)
+    }
 }
 
 extension Query {
     func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable {
         let snapshot = try await self.getDocuments()
-        
-        // Debugging: afficher les documents
-        print("Documents fetched: \(snapshot.documents.count) documents")
-        for document in snapshot.documents {
-            print("Document ID: \(document.documentID)")
-            print("Data: \(document.data())")
-        }
-        
+      
+       
         // Conversion des données en objets de type T
         return try snapshot.documents.map { document in
             try document.data(as: T.self)
