@@ -75,7 +75,7 @@ class ListViewModel : ObservableObject {
         switch option {
         
         case .noFilter :
-            self.eventEntry = try await eventoriasRepository.EventEntry.eventEntry()
+            self.eventEntry = try await eventoriasRepository.getAllProducts()
             break
         case .priceHigh :
             self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate(descending: true)
