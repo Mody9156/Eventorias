@@ -16,7 +16,7 @@ class ListViewModel : ObservableObject {
     }
 
     @Published
-    var filter : FilterOption? = .noFilter
+    var FilterOption : FilterOption? = .noFilter
    
     @Published
     var errorMessage :String? = ""
@@ -80,7 +80,7 @@ class ListViewModel : ObservableObject {
             self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate(descending: false)
         }
         DispatchQueue.main.async {
-            self.filter = option
+            self.FilterOption = option
             print("filterSelected called with option: \(option.rawValue)")
 
         }

@@ -181,11 +181,11 @@ struct CustomButton: View {
     @Binding var tryEvent : Bool
 
     var body: some View {
-        Menu("Sorting : \(listViewModel.filter?.rawValue ?? "NONE")") {
+        Menu("Sorting : \(listViewModel.FilterOption?.rawValue ?? "NONE")") {
             ForEach(ListViewModel.FilterOption.allCases, id:\.self){ filter in
                 Button(filter.rawValue){
                     Task{
-                        print("voici la liste filtré :\(listViewModel.filter?.rawValue ?? "NONE")")
+                        print("voici la liste filtré :\(listViewModel.FilterOption?.rawValue ?? "NONE")")
 
                       try? await listViewModel.filterSelected(option: filter)
        
@@ -193,12 +193,11 @@ struct CustomButton: View {
                 }
             }
         }
-        
     }
 }
-
-struct MyPreviewProvider_Previews: PreviewProvider {
-    static var previews: some View {
-        ListView(eventEntry: EventEntry(picture: "MusicFestival", title: "Music festival", dateCreationString:"2024-06-15T12:00:00Z", poster: "MusicFestivalPoster",description:"Join us for an unforgettable Music Festival celebrating the vibrant sounds of today's most talented artists. This event will feature an exciting lineup of performances, ranging from electrifying live bands to soulful solo acts, offering a diverse and immersive musical experience. Whether you're a devoted music enthusiast or simply looking for a weekend of fun, you'll have the chance to enjoy an eclectic mix of genres and discover emerging talent. Don't miss this opportunity to connect with fellow music lovers and create lasting memories in an energetic, festival atmosphere!",hour:"2024-06-15T12:00:00Z", category: "Music",place: Adress(street: "81-800 Avenue 51", city: "Indio", posttalCode: "92201", country: "USA")), searchText: "", isAactive: true, listViewModel: ListViewModel(), tryEvent: true)
-    }
-}
+//
+//struct MyPreviewProvider_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ListView(eventEntry: EventEntry(picture: "MusicFestival", title: "Music festival", dateCreationString:"2024-06-15T12:00:00Z", poster: "MusicFestivalPoster",description:"Join us for an unforgettable Music Festival celebrating the vibrant sounds of today's most talented artists. This event will feature an exciting lineup of performances, ranging from electrifying live bands to soulful solo acts, offering a diverse and immersive musical experience. Whether you're a devoted music enthusiast or simply looking for a weekend of fun, you'll have the chance to enjoy an eclectic mix of genres and discover emerging talent. Don't miss this opportunity to connect with fellow music lovers and create lasting memories in an energetic, festival atmosphere!",hour:"2024-06-15T12:00:00Z", category: "Music",place: Adress(street: "81-800 Avenue 51", city: "Indio", posttalCode: "92201", country: "USA")), searchText: "", isAactive: true, listViewModel: ListViewModel(), tryEvent: true)
+//    }
+//}
