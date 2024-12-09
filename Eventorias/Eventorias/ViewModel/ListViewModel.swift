@@ -64,7 +64,7 @@ class ListViewModel : ObservableObject {
         }
     }
         
-    func getAllProducts() async throws{
+    func getAllProducts() async throws -> [EventEntry] {
         try await eventoriasRepository.getAllProducts()
     }
     func fetchData(){
