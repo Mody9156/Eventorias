@@ -12,13 +12,10 @@ import FirebaseFirestoreSwift
 public class EventoriasRepository : ObservableObject {
     
     @Published
-    var eventEntry : [EventEntry]
+    var eventEntry : [EventEntry] = []
     var db = Firestore.firestore()
     
-    init(eventEntry : [EventEntry]){
-        self.eventEntry = eventEntry
-    }
-    
+ 
     func subscribe(){
         let query = db
             .collection("eventorias")

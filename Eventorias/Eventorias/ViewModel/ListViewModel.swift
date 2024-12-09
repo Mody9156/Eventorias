@@ -24,15 +24,12 @@ class ListViewModel : ObservableObject {
     @Published
     var eventEntry : [EventEntry]
     
-    private var eventoriasRepository : EventoriasRepository!
+    private var eventoriasRepository = EventoriasRepository()
 
     init(eventEntry: [EventEntry]) {
            self.eventEntry = eventEntry
-        self.eventoriasRepository = EventoriasRepository(eventEntry:eventEntry)
     }
    
-    
-    
     func formatDateString(_ date:Date) -> String {
         let date = Date.stringFromDate(date)
         return date
@@ -56,6 +53,8 @@ class ListViewModel : ObservableObject {
         }
     }
     
+     
+    
     func tryEvent(keyword: String) {
         eventoriasRepository.searchEvents(by: keyword) { [weak self]  result in
             DispatchQueue.main.async {
@@ -74,6 +73,12 @@ class ListViewModel : ObservableObject {
         eventoriasRepository.subscribe()
     }
     
+    func getAllProducts() async throws -> [EventEntry] {
+        let encoding = try await eventoriasRepository.getAllProducts()
+        self.eventEntry = encoding
+        return encoding
+    }
+     
     func filterSelected(option : FilterOption) async throws {
         
         DispatchQueue.main.async {
