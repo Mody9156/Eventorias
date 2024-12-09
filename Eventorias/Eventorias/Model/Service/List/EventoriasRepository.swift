@@ -12,13 +12,13 @@ import FirebaseFirestoreSwift
 public class EventoriasRepository : ObservableObject {
     
     @Published
-    var
+    var eventEntry : [EventEntry]
     var db = Firestore.firestore()
     
-    
-    init(eventEntry : [EventEntry] ){
+    init(eventEntry : [EventEntry]){
         self.eventEntry = eventEntry
     }
+    
     func subscribe(){
         let query = db
             .collection("eventorias")
@@ -107,7 +107,6 @@ public class EventoriasRepository : ObservableObject {
     func getAllProducts() async throws -> [EventEntry] {
         let decoding = try await db.collection("eventorias").getDocuments(as: EventEntry.self)
         
-        self.eventEntry = decoding
         return decoding
         
     }
@@ -116,15 +115,12 @@ public class EventoriasRepository : ObservableObject {
     func getAllProductsSortedByDate() async throws -> [EventEntry] {
         try await db.collection("eventorias")
             .order(by: "dateCreationString").getDocuments(as: EventEntry.self)
-        
     }
     
     func getAllProductsSortedByCategory() async throws -> [EventEntry] {
         try await db.collection("eventorias")
             .order(by: "category", descending: true).getDocuments(as: EventEntry.self)
-        
     }
-    
     
 }
 

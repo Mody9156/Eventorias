@@ -24,12 +24,14 @@ class ListViewModel : ObservableObject {
     @Published
     var eventEntry : [EventEntry]
     
-    init( eventEntry: [EventEntry]) {
+    private var eventoriasRepository : EventoriasRepository!
+
+    init(eventEntry: [EventEntry]) {
            self.eventEntry = eventEntry
+        self.eventoriasRepository = EventoriasRepository(eventEntry:eventEntry)
     }
    
     
-    private var eventoriasRepository : EventoriasRepository = EventoriasRepository()
     
     func formatDateString(_ date:Date) -> String {
         let date = Date.stringFromDate(date)
