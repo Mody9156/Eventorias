@@ -12,9 +12,13 @@ import FirebaseFirestoreSwift
 public class EventoriasRepository : ObservableObject {
     
     @Published
-    var eventEntry = EventEntry.eventEntry
+    var
     var db = Firestore.firestore()
     
+    
+    init(eventEntry : [EventEntry] ){
+        self.eventEntry = eventEntry
+    }
     func subscribe(){
         let query = db
             .collection("eventorias")
@@ -41,82 +45,84 @@ public class EventoriasRepository : ObservableObject {
         
         do{
             try db
-                 .collection("eventorias")
-                 .addDocument(from: eventEntry){ error in
-                     if let error = error {
-                         print("Erreur lors de l'ajout de l'événement : \(error.localizedDescription)")
-                     } else {
-                         print("Événement ajouté avec succès")
-                     }
-                 }
+                .collection("eventorias")
+                .addDocument(from: eventEntry){ error in
+                    if let error = error {
+                        print("Erreur lors de l'ajout de l'événement : \(error.localizedDescription)")
+                    } else {
+                        print("Événement ajouté avec succès")
+                    }
+                }
             
             print("")
         }catch{
             print("Erreur lors de la conversion de l'événement en dictionnaire : \(error.localizedDescription)")
-
+            
         }
-       
+        
     }
     
-        func searchEvents(by keyword: String, completion: @escaping (Result<[EventEntry], Error>) -> Void) {
-            var query: Query = Firestore.firestore().collection("eventorias")
-                .order(by: "title", descending: true)
-
-            if !keyword.isEmpty {
-                query = query.whereField("title", isGreaterThanOrEqualTo: keyword)
-                    .whereField("title", isLessThanOrEqualTo: keyword + "\u{f8ff}")
-            }
-
-            query.addSnapshotListener { snapshot, error in
-                if let error = error {
-                    completion(.failure(error))
-                    return
-                }
-
-                guard let documents = snapshot?.documents else {
-                    completion(.success([]))
-                    return
-                }
-
-                let events = documents.compactMap { doc -> EventEntry? in
-                    let data = doc.data()
-                    return EventEntry(
-                        picture: data["picture"] as? String ?? "",
-                        title: data["title"] as? String ?? "",
-                        dateCreationString: data["dateCreationString"] as? String ?? "",
-                        poster: data["poster"] as? String ?? "",
-                        description: data["description"] as? String ?? "",
-                        hour: data["hour"] as? String ?? "",
-                        category: data["category"] as? String ?? "",
-                        place: Adress(
-                            street: data["street"] as? String ?? "",
-                            city: data["city"] as? String ?? "",
-                            posttalCode: data["posttalCode"] as? String ?? "",
-                            country: data["country"] as? String ?? ""
-                        )
-                    )
-                }
-                completion(.success(events))
-            }
+    func searchEvents(by keyword: String, completion: @escaping (Result<[EventEntry], Error>) -> Void) {
+        var query: Query = Firestore.firestore().collection("eventorias")
+            .order(by: "title", descending: true)
+        
+        if !keyword.isEmpty {
+            query = query.whereField("title", isGreaterThanOrEqualTo: keyword)
+                .whereField("title", isLessThanOrEqualTo: keyword + "\u{f8ff}")
         }
+        
+        query.addSnapshotListener { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let documents = snapshot?.documents else {
+                completion(.success([]))
+                return
+            }
+            
+            let events = documents.compactMap { doc -> EventEntry? in
+                let data = doc.data()
+                return EventEntry(
+                    picture: data["picture"] as? String ?? "",
+                    title: data["title"] as? String ?? "",
+                    dateCreationString: data["dateCreationString"] as? String ?? "",
+                    poster: data["poster"] as? String ?? "",
+                    description: data["description"] as? String ?? "",
+                    hour: data["hour"] as? String ?? "",
+                    category: data["category"] as? String ?? "",
+                    place: Adress(
+                        street: data["street"] as? String ?? "",
+                        city: data["city"] as? String ?? "",
+                        posttalCode: data["posttalCode"] as? String ?? "",
+                        country: data["country"] as? String ?? ""
+                    )
+                )
+            }
+            completion(.success(events))
+        }
+    }
     
     func getAllProducts() async throws -> [EventEntry] {
-    let decoding = try await db.collection("eventorias").getDocuments(as: EventEntry.self)
+        let decoding = try await db.collection("eventorias").getDocuments(as: EventEntry.self)
+        
         self.eventEntry = decoding
-    return decoding
+        return decoding
+        
     }
-
+    
     
     func getAllProductsSortedByDate() async throws -> [EventEntry] {
         try await db.collection("eventorias")
             .order(by: "dateCreationString").getDocuments(as: EventEntry.self)
-
+        
     }
     
     func getAllProductsSortedByCategory() async throws -> [EventEntry] {
         try await db.collection("eventorias")
             .order(by: "category", descending: true).getDocuments(as: EventEntry.self)
-
+        
     }
     
     
@@ -125,14 +131,14 @@ public class EventoriasRepository : ObservableObject {
 extension Query {
     func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable {
         let snapshot = try await self.getDocuments()
-
+        
         // Debugging: afficher les documents
         print("Documents fetched: \(snapshot.documents.count) documents")
         for document in snapshot.documents {
             print("Document ID: \(document.documentID)")
             print("Data: \(document.data())")
         }
-
+        
         // Conversion des données en objets de type T
         return try snapshot.documents.map { document in
             try document.data(as: T.self)
