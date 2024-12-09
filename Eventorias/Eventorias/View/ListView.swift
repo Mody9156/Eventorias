@@ -182,17 +182,17 @@ struct CustomButton: View {
     
     var body: some View {
         Menu("Sorting : \(listViewModel.FilterOption?.rawValue ?? "NONE")") {
-                        ForEach(ListViewModel.FilterOption.allCases, id:\.self){ filter in
-                            Button(filter.rawValue){
-                                Task{
-                                    print("voici la liste filtré :\(listViewModel.FilterOption?.rawValue ?? "NONE")")
-            
-                                  try? await listViewModel.filterSelected(option: filter)
-            
-                                }
-                            }
-                        }
+            ForEach(ListViewModel.FilterOption.allCases, id:\.self){ filter in
+                Button(filter.rawValue){
+                    Task{
+                        print("voici la liste filtré :\(listViewModel.FilterOption?.rawValue ?? "NONE")")
+                        
+                        try? await listViewModel.filterSelected(option: filter)
+                        
                     }
+                }
+            }
+        }
     }
 }
 //
