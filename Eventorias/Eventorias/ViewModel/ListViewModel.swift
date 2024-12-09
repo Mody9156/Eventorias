@@ -22,7 +22,7 @@ class ListViewModel : ObservableObject {
     var errorMessage :String? = ""
     
     @Published
-    var eventEntry = EventEntry.eventEntry
+    var eventEntry : [EventEntry] = []
    
     
     private var eventoriasRepository : EventoriasRepository = EventoriasRepository()
@@ -64,16 +64,16 @@ class ListViewModel : ObservableObject {
         }
     }
         
+    func getAllProducts() async throws ->  EventEntry {
+        
+    }
   
     func fetchData(){
         eventoriasRepository.subscribe()
     }
     
     func filterSelected(option : FilterOption) async throws {
-        
-        DispatchQueue.main.async {
-            self.FilterOption = option
-        }
+       
         switch option {
         case .noFilter :
             self.eventEntry = try await eventoriasRepository.getAllProducts()
@@ -82,5 +82,11 @@ class ListViewModel : ObservableObject {
         case .category :
             self.eventEntry = try await eventoriasRepository.getAllProductsSortedByCategory()
         }
+        
+        
+        DispatchQueue.main.async {
+            self.FilterOption = option
+        }
+        
     }
 }
