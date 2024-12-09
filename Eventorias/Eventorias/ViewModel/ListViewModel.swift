@@ -84,15 +84,14 @@ class ListViewModel : ObservableObject {
         
         switch option {
         case .noFilter :
-            self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate()
-        case .date :
-            self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate()
+            self.eventEntry = try await eventoriasRepository.getAllProducts()
+            
         case .category :
             self.eventEntry = try await eventoriasRepository.getAllProductsSortedByCategory()
+        case .date:
+            self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate()
+            
         }
-        
-        
-        
         
     }
 }
