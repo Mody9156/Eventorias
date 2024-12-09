@@ -76,7 +76,10 @@ class ListViewModel : ObservableObject {
         case .priceLow :
             self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate(descending: false)
         }
-        self.filter = option
+        DispatchQueue.main.async {
+            self.filter = option
+
+        }
     }
     
 }
