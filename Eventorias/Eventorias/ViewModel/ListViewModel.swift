@@ -22,7 +22,7 @@ class ListViewModel : ObservableObject {
     var errorMessage :String? = ""
     
     @Published
-    var eventEntry = EventEntry.eventEntry
+    var eventEntry : [EventEntry] = []
     
     @Published
     var eventEntrys: [EventEntry] = []

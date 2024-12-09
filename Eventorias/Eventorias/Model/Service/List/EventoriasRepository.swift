@@ -106,11 +106,10 @@ public class EventoriasRepository : ObservableObject {
     
     func getAllProductsSortedByDate(descending:Bool) async throws -> [EventEntry] {
         try await db.collection("eventorias")
-            .order(by: "title", descending: descending).getDocuments(as: EventEntry.self)
+            .order(by: "dateCreationString", descending: descending).getDocuments(as: EventEntry.self)
 
     }
-    
-
+ 
     
 }
 
