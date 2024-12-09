@@ -62,10 +62,7 @@ class ListViewModel : ObservableObject {
         }
     }
     
-    func getAllProducts() async throws {
-        self.eventEntry = try await EventEntry.eventEntry
-    }
-    
+  
     
     func fetchData(){
         eventoriasRepository.subscribe()
