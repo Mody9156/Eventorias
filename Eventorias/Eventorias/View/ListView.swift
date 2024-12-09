@@ -70,11 +70,6 @@ struct ListView: View {
                                             EmptyView()
                                         }))
                                     }
-                                    .onAppear{
-                                        Task{
-                                          try await listViewModel.getAllProducts()
-                                        }
-                                    }
                                     
                                 }
                                 .listRowBackground(

@@ -16,13 +16,13 @@ class ListViewModel : ObservableObject {
     }
 
     @Published
-    var FilterOption : FilterOption? = .noFilter
+    var FilterOption : FilterOption? = nil
    
     @Published
     var errorMessage :String? = ""
     
     @Published
-    var eventEntry : [EventEntry] = []
+    var eventEntry = EventEntry.eventEntry
    
     
     private var eventoriasRepository : EventoriasRepository = EventoriasRepository()
@@ -64,14 +64,14 @@ class ListViewModel : ObservableObject {
         }
     }
         
-    func getAllProducts() async throws -> [EventEntry] {
-        try await eventoriasRepository.getAllProducts()
-    }
+  
     func fetchData(){
         eventoriasRepository.subscribe()
     }
     
     func filterSelected(option : FilterOption) async throws {
+        self.FilterOption = option
+        
         switch option {
         case .noFilter :
             self.eventEntry = try await eventoriasRepository.getAllProducts()
@@ -80,8 +80,5 @@ class ListViewModel : ObservableObject {
         case .priceLow :
             self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate(descending: false)
         }
-      
-
     }
-    
 }
