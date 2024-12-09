@@ -78,8 +78,11 @@ class ListViewModel : ObservableObject {
         }
         DispatchQueue.main.async {
             self.filter = option
+            print("filterSelected called with option: \(option.rawValue)")
 
         }
+        print("filterSelected called with option: \(option.rawValue)")
+
     }
     
 }
