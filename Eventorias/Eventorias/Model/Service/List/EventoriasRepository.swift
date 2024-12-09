@@ -117,7 +117,8 @@ public class EventoriasRepository : ObservableObject {
 extension Query {
     func getDocuments<T>(as type: T.Type) async throws -> [T] where T : Decodable {
         let snapshot = try await self.getDocuments()
-        
+        print("Document fetched: \(snapshot)") // Debugging
+
         return try snapshot.documents.map { document in
             try document.data(as: T.self)
         }

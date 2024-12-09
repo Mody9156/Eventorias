@@ -24,6 +24,9 @@ class ListViewModel : ObservableObject {
     @Published
     var eventEntry = EventEntry.eventEntry
     
+    @Published
+    var eventEntrys: [EventEntry] = []
+    
     private var eventoriasRepository : EventoriasRepository = EventoriasRepository()
     
     func formatDateString(_ date:Date) -> String {
@@ -70,11 +73,11 @@ class ListViewModel : ObservableObject {
     func filterSelected(option : FilterOption) async throws {
         switch option {
         case .noFilter :
-            self.eventEntry = try await eventoriasRepository.getAllProducts()
+            self.eventEntrys = try await eventoriasRepository.getAllProducts()
         case .priceHigh :
-            self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate(descending: true)
+            self.eventEntrys = try await eventoriasRepository.getAllProductsSortedByDate(descending: true)
         case .priceLow :
-            self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate(descending: false)
+            self.eventEntrys = try await eventoriasRepository.getAllProductsSortedByDate(descending: false)
         }
         DispatchQueue.main.async {
             self.filter = option
