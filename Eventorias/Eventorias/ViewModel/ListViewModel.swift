@@ -11,8 +11,8 @@ import Firebase
 class ListViewModel : ObservableObject {
     enum FilterOption: String, CaseIterable {
         case noFilter 
-        case priceHigh
-        case priceLow
+        case date
+        case category
     }
 
     @Published
@@ -75,10 +75,10 @@ class ListViewModel : ObservableObject {
         switch option {
         case .noFilter :
             self.eventEntry = try await eventoriasRepository.getAllProducts()
-        case .priceHigh :
-            self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate(descending: true)
-        case .priceLow :
-            self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate(descending: false)
+        case .date :
+            self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate()
+        case .category :
+            self.eventEntry = try await eventoriasRepository.getAllProductsSortedByCategory()
         }
     }
 }
