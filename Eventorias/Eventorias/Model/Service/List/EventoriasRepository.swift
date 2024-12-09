@@ -101,10 +101,18 @@ public class EventoriasRepository : ObservableObject {
         }
     
     func getAllProducts() async throws -> [EventEntry] {
-       let fetchEvents =  try await db.collection("eventorias").getDocuments(as:EventEntry.self)
-        self.eventEntry = fetchEvents
-        return fetchEvents
+        let querySnapshot = try await db.collection("eventorias").getDocuments()
+        let events = querySnapshot.documents.compactMap { document -> EventEntry? in
+            do {
+                return try document.data(as: EventEntry.self) // Décodage automatique
+            } catch {
+                print("Error decoding document: \(error)")
+                return nil
+            }
+        }
+        return events
     }
+
     
     func getAllProductsSortedByDate(descending:Bool) async throws -> [EventEntry] {
         try await db.collection("eventorias")
