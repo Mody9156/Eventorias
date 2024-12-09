@@ -101,7 +101,9 @@ public class EventoriasRepository : ObservableObject {
         }
     
     func getAllProducts() async throws -> [EventEntry] {
-        try await db.collection("eventorias").getDocuments(as:EventEntry.self)
+       let fetchEvents =  try await db.collection("eventorias").getDocuments(as:EventEntry.self)
+        self.eventEntry = fetchEvents
+        return fetchEvents
     }
     
     func getAllProductsSortedByDate(descending:Bool) async throws -> [EventEntry] {
