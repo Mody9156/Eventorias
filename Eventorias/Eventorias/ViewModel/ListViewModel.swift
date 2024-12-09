@@ -23,9 +23,7 @@ class ListViewModel : ObservableObject {
     
     @Published
     var eventEntry : [EventEntry] = []
-    
-    @Published
-    var eventEntrys: [EventEntry] = []
+   
     
     private var eventoriasRepository : EventoriasRepository = EventoriasRepository()
     
