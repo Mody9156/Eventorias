@@ -16,7 +16,7 @@ class ListViewModel : ObservableObject {
     }
 
     @Published
-    var filter : FilterOption? = nil
+    var filter : FilterOption? = .noFilter
    
     @Published
     var errorMessage :String? = ""
