@@ -34,7 +34,7 @@ struct ListView: View {
                             ZStack(alignment: .bottomTrailing) {
                                 List {
                                     Section {
-                                        ForEach(EventEntry.eventEntry,id: \.self) { entry in
+                                        ForEach(listViewModel.eventEntry,id: \.self) { entry in
                                             
                                             HStack {
                                                 Image(entry.picture)
