@@ -70,7 +70,6 @@ class ListViewModel : ObservableObject {
     
     func filterSelected(option : FilterOption) async throws {
         switch option {
-        
         case .noFilter :
             self.eventEntry = try await eventoriasRepository.getAllProducts()
             break
