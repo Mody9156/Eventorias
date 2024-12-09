@@ -20,10 +20,10 @@ struct ListView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                ZStack(alignment: .leading) {
-                    Color("Background")
-                        .ignoresSafeArea()
+            ZStack (alignment: .leading) {
+                Color("Background")
+                    .ignoresSafeArea()
+                VStack {
                     
                     VStack(alignment: .leading) {
                         CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
@@ -32,7 +32,7 @@ struct ListView: View {
                         ZStack(alignment: .bottomTrailing) {
                             List {
                                 Section {
-                                    ForEach(filter,id: \.self) { entry in
+                                    ForEach(listViewModel.eventEntry,id: \.self) { entry in
                                         
                                         HStack {
                                             Image(entry.picture)
@@ -74,7 +74,6 @@ struct ListView: View {
                                     RoundedRectangle(cornerRadius:16)
                                         .fill(Color("BackgroundDocument"))
                                         .frame(width: 358, height: 80)
-                                    
                                         .padding(2)
                                 )
                                 
@@ -99,21 +98,11 @@ struct ListView: View {
                                 }
                             }
                         }
-                        
-                        
-                        
                     }
                     .toolbar(content: myTollBarContent)
                 }
-                
             }
-            Spacer()
-            
-        }.onAppear{
-            //            Task{
-            //                try await listViewModel.addEventEntry(eventEntry)
-            //            }
-        }
+        }        
     }
     
     @ToolbarContentBuilder
@@ -131,8 +120,11 @@ struct ListView: View {
                             .foregroundColor(.white)
                         
                         TextField("", text: $searchText,onEditingChanged: { changed in
+                            
                             if changed {
                                 isAactive = true
+                                
+                                
                             }else{
                                 isAactive = false
                             }
@@ -175,46 +167,34 @@ struct ListView: View {
             }
         }
     }
-    var filter: [EventEntry]{
-        if searchText.isEmpty {
-            return EventEntry.eventEntry
-        }else{
-            return EventEntry.eventEntry.filter{$0.title.contains(searchText)}
-        }
-    }
+    //    var filter:Any{
+    //       listViewModel.tryEvent(keyword: searchText)
+    //    }
 }
 
-//struct ListView_Previews: PreviewProvider {
-//
-//    static var previews: some View {
-//        ListView(eventEntry: EventEntry(picture: "TechConference", title: "Tech conference", dateCreationString: "August 5, 2024", poster: "TechConferencePoster"), listViewModel: ListViewModel())
-//    }
-//}
 
 struct CustomButton: View {
     @StateObject var listViewModel : ListViewModel
     @Binding var tryEvent : Bool
+    
     var body: some View {
-        Button(action:{
-            
-            listViewModel.tryEvent()
-        }){
-            ZStack {
-                Rectangle()
-                    .frame(width: 105, height: 35)
-                    .cornerRadius(20)
-                    .foregroundColor(Color("BackgroundDocument"))
-                
-                HStack(alignment: .top){
-                    Image("Sort")
-                        .resizable()
-                        .frame(width: 12, height: 16)
-                    
-                    Text("Sorting")
-                        .foregroundColor(.white)
+        Menu("Sorting : \(listViewModel.FilterOption?.rawValue ?? "NONE")") {
+            ForEach(ListViewModel.FilterOption.allCases, id:\.self){ filter in
+                Button(filter.rawValue){
+                    Task{
+                        print("voici la liste filtré :\(listViewModel.FilterOption?.rawValue ?? "NONE")")
+                        
+                        try? await listViewModel.filterSelected(option: filter)
+                        
+                    }
                 }
-                .padding(.horizontal)
             }
         }
     }
 }
+//
+//struct MyPreviewProvider_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ListView(eventEntry: EventEntry(picture: "MusicFestival", title: "Music festival", dateCreationString:"2024-06-15T12:00:00Z", poster: "MusicFestivalPoster",description:"Join us for an unforgettable Music Festival celebrating the vibrant sounds of today's most talented artists. This event will feature an exciting lineup of performances, ranging from electrifying live bands to soulful solo acts, offering a diverse and immersive musical experience. Whether you're a devoted music enthusiast or simply looking for a weekend of fun, you'll have the chance to enjoy an eclectic mix of genres and discover emerging talent. Don't miss this opportunity to connect with fellow music lovers and create lasting memories in an energetic, festival atmosphere!",hour:"2024-06-15T12:00:00Z", category: "Music",place: Adress(street: "81-800 Avenue 51", city: "Indio", posttalCode: "92201", country: "USA")), searchText: "", isAactive: true, listViewModel: ListViewModel(), tryEvent: true)
+//    }
+//}

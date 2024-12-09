@@ -6,16 +6,26 @@
 //
 
 import Foundation
+import Firebase
 
 class ListViewModel : ObservableObject {
+    enum FilterOption: String, CaseIterable {
+        case noFilter 
+        case date
+        case category
+    }
+
+    @Published
+    var FilterOption : FilterOption? = nil
+   
     @Published
     var errorMessage :String? = ""
     
     @Published
-    var eventEntry = EventEntry.eventEntry
+    var eventEntry : [EventEntry] = []
     
-    private var eventoriasRepository : EventoriasRepository = EventoriasRepository()
-    
+    private var eventoriasRepository = EventoriasRepository()
+  
     func formatDateString(_ date:Date) -> String {
         let date = Date.stringFromDate(date)
         return date
@@ -39,14 +49,37 @@ class ListViewModel : ObservableObject {
         }
     }
     
-    func tryEvent()  {
-        eventoriasRepository.tryEvenement()
-        errorMessage = nil
+    func tryEvent(keyword: String) {
+        eventoriasRepository.searchEvents(by: keyword) { [weak self]  result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let events):
+                    self?.eventEntry = events
+                case .failure(let error):
+                    print("Error :\(error.localizedDescription)")
+                    self?.eventEntry = []
+                }
+            }
+        }
     }
-    
+        
     func fetchData(){
         eventoriasRepository.subscribe()
     }
-    
-    
+   
+     // verifier l'incrémentation
+    func filterSelected(option : FilterOption) async throws {
+        DispatchQueue.main.async {
+            self.FilterOption = option
+        }
+        
+        switch option {
+        case .noFilter :
+            self.eventEntry = try await eventoriasRepository.getAllProducts()
+        case .category :
+            self.eventEntry = try await eventoriasRepository.getAllProductsSortedByCategory()
+        case .date:
+            self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate()
+        }
+    }
 }

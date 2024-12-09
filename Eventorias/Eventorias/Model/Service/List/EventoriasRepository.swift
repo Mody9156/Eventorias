@@ -9,12 +9,13 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-public class EventoriasRepository : ObservableObject, EventListRepresentable {
+public class EventoriasRepository : ObservableObject {
     
     @Published
-    var eventEntry = [EventEntry]()
+    var eventEntry : [EventEntry] = []
     var db = Firestore.firestore()
     
+ 
     func subscribe(){
         let query = db
             .collection("eventorias")
@@ -41,66 +42,101 @@ public class EventoriasRepository : ObservableObject, EventListRepresentable {
         
         do{
             try db
-                 .collection("eventorias")
-                 .addDocument(from: eventEntry){ error in
-                     if let error = error {
-                         print("Erreur lors de l'ajout de l'événement : \(error.localizedDescription)")
-                     } else {
-                         print("Événement ajouté avec succès")
-                     }
-                 }
+                .collection("eventorias")
+                .addDocument(from: eventEntry){ error in
+                    if let error = error {
+                        print("Erreur lors de l'ajout de l'événement : \(error.localizedDescription)")
+                    } else {
+                        print("Événement ajouté avec succès")
+                    }
+                }
             
             print("")
         }catch{
             print("Erreur lors de la conversion de l'événement en dictionnaire : \(error.localizedDescription)")
-
+            
         }
-       
+        
     }
     
-    func tryEvenement() {
-         db
-            .collection("eventorias")
-            .order(by: "title",descending: true)
-            .getDocuments(completion: { snapshot, error in
-                if let error = error {
-                    print("Erreur : \(error)")
-                    return
-                }
-                
-                self.eventEntry = snapshot?.documents.compactMap { document -> EventEntry? in
-                                   let data = document.data()
-                                   let title = data["title"] as? String ?? ""
-                                   let picture = data["picture"] as? String ?? ""
-                                   let poster = data["poster"] as? String ?? ""
-                                   let dateCreationString = data["dateCreationString"] as? String ?? ""
-                                   let description = data["description"] as?String ?? ""
-                                   let hour = data["hour"] as?String ?? ""
-                                   let category = data["category"] as?String ?? ""
-                                   let place = data["place"] as?String ?? ""
-                                   let street = data["street"] as?String ?? ""
-                                   let posttalCode = data["posttalCode"] as?String ?? ""
-                                   let country = data["country"] as?String ?? ""
-                                   let city = data["city"] as?String ?? ""
-                    
-                    
-                    let event = EventEntry(picture: "TechConference", title: "Tech conference", dateCreationString: "2024-08-05T12:00:00Z", poster: "TechConferencePoster",description:"Join us for an exclusive Tech Conference showcasing the latest innovations and breakthroughs in technology. This conference will feature a dynamic lineup of keynote speakers, interactive workshops, and cutting-edge product demonstrations, offering a unique opportunity to explore the forefront of technological advancement. Whether you're a seasoned professional, an entrepreneur, or simply curious about the future of tech, you'll have the chance to connect with industry leaders, gain valuable insights, and expand your network. Don’t miss this opportunity to be part of a transformative experience that shapes the future of innovation!",hour:"2024-08-05T02:30:00Z", category: "Conference", place: Adress(street: "300 W San Carlos St", city: "San Jose", posttalCode: "95110", country: "USA"))
-                                   return event
-                               } ?? []
-            })
+    func searchEvents(by keyword: String, completion: @escaping (Result<[EventEntry], Error>) -> Void) {
+        var query: Query = Firestore.firestore().collection("eventorias")
+            .order(by: "title", descending: true)
+        
+        if !keyword.isEmpty {
+            query = query.whereField("title", isGreaterThanOrEqualTo: keyword)
+                .whereField("title", isLessThanOrEqualTo: keyword + "\u{f8ff}")
+        }
+        
+        query.addSnapshotListener { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let documents = snapshot?.documents else {
+                completion(.success([]))
+                return
+            }
+            
+            let events = documents.compactMap { doc -> EventEntry? in
+                let data = doc.data()
+                return EventEntry(
+                    picture: data["picture"] as? String ?? "",
+                    title: data["title"] as? String ?? "",
+                    dateCreationString: data["dateCreationString"] as? String ?? "",
+                    poster: data["poster"] as? String ?? "",
+                    description: data["description"] as? String ?? "",
+                    hour: data["hour"] as? String ?? "",
+                    category: data["category"] as? String ?? "",
+                    place: Adress(
+                        street: data["street"] as? String ?? "",
+                        city: data["city"] as? String ?? "",
+                        posttalCode: data["posttalCode"] as? String ?? "",
+                        country: data["country"] as? String ?? ""
+                    )
+                )
+            }
+            completion(.success(events))
+        }
     }
     
-//    func fetchData(){
-//        db
-//            .collection("eventorias")
-//            .getDocuments { snapshot, error in
-//                if let error = error {
-//                    print("Erreur lors de la récupération des données : \(error.localizedDescription)")
-//                }else {
-//                    eventEntry = snapshot?.documents.compactMap{ document in
-//                        return document.get("eventoria") as? String
-//                    } ?? []
-//                }
-//            }
-//    }
+    func getAllProducts() async throws -> [EventEntry] {
+         try await db.collection("eventorias").getDocuments(as: EventEntry.self)
+        
+    }
+    
+    
+    func getAllProductsSortedByDate() async throws -> [EventEntry] {
+       let data =  try await db.collection("eventorias")
+            .order(by: "dateCreationString").getDocuments(as: EventEntry.self)
+        
+        return data
+        
+    }
+    
+    func getAllProductsSortedByCategory() async throws -> [EventEntry] {
+        try await db.collection("eventorias")
+            .order(by: "category", descending: true).getDocuments(as: EventEntry.self)
+    }
+    
+
+    func fetchEvents() async throws -> [EventEntry] {
+        let eventsQuery = db.collection("eventorias")
+        
+        return try await eventsQuery.getDocuments(as: EventEntry.self)
+    }
 }
+
+extension Query {
+    func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable {
+        let snapshot = try await self.getDocuments()
+      
+       
+        // Conversion des données en objets de type T
+        return try snapshot.documents.map { document in
+            try document.data(as: T.self)
+        }
+    }
+}
+
