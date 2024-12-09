@@ -15,7 +15,8 @@ class ListViewModel : ObservableObject {
         case priceLow
     }
     
-    @Published var filter : FilterOption? = nil
+    @Published
+    var filter : FilterOption? = nil
    
     @Published
     var errorMessage :String? = ""
@@ -61,9 +62,7 @@ class ListViewModel : ObservableObject {
             }
         }
     }
-    
-  
-    
+        
     func fetchData(){
         eventoriasRepository.subscribe()
     }
