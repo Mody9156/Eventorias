@@ -101,10 +101,20 @@ public class EventoriasRepository : ObservableObject {
         }
 
     func getAllProductsSortedByDate(descending:Bool) async throws -> [EventEntry] {
-        var query : Query = db.collection("eventorias")
-            .order(by: "title", descending: descending)
-            .getDocument
-        
-        return [EventEntry].seld
+        try await db.collection("eventorias")
+            .order(by: "title", descending: descending).getDocuments(as: EventEntry.self)
+
+
+
+    }
+
+}
+
+extension Query {
+    func getDocuments<T: Decodable>(as type: T.Type) async throws -> [T] {
+        let snapshot = try await self.getDocuments()
+        return try snapshot.documents.map { document in
+            try document.data(as: T.self)
+        }
     }
 }
