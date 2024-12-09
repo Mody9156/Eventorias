@@ -22,13 +22,10 @@ class ListViewModel : ObservableObject {
     var errorMessage :String? = ""
     
     @Published
-    var eventEntry : [EventEntry]
+    var eventEntry : [EventEntry] = []
     
     private var eventoriasRepository = EventoriasRepository()
-
-    init(eventEntry: [EventEntry]) {
-           self.eventEntry = eventEntry
-    }
+  
    
     func formatDateString(_ date:Date) -> String {
         let date = Date.stringFromDate(date)
