@@ -58,10 +58,14 @@ class ListViewModel : ObservableObject {
                     print("Error :\(error.localizedDescription)")
                     self?.eventEntry = []
                 }
-                
             }
         }
     }
+    
+    func getAllProducts() async throws {
+        self.eventEntry = try await EventEntry.eventEntry
+    }
+    
     
     func fetchData(){
         eventoriasRepository.subscribe()
@@ -69,6 +73,10 @@ class ListViewModel : ObservableObject {
     
     func filterSelected(option : FilterOption) async throws {
         switch option {
+        
+        case .noFilter :
+            self.eventEntry = try await eventoriasRepository.EventEntry.eventEntry()
+            break
         case .priceHigh :
             self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate(descending: true)
             break

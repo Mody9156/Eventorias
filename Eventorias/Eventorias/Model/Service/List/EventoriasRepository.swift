@@ -104,10 +104,12 @@ public class EventoriasRepository : ObservableObject {
         try await db.collection("eventorias")
             .order(by: "title", descending: descending).getDocuments(as: EventEntry.self)
 
-
-
+    }
+    func getAllProducts() async throws -> [EventEntry] {
+        try await db.collection("eventorias").getDocuments(as:EventEntry.self)
     }
 
+    
 }
 
 extension Query {
