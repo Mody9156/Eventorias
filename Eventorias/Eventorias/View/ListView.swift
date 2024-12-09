@@ -105,11 +105,7 @@ struct ListView: View {
                 }
             }
         }
-        .onAppear{
-            Task{
-                try await listViewModel.getAllProducts()
-            }
-        }
+        
     }
     
     @ToolbarContentBuilder
