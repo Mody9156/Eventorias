@@ -74,7 +74,7 @@ class ListViewModel : ObservableObject {
         case .priceHigh :
             self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate(descending: true)
         case .priceLow :
-            self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate(descending: true)
+            self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate(descending: false)
         }
         self.filter = option
     }
