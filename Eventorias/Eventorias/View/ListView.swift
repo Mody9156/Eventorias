@@ -188,6 +188,7 @@ struct CustomButton: View {
                         print("voici la liste filtré :\(listViewModel.filter?.rawValue ?? "NONE")")
                        
                       try? await listViewModel.filterSelected(option: filter)
+                        print("voici la liste filtré :\(listViewModel.filter?.rawValue ?? "NONE")")
                     }
                 }
             }
