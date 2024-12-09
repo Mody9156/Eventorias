@@ -10,6 +10,7 @@ import Firebase
 
 class ListViewModel : ObservableObject {
     enum FilterOption : String, CaseIterable {
+        case noFilter
         case priceHigh
         case priceLow
     }
