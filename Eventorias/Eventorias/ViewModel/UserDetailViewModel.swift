@@ -41,7 +41,7 @@ class UserDetailViewModel: ObservableObject{
     
     func showMapsStatic(_ Latitude:Double,_ Longitude:Double) async throws -> Data {
         do{
-            var api =  try loadAPIKey()
+            let api =  try loadAPIKey()
             let data = try await googleMapView.showMapsWithURLRequest(Latitude, Longitude, api)
             print("Carte récupérée avec succès : \(data)")
             return data
