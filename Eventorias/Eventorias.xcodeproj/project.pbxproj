@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		236060422D0DC7BC00E3504F /* EventoriasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060412D0DC7BC00E3504F /* EventoriasApp.swift */; };
-		236060442D0DC7BC00E3504F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060432D0DC7BC00E3504F /* ContentView.swift */; };
 		236060462D0DC7C800E3504F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 236060452D0DC7C800E3504F /* Assets.xcassets */; };
 		236060492D0DC7C800E3504F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 236060482D0DC7C800E3504F /* Preview Assets.xcassets */; };
 		236060532D0DC7CA00E3504F /* EventoriasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060522D0DC7CA00E3504F /* EventoriasTests.swift */; };
@@ -69,7 +68,6 @@
 /* Begin PBXFileReference section */
 		2360603E2D0DC7BC00E3504F /* Eventorias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventorias.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		236060412D0DC7BC00E3504F /* EventoriasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasApp.swift; sourceTree = "<group>"; };
-		236060432D0DC7BC00E3504F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		236060452D0DC7C800E3504F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		236060482D0DC7C800E3504F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2360604E2D0DC7CA00E3504F /* EventoriasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventoriasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,7 +163,6 @@
 				2360607A2D0DE43300E3504F /* View */,
 				236060782D0DDE6E00E3504F /* GoogleService-Info.plist */,
 				236060412D0DC7BC00E3504F /* EventoriasApp.swift */,
-				236060432D0DC7BC00E3504F /* ContentView.swift */,
 				236060452D0DC7C800E3504F /* Assets.xcassets */,
 				236060472D0DC7C800E3504F /* Preview Content */,
 			);
@@ -493,7 +490,6 @@
 				236060B62D0DE48300E3504F /* BasicHTTPClient.swift in Sources */,
 				236060842D0DE43B00E3504F /* UserDetailView.swift in Sources */,
 				236060B52D0DE48200E3504F /* FirebaseAuthenticationManager.swift in Sources */,
-				236060442D0DC7BC00E3504F /* ContentView.swift in Sources */,
 				236060422D0DC7BC00E3504F /* EventoriasApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
