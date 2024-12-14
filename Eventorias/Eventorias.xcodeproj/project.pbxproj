@@ -20,6 +20,33 @@
 		236060732D0DCB0700E3504F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 236060722D0DCB0700E3504F /* FirebaseFirestore */; };
 		236060752D0DCB0700E3504F /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 236060742D0DCB0700E3504F /* FirebaseFirestoreSwift */; };
 		236060792D0DDE6E00E3504F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 236060782D0DDE6E00E3504F /* GoogleService-Info.plist */; };
+		236060802D0DE43B00E3504F /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360607B2D0DE43300E3504F /* RegistrationView.swift */; };
+		236060812D0DE43B00E3504F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360607C2D0DE43300E3504F /* ProfileView.swift */; };
+		236060822D0DE43B00E3504F /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360607D2D0DE43300E3504F /* ListView.swift */; };
+		236060832D0DE43B00E3504F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360607E2D0DE43300E3504F /* HomeView.swift */; };
+		236060842D0DE43B00E3504F /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360607F2D0DE43300E3504F /* UserDetailView.swift */; };
+		2360608D2D0DE47200E3504F /* ViewModelManager 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060862D0DE47200E3504F /* ViewModelManager 2.swift */; };
+		2360608E2D0DE47200E3504F /* AuthenticationManager 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060872D0DE47200E3504F /* AuthenticationManager 2.swift */; };
+		2360608F2D0DE47200E3504F /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060882D0DE47200E3504F /* AuthenticationManager.swift */; };
+		236060902D0DE47200E3504F /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060892D0DE47200E3504F /* UserDetailViewModel.swift */; };
+		236060912D0DE47200E3504F /* ViewModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360608A2D0DE47200E3504F /* ViewModelManager.swift */; };
+		236060922D0DE47200E3504F /* AuthentificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360608B2D0DE47200E3504F /* AuthentificationViewModel.swift */; };
+		236060932D0DE47200E3504F /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360608C2D0DE47200E3504F /* ListViewModel.swift */; };
+		236060AE2D0DE48200E3504F /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060962D0DE48200E3504F /* AuthToken.swift */; };
+		236060AF2D0DE48200E3504F /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060982D0DE48200E3504F /* DateExtension.swift */; };
+		236060B02D0DE48200E3504F /* EventEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060992D0DE48200E3504F /* EventEntry.swift */; };
+		236060B12D0DE48200E3504F /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2360609A2D0DE48200E3504F /* Config.plist */; };
+		236060B22D0DE48200E3504F /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360609C2D0DE48200E3504F /* GoogleMapView.swift */; };
+		236060B32D0DE48200E3504F /* EventoriasRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360609F2D0DE48200E3504F /* EventoriasRepository.swift */; };
+		236060B42D0DE48200E3504F /* FirebaseAuthenticationManager 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060A12D0DE48200E3504F /* FirebaseAuthenticationManager 2.swift */; };
+		236060B52D0DE48200E3504F /* FirebaseAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060A22D0DE48200E3504F /* FirebaseAuthenticationManager.swift */; };
+		236060B62D0DE48300E3504F /* BasicHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060A52D0DE48200E3504F /* BasicHTTPClient.swift */; };
+		236060B72D0DE48300E3504F /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060A62D0DE48200E3504F /* HTTPService.swift */; };
+		236060B82D0DE48300E3504F /* EventListRepresentable 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060A72D0DE48200E3504F /* EventListRepresentable 2.swift */; };
+		236060B92D0DE48300E3504F /* EventListRepresentable 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060A92D0DE48200E3504F /* EventListRepresentable 2.swift */; };
+		236060BA2D0DE48300E3504F /* EventListRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060AA2D0DE48200E3504F /* EventListRepresentable.swift */; };
+		236060BB2D0DE48300E3504F /* protocolsFirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060AC2D0DE48200E3504F /* protocolsFirebaseData.swift */; };
+		236060BC2D0DE48300E3504F /* protocolsFirebaseData 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060AD2D0DE48200E3504F /* protocolsFirebaseData 2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +78,33 @@
 		2360605C2D0DC7CB00E3504F /* EventoriasUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasUITests.swift; sourceTree = "<group>"; };
 		2360605E2D0DC7CB00E3504F /* EventoriasUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		236060782D0DDE6E00E3504F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2360607B2D0DE43300E3504F /* RegistrationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		2360607C2D0DE43300E3504F /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		2360607D2D0DE43300E3504F /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		2360607E2D0DE43300E3504F /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		2360607F2D0DE43300E3504F /* UserDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
+		236060862D0DE47200E3504F /* ViewModelManager 2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewModelManager 2.swift"; sourceTree = "<group>"; };
+		236060872D0DE47200E3504F /* AuthenticationManager 2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AuthenticationManager 2.swift"; sourceTree = "<group>"; };
+		236060882D0DE47200E3504F /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		236060892D0DE47200E3504F /* UserDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
+		2360608A2D0DE47200E3504F /* ViewModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelManager.swift; sourceTree = "<group>"; };
+		2360608B2D0DE47200E3504F /* AuthentificationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthentificationViewModel.swift; sourceTree = "<group>"; };
+		2360608C2D0DE47200E3504F /* ListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		236060962D0DE48200E3504F /* AuthToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
+		236060982D0DE48200E3504F /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		236060992D0DE48200E3504F /* EventEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventEntry.swift; sourceTree = "<group>"; };
+		2360609A2D0DE48200E3504F /* Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
+		2360609C2D0DE48200E3504F /* GoogleMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
+		2360609F2D0DE48200E3504F /* EventoriasRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventoriasRepository.swift; sourceTree = "<group>"; };
+		236060A12D0DE48200E3504F /* FirebaseAuthenticationManager 2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FirebaseAuthenticationManager 2.swift"; sourceTree = "<group>"; };
+		236060A22D0DE48200E3504F /* FirebaseAuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationManager.swift; sourceTree = "<group>"; };
+		236060A52D0DE48200E3504F /* BasicHTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicHTTPClient.swift; sourceTree = "<group>"; };
+		236060A62D0DE48200E3504F /* HTTPService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
+		236060A72D0DE48200E3504F /* EventListRepresentable 2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EventListRepresentable 2.swift"; sourceTree = "<group>"; };
+		236060A92D0DE48200E3504F /* EventListRepresentable 2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EventListRepresentable 2.swift"; sourceTree = "<group>"; };
+		236060AA2D0DE48200E3504F /* EventListRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListRepresentable.swift; sourceTree = "<group>"; };
+		236060AC2D0DE48200E3504F /* protocolsFirebaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = protocolsFirebaseData.swift; sourceTree = "<group>"; };
+		236060AD2D0DE48200E3504F /* protocolsFirebaseData 2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "protocolsFirebaseData 2.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +160,9 @@
 		236060402D0DC7BC00E3504F /* Eventorias */ = {
 			isa = PBXGroup;
 			children = (
+				236060942D0DE48100E3504F /* Model */,
+				236060852D0DE47200E3504F /* ViewModel */,
+				2360607A2D0DE43300E3504F /* View */,
 				236060782D0DDE6E00E3504F /* GoogleService-Info.plist */,
 				236060412D0DC7BC00E3504F /* EventoriasApp.swift */,
 				236060432D0DC7BC00E3504F /* ContentView.swift */,
@@ -138,6 +195,134 @@
 				2360605E2D0DC7CB00E3504F /* EventoriasUITestsLaunchTests.swift */,
 			);
 			path = EventoriasUITests;
+			sourceTree = "<group>";
+		};
+		2360607A2D0DE43300E3504F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2360607B2D0DE43300E3504F /* RegistrationView.swift */,
+				2360607C2D0DE43300E3504F /* ProfileView.swift */,
+				2360607D2D0DE43300E3504F /* ListView.swift */,
+				2360607E2D0DE43300E3504F /* HomeView.swift */,
+				2360607F2D0DE43300E3504F /* UserDetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		236060852D0DE47200E3504F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				236060862D0DE47200E3504F /* ViewModelManager 2.swift */,
+				236060872D0DE47200E3504F /* AuthenticationManager 2.swift */,
+				236060882D0DE47200E3504F /* AuthenticationManager.swift */,
+				236060892D0DE47200E3504F /* UserDetailViewModel.swift */,
+				2360608A2D0DE47200E3504F /* ViewModelManager.swift */,
+				2360608B2D0DE47200E3504F /* AuthentificationViewModel.swift */,
+				2360608C2D0DE47200E3504F /* ListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		236060942D0DE48100E3504F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				236060952D0DE48200E3504F /* Token */,
+				236060972D0DE48200E3504F /* Extension */,
+				236060992D0DE48200E3504F /* EventEntry.swift */,
+				2360609A2D0DE48200E3504F /* Config.plist */,
+				2360609B2D0DE48200E3504F /* APIMapsStatic */,
+				2360609D2D0DE48200E3504F /* Service */,
+				236060A32D0DE48200E3504F /* Protocols */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		236060952D0DE48200E3504F /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				236060962D0DE48200E3504F /* AuthToken.swift */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
+		236060972D0DE48200E3504F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				236060982D0DE48200E3504F /* DateExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		2360609B2D0DE48200E3504F /* APIMapsStatic */ = {
+			isa = PBXGroup;
+			children = (
+				2360609C2D0DE48200E3504F /* GoogleMapView.swift */,
+			);
+			path = APIMapsStatic;
+			sourceTree = "<group>";
+		};
+		2360609D2D0DE48200E3504F /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				2360609E2D0DE48200E3504F /* List */,
+				236060A02D0DE48200E3504F /* Authentification */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		2360609E2D0DE48200E3504F /* List */ = {
+			isa = PBXGroup;
+			children = (
+				2360609F2D0DE48200E3504F /* EventoriasRepository.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		236060A02D0DE48200E3504F /* Authentification */ = {
+			isa = PBXGroup;
+			children = (
+				236060A12D0DE48200E3504F /* FirebaseAuthenticationManager 2.swift */,
+				236060A22D0DE48200E3504F /* FirebaseAuthenticationManager.swift */,
+			);
+			path = Authentification;
+			sourceTree = "<group>";
+		};
+		236060A32D0DE48200E3504F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				236060A42D0DE48200E3504F /* Maps */,
+				236060A72D0DE48200E3504F /* EventListRepresentable 2.swift */,
+				236060A82D0DE48200E3504F /* List */,
+				236060AB2D0DE48200E3504F /* Authentification */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		236060A42D0DE48200E3504F /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				236060A52D0DE48200E3504F /* BasicHTTPClient.swift */,
+				236060A62D0DE48200E3504F /* HTTPService.swift */,
+			);
+			path = Maps;
+			sourceTree = "<group>";
+		};
+		236060A82D0DE48200E3504F /* List */ = {
+			isa = PBXGroup;
+			children = (
+				236060A92D0DE48200E3504F /* EventListRepresentable 2.swift */,
+				236060AA2D0DE48200E3504F /* EventListRepresentable.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		236060AB2D0DE48200E3504F /* Authentification */ = {
+			isa = PBXGroup;
+			children = (
+				236060AC2D0DE48200E3504F /* protocolsFirebaseData.swift */,
+				236060AD2D0DE48200E3504F /* protocolsFirebaseData 2.swift */,
+			);
+			path = Authentification;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +439,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				236060B12D0DE48200E3504F /* Config.plist in Resources */,
 				236060492D0DC7C800E3504F /* Preview Assets.xcassets in Resources */,
 				236060462D0DC7C800E3504F /* Assets.xcassets in Resources */,
 				236060792D0DDE6E00E3504F /* GoogleService-Info.plist in Resources */,
@@ -281,6 +467,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				236060B22D0DE48200E3504F /* GoogleMapView.swift in Sources */,
+				236060812D0DE43B00E3504F /* ProfileView.swift in Sources */,
+				236060802D0DE43B00E3504F /* RegistrationView.swift in Sources */,
+				236060BA2D0DE48300E3504F /* EventListRepresentable.swift in Sources */,
+				236060932D0DE47200E3504F /* ListViewModel.swift in Sources */,
+				236060B32D0DE48200E3504F /* EventoriasRepository.swift in Sources */,
+				236060BC2D0DE48300E3504F /* protocolsFirebaseData 2.swift in Sources */,
+				236060822D0DE43B00E3504F /* ListView.swift in Sources */,
+				236060B42D0DE48200E3504F /* FirebaseAuthenticationManager 2.swift in Sources */,
+				236060922D0DE47200E3504F /* AuthentificationViewModel.swift in Sources */,
+				236060902D0DE47200E3504F /* UserDetailViewModel.swift in Sources */,
+				236060912D0DE47200E3504F /* ViewModelManager.swift in Sources */,
+				236060B72D0DE48300E3504F /* HTTPService.swift in Sources */,
+				2360608F2D0DE47200E3504F /* AuthenticationManager.swift in Sources */,
+				236060AE2D0DE48200E3504F /* AuthToken.swift in Sources */,
+				236060B82D0DE48300E3504F /* EventListRepresentable 2.swift in Sources */,
+				236060B02D0DE48200E3504F /* EventEntry.swift in Sources */,
+				236060B92D0DE48300E3504F /* EventListRepresentable 2.swift in Sources */,
+				236060BB2D0DE48300E3504F /* protocolsFirebaseData.swift in Sources */,
+				236060AF2D0DE48200E3504F /* DateExtension.swift in Sources */,
+				236060832D0DE43B00E3504F /* HomeView.swift in Sources */,
+				2360608E2D0DE47200E3504F /* AuthenticationManager 2.swift in Sources */,
+				2360608D2D0DE47200E3504F /* ViewModelManager 2.swift in Sources */,
+				236060B62D0DE48300E3504F /* BasicHTTPClient.swift in Sources */,
+				236060842D0DE43B00E3504F /* UserDetailView.swift in Sources */,
+				236060B52D0DE48200E3504F /* FirebaseAuthenticationManager.swift in Sources */,
 				236060442D0DC7BC00E3504F /* ContentView.swift in Sources */,
 				236060422D0DC7BC00E3504F /* EventoriasApp.swift in Sources */,
 			);
