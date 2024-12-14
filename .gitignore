@@ -6,7 +6,7 @@
 xcuserdata/
 
 # Ignorer le fichier spécifique
-Eventorias/Model/Config.plist
+./Eventorias/Eventorias/Model/Config.plist
 
 *.plist
 
