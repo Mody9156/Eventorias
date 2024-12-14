@@ -102,8 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				236060942D0DE48100E3504F /* Model */,
-				236060852D0DE47200E3504F /* ViewModel */,
 				2360607A2D0DE43300E3504F /* View */,
+				236060852D0DE47200E3504F /* ViewModel */,
 				236060782D0DDE6E00E3504F /* GoogleService-Info.plist */,
 				236060412D0DC7BC00E3504F /* EventoriasApp.swift */,
 				236060452D0DC7C800E3504F /* Assets.xcassets */,
