@@ -5,6 +5,9 @@
 ## User settings
 xcuserdata/
 
+# Ignorer le fichier spécifique
+/Users/keita/Movies/Eventorias/Eventorias/Eventorias/Model/Config.plist
+
 ## Obj-C/Swift specific
 *.hmap
 
