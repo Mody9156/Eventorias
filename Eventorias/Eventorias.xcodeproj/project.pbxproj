@@ -24,9 +24,6 @@
 		236060822D0DE43B00E3504F /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360607D2D0DE43300E3504F /* ListView.swift */; };
 		236060832D0DE43B00E3504F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360607E2D0DE43300E3504F /* HomeView.swift */; };
 		236060842D0DE43B00E3504F /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360607F2D0DE43300E3504F /* UserDetailView.swift */; };
-		2360608D2D0DE47200E3504F /* ViewModelManager 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060862D0DE47200E3504F /* ViewModelManager 2.swift */; };
-		2360608E2D0DE47200E3504F /* AuthenticationManager 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060872D0DE47200E3504F /* AuthenticationManager 2.swift */; };
-		2360608F2D0DE47200E3504F /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060882D0DE47200E3504F /* AuthenticationManager.swift */; };
 		236060902D0DE47200E3504F /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060892D0DE47200E3504F /* UserDetailViewModel.swift */; };
 		236060912D0DE47200E3504F /* ViewModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360608A2D0DE47200E3504F /* ViewModelManager.swift */; };
 		236060922D0DE47200E3504F /* AuthentificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360608B2D0DE47200E3504F /* AuthentificationViewModel.swift */; };
@@ -81,9 +78,6 @@
 		2360607D2D0DE43300E3504F /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		2360607E2D0DE43300E3504F /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		2360607F2D0DE43300E3504F /* UserDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
-		236060862D0DE47200E3504F /* ViewModelManager 2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewModelManager 2.swift"; sourceTree = "<group>"; };
-		236060872D0DE47200E3504F /* AuthenticationManager 2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AuthenticationManager 2.swift"; sourceTree = "<group>"; };
-		236060882D0DE47200E3504F /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		236060892D0DE47200E3504F /* UserDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
 		2360608A2D0DE47200E3504F /* ViewModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelManager.swift; sourceTree = "<group>"; };
 		2360608B2D0DE47200E3504F /* AuthentificationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthentificationViewModel.swift; sourceTree = "<group>"; };
@@ -209,9 +203,6 @@
 		236060852D0DE47200E3504F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				236060862D0DE47200E3504F /* ViewModelManager 2.swift */,
-				236060872D0DE47200E3504F /* AuthenticationManager 2.swift */,
-				236060882D0DE47200E3504F /* AuthenticationManager.swift */,
 				236060892D0DE47200E3504F /* UserDetailViewModel.swift */,
 				2360608A2D0DE47200E3504F /* ViewModelManager.swift */,
 				2360608B2D0DE47200E3504F /* AuthentificationViewModel.swift */,
@@ -477,7 +468,6 @@
 				236060902D0DE47200E3504F /* UserDetailViewModel.swift in Sources */,
 				236060912D0DE47200E3504F /* ViewModelManager.swift in Sources */,
 				236060B72D0DE48300E3504F /* HTTPService.swift in Sources */,
-				2360608F2D0DE47200E3504F /* AuthenticationManager.swift in Sources */,
 				236060AE2D0DE48200E3504F /* AuthToken.swift in Sources */,
 				236060B82D0DE48300E3504F /* EventListRepresentable 2.swift in Sources */,
 				236060B02D0DE48200E3504F /* EventEntry.swift in Sources */,
@@ -485,8 +475,6 @@
 				236060BB2D0DE48300E3504F /* protocolsFirebaseData.swift in Sources */,
 				236060AF2D0DE48200E3504F /* DateExtension.swift in Sources */,
 				236060832D0DE43B00E3504F /* HomeView.swift in Sources */,
-				2360608E2D0DE47200E3504F /* AuthenticationManager 2.swift in Sources */,
-				2360608D2D0DE47200E3504F /* ViewModelManager 2.swift in Sources */,
 				236060B62D0DE48300E3504F /* BasicHTTPClient.swift in Sources */,
 				236060842D0DE43B00E3504F /* UserDetailView.swift in Sources */,
 				236060B52D0DE48200E3504F /* FirebaseAuthenticationManager.swift in Sources */,
