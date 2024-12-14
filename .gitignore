@@ -6,7 +6,8 @@
 xcuserdata/
 
 # Ignorer le fichier spécifique
-Eventorias/Eventorias/Model/Config.plist
+Eventorias/Model/Config.plist
+
 
 ## Obj-C/Swift specific
 *.hmap
