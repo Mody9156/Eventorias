@@ -31,15 +31,11 @@
 		236060B12D0DE48200E3504F /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2360609A2D0DE48200E3504F /* Config.plist */; };
 		236060B22D0DE48200E3504F /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360609C2D0DE48200E3504F /* GoogleMapView.swift */; };
 		236060B32D0DE48200E3504F /* EventoriasRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360609F2D0DE48200E3504F /* EventoriasRepository.swift */; };
-		236060B42D0DE48200E3504F /* FirebaseAuthenticationManager 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060A12D0DE48200E3504F /* FirebaseAuthenticationManager 2.swift */; };
 		236060B52D0DE48200E3504F /* FirebaseAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060A22D0DE48200E3504F /* FirebaseAuthenticationManager.swift */; };
 		236060B62D0DE48300E3504F /* BasicHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060A52D0DE48200E3504F /* BasicHTTPClient.swift */; };
 		236060B72D0DE48300E3504F /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060A62D0DE48200E3504F /* HTTPService.swift */; };
-		236060B82D0DE48300E3504F /* EventListRepresentable 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060A72D0DE48200E3504F /* EventListRepresentable 2.swift */; };
-		236060B92D0DE48300E3504F /* EventListRepresentable 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060A92D0DE48200E3504F /* EventListRepresentable 2.swift */; };
 		236060BA2D0DE48300E3504F /* EventListRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060AA2D0DE48200E3504F /* EventListRepresentable.swift */; };
 		236060BB2D0DE48300E3504F /* protocolsFirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060AC2D0DE48200E3504F /* protocolsFirebaseData.swift */; };
-		236060BC2D0DE48300E3504F /* protocolsFirebaseData 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060AD2D0DE48200E3504F /* protocolsFirebaseData 2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,15 +59,11 @@
 		2360609A2D0DE48200E3504F /* Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		2360609C2D0DE48200E3504F /* GoogleMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
 		2360609F2D0DE48200E3504F /* EventoriasRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventoriasRepository.swift; sourceTree = "<group>"; };
-		236060A12D0DE48200E3504F /* FirebaseAuthenticationManager 2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FirebaseAuthenticationManager 2.swift"; sourceTree = "<group>"; };
 		236060A22D0DE48200E3504F /* FirebaseAuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationManager.swift; sourceTree = "<group>"; };
 		236060A52D0DE48200E3504F /* BasicHTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicHTTPClient.swift; sourceTree = "<group>"; };
 		236060A62D0DE48200E3504F /* HTTPService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
-		236060A72D0DE48200E3504F /* EventListRepresentable 2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EventListRepresentable 2.swift"; sourceTree = "<group>"; };
-		236060A92D0DE48200E3504F /* EventListRepresentable 2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EventListRepresentable 2.swift"; sourceTree = "<group>"; };
 		236060AA2D0DE48200E3504F /* EventListRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListRepresentable.swift; sourceTree = "<group>"; };
 		236060AC2D0DE48200E3504F /* protocolsFirebaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = protocolsFirebaseData.swift; sourceTree = "<group>"; };
-		236060AD2D0DE48200E3504F /* protocolsFirebaseData 2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "protocolsFirebaseData 2.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,7 +201,6 @@
 		236060A02D0DE48200E3504F /* Authentification */ = {
 			isa = PBXGroup;
 			children = (
-				236060A12D0DE48200E3504F /* FirebaseAuthenticationManager 2.swift */,
 				236060A22D0DE48200E3504F /* FirebaseAuthenticationManager.swift */,
 			);
 			path = Authentification;
@@ -219,7 +210,6 @@
 			isa = PBXGroup;
 			children = (
 				236060A42D0DE48200E3504F /* Maps */,
-				236060A72D0DE48200E3504F /* EventListRepresentable 2.swift */,
 				236060A82D0DE48200E3504F /* List */,
 				236060AB2D0DE48200E3504F /* Authentification */,
 			);
@@ -238,7 +228,6 @@
 		236060A82D0DE48200E3504F /* List */ = {
 			isa = PBXGroup;
 			children = (
-				236060A92D0DE48200E3504F /* EventListRepresentable 2.swift */,
 				236060AA2D0DE48200E3504F /* EventListRepresentable.swift */,
 			);
 			path = List;
@@ -248,7 +237,6 @@
 			isa = PBXGroup;
 			children = (
 				236060AC2D0DE48200E3504F /* protocolsFirebaseData.swift */,
-				236060AD2D0DE48200E3504F /* protocolsFirebaseData 2.swift */,
 			);
 			path = Authentification;
 			sourceTree = "<group>";
@@ -341,17 +329,13 @@
 				236060BA2D0DE48300E3504F /* EventListRepresentable.swift in Sources */,
 				236060932D0DE47200E3504F /* ListViewModel.swift in Sources */,
 				236060B32D0DE48200E3504F /* EventoriasRepository.swift in Sources */,
-				236060BC2D0DE48300E3504F /* protocolsFirebaseData 2.swift in Sources */,
 				236060822D0DE43B00E3504F /* ListView.swift in Sources */,
-				236060B42D0DE48200E3504F /* FirebaseAuthenticationManager 2.swift in Sources */,
 				236060922D0DE47200E3504F /* AuthentificationViewModel.swift in Sources */,
 				236060902D0DE47200E3504F /* UserDetailViewModel.swift in Sources */,
 				236060912D0DE47200E3504F /* ViewModelManager.swift in Sources */,
 				236060B72D0DE48300E3504F /* HTTPService.swift in Sources */,
 				236060AE2D0DE48200E3504F /* AuthToken.swift in Sources */,
-				236060B82D0DE48300E3504F /* EventListRepresentable 2.swift in Sources */,
 				236060B02D0DE48200E3504F /* EventEntry.swift in Sources */,
-				236060B92D0DE48300E3504F /* EventListRepresentable 2.swift in Sources */,
 				236060BB2D0DE48300E3504F /* protocolsFirebaseData.swift in Sources */,
 				236060AF2D0DE48200E3504F /* DateExtension.swift in Sources */,
 				236060832D0DE43B00E3504F /* HomeView.swift in Sources */,
