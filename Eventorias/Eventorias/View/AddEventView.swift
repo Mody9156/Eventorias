@@ -27,7 +27,7 @@ struct AddEventView: View {
         ZStack {
             Color("Background")
                 .ignoresSafeArea()
-            VStack(alignment: .leading){
+            VStack{
                 CustomTexField(text: $title, size: false, placeholder: "New event")
                 
                 CustomTexField(text: $description,size:false, placeholder: "Tap here entrer your description")
@@ -43,10 +43,10 @@ struct AddEventView: View {
                 }
                 CustomTexField(text: $adress,size:false, placeholder: "Entre full adress")
                 
-                HStack{
-                    PhotosPicker($selectedItems,
-                                 selection:.images) {
-                        
+                HStack(alignment: .center){
+                    PhotosPicker(selection:$selectedItems,
+                                 matching:.images) {
+                        Image("Camera")
                     }
                     Button(action:{}){
                         
