@@ -41,8 +41,11 @@ struct ListView: View {
                     Button(action:{
                         calendar.toggle()
                     }){
-                        Text("Calendar")
-                            .foregroundColor(.blue)
+                        if calendar {
+                            
+                        }else {
+                            Image(system:"list.bullet")
+                        }
                     }
                     .padding()
                 }
