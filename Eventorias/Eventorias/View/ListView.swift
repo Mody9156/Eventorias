@@ -33,8 +33,15 @@ struct ListView: View {
                 .ignoresSafeArea()
             
             VStack(alignment: .leading) {
-                CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
-                    .padding()
+                HStack {
+                    CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
+                        .padding()
+                    Spacer()
+                    Button(action:{}){
+                        Text("Calendar")
+                            .foregroundColor(.blue)
+                    }
+                }
                 
                 ZStack(alignment: .bottomTrailing){
                     List {
