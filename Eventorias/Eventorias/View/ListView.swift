@@ -38,19 +38,7 @@ struct ListView: View {
                     CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
                         .padding()
                     Spacer()
-                    Button(action:{
-                        calendar.toggle()
-                    }){
-                        if calendar {
-                            Image(systemName:"list.bullet")
-                            
-                        }else {
-                            Image(systemName:"rectangle.grid.2x2")
-                        }
-                    }
-                    .frame(width: 105, height: 35)
-                    .foregroundColor(Color("BackgroundDocument"))
-                    .padding()
+                    ToggleViewButton()
                 }
                 
                 ZStack(alignment: .bottomTrailing){
@@ -278,5 +266,23 @@ struct ViewCalendar: View {
             }
             .padding()
         }
+    }
+}
+
+struct ToggleViewButton: View {
+    var body: some View {
+        Button(action:{
+            calendar.toggle()
+        }){
+            if calendar {
+                Image(systemName:"list.bullet")
+                
+            }else {
+                Image(systemName:"rectangle.grid.2x2")
+            }
+        }
+        .frame(width: 105, height: 35)
+        .foregroundColor(Color("BackgroundDocument"))
+        .padding()
     }
 }
