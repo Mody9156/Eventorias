@@ -51,7 +51,21 @@ struct ListView: View {
                     ZStack {
                         HStack{
                             Spacer()
-                            Button(action:{}) {
+                            //                            Button(action:{
+                            //                                AddEventView()
+                            //                            }) {
+                            //                                ZStack {
+                            //                                    RoundedRectangle(cornerRadius: 16)
+                            //                                        .fill(.red)
+                            //                                        .frame(width: 56, height: 56)
+                            //                                    Image(systemName: "plus")
+                            //                                        .foregroundColor(.white)
+                            //                                }
+                            //                            }
+                            //                            .padding()
+                            NavigationLink {
+                                AddEventView()
+                            } label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 16)
                                         .fill(.red)
@@ -61,6 +75,7 @@ struct ListView: View {
                                 }
                             }
                             .padding()
+                            
                         }
                     }
                 }
@@ -187,9 +202,9 @@ struct ViewCalendar: View {
                             .frame(width: 136, height: 80)
                             .cornerRadius(12)
                             .opacity(0.5)
-
+                            
                             Spacer()
-
+                            
                             Text(entry.title)
                                 .lineSpacing(24 - 16)
                                 .fontWeight(.bold)
