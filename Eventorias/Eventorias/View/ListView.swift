@@ -84,8 +84,9 @@ struct ListView: View {
                                             EmptyView()
                                         }))
                                     }
+                                    .lineLimit(2, reservesSpace: true)
                                 }
-                                .lineLimit(2, reservesSpace: true)
+                                
                             }
                         }
                     }else{
@@ -125,18 +126,14 @@ struct ListView: View {
                                     }
                                     .frame(width: 136, height: 80)
                                     .cornerRadius(12)
-                                    .padding()
+                               
                                     
                                 }.overlay(NavigationLink(destination: {
                                     UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()))
                                 }, label: {
                                     EmptyView()
                                 }))
-                                
                             }
-                            
-                            
-                            
                         }
                         .listRowBackground(
                             RoundedRectangle(cornerRadius:16)
@@ -153,6 +150,7 @@ struct ListView: View {
                             try? await listViewModel.getAllProducts()
                         }
                     }
+                    .padding()
                 }
                     ZStack {
                         HStack{
