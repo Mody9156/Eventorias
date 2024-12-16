@@ -46,7 +46,13 @@ struct AddEventView: View {
                 HStack(alignment: .center){
                     PhotosPicker(selection:$selectedItems,
                                  matching:.images) {
-                        Image("Camera")
+                        
+                        ZStack {
+                            Rectangle()
+                                .frame(width: 52, height:52)
+                            
+                            Image("Camera")
+                        }
                     }
                     Button(action:{}){
                         
