@@ -53,6 +53,7 @@ struct ListView: View {
                             Spacer()
                             NavigationLink {
                                 AddEventView()
+                                
                             } label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 16)

@@ -11,6 +11,8 @@ struct AddEventView: View {
     @State var title = ""
     @State var description = ""
     @State private var date : Date = Date()
+    @State var adress : String = ""
+    @State var time : String = ""
     
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
@@ -20,10 +22,14 @@ struct AddEventView: View {
     
     var body: some View {
         VStack{
-            TextField("", text: $title)
-            TextField("", text: $description)
-            DatePicker("MM-DD-YYYY", selection: $date,
-                displayedComponents: .date)
+            TextField("New Event", text: $title)
+            TextField("Description", text: $description)
+            HStack {
+                DatePicker("", selection: $date,
+                           displayedComponents: .date)
+            TextField("HH:MM", text: $time)
+            }
+            TextField("Entrer full adress", text: $adress)
         }
     }
 }
