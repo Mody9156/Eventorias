@@ -43,7 +43,6 @@ struct AddEventView: View {
                     .padding()
                     CustomTexField(text: $time,size:true, placeholder: "HH:MM")
                 }
-                TextField("Entrer full adress", text: $adress)
                 CustomTexField(text: $adress,size:false, placeholder: "Entre full adress")
             }
         }
