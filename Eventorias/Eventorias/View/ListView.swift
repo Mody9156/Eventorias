@@ -1,3 +1,4 @@
+
 //
 //  ListView.swift
 //  Eventorias
@@ -27,7 +28,7 @@ struct ListView: View {
             }
         }
     }
-   
+    
     var body: some View {
         ZStack(alignment: .leading){
             Color("Background")
@@ -46,67 +47,7 @@ struct ListView: View {
                     if calendar {
                         ViewCalendar(searchText: $searchText, listViewModel: listViewModel)
                     }else{
-                        List {
-                            Section {
-                                ForEach(listViewModel.filterTitle(searchText),id: \.self) { entry in
-                                    
-                                    HStack {
-                                        Image(entry.picture)
-                                            .resizable()
-                                            .frame(width: 40,height: 40)
-                                            .padding()
-                                        
-                                        VStack(alignment:.leading){
-                                            Text(entry.title)
-                                                .font(.custom("Inter-Medium", size: 16))
-                                                .lineSpacing(24 - 16)
-                                                .fontWeight(.medium)
-                                                .multilineTextAlignment(.leading)
-                                                .foregroundColor(.white)
-                                            
-                                            Text("\(listViewModel.formatDateString( entry.dateCreation))")
-                                                .font(.custom("Inter-Regular", size: 14))
-                                                .lineSpacing(20 - 14)
-                                                .fontWeight(.regular)
-                                                .multilineTextAlignment(.leading)
-                                                .foregroundColor(.white)
-                                        }
-                                        
-                                        Spacer()
-                                        AsyncImage(url:URL(string:"\(entry.poster)")){ image in
-                                            image
-                                                .resizable()
-                                            
-                                        } placeholder:{
-                                            ProgressView()
-                                        }
-                                        .frame(width: 136, height: 80)
-                                        .cornerRadius(12)
-                                        
-                                        
-                                    }.overlay(NavigationLink(destination: {
-                                        UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()))
-                                    }, label: {
-                                        EmptyView()
-                                    }))
-                                }
-                            }
-                            .listRowBackground(
-                                RoundedRectangle(cornerRadius:16)
-                                    .fill(Color("BackgroundDocument"))
-                                    .frame(width: 358, height: 80)
-                                    .padding(2)
-                            )
-                        }
-                        .listStyle(GroupedListStyle())
-                        .scrollContentBackground(.hidden)
-                        .background(Color("Background"))
-                        .onAppear{
-                            Task{
-                                try? await listViewModel.getAllProducts()
-                            }
-                        }
-                        .padding()
+                        ViewList()
                     }
                     ZStack {
                         HStack{
@@ -183,7 +124,6 @@ struct ListView: View {
                     }
                     .padding()
                 }
-                
             }
         }
     }
@@ -229,7 +169,7 @@ struct CustomButton: View {
 struct ViewCalendar: View {
     @Binding var searchText : String
     @StateObject var listViewModel : ListViewModel
-
+    
     var body: some View {
         ScrollView {
             LazyVGrid(columns:Array(repeating: GridItem(.flexible()), count: 2), spacing:20) {
@@ -284,6 +224,72 @@ struct ToggleViewButton: View {
         }
         .frame(width: 105, height: 35)
         .foregroundColor(Color("BackgroundDocument"))
+        .padding()
+    }
+}
+
+struct ExtractedView: View {
+    var body: some View {
+        List {
+            Section {
+                ForEach(listViewModel.filterTitle(searchText),id: \.self) { entry in
+                    
+                    HStack {
+                        Image(entry.picture)
+                            .resizable()
+                            .frame(width: 40,height: 40)
+                            .padding()
+                        
+                        VStack(alignment:.leading){
+                            Text(entry.title)
+                                .font(.custom("Inter-Medium", size: 16))
+                                .lineSpacing(24 - 16)
+                                .fontWeight(.medium)
+                                .multilineTextAlignment(.leading)
+                                .foregroundColor(.white)
+                            
+                            Text("\(listViewModel.formatDateString( entry.dateCreation))")
+                                .font(.custom("Inter-Regular", size: 14))
+                                .lineSpacing(20 - 14)
+                                .fontWeight(.regular)
+                                .multilineTextAlignment(.leading)
+                                .foregroundColor(.white)
+                        }
+                        
+                        Spacer()
+                        AsyncImage(url:URL(string:"\(entry.poster)")){ image in
+                            image
+                                .resizable()
+                            
+                        } placeholder:{
+                            ProgressView()
+                        }
+                        .frame(width: 136, height: 80)
+                        .cornerRadius(12)
+                        
+                        
+                    }.overlay(NavigationLink(destination: {
+                        UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()))
+                    }, label: {
+                        EmptyView()
+                    }))
+                }
+            }
+            .listRowBackground(
+                RoundedRectangle(cornerRadius:16)
+                    .fill(Color("BackgroundDocument"))
+                    .frame(width: 358, height: 80)
+                    .padding(2)
+            )
+        }
+        .listStyle(GroupedListStyle())
+        .scrollContentBackground(.hidden)
+        .background(Color("Background"))
+        .onAppear{
+            Task{
+                try? await listViewModel.getAllProducts()
+            }
+        }
         .padding()
     }
 }
