@@ -55,24 +55,13 @@ struct ListView: View {
                                 Section {
                                     ForEach(filtreElement,id: \.self) { entry in
                                         
-                                        HStack {
-                                            Image(entry.picture)
-                                                .resizable()
-                                                .frame(width: 40,height: 40)
-                                                .padding()
-                                            
+                                        ZStack {
+                                     
                                             VStack(alignment:.leading){
                                                 Text(entry.title)
                                                     .font(.custom("Inter-Medium", size: 16))
                                                     .lineSpacing(24 - 16)
                                                     .fontWeight(.medium)
-                                                    .multilineTextAlignment(.leading)
-                                                    .foregroundColor(.white)
-                                                
-                                                Text("\(listViewModel.formatDateString( entry.dateCreation))")
-                                                    .font(.custom("Inter-Regular", size: 14))
-                                                    .lineSpacing(20 - 14)
-                                                    .fontWeight(.regular)
                                                     .multilineTextAlignment(.leading)
                                                     .foregroundColor(.white)
                                             }
