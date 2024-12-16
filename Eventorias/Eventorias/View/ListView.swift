@@ -1,4 +1,3 @@
-
 //
 //  ListView.swift
 //  Eventorias
@@ -164,40 +163,42 @@ struct ViewCalendar: View {
     @StateObject var listViewModel : ListViewModel
     
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns:Array(repeating: GridItem(.flexible()), count: 2), spacing:20) {
-                
-                ForEach(listViewModel.filterTitle(searchText),id: \.self) { entry in
-                    ZStack {
-                        
-                        AsyncImage(url:URL(string:"\(entry.poster)")){ image in
-                            image
-                                .resizable()
+        NavigationStack {
+            ScrollView {
+                LazyVGrid(columns:Array(repeating: GridItem(.flexible()), count: 2), spacing:20) {
+                    
+                    ForEach(listViewModel.filterTitle(searchText),id: \.self) { entry in
+                        ZStack {
                             
-                        } placeholder:{
-                            ProgressView()
-                                .frame(width: 136, height: 80)
-                        }
-                        .frame(width: 136, height: 80)
-                        .cornerRadius(12)
-                        .opacity(0.5)
-                        
-                        Spacer()
-                        
-                        Text(entry.title)
-                            .lineSpacing(24 - 16)
-                            .fontWeight(.bold)
-                            .multilineTextAlignment(.leading)
-                            .foregroundColor(.white)
-                        
-                    }.overlay(NavigationLink(destination: {
-                        UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()))
-                    }, label: {
-                        EmptyView()
-                    }))
+                            AsyncImage(url:URL(string:"\(entry.poster)")){ image in
+                                image
+                                    .resizable()
+                                
+                            } placeholder:{
+                                ProgressView()
+                                    .frame(width: 136, height: 80)
+                            }
+                            .frame(width: 136, height: 80)
+                            .cornerRadius(12)
+                            .opacity(0.5)
+                            
+                            Spacer()
+                            
+                            Text(entry.title)
+                                .lineSpacing(24 - 16)
+                                .fontWeight(.bold)
+                                .multilineTextAlignment(.leading)
+                                .foregroundColor(.white)
+                            
+                        }.overlay(NavigationLink(destination: {
+                            UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()))
+                        }, label: {
+                            EmptyView()
+                        }))
+                    }
                 }
+                .padding()
             }
-            .padding()
         }
     }
 }
