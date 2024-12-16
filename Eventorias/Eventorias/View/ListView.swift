@@ -48,6 +48,8 @@ struct ListView: View {
                             Image(systemName:"rectangle.grid.2x2")
                         }
                     }
+                    .frame(width: 105, height: 35)
+                    .foregroundColor(Color("BackgroundDocument"))
                     .padding()
                 }
                 
@@ -216,7 +218,6 @@ struct CustomButton: View {
                 .frame(width: 105, height: 35)
                 .foregroundColor(Color("BackgroundDocument"))
                 .cornerRadius(10)
-                .cornerRadius(35)
             
             Menu("\(picture) Sorting") {
                 ForEach(ListViewModel.FilterOption.allCases, id:\.self){ filter in
