@@ -21,7 +21,7 @@ struct AddEventView: View {
         return formatter
     }()
     
-    @State var selectedItems : [PhotosPickerItem]
+    @State var selectedItems : [PhotosPickerItem] = []
     
     var body: some View {
         ZStack {
@@ -44,7 +44,10 @@ struct AddEventView: View {
                 CustomTexField(text: $adress,size:false, placeholder: "Entre full adress")
                 
                 HStack{
-                   
+                    PhotosPicker($selectedItems,
+                                 selection:.images) {
+                        
+                    }
                     Button(action:{}){
                         
                     }
