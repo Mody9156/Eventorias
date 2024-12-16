@@ -51,18 +51,6 @@ struct ListView: View {
                     ZStack {
                         HStack{
                             Spacer()
-                            //                            Button(action:{
-                            //                                AddEventView()
-                            //                            }) {
-                            //                                ZStack {
-                            //                                    RoundedRectangle(cornerRadius: 16)
-                            //                                        .fill(.red)
-                            //                                        .frame(width: 56, height: 56)
-                            //                                    Image(systemName: "plus")
-                            //                                        .foregroundColor(.white)
-                            //                                }
-                            //                            }
-                            //                            .padding()
                             NavigationLink {
                                 AddEventView()
                             } label: {
@@ -75,7 +63,6 @@ struct ListView: View {
                                 }
                             }
                             .padding()
-                            
                         }
                     }
                 }
