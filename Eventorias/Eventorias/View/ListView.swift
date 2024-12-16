@@ -16,6 +16,7 @@ struct ListView: View {
     @FocusState var focused : focusedTexfield?
     @StateObject var listViewModel : ListViewModel
     @State var tryEvent : Bool = false
+    @State var calendar : Bool = false
     
     var filtreElement : [EventEntry] {
         if searchText.isEmpty{
