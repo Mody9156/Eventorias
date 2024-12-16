@@ -8,8 +8,22 @@
 import SwiftUI
 
 struct AddEventView: View {
+    @State var title = ""
+    @State var description = ""
+    @State var date : Date = Date()
+    
+    private let dateFormatter : DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            TextField("", text: $title)
+            TextField("", text: $description)
+            
+        }
     }
 }
 
