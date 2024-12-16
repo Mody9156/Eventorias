@@ -52,107 +52,101 @@ struct ListView: View {
                     if calendar {
                         ScrollView {
                             LazyVGrid(columns:Array(repeating: GridItem(.flexible()), count: 2)) {
-                              
-                                    ForEach(filtreElement,id: \.self) { entry in
-                                        ZStack {
-                                     
-                                     
-                                                Text(entry.title)
-                                                    .font(.custom("Inter-Medium", size: 16))
-                                                    .lineSpacing(24 - 16)
-                                                    .fontWeight(.bold)
-                                                    .multilineTextAlignment(.leading)
-                                                    .foregroundColor(.white)
-                                     
+                                
+                                ForEach(filtreElement,id: \.self) { entry in
+                                    ZStack {
+                                        
+                                        AsyncImage(url:URL(string:"\(entry.poster)")){ image in
+                                            image
+                                                .resizable()
                                             
-                                            Spacer()
-                                            AsyncImage(url:URL(string:"\(entry.poster)")){ image in
-                                                image
-                                                    .resizable()
-                                                
-                                            } placeholder:{
-                                                
-                                            }
-                                            .frame(width: 136, height: 80)
-                                            .cornerRadius(12)
-                                            .opacity(0.5)
-                                       
-                                        }.overlay(NavigationLink(destination: {
-                                            UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()))
-                                        }, label: {
-                                            EmptyView()
-                                        }))
-                                    }
-                                    
-                             
-                        
-                                
-                            }
-                           
-                        }
-                    }else{
-                    List {
-                        Section {
-                            ForEach(filtreElement,id: \.self) { entry in
-                                
-                                HStack {
-                                    Image(entry.picture)
-                                        .resizable()
-                                        .frame(width: 40,height: 40)
-                                        .padding()
-                                    
-                                    VStack(alignment:.leading){
+                                        } placeholder:{
+                                            
+                                        }
+                                        .frame(width: 136, height: 80)
+                                        .cornerRadius(12)
+                                        .opacity(0.5)
+                                        
+                                        Spacer()
+                                        
                                         Text(entry.title)
                                             .font(.custom("Inter-Medium", size: 16))
                                             .lineSpacing(24 - 16)
-                                            .fontWeight(.medium)
+                                            .fontWeight(.bold)
                                             .multilineTextAlignment(.leading)
                                             .foregroundColor(.white)
                                         
-                                        Text("\(listViewModel.formatDateString( entry.dateCreation))")
-                                            .font(.custom("Inter-Regular", size: 14))
-                                            .lineSpacing(20 - 14)
-                                            .fontWeight(.regular)
-                                            .multilineTextAlignment(.leading)
-                                            .foregroundColor(.white)
-                                    }
-                                    
-                                    Spacer()
-                                    AsyncImage(url:URL(string:"\(entry.poster)")){ image in
-                                        image
-                                            .resizable()
-                                        
-                                    } placeholder:{
-                                        
-                                    }
-                                    .frame(width: 136, height: 80)
-                                    .cornerRadius(12)
-                               
-                                    
-                                }.overlay(NavigationLink(destination: {
-                                    UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()))
-                                }, label: {
-                                    EmptyView()
-                                }))
+                                    }.overlay(NavigationLink(destination: {
+                                        UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()))
+                                    }, label: {
+                                        EmptyView()
+                                    }))
+                                }
                             }
                         }
-                        .listRowBackground(
-                            RoundedRectangle(cornerRadius:16)
-                                .fill(Color("BackgroundDocument"))
-                                .frame(width: 358, height: 80)
-                                .padding(2)
-                        )
-                    }
-                    .listStyle(GroupedListStyle())
-                    .scrollContentBackground(.hidden)
-                    .background(Color("Background"))
-                    .onAppear{
-                        Task{
-                            try? await listViewModel.getAllProducts()
+                    }else{
+                        List {
+                            Section {
+                                ForEach(filtreElement,id: \.self) { entry in
+                                    
+                                    HStack {
+                                        Image(entry.picture)
+                                            .resizable()
+                                            .frame(width: 40,height: 40)
+                                            .padding()
+                                        
+                                        VStack(alignment:.leading){
+                                            Text(entry.title)
+                                                .font(.custom("Inter-Medium", size: 16))
+                                                .lineSpacing(24 - 16)
+                                                .fontWeight(.medium)
+                                                .multilineTextAlignment(.leading)
+                                                .foregroundColor(.white)
+                                            
+                                            Text("\(listViewModel.formatDateString( entry.dateCreation))")
+                                                .font(.custom("Inter-Regular", size: 14))
+                                                .lineSpacing(20 - 14)
+                                                .fontWeight(.regular)
+                                                .multilineTextAlignment(.leading)
+                                                .foregroundColor(.white)
+                                        }
+                                        
+                                        Spacer()
+                                        AsyncImage(url:URL(string:"\(entry.poster)")){ image in
+                                            image
+                                                .resizable()
+                                            
+                                        } placeholder:{
+                                            
+                                        }
+                                        .frame(width: 136, height: 80)
+                                        .cornerRadius(12)
+                                        
+                                        
+                                    }.overlay(NavigationLink(destination: {
+                                        UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()))
+                                    }, label: {
+                                        EmptyView()
+                                    }))
+                                }
+                            }
+                            .listRowBackground(
+                                RoundedRectangle(cornerRadius:16)
+                                    .fill(Color("BackgroundDocument"))
+                                    .frame(width: 358, height: 80)
+                                    .padding(2)
+                            )
                         }
+                        .listStyle(GroupedListStyle())
+                        .scrollContentBackground(.hidden)
+                        .background(Color("Background"))
+                        .onAppear{
+                            Task{
+                                try? await listViewModel.getAllProducts()
+                            }
+                        }
+                        .padding()
                     }
-                    .padding()
-                }
                     ZStack {
                         HStack{
                             Spacer()
