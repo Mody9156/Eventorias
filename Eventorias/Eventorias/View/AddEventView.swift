@@ -41,7 +41,12 @@ struct AddEventView: View {
                 CustomTexField(text: $adress,size:false, placeholder: "Entre full adress")
                 
                 HStack{
-                    
+                    Button(action:{}){
+                        
+                    }
+                    Button(action:{}){
+                        
+                    }
                 }
             }
         }
