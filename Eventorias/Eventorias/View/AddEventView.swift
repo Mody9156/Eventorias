@@ -13,7 +13,8 @@ struct AddEventView: View {
     @State private var date : Date = Date()
     @State var adress : String = ""
     @State var time : String = ""
-    @State var size : Bool = false 
+    @State var bigSize : Bool = false
+    @State var smallSize : Bool = true
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -25,16 +26,17 @@ struct AddEventView: View {
             Color("Background")
                 .ignoresSafeArea()
             VStack(alignment: .leading){
-                CustomTexfield(text: $title)
+                CustomTexField(text: $title, size: $bigSize, placeholder: "New event")
                 
-                CustomTexfield(text: $description)
+                CustomTexField(text: $description,size:$bigSize, placeholder: "Tap here entrer your description")
                 
                 HStack {
                     DatePicker("", selection: $date,
                                displayedComponents: .date)
-                    TextField("HH:MM", text: $time)
+                    CustomTexField(text: $time,size:$smallSize, placeholder: "HH:MM")
                 }
                 TextField("Entrer full adress", text: $adress)
+                CustomTexField(text: $adress,size:$bigSize, placeholder: "Entre full adress")
             }
         }
     }
@@ -46,9 +48,10 @@ struct AddEventView_Previews: PreviewProvider {
     }
 }
 
-struct CustomTexfield: View {
+struct CustomTexField: View {
     @Binding var text : String
     @Binding var size : Bool
+    var placeholder : String
     var body: some View {
         ZStack(alignment: .leading) {
             Rectangle()
@@ -56,7 +59,7 @@ struct CustomTexfield: View {
                 .foregroundColor(Color("BackgroundDocument"))
                 .cornerRadius(10)
             
-            TextField("New Event", text: $text)
+            TextField(placeholder, text: $text)
         }
         .padding()
     }
