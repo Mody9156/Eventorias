@@ -61,7 +61,7 @@ struct ListView: View {
                                                 Text(entry.title)
                                                     .font(.custom("Inter-Medium", size: 16))
                                                     .lineSpacing(24 - 16)
-                                                    .fontWeight(.medium)
+                                                    .fontWeight(.bold)
                                                     .multilineTextAlignment(.leading)
                                                     .foregroundColor(.white)
                                             }
@@ -85,12 +85,7 @@ struct ListView: View {
                                         }))
                                     }
                                 }
-                                .listRowBackground(
-                                    RoundedRectangle(cornerRadius:16)
-                                        .fill(Color("BackgroundDocument"))
-                                        .frame(width: 358, height: 80)
-                                        .padding(2)
-                            )
+                                .lineLimit(2, reservesSpace: true)
                             }
                         }
                     }else{
