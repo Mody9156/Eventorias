@@ -21,15 +21,17 @@ struct AddEventView: View {
     }()
     
     var body: some View {
-        VStack{
-            TextField("New Event", text: $title)
-            TextField("Description", text: $description)
-            HStack {
-                DatePicker("", selection: $date,
-                           displayedComponents: .date)
-            TextField("HH:MM", text: $time)
+        ZStack {
+            VStack{
+                TextField("New Event", text: $title)
+                TextField("Description", text: $description)
+                HStack {
+                    DatePicker("", selection: $date,
+                               displayedComponents: .date)
+                TextField("HH:MM", text: $time)
+                }
+                TextField("Entrer full adress", text: $adress)
             }
-            TextField("Entrer full adress", text: $adress)
         }
     }
 }
