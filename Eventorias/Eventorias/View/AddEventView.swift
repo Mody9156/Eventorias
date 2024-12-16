@@ -36,8 +36,13 @@ struct AddEventView: View {
                             .foregroundColor(Color("BackgroundDocument"))
                             .cornerRadius(10)
                         
-                        DatePicker("MM/DD/YYYY", selection: $date,
-                                   displayedComponents: .date)
+                        VStack {
+                            Text("Date")
+                                .foregroundColor(.white)
+                            
+                            DatePicker("MM/DD/YYYY", selection: $date,
+                                       displayedComponents: .date)
+                        }
                         
                     }
                     .padding()
@@ -66,8 +71,9 @@ struct CustomTexField: View {
                 .foregroundColor(Color("BackgroundDocument"))
                 .cornerRadius(5)
             
-            VStack {
-                Text(text)
+            VStack(alignment: .leading) {
+                Text(placeholder)
+                    .foregroundColor(.white)
                 TextField(placeholder, text: $text)
                     .foregroundColor(.white)
             }
