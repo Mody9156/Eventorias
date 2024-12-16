@@ -56,14 +56,14 @@ struct ListView: View {
                                     ForEach(filtreElement,id: \.self) { entry in
                                         ZStack {
                                      
-                                            VStack(alignment:.leading){
+                                     
                                                 Text(entry.title)
                                                     .font(.custom("Inter-Medium", size: 16))
                                                     .lineSpacing(24 - 16)
                                                     .fontWeight(.bold)
                                                     .multilineTextAlignment(.leading)
                                                     .foregroundColor(.white)
-                                            }
+                                     
                                             
                                             Spacer()
                                             AsyncImage(url:URL(string:"\(entry.poster)")){ image in
