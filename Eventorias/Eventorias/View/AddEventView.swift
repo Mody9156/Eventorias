@@ -25,7 +25,14 @@ struct AddEventView: View {
             Color("Background")
                 .ignoresSafeArea()
             VStack{
-                TextField("New Event", text: $title)
+                ZStack {
+                    Rectangle()
+                        .frame(width: 335, height: 56)
+                        .foregroundColor(Color("BackgroundDocument"))
+                        .cornerRadius(10)
+                    
+                    TextField("New Event", text: $title)
+                }
                 TextField("Description", text: $description)
                 HStack {
                     DatePicker("", selection: $date,
