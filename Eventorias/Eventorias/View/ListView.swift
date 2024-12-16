@@ -38,7 +38,9 @@ struct ListView: View {
                     CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
                         .padding()
                     Spacer()
-                    Button(action:{}){
+                    Button(action:{
+                        calendar.toggle()
+                    }){
                         Text("Calendar")
                             .foregroundColor(.blue)
                     }
