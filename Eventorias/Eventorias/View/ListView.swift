@@ -42,9 +42,10 @@ struct ListView: View {
                         calendar.toggle()
                     }){
                         if calendar {
-                            Image(systemName:"rectangle.grid.2x2")
-                        }else {
                             Image(systemName:"list.bullet")
+                            
+                        }else {
+                            Image(systemName:"rectangle.grid.2x2")
                         }
                     }
                     .padding()
