@@ -25,15 +25,8 @@ struct AddEventView: View {
             Color("Background")
                 .ignoresSafeArea()
             VStack(alignment: .leading){
-                ZStack(alignment: .leading) {
-                    Rectangle()
-                        .frame(width: 358, height: 56)
-                        .foregroundColor(Color("BackgroundDocument"))
-                        .cornerRadius(10)
-                    
-                    TextField("New Event", text: $title)
-                }
-                .padding()
+                CustomTexfield()
+                
                 TextField("Description", text: $description)
                 HStack {
                     DatePicker("", selection: $date,
@@ -49,5 +42,19 @@ struct AddEventView: View {
 struct AddEventView_Previews: PreviewProvider {
     static var previews: some View {
         AddEventView()
+    }
+}
+
+struct CustomTexfield: View {
+    var body: some View {
+        ZStack(alignment: .leading) {
+            Rectangle()
+                .frame(width: 358, height: 56)
+                .foregroundColor(Color("BackgroundDocument"))
+                .cornerRadius(10)
+            
+            TextField("New Event", text: $title)
+        }
+        .padding()
     }
 }
