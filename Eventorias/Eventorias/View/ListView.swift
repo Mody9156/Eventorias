@@ -53,7 +53,7 @@ struct ListView: View {
                 ZStack(alignment: .bottomTrailing){
                     
                     if calendar {
-                        ViewCalendar(, listViewModel: listViewModel)
+                        ViewCalendar(listViewModel: listViewModel)
                     }else{
                         List {
                             Section {
@@ -244,7 +244,7 @@ struct ViewCalendar: View {
         ScrollView {
             LazyVGrid(columns:Array(repeating: GridItem(.flexible()), count: 2), spacing:20) {
                 
-                ForEach(listViewModel.filterSelected(option: searchText),id: \.self) { entry in
+                ForEach(listViewModel.filterTitle(searchText),id: \.self) { entry in
                     ZStack {
                         
                         AsyncImage(url:URL(string:"\(entry.poster)")){ image in
