@@ -53,7 +53,7 @@ struct ListView: View {
                 ZStack(alignment: .bottomTrailing){
                     
                     if calendar {
-                        ExtractedView()
+                        ViewCalendar()
                     }else{
                         List {
                             Section {
@@ -236,7 +236,7 @@ struct CustomButton: View {
 //    }
 //}
 
-struct ExtractedView: View {
+struct ViewCalendar: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns:Array(repeating: GridItem(.flexible()), count: 2), spacing:20) {

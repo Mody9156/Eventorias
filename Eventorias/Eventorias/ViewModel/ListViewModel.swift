@@ -61,5 +61,13 @@ class ListViewModel : ObservableObject {
         }
     }
     
-   
+    func filterTitle(_ searchText:String) -> [EventEntry]{
+            if searchText.isEmpty{
+                return eventEntry
+            }else{
+                return eventEntry.filter {title in
+                    title.title.localizedStandardContains(searchText)
+                }
+            }
+    }
 }
