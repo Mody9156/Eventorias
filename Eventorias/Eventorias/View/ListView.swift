@@ -17,6 +17,19 @@ struct ListView: View {
     @StateObject var listViewModel : ListViewModel
     @State var tryEvent : Bool = false
     
+    var filtreElement : [EventEntry] {
+        if searchText.isEmpty{
+            return listViewModel.eventEntry
+        }else{
+            return listViewModel.eventEntry.filter {title in
+                title.place.street.localizedStandardContains(searchText) ||
+                title.place.city.localizedStandardContains(searchText) ||
+                title.place.country.localizedStandardContains(searchText) ||
+                title.title.localizedStandardContains(searchText)
+            }
+        }
+    }
+    
     var body: some View {
         ZStack(alignment: .leading){
             Color("Background")
@@ -29,7 +42,7 @@ struct ListView: View {
                 ZStack(alignment: .bottomTrailing){
                     List {
                         Section {
-                            ForEach(listViewModel.eventEntry,id: \.self) { entry in
+                            ForEach(filtreElement,id: \.self) { entry in
                                 
                                 HStack {
                                     Image(entry.picture)
