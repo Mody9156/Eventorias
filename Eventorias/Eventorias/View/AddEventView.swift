@@ -30,22 +30,12 @@ struct AddEventView: View {
                 CustomTexField(text: $description,size:false, placeholder: "Tap here entrer your description")
                 
                 HStack {
-                    ZStack(alignment: .leading) {
-                        Rectangle()
-                            .frame(width:171, height: 56)
-                            .foregroundColor(Color("BackgroundDocument"))
-                            .cornerRadius(10)
-                        
-                        VStack {
-                            Text("Date")
-                                .foregroundColor(.white)
-                            
-                            DatePicker("MM/DD/YYYY", selection: $date,
-                                       displayedComponents: .date)
-                        }
-                        
-                    }
-                    .padding()
+                    
+                    DatePicker("", selection: $date,
+                               displayedComponents: .date)
+                    .datePickerStyle(.automatic)
+                    
+                    
                     CustomTexField(text: $time,size:true, placeholder: "HH:MM")
                 }
                 CustomTexField(text: $adress,size:false, placeholder: "Entre full adress")
@@ -77,8 +67,7 @@ struct CustomTexField: View {
                 TextField(placeholder, text: $text)
                     .foregroundColor(.white)
             }
-            
         }
-        .padding()
+        .padding(.leading)
     }
 }
