@@ -41,6 +41,7 @@ struct ListView: View {
                         Text("Calendar")
                             .foregroundColor(.blue)
                     }
+                    .padding()
                 }
                 
                 ZStack(alignment: .bottomTrailing){
