@@ -57,7 +57,7 @@ struct ListView: View {
                     }else{
                         List {
                             Section {
-                                ForEach(filtreElement,id: \.self) { entry in
+                                ForEach(listViewModel.filterTitle(searchText),id: \.self) { entry in
                                     
                                     HStack {
                                         Image(entry.picture)
