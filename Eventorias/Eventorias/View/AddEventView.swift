@@ -13,7 +13,7 @@ struct AddEventView: View {
     @State private var date : Date = Date()
     @State var adress : String = ""
     @State var time : String = ""
-   
+    
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -59,6 +59,7 @@ struct CustomTexField: View {
                 .cornerRadius(10)
             
             TextField(placeholder, text: $text)
+                .foregroundColor(.white)
         }
         .padding()
     }
