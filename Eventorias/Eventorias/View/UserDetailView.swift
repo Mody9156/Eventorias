@@ -69,13 +69,18 @@ struct UserDetailView: View {
                                 VStack (alignment: .leading){
                                     Text(eventEntry.place.street)
                                         .foregroundColor(.white)
-                                    Text(eventEntry.place.city)
-                                        .foregroundColor(.white)
-                                    Text(eventEntry.place.postalCode)
-                                        .foregroundColor(.white)
-                                    Text(eventEntry.place.country)
-                                        .foregroundColor(.white)
+                                    HStack {
+                                        Text("\(eventEntry.place.city),")
+                                            .foregroundColor(.white)
+                                        Text("\(eventEntry.place.postalCode),")
+                                            .foregroundColor(.white)
+                                        Text(eventEntry.place.country)
+                                            .foregroundColor(.white)
+                                    }
+                                    
                                 }
+                                
+                                Spacer()
                                 
                                 if let picture = maps {
                                     Image(uiImage: picture)
