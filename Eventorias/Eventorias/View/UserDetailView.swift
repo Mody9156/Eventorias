@@ -77,7 +77,6 @@ struct UserDetailView: View {
                                         Text(eventEntry.place.country)
                                             .foregroundColor(.white)
                                     }
-                                    
                                 }
                                 
                                 Spacer()
@@ -86,7 +85,6 @@ struct UserDetailView: View {
                                     Image(uiImage: picture)
                                         .cornerRadius(20)
                                 }
-
                             }.onAppear{
                                 Task {
                                     let  imageData =  try await userDetailViewModel.showMapsStatic(eventEntry.place.localisation.latitude, eventEntry.place.localisation.longitude)
@@ -95,7 +93,9 @@ struct UserDetailView: View {
                                     }
                                 }
                             }
-                        }.padding()
+                        }
+                        .frame(width: 167, height: 72)
+                        .padding()
                         
                     }
                 }
