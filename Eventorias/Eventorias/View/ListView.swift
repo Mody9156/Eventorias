@@ -22,9 +22,6 @@ struct ListView: View {
             return listViewModel.eventEntry
         }else{
             return listViewModel.eventEntry.filter {title in
-                title.place.street.localizedStandardContains(searchText) ||
-                title.place.city.localizedStandardContains(searchText) ||
-                title.place.country.localizedStandardContains(searchText) ||
                 title.title.localizedStandardContains(searchText)
             }
         }
