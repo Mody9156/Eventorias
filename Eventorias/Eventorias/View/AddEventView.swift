@@ -65,7 +65,7 @@ struct CustomTexField: View {
             Rectangle()
                 .frame(width: size ? 171 : 358, height: 56)
                 .foregroundColor(Color("BackgroundDocument"))
-                .cornerRadius(10)
+                .cornerRadius(5)
             
             TextField(placeholder, text: $text)
                 .foregroundColor(.white)
