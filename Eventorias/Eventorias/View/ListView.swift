@@ -50,60 +50,62 @@ struct ListView: View {
                 ZStack(alignment: .bottomTrailing){
                     
                     if calendar {
-                        VStack {
-                            Section {
-                                ForEach(filtreElement,id: \.self) { entry in
-                                    
-                                    HStack {
-                                        Image(entry.picture)
-                                            .resizable()
-                                            .frame(width: 40,height: 40)
-                                            .padding()
+                        ScrollView {
+                            VStack {
+                                Section {
+                                    ForEach(filtreElement,id: \.self) { entry in
                                         
-                                        VStack(alignment:.leading){
-                                            Text(entry.title)
-                                                .font(.custom("Inter-Medium", size: 16))
-                                                .lineSpacing(24 - 16)
-                                                .fontWeight(.medium)
-                                                .multilineTextAlignment(.leading)
-                                                .foregroundColor(.white)
-                                            
-                                            Text("\(listViewModel.formatDateString( entry.dateCreation))")
-                                                .font(.custom("Inter-Regular", size: 14))
-                                                .lineSpacing(20 - 14)
-                                                .fontWeight(.regular)
-                                                .multilineTextAlignment(.leading)
-                                                .foregroundColor(.white)
-                                        }
-                                        
-                                        Spacer()
-                                        AsyncImage(url:URL(string:"\(entry.poster)")){ image in
-                                            image
+                                        HStack {
+                                            Image(entry.picture)
                                                 .resizable()
+                                                .frame(width: 40,height: 40)
+                                                .padding()
                                             
-                                        } placeholder:{
+                                            VStack(alignment:.leading){
+                                                Text(entry.title)
+                                                    .font(.custom("Inter-Medium", size: 16))
+                                                    .lineSpacing(24 - 16)
+                                                    .fontWeight(.medium)
+                                                    .multilineTextAlignment(.leading)
+                                                    .foregroundColor(.white)
+                                                
+                                                Text("\(listViewModel.formatDateString( entry.dateCreation))")
+                                                    .font(.custom("Inter-Regular", size: 14))
+                                                    .lineSpacing(20 - 14)
+                                                    .fontWeight(.regular)
+                                                    .multilineTextAlignment(.leading)
+                                                    .foregroundColor(.white)
+                                            }
                                             
-                                        }
-                                        .frame(width: 136, height: 80)
-                                        .cornerRadius(12)
-                                        //                                    Image(entry.poster)
-                                        //                                        .resizable()
-                                        //                                        .frame(width: 136, height: 80)
-                                        //                                        .cornerRadius(12)
-                                        
-                                    }.overlay(NavigationLink(destination: {
-                                        UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()))
-                                    }, label: {
-                                        EmptyView()
-                                    }))
+                                            Spacer()
+                                            AsyncImage(url:URL(string:"\(entry.poster)")){ image in
+                                                image
+                                                    .resizable()
+                                                
+                                            } placeholder:{
+                                                
+                                            }
+                                            .frame(width: 136, height: 80)
+                                            .cornerRadius(12)
+                                            //                                    Image(entry.poster)
+                                            //                                        .resizable()
+                                            //                                        .frame(width: 136, height: 80)
+                                            //                                        .cornerRadius(12)
+                                            
+                                        }.overlay(NavigationLink(destination: {
+                                            UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()))
+                                        }, label: {
+                                            EmptyView()
+                                        }))
+                                    }
                                 }
+                                .listRowBackground(
+                                    RoundedRectangle(cornerRadius:16)
+                                        .fill(Color("BackgroundDocument"))
+                                        .frame(width: 358, height: 80)
+                                        .padding(2)
+                            )
                             }
-                            .listRowBackground(
-                                RoundedRectangle(cornerRadius:16)
-                                    .fill(Color("BackgroundDocument"))
-                                    .frame(width: 358, height: 80)
-                                    .padding(2)
-                        )
                         }
                     }else{
                     List {
