@@ -44,7 +44,7 @@ struct ListView: View {
                 ZStack(alignment: .bottomTrailing){
                     
                     if calendar {
-                        ViewCalendar(listViewModel: listViewModel)
+                        ViewCalendar(searchText: $searchText, listViewModel: listViewModel)
                     }else{
                         List {
                             Section {
@@ -227,7 +227,7 @@ struct CustomButton: View {
 //}
 
 struct ViewCalendar: View {
-    @State var searchText : String = ""
+    @Binding var searchText : String
     @StateObject var listViewModel : ListViewModel
 
     var body: some View {
