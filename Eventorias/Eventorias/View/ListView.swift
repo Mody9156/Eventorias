@@ -70,7 +70,6 @@ struct ListView: View {
                                         Spacer()
                                         
                                         Text(entry.title)
-                                            .font(.custom("Inter-Medium", size: 16))
                                             .lineSpacing(24 - 16)
                                             .fontWeight(.bold)
                                             .multilineTextAlignment(.leading)
