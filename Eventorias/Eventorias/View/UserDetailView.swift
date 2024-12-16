@@ -77,15 +77,12 @@ struct UserDetailView: View {
                                         Text("\(eventEntry.place.city),")
                                             .foregroundColor(.white)
                                             .font(.custom("Inter-Medium", size: 16))
-                                            .lineSpacing(24 - 16)
                                         Text("\(eventEntry.place.postalCode),")
                                             .foregroundColor(.white)
                                             .font(.custom("Inter-Medium", size: 16))
-                                            .lineSpacing(24 - 16)
                                         Text(eventEntry.place.country)
                                             .foregroundColor(.white)
                                             .font(.custom("Inter-Medium", size: 16))
-                                            .lineSpacing(24 - 16)
                                     }
                                 }
                                 .frame(width: 167, height: 72)
