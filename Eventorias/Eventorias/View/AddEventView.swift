@@ -51,14 +51,17 @@ struct AddEventView: View {
                             Rectangle()
                                 .frame(width: 52, height:52)
                                 .foregroundColor(.white)
+                                .cornerRadius(16)
                             
                             Image("Camera")
                         }
                     }
+                    
                     Button(action:{}){
                         
                     }
                 }
+                .padding()
             }
         }
     }
