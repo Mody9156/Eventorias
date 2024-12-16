@@ -43,28 +43,28 @@ struct EventoriasApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if viewModelManager.isAuthenticated {
-                TabView(selection: $selectedTab) {
+//            if viewModelManager.isAuthenticated {
+//                TabView(selection: $selectedTab) {
                     NavigationStack {
                         ListView(listViewModel: viewModelManager.listViewModel)
                         
                     }
-                    .tabItem {
-                        Label("Events", image: "event")
-                    }
-                    .tag(Tab.list)
-
-                    ProfileView()
-                        .tabItem {
-                            Label("Profile", systemImage: "person")
-                        }
-                        .tag(Tab.profil)
-                }
-                .accentColor(.red)
-            }else{
-                HomeView(authentificationViewModel: viewModelManager.authentificationViewModel)
-                    .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity),removal: .move(edge: .top).combined(with: .opacity)))
-            }
+//                    .tabItem {
+//                        Label("Events", image: "event")
+//                    }
+//                    .tag(Tab.list)
+//
+//                    ProfileView()
+//                        .tabItem {
+//                            Label("Profile", systemImage: "person")
+//                        }
+//                        .tag(Tab.profil)
+//                }
+//                .accentColor(.red)
+//            }else{
+//                HomeView(authentificationViewModel: viewModelManager.authentificationViewModel)
+//                    .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity),removal: .move(edge: .top).combined(with: .opacity)))
+//            }
         }
     }
 }
