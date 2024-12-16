@@ -47,7 +47,7 @@ struct ListView: View {
                     if calendar {
                         ViewCalendar(searchText: $searchText, listViewModel: listViewModel)
                     }else{
-                        ViewList()
+                        ViewModeList(searchText: $searchText, listViewModel: listViewModel)
                     }
                     ZStack {
                         HStack{
@@ -228,7 +228,10 @@ struct ToggleViewButton: View {
     }
 }
 
-struct ExtractedView: View {
+struct ViewModeList: View {
+    @Binding var searchText : String
+    @StateObject var listViewModel : ListViewModel
+    
     var body: some View {
         List {
             Section {
