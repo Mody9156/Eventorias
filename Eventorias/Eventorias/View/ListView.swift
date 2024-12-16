@@ -215,7 +215,7 @@ struct ToggleViewButton: View {
                 Image(systemName:"rectangle.grid.2x2")
             }
         }
-        .frame(width: 210, height: 70)
+        .controlSize(.large)
         .foregroundColor(.white)
         .padding()
     }
