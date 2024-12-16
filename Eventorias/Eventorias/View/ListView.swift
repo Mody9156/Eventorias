@@ -53,7 +53,7 @@ struct ListView: View {
                 ZStack(alignment: .bottomTrailing){
                     
                     if calendar {
-                        ViewCalendar()
+                        ViewCalendar(, listViewModel: listViewModel)
                     }else{
                         List {
                             Section {
