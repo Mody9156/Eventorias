@@ -68,7 +68,8 @@ struct UserDetailView: View {
                             HStack {
                                 Text(eventEntry.place.street)
                                     .foregroundColor(.white)
-                                HStack {
+                                
+                                VStack {
                                     Text(eventEntry.place.city)
                                         .foregroundColor(.white)
                                     Text(eventEntry.place.postalCode)
@@ -76,12 +77,12 @@ struct UserDetailView: View {
                                     Text(eventEntry.place.country)
                                         .foregroundColor(.white)
                                 }
+                                
                                 if let picture = maps {
                                     Image(uiImage: picture)
                                         .cornerRadius(20)
                                 }
-                                
-                                
+
                             }.onAppear{
                                 Task {
                                     let  imageData =  try await userDetailViewModel.showMapsStatic(eventEntry.place.localisation.latitude, eventEntry.place.localisation.longitude)
