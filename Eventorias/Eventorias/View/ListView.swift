@@ -51,7 +51,7 @@ struct ListView: View {
                     
                     if calendar {
                         ScrollView {
-                            LazyVGrid(columns:Array(repeating: GridItem(.flexible()), count: 2), spacing:5) {
+                            LazyVGrid(columns:Array(repeating: GridItem(.flexible()), count: 2), spacing:20) {
                                 
                                 ForEach(filtreElement,id: \.self) { entry in
                                     ZStack {
@@ -61,7 +61,8 @@ struct ListView: View {
                                                 .resizable()
                                             
                                         } placeholder:{
-                                            
+                                            ProgressView()
+                                                    .frame(width: 136, height: 80)
                                         }
                                         .frame(width: 136, height: 80)
                                         .cornerRadius(12)
@@ -117,7 +118,8 @@ struct ListView: View {
                                                 .resizable()
                                             
                                         } placeholder:{
-                                            
+                                            ProgressView()
+                                                    .frame(width: 136, height: 80)
                                         }
                                         .frame(width: 136, height: 80)
                                         .cornerRadius(12)
