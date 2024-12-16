@@ -53,41 +53,7 @@ struct ListView: View {
                 ZStack(alignment: .bottomTrailing){
                     
                     if calendar {
-                        ScrollView {
-                            LazyVGrid(columns:Array(repeating: GridItem(.flexible()), count: 2), spacing:20) {
-                                
-                                ForEach(filtreElement,id: \.self) { entry in
-                                    ZStack {
-                                        
-                                        AsyncImage(url:URL(string:"\(entry.poster)")){ image in
-                                            image
-                                                .resizable()
-                                            
-                                        } placeholder:{
-                                            ProgressView()
-                                                    .frame(width: 136, height: 80)
-                                        }
-                                        .frame(width: 136, height: 80)
-                                        .cornerRadius(12)
-                                        .opacity(0.5)
-                                        
-                                        Spacer()
-                                        
-                                        Text(entry.title)
-                                            .lineSpacing(24 - 16)
-                                            .fontWeight(.bold)
-                                            .multilineTextAlignment(.leading)
-                                            .foregroundColor(.white)
-                                        
-                                    }.overlay(NavigationLink(destination: {
-                                        UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()))
-                                    }, label: {
-                                        EmptyView()
-                                    }))
-                                }
-                            }
-                            .padding()
-                        }
+                        ExtractedView()
                     }else{
                         List {
                             Section {
@@ -269,3 +235,43 @@ struct CustomButton: View {
 //        ListView(eventEntry: EventEntry(picture: "MusicFestival", title: "Music festival", dateCreationString:"2024-06-15T12:00:00Z", poster: "MusicFestivalPoster",description:"Join us for an unforgettable Music Festival celebrating the vibrant sounds of today's most talented artists. This event will feature an exciting lineup of performances, ranging from electrifying live bands to soulful solo acts, offering a diverse and immersive musical experience. Whether you're a devoted music enthusiast or simply looking for a weekend of fun, you'll have the chance to enjoy an eclectic mix of genres and discover emerging talent. Don't miss this opportunity to connect with fellow music lovers and create lasting memories in an energetic, festival atmosphere!",hour:"2024-06-15T12:00:00Z", category: "Music",place: Adress(street: "81-800 Avenue 51", city: "Indio", posttalCode: "92201", country: "USA")), searchText: "", isAactive: true, listViewModel: ListViewModel(), tryEvent: true)
 //    }
 //}
+
+struct ExtractedView: View {
+    var body: some View {
+        ScrollView {
+            LazyVGrid(columns:Array(repeating: GridItem(.flexible()), count: 2), spacing:20) {
+                
+                ForEach(filtreElement,id: \.self) { entry in
+                    ZStack {
+                        
+                        AsyncImage(url:URL(string:"\(entry.poster)")){ image in
+                            image
+                                .resizable()
+                            
+                        } placeholder:{
+                            ProgressView()
+                                .frame(width: 136, height: 80)
+                        }
+                        .frame(width: 136, height: 80)
+                        .cornerRadius(12)
+                        .opacity(0.5)
+                        
+                        Spacer()
+                        
+                        Text(entry.title)
+                            .lineSpacing(24 - 16)
+                            .fontWeight(.bold)
+                            .multilineTextAlignment(.leading)
+                            .foregroundColor(.white)
+                        
+                    }.overlay(NavigationLink(destination: {
+                        UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()))
+                    }, label: {
+                        EmptyView()
+                    }))
+                }
+            }
+            .padding()
+        }
+    }
+}
