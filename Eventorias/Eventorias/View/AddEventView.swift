@@ -63,10 +63,10 @@ struct AddEventView: View {
                         ZStack {
                             Rectangle()
                                 .frame(width: 52, height:52)
-                                .foregroundColor(.white)
+                                .foregroundColor(Color("Button"))
                                 .cornerRadius(16)
                             
-                            Image("Camera")
+                            Image("attach")
                         }
                     }
                     
