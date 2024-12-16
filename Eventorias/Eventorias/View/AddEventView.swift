@@ -13,7 +13,7 @@ struct AddEventView: View {
     @State private var date : Date = Date()
     @State var adress : String = ""
     @State var time : String = ""
-    
+    @State var size : Bool = false 
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -25,9 +25,10 @@ struct AddEventView: View {
             Color("Background")
                 .ignoresSafeArea()
             VStack(alignment: .leading){
-                CustomTexfield()
+                CustomTexfield(text: $title)
                 
-                TextField("Description", text: $description)
+                CustomTexfield(text: $description)
+                
                 HStack {
                     DatePicker("", selection: $date,
                                displayedComponents: .date)
@@ -46,6 +47,8 @@ struct AddEventView_Previews: PreviewProvider {
 }
 
 struct CustomTexfield: View {
+    @Binding var text : String
+    @Binding var size : Bool
     var body: some View {
         ZStack(alignment: .leading) {
             Rectangle()
@@ -53,7 +56,7 @@ struct CustomTexfield: View {
                 .foregroundColor(Color("BackgroundDocument"))
                 .cornerRadius(10)
             
-            TextField("New Event", text: $title)
+            TextField("New Event", text: $text)
         }
         .padding()
     }
