@@ -65,8 +65,6 @@ struct ListView: View {
                         }
                     }
                 }
-                
-                
             }.toolbar(content: myTollBarContent)
         }
     }
@@ -91,7 +89,6 @@ struct ListView: View {
                             if changed {
                                 isAactive = true
                                 
-                                
                             }else{
                                 isAactive = false
                             }
@@ -101,7 +98,6 @@ struct ListView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
                         .foregroundColor(.white)
                         .overlay(
-                            
                             HStack{
                                 if searchText.isEmpty {
                                     Text("Search")
@@ -127,9 +123,6 @@ struct ListView: View {
             }
         }
     }
-    //    var filter:Any{
-    //       listViewModel.tryEvent(keyword: searchText)
-    //    }
 }
 
 
