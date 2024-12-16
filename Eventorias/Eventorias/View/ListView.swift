@@ -27,10 +27,7 @@ struct ListView: View {
             }
         }
     }
-    var picture : Image {
-        Image(system:"list.bullet")
-    }
-    
+   
     var body: some View {
         ZStack(alignment: .leading){
             Color("Background")
