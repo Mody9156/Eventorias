@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct AddEventView: View {
     @State var title = ""
@@ -19,6 +20,8 @@ struct AddEventView: View {
         formatter.dateStyle = .medium
         return formatter
     }()
+    
+    @State var selectedItems : [PhotosPickerItem]
     
     var body: some View {
         ZStack {
@@ -41,9 +44,7 @@ struct AddEventView: View {
                 CustomTexField(text: $adress,size:false, placeholder: "Entre full adress")
                 
                 HStack{
-                    Button(action:{}){
-                        
-                    }
+                   
                     Button(action:{}){
                         
                     }
