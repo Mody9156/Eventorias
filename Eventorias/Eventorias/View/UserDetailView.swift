@@ -66,10 +66,9 @@ struct UserDetailView: View {
                         }
                         VStack(alignment: .leading) {
                             HStack {
-                                Text(eventEntry.place.street)
-                                    .foregroundColor(.white)
-                                
-                                VStack {
+                                VStack (alignment: .leading){
+                                    Text(eventEntry.place.street)
+                                        .foregroundColor(.white)
                                     Text(eventEntry.place.city)
                                         .foregroundColor(.white)
                                     Text(eventEntry.place.postalCode)
