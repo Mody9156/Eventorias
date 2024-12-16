@@ -237,11 +237,14 @@ struct CustomButton: View {
 //}
 
 struct ViewCalendar: View {
+    @State var searchText : String = ""
+    @StateObject var listViewModel : ListViewModel
+
     var body: some View {
         ScrollView {
             LazyVGrid(columns:Array(repeating: GridItem(.flexible()), count: 2), spacing:20) {
                 
-                ForEach(filtreElement,id: \.self) { entry in
+                ForEach(listViewModel.filterSelected(option: searchText),id: \.self) { entry in
                     ZStack {
                         
                         AsyncImage(url:URL(string:"\(entry.poster)")){ image in
