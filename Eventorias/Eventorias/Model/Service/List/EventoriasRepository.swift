@@ -31,13 +31,13 @@ public class EventoriasRepository : EventListRepresentable {
 extension Query {
     func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable {
         let snapshot = try await self.getDocuments()
-        
-        for document in snapshot.documents {
-            print("Elements du tableau :  \(document.data())")
-        }
-        
-        print("Il y a \(snapshot.count)")
-        
+//        
+//        for document in snapshot.documents {
+//            print("Elements du tableau :  \(document.data())")
+//        }
+//        
+//        print("Il y a \(snapshot.count)")
+//        
         // Conversion des données en objets de type T
         return try snapshot.documents.map { document in
             do{
@@ -46,8 +46,8 @@ extension Query {
 //                print("Document décodé avec succès : \(data)")
                 return data
             } catch {
-                 print("pour l'erreur si la conversion échoue")
-                print("Erreur de décodage pour le document ID: \(document.documentID), erreur: \(error)")
+//                 print("pour l'erreur si la conversion échoue")
+//                print("Erreur de décodage pour le document ID: \(document.documentID), erreur: \(error)")
                 throw error
             }
         }

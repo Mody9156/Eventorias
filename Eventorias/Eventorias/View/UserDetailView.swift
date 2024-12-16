@@ -66,22 +66,33 @@ struct UserDetailView: View {
                         }
                         VStack(alignment: .leading) {
                             HStack {
-                                Text(eventEntry.place.street)
-                                    .foregroundColor(.white)
-                                HStack {
-                                    Text(eventEntry.place.city)
+                                VStack (alignment: .leading){
+                                    Text(eventEntry.place.street)
                                         .foregroundColor(.white)
-                                    Text(eventEntry.place.postalCode)
-                                        .foregroundColor(.white)
-                                    Text(eventEntry.place.country)
-                                        .foregroundColor(.white)
+                                        .font(.custom("Inter-Medium", size: 16))
+                                        .lineSpacing(24 - 16)
+                                        .multilineTextAlignment(.leading)
+                                    
+                                    HStack {
+                                        Text("\(eventEntry.place.city),")
+                                            .foregroundColor(.white)
+                                            .font(.custom("Inter-Medium", size: 16))
+                                        Text("\(eventEntry.place.postalCode),")
+                                            .foregroundColor(.white)
+                                            .font(.custom("Inter-Medium", size: 16))
+                                        Text(eventEntry.place.country)
+                                            .foregroundColor(.white)
+                                            .font(.custom("Inter-Medium", size: 16))
+                                    }
                                 }
+                                .frame(width: 167, height: 72)
+                                
+                                Spacer()
+                                
                                 if let picture = maps {
                                     Image(uiImage: picture)
                                         .cornerRadius(20)
                                 }
-                                
-                                
                             }.onAppear{
                                 Task {
                                     let  imageData =  try await userDetailViewModel.showMapsStatic(eventEntry.place.localisation.latitude, eventEntry.place.localisation.longitude)
@@ -90,7 +101,8 @@ struct UserDetailView: View {
                                     }
                                 }
                             }
-                        }.padding()
+                        }
+                        .padding()
                         
                     }
                 }
