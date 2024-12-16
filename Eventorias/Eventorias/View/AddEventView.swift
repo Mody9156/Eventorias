@@ -57,9 +57,19 @@ struct AddEventView: View {
                         }
                     }
                     
-                    Button(action:{}){
+                    PhotosPicker(selection:$selectedItems,
+                                 matching:.images) {
                         
+                        ZStack {
+                            Rectangle()
+                                .frame(width: 52, height:52)
+                                .foregroundColor(.white)
+                                .cornerRadius(16)
+                            
+                            Image("Camera")
+                        }
                     }
+                    
                 }
                 .padding()
             }
