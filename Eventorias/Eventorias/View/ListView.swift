@@ -27,6 +27,9 @@ struct ListView: View {
             }
         }
     }
+    var picture : Image {
+        Image(system:"list.bullet")
+    }
     
     var body: some View {
         ZStack(alignment: .leading){
@@ -119,7 +122,6 @@ struct ListView: View {
                                             
                                         } placeholder:{
                                             ProgressView()
-                                                    .frame(width: 136, height: 80)
                                         }
                                         .frame(width: 136, height: 80)
                                         .cornerRadius(12)
