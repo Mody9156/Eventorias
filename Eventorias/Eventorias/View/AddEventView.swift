@@ -10,7 +10,7 @@ import SwiftUI
 struct AddEventView: View {
     @State var title = ""
     @State var description = ""
-    @State var date : Date = Date()
+    @State private var date : Date = Date()
     
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
@@ -22,7 +22,8 @@ struct AddEventView: View {
         VStack{
             TextField("", text: $title)
             TextField("", text: $description)
-            
+            DatePicker("MM-DD-YYYY", selection: $date,
+                displayedComponents: .date)
         }
     }
 }
