@@ -38,7 +38,7 @@ struct ListView: View {
                     CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
                         .padding()
                     Spacer()
-                    ToggleViewButton()
+                    ToggleViewButton(calendar: $calendar)
                 }
                 
                 ZStack(alignment: .bottomTrailing){
@@ -270,6 +270,7 @@ struct ViewCalendar: View {
 }
 
 struct ToggleViewButton: View {
+    @Binding var calendar : Bool
     var body: some View {
         Button(action:{
             calendar.toggle()
