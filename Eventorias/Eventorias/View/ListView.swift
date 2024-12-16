@@ -215,8 +215,8 @@ struct ToggleViewButton: View {
                 Image(systemName:"rectangle.grid.2x2")
             }
         }
-        .frame(width: 105, height: 35)
-        .foregroundColor(Color("BackgroundDocument"))
+        .frame(width: 210, height: 70)
+        .foregroundColor(.white)
         .padding()
     }
 }
