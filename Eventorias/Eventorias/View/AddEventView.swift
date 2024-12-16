@@ -50,6 +50,7 @@ struct AddEventView: View {
                         ZStack {
                             Rectangle()
                                 .frame(width: 52, height:52)
+                                .foregroundColor(.white)
                             
                             Image("Camera")
                         }
