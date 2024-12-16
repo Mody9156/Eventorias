@@ -87,11 +87,8 @@ struct ListView: View {
                                             }
                                             .frame(width: 136, height: 80)
                                             .cornerRadius(12)
-                                            //                                    Image(entry.poster)
-                                            //                                        .resizable()
-                                            //                                        .frame(width: 136, height: 80)
-                                            //                                        .cornerRadius(12)
-                                            
+                                            .opacity(0.5)
+                                       
                                         }.overlay(NavigationLink(destination: {
                                             UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()))
                                         }, label: {
