@@ -39,6 +39,10 @@ struct AddEventView: View {
                     CustomTexField(text: $time,size:true, placeholder: "HH:MM")
                 }
                 CustomTexField(text: $adress,size:false, placeholder: "Entre full adress")
+                
+                HStack{
+                    
+                }
             }
         }
     }
