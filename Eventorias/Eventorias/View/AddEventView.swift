@@ -67,8 +67,11 @@ struct CustomTexField: View {
                 .foregroundColor(Color("BackgroundDocument"))
                 .cornerRadius(5)
             
-            TextField(placeholder, text: $text)
-                .foregroundColor(.white)
+            VStack {
+                Text(text)
+                TextField(placeholder, text: $text)
+                    .foregroundColor(.white)
+            }
             
         }
         .padding()
