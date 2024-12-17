@@ -86,6 +86,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2311CB472D118A5200518BC5 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
 		236060352D0DC7BC00E3504F = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +160,7 @@
 		236060942D0DE48100E3504F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2311CB472D118A5200518BC5 /* Camera */,
 				236060952D0DE48200E3504F /* Token */,
 				236060972D0DE48200E3504F /* Extension */,
 				236060992D0DE48200E3504F /* EventEntry.swift */,
