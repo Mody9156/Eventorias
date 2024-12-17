@@ -12,4 +12,8 @@ import Photos
 
 class CameraManager : NSObject, ObservableObject {}
 
-
+extension CameraManager {
+    func checkPermission() throws {
+        if AVCaptureDevice.authorizationStatus(for: .video) == .denied { throw Error.cameraPermissionNotGranted}
+    }
+}
