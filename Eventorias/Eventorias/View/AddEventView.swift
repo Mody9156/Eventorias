@@ -98,22 +98,13 @@ struct AddEventView: View {
                     }
                 }
                 .padding()
-                
-                if let selectedImage {
-                    Image(uiImage: selectedImage)
-                        .resizable()
-                        .scaledToFit()
-                }
-                else{
-                    Text("No image Selected")
-                        .font(.headline)
-                }
+               
                 Spacer()
                 Button(action:{}){
                     ZStack {
                         Rectangle()
                             .frame(width: 358, height: 52)
-                            .foregroundColor(.red)
+                            .foregroundColor(Color("Button"))
                         
                         Text("Selection")
                             .foregroundColor(.white)
