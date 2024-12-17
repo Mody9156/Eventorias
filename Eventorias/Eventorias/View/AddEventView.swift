@@ -64,15 +64,7 @@ struct AddEventView: View {
                 CustomTexField(text: $adress,size:false, placeholder: "Entre full adress")
                 
                 HStack(alignment: .center){
-                    if let selectedImage {
-                        Image(uiImage: selectedImage)
-                            .resizable()
-                            .scaledToFit()
-                    }
-                    else{
-                        Text("No image Selected")
-                            .font(.headline)
-                    }
+                    
                     
                     Button(action:{
                         self.showCamera.toggle()
@@ -83,7 +75,8 @@ struct AddEventView: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(16)
                             
-                            Image("camera")
+                            Image("Camera")
+                                .foregroundColor(.black)
                         }
                     }
                     .fullScreenCover(isPresented: self.$showCamera) {
@@ -105,6 +98,16 @@ struct AddEventView: View {
                     }
                 }
                 .padding()
+                
+                if let selectedImage {
+                    Image(uiImage: selectedImage)
+                        .resizable()
+                        .scaledToFit()
+                }
+                else{
+                    Text("No image Selected")
+                        .font(.headline)
+                }
                 Spacer()
                 Button(action:{}){
                     Text("Selection")
