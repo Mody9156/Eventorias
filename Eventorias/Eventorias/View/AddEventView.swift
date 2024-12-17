@@ -46,17 +46,21 @@ struct AddEventView: View {
                 CustomTexField(text: $adress,size:false, placeholder: "Entre full adress")
                 
                 HStack(alignment: .center){
-                    PhotosPicker(selection:$selectedItems,
-                                 matching:.screenshots) {
-                        
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 52, height:52)
-                                .foregroundColor(.white)
-                                .cornerRadius(16)
-                            
-                            Image("Camera")
-                        }
+                    if let selectedImage {
+                        Image(uiImage: selectedImage)
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    else{
+                        Text("No image Selected")
+                            .font(.headline)
+                    }
+                    
+                    Button("Open camera"){
+                        self.showCamera.toggle()
+                    }
+                    .fullScreenCover(isPresented: self.$showCamera) {
+                        //
                     }
                     
                     PhotosPicker(selection:$selectedItems,
@@ -105,3 +109,26 @@ struct CustomTexField: View {
         .padding(.leading)
     }
 }
+
+struct accessCameraView: UIViewControllerRepresentable {
+    
+    @Binding var selectedImage: UIImage?
+    @Environment(\.presentationMode) var isPresented
+    
+    func makeUIViewController(context: Context) -> UIImagePickerController {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .camera
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = context.coordinator
+        return imagePicker
+    }
+    
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
+        
+    }
+    
+    func makeCoordinator() -> CameraManager {
+        return CameraManager(picker: self)
+    }
+}
+
