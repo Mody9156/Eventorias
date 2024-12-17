@@ -39,10 +39,25 @@ struct AddEventView: View {
                 
                 HStack {
                     
-                    DatePicker("", selection: $date,
-                               displayedComponents: .date)
-                    .datePickerStyle(.automatic)
-                    
+                    ZStack(alignment: .leading) {
+                               Rectangle()
+                                   .frame(width: 171 , height: 56)
+                                   .foregroundColor(Color("BackgroundDocument"))
+                                   .cornerRadius(10)
+                               
+                               if date == Date() {
+                                   Text("")
+                                       .foregroundColor(.white)
+                                       .padding(.leading, 5)
+                               }
+                               
+                               DatePicker("", selection: $date, displayedComponents: .date)
+                                   .datePickerStyle(.automatic)
+                                   .foregroundColor(.white)
+                                   .padding(.leading, 5)
+                                   .labelsHidden()
+                           }
+                           .padding(.leading)
                     
                     CustomTexField(text: $time,size:true, placeholder: "HH:MM")
                 }
@@ -81,7 +96,7 @@ struct AddEventView: View {
                     }
                 }
                 .padding()
-                
+                Spacer()
                 Button(action:{}){
                     Text("Selection")
                 }
@@ -101,11 +116,22 @@ struct CustomTexField: View {
     var size : Bool
     var placeholder : String
     var body: some View {
-                TextField(placeholder, text: $text)
-                    .foregroundColor(Color("BackgroundDocument"))
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+        ZStack(alignment: .leading) {
+            Rectangle()
+                .frame(height: 56)
+                .foregroundColor(Color("BackgroundDocument"))
+                .cornerRadius(5)
+            if text.isEmpty{
+                Text(placeholder)
+                    .foregroundColor(.white)
                     .padding()
-       
+            }
+                        
+                TextField("", text: $text)
+                    .foregroundColor(.white)
+            
+        }
+        .padding()
     }
 }
 
