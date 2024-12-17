@@ -20,18 +20,10 @@ struct AddEventView: View {
         formatter.dateStyle = .medium
         return formatter
     }()
-    
-    @ObservedObject var cameraManager : CameraManager = .init()
-    
+    @State private var showCamera = false
+    @State private var selectedImage: UIImage?
+    @State var image : UIImage?
     @State var selectedItems : [PhotosPickerItem] = []
-    @State var cameraError: CameraManager.Error?
-    
-    private extension CameraController {
-        func checkCameraPermissions() {
-            do { try cameraManager.checkPermissions() }
-            catch { cameraError = error as? CameraManager.Error }
-        }
-    }
     
     var body: some View {
         ZStack {
@@ -54,12 +46,18 @@ struct AddEventView: View {
                 CustomTexField(text: $adress,size:false, placeholder: "Entre full adress")
                 
                 HStack(alignment: .center){
-                    ZStack { switch cameraError {
-                                case .some(let error): createErrorStateView(error)
-                                case nil: createCameraView()
-                            }}
-                            .onAppear(perform: checkCameraPermissions)
+                    PhotosPicker(selection:$selectedItems,
+                                 matching:.screenshots) {
+                        
+                        ZStack {
+                            Rectangle()
+                                .frame(width: 52, height:52)
+                                .foregroundColor(.white)
+                                .cornerRadius(16)
+                            
+                            Image("Camera")
                         }
+                    }
                     
                     PhotosPicker(selection:$selectedItems,
                                  matching:.images) {
