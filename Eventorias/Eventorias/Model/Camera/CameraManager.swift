@@ -17,3 +17,7 @@ extension CameraManager {
         if AVCaptureDevice.authorizationStatus(for: .video) == .denied { throw Error.cameraPermissionNotGranted}
     }
 }
+
+extension CameraManager { enum Error: Swift.Error {
+    case cameraPermissionNotGranted
+}}
