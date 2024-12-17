@@ -69,7 +69,6 @@ struct AddEventView: View {
                             Image("attach")
                         }
                     }
-                    
                 }
                 .padding()
             }
