@@ -7,6 +7,10 @@
 
 import Foundation
 
-class EventRepository : ObservableObject{
+public class EventRepository : ObservableObject{
+    var db = Firestore.firestore().collection("eventorias")
     
+    func addNewEvent()async throws -> [EventEntry] {
+        
+    }
 }
