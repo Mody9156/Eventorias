@@ -14,12 +14,14 @@ struct AddEventView: View {
     @State private var date : Date = Date()
     @State var adress : String = ""
     @State var time : String = ""
-    
+    @Environment(\.dismiss) var dismiss
+
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         return formatter
     }()
+    
     @State private var showCamera = false
     @State private var selectedImage: UIImage?
     @State var image : UIImage?
@@ -78,6 +80,10 @@ struct AddEventView: View {
                     }
                 }
                 .padding()
+                
+                Button(action:{}){
+                    Text("Selection")
+                }
             }
         }
     }
@@ -115,18 +121,17 @@ struct accessCameraView: UIViewControllerRepresentable {
     
     @Binding var selectedImage: UIImage?
     @Environment(\.presentationMode) var isPresented
-    
+
     func makeUIViewController(context: Context) -> UIImagePickerController {
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = .camera
-        imagePicker.allowsEditing = true
-        imagePicker.delegate = context.coordinator
-        return imagePicker
-    }
+            let imagePicker = UIImagePickerController()
+            imagePicker.sourceType = .camera
+            imagePicker.allowsEditing = true
+            imagePicker.delegate = context.coordinator
+            return imagePicker
+        }
     
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
-        
-    }
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
+
     
     func makeCoordinator() -> CameraManager {
         return CameraManager(picker: self)
