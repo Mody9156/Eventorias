@@ -98,13 +98,6 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
-		2311CB4C2D11A29900518BC5 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		236060352D0DC7BC00E3504F = {
 			isa = PBXGroup;
 			children = (
@@ -161,7 +154,7 @@
 		236060852D0DE47200E3504F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				2311CB4C2D11A29900518BC5 /* New Group */,
+				2311CB472D118A5200518BC5 /* Camera */,
 				236060892D0DE47200E3504F /* UserDetailViewModel.swift */,
 				2360608A2D0DE47200E3504F /* ViewModelManager.swift */,
 				2360608B2D0DE47200E3504F /* AuthentificationViewModel.swift */,
@@ -174,7 +167,6 @@
 		236060942D0DE48100E3504F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2311CB472D118A5200518BC5 /* Camera */,
 				236060952D0DE48200E3504F /* Token */,
 				236060972D0DE48200E3504F /* Extension */,
 				236060992D0DE48200E3504F /* EventEntry.swift */,

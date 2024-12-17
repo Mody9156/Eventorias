@@ -8,7 +8,4 @@
 import Foundation
 import PhotosUI
 
-class AddEventViewModel : ObservableObject {
-    
-    
-}
+class AddEventViewModel : ObservableObject {}
