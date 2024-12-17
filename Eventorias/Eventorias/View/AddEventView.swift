@@ -110,7 +110,10 @@ struct AddEventView: View {
                 }
                 Spacer()
                 Button(action:{}){
-                    Text("Selection")
+                    ZStack {
+                        Text("Selection")
+                    }
+                        
                 }
             }
         }
