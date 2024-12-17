@@ -74,8 +74,17 @@ struct AddEventView: View {
                             .font(.headline)
                     }
                     
-                    Button("Open camera"){
+                    Button(action:{
                         self.showCamera.toggle()
+                    }){
+                        ZStack {
+                            Rectangle()
+                                .frame(width: 52, height:52)
+                                .foregroundColor(.white)
+                                .cornerRadius(16)
+                            
+                            Image("camera")
+                        }
                     }
                     .fullScreenCover(isPresented: self.$showCamera) {
                         accessCameraView(selectedImage: self.$selectedImage)
