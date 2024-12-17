@@ -111,7 +111,12 @@ struct AddEventView: View {
                 Spacer()
                 Button(action:{}){
                     ZStack {
+                        Rectangle()
+                            .frame(width: 358, height: 52)
+                            .foregroundColor(.red)
+                        
                         Text("Selection")
+                            .foregroundColor(.white)
                     }
                         
                 }
