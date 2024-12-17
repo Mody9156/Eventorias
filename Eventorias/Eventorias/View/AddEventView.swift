@@ -16,7 +16,7 @@ struct AddEventView: View {
     @State var adress : String = ""
     @State var time : String = ""
     @Environment(\.dismiss) var dismiss
-
+    
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -40,27 +40,28 @@ struct AddEventView: View {
                 HStack {
                     
                     ZStack(alignment: .leading) {
-                               Rectangle()
-                                   .frame(width: 171 , height: 56)
-                                   .foregroundColor(Color("BackgroundDocument"))
-                                   .cornerRadius(10)
-                               
-                               if date == Date() {
-                                   Text("")
-                                       .foregroundColor(.white)
-                                       .padding(.leading, 5)
-                               }
-                               
-                               DatePicker("", selection: $date, displayedComponents: .date)
-                                   .datePickerStyle(.automatic)
-                                   .foregroundColor(.white)
-                                   .padding(.leading, 5)
-                                   .labelsHidden()
-                           }
-                           .padding(.leading)
+                        Rectangle()
+                            .frame(width: 171 , height: 56)
+                            .foregroundColor(Color("BackgroundDocument"))
+                            .cornerRadius(10)
+                        
+                        if date == Date() {
+                            Text("")
+                                .foregroundColor(.white)
+                                .padding(.leading, 5)
+                        }
+                        
+                        DatePicker("", selection: $date, displayedComponents: .date)
+                            .datePickerStyle(.automatic)
+                            .foregroundColor(.white)
+                            .padding(.leading, 5)
+                            .labelsHidden()
+                    }
+                    .padding(.leading)
                     
                     CustomTexField(text: $time,size:true, placeholder: "HH:MM")
                 }
+                
                 CustomTexField(text: $adress,size:false, placeholder: "Entre full adress")
                 
                 HStack(alignment: .center){
@@ -98,7 +99,7 @@ struct AddEventView: View {
                     }
                 }
                 .padding()
-               
+                
                 Spacer()
                 Button(action:{}){
                     ZStack {
@@ -109,7 +110,7 @@ struct AddEventView: View {
                         Text("Selection")
                             .foregroundColor(.white)
                     }
-                        
+                    
                 }
             }
         }
@@ -137,9 +138,9 @@ struct CustomTexField: View {
                     .foregroundColor(.white)
                     .padding()
             }
-                        
-                TextField("", text: $text)
-                    .foregroundColor(.white)
+            
+            TextField("", text: $text)
+                .foregroundColor(.white)
             
         }
         .padding()
@@ -151,7 +152,7 @@ struct accessCameraView: UIViewControllerRepresentable {
     
     @Binding var selectedImage: UIImage?
     @Environment(\.presentationMode) var isPresented
-
+    
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
         
@@ -170,9 +171,9 @@ struct accessCameraView: UIViewControllerRepresentable {
         imagePicker.delegate = context.coordinator
         return imagePicker
     }
-
+    
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
-
+    
     func makeCoordinator() -> CameraManager {
         return CameraManager(picker: self)
     }

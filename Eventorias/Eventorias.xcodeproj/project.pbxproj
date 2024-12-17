@@ -98,6 +98,13 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
+		2311CB4D2D11FF1200518BC5 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
 		236060352D0DC7BC00E3504F = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +212,7 @@
 		2360609D2D0DE48200E3504F /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				2311CB4D2D11FF1200518BC5 /* Event */,
 				2360609E2D0DE48200E3504F /* List */,
 				236060A02D0DE48200E3504F /* Authentification */,
 			);
