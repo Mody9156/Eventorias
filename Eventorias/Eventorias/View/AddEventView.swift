@@ -21,7 +21,7 @@ struct AddEventView: View {
         return formatter
     }()
     
-    @ObservableObject var cameraManager : CameraManager = .init()
+    @ObservedObject var cameraManager : CameraManager = .init()
     
     @State var selectedItems : [PhotosPickerItem] = []
     
