@@ -101,20 +101,11 @@ struct CustomTexField: View {
     var size : Bool
     var placeholder : String
     var body: some View {
-        ZStack(alignment: .leading) {
-            Rectangle()
-                .frame(width: size ? 171 : 358, height: 56)
-                .foregroundColor(Color("BackgroundDocument"))
-                .cornerRadius(5)
-            
-            VStack(alignment: .leading) {
-                Text(placeholder)
-                    .foregroundColor(.white)
                 TextField(placeholder, text: $text)
-                    .foregroundColor(.white)
-            }
-        }
-        .padding(.leading)
+                    .foregroundColor(Color("BackgroundDocument"))
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+       
     }
 }
 
