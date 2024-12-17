@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import UIKit
 
 struct AddEventView: View {
     @State var title = ""
@@ -14,6 +15,7 @@ struct AddEventView: View {
     @State private var date : Date = Date()
     @State var adress : String = ""
     @State var time : String = ""
+    @Environment(\.dismiss) var dismiss
     
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
@@ -21,6 +23,9 @@ struct AddEventView: View {
         return formatter
     }()
     
+    @State private var showCamera = false
+    @State private var selectedImage: UIImage?
+    @State var image : UIImage?
     @State var selectedItems : [PhotosPickerItem] = []
     
     var body: some View {
@@ -34,19 +39,37 @@ struct AddEventView: View {
                 
                 HStack {
                     
-                    DatePicker("", selection: $date,
-                               displayedComponents: .date)
-                    .datePickerStyle(.automatic)
-                    
+                    ZStack(alignment: .leading) {
+                        Rectangle()
+                            .frame(width: 171 , height: 56)
+                            .foregroundColor(Color("BackgroundDocument"))
+                            .cornerRadius(10)
+                        
+                        if date == Date() {
+                            Text("")
+                                .foregroundColor(.white)
+                                .padding(.leading, 5)
+                        }
+                        
+                        DatePicker("", selection: $date, displayedComponents: .date)
+                            .datePickerStyle(.automatic)
+                            .foregroundColor(.white)
+                            .padding(.leading, 5)
+                            .labelsHidden()
+                    }
+                    .padding(.leading)
                     
                     CustomTexField(text: $time,size:true, placeholder: "HH:MM")
                 }
+                
                 CustomTexField(text: $adress,size:false, placeholder: "Entre full adress")
                 
                 HStack(alignment: .center){
-                    PhotosPicker(selection:$selectedItems,
-                                 matching:.images) {
-                        
+                    
+                    
+                    Button(action:{
+                        self.showCamera.toggle()
+                    }){
                         ZStack {
                             Rectangle()
                                 .frame(width: 52, height:52)
@@ -54,7 +77,12 @@ struct AddEventView: View {
                                 .cornerRadius(16)
                             
                             Image("Camera")
+                                .foregroundColor(.black)
                         }
+                    }
+                    .fullScreenCover(isPresented: self.$showCamera) {
+                        accessCameraView(selectedImage: self.$selectedImage)
+                            .background(.black)
                     }
                     
                     PhotosPicker(selection:$selectedItems,
@@ -69,9 +97,21 @@ struct AddEventView: View {
                             Image("attach")
                         }
                     }
-                    
                 }
                 .padding()
+                
+                Spacer()
+                Button(action:{}){
+                    ZStack {
+                        Rectangle()
+                            .frame(width: 358, height: 52)
+                            .foregroundColor(Color("Button"))
+                        
+                        Text("Selection")
+                            .foregroundColor(.white)
+                    }
+                    
+                }
             }
         }
     }
@@ -90,17 +130,52 @@ struct CustomTexField: View {
     var body: some View {
         ZStack(alignment: .leading) {
             Rectangle()
-                .frame(width: size ? 171 : 358, height: 56)
+                .frame(height: 56)
                 .foregroundColor(Color("BackgroundDocument"))
                 .cornerRadius(5)
-            
-            VStack(alignment: .leading) {
+            if text.isEmpty{
                 Text(placeholder)
                     .foregroundColor(.white)
-                TextField(placeholder, text: $text)
-                    .foregroundColor(.white)
+                    .padding()
             }
+            
+            TextField("", text: $text)
+                .foregroundColor(.white)
+            
         }
-        .padding(.leading)
+        .padding()
     }
 }
+
+
+struct accessCameraView: UIViewControllerRepresentable {
+    
+    @Binding var selectedImage: UIImage?
+    @Environment(\.presentationMode) var isPresented
+    
+    func makeUIViewController(context: Context) -> UIImagePickerController {
+        let imagePicker = UIImagePickerController()
+        
+        // Vérifie si la caméra est disponible avant de l'utiliser
+        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+            // Si la caméra n'est pas disponible, utilise la bibliothèque photo
+            imagePicker.sourceType = .photoLibrary
+            // On peut aussi montrer une alerte ici dans le Coordinator
+            context.coordinator.showCameraUnavailableAlert()
+        } else {
+            // Si la caméra est disponible, utilise la caméra
+            imagePicker.sourceType = .camera
+        }
+        
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = context.coordinator
+        return imagePicker
+    }
+    
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
+    
+    func makeCoordinator() -> CameraManager {
+        return CameraManager(picker: self)
+    }
+}
+

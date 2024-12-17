@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		230474212D1091C80067BB54 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230474202D1091C80067BB54 /* AddEventView.swift */; };
+		2311CB492D118BEB00518BC5 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2311CB482D118BEB00518BC5 /* CameraManager.swift */; };
+		2311CB4B2D1199A700518BC5 /* AddEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2311CB4A2D1199A700518BC5 /* AddEventViewModel.swift */; };
+		2311CB4F2D11FF8F00518BC5 /* EventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2311CB4E2D11FF8F00518BC5 /* EventRepository.swift */; };
 		236060422D0DC7BC00E3504F /* EventoriasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060412D0DC7BC00E3504F /* EventoriasApp.swift */; };
 		236060462D0DC7C800E3504F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 236060452D0DC7C800E3504F /* Assets.xcassets */; };
 		236060492D0DC7C800E3504F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 236060482D0DC7C800E3504F /* Preview Assets.xcassets */; };
@@ -41,6 +44,11 @@
 
 /* Begin PBXFileReference section */
 		230474202D1091C80067BB54 /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
+		2311CB452D11839800518BC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2311CB462D11849000518BC5 /* Eventorias.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Eventorias.entitlements; sourceTree = "<group>"; };
+		2311CB482D118BEB00518BC5 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		2311CB4A2D1199A700518BC5 /* AddEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewModel.swift; sourceTree = "<group>"; };
+		2311CB4E2D11FF8F00518BC5 /* EventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
 		2360603E2D0DC7BC00E3504F /* Eventorias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventorias.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		236060412D0DC7BC00E3504F /* EventoriasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasApp.swift; sourceTree = "<group>"; };
 		236060452D0DC7C800E3504F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -84,6 +92,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2311CB472D118A5200518BC5 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				2311CB482D118BEB00518BC5 /* CameraManager.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		2311CB4D2D11FF1200518BC5 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				2311CB4E2D11FF8F00518BC5 /* EventRepository.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
 		236060352D0DC7BC00E3504F = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +127,8 @@
 		236060402D0DC7BC00E3504F /* Eventorias */ = {
 			isa = PBXGroup;
 			children = (
+				2311CB462D11849000518BC5 /* Eventorias.entitlements */,
+				2311CB452D11839800518BC5 /* Info.plist */,
 				236060942D0DE48100E3504F /* Model */,
 				2360607A2D0DE43300E3504F /* View */,
 				236060852D0DE47200E3504F /* ViewModel */,
@@ -138,10 +164,12 @@
 		236060852D0DE47200E3504F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				2311CB472D118A5200518BC5 /* Camera */,
 				236060892D0DE47200E3504F /* UserDetailViewModel.swift */,
 				2360608A2D0DE47200E3504F /* ViewModelManager.swift */,
 				2360608B2D0DE47200E3504F /* AuthentificationViewModel.swift */,
 				2360608C2D0DE47200E3504F /* ListViewModel.swift */,
+				2311CB4A2D1199A700518BC5 /* AddEventViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -187,6 +215,7 @@
 		2360609D2D0DE48200E3504F /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				2311CB4D2D11FF1200518BC5 /* Event */,
 				2360609E2D0DE48200E3504F /* List */,
 				236060A02D0DE48200E3504F /* Authentification */,
 			);
@@ -336,13 +365,16 @@
 				236060822D0DE43B00E3504F /* ListView.swift in Sources */,
 				236060922D0DE47200E3504F /* AuthentificationViewModel.swift in Sources */,
 				236060902D0DE47200E3504F /* UserDetailViewModel.swift in Sources */,
+				2311CB4F2D11FF8F00518BC5 /* EventRepository.swift in Sources */,
 				236060912D0DE47200E3504F /* ViewModelManager.swift in Sources */,
 				236060B72D0DE48300E3504F /* HTTPService.swift in Sources */,
 				236060AE2D0DE48200E3504F /* AuthToken.swift in Sources */,
+				2311CB4B2D1199A700518BC5 /* AddEventViewModel.swift in Sources */,
 				236060B02D0DE48200E3504F /* EventEntry.swift in Sources */,
 				236060BB2D0DE48300E3504F /* protocolsFirebaseData.swift in Sources */,
 				236060AF2D0DE48200E3504F /* DateExtension.swift in Sources */,
 				236060832D0DE43B00E3504F /* HomeView.swift in Sources */,
+				2311CB492D118BEB00518BC5 /* CameraManager.swift in Sources */,
 				236060B62D0DE48300E3504F /* BasicHTTPClient.swift in Sources */,
 				236060842D0DE43B00E3504F /* UserDetailView.swift in Sources */,
 				236060B52D0DE48200E3504F /* FirebaseAuthenticationManager.swift in Sources */,
@@ -472,12 +504,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Eventorias/Eventorias.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Eventorias/Preview Content\"";
 				DEVELOPMENT_TEAM = 99UMC25BBL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Eventorias/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Detect hands and create ad 3D model of it.";
+				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "This app needs to cpture image to show in the app.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -490,6 +527,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Eventorias.Eventorias;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -501,12 +539,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Eventorias/Eventorias.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Eventorias/Preview Content\"";
 				DEVELOPMENT_TEAM = 99UMC25BBL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Eventorias/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Detect hands and create ad 3D model of it.";
+				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "This app needs to cpture image to show in the app.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -519,6 +562,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Eventorias.Eventorias;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
