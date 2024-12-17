@@ -8,5 +8,5 @@
 import Foundation
 
 class RegistrationViewModel : ObservableObject {
-    
+    @Published var capturedImage : UIImage? = nil
 }
