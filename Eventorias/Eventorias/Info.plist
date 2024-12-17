@@ -3,9 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSCameraUsageDescription</key>
-		<string>Cette application nécessite l&apos;accès à la caméra pour prendre des photos.</string>
-	</dict>
+	<dict/>
 </dict>
 </plist>

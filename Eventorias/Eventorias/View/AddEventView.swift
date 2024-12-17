@@ -60,7 +60,8 @@ struct AddEventView: View {
                         self.showCamera.toggle()
                     }
                     .fullScreenCover(isPresented: self.$showCamera) {
-                        //
+                        accessCameraView(selectedImage: self.$selectedImage)
+                            .background(.black)
                     }
                     
                     PhotosPicker(selection:$selectedItems,
