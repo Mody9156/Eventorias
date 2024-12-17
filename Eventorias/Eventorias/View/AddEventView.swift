@@ -24,6 +24,7 @@ struct AddEventView: View {
     @ObservedObject var cameraManager : CameraManager = .init()
     
     @State var selectedItems : [PhotosPickerItem] = []
+    @State var cameraError: CameraManager.Error?
     
     private extension CameraController {
         func checkCameraPermissions() {
