@@ -10,4 +10,23 @@ import PhotosUI
 
 class RegistrationViewModel : ObservableObject {
     @Published var capturedImage : UIImage? = nil
+    
+    private var cameraDelegate : CameraDelegate?
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
