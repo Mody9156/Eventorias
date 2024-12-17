@@ -2,7 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSAppTransportSecurity</key>
-	<dict/>
+    <key>NSAppTransportSecurity</key>
+    <dict/>
+    
+    <!-- Autorisation d'accès à la caméra -->
+    <key>NSCameraUsageDescription</key>
+    <string>Cette application a besoin d'accéder à votre caméra pour prendre des photos.</string>
+    
+    <!-- Autorisation d'accès à la galerie de photos (si nécessaire) -->
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Cette application a besoin d'accéder à votre bibliothèque de photos pour sélectionner des images.</string>
 </dict>
 </plist>
