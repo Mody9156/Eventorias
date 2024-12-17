@@ -25,6 +25,13 @@ struct AddEventView: View {
     
     @State var selectedItems : [PhotosPickerItem] = []
     
+    private extension CameraController {
+        func checkCameraPermissions() {
+            do { try cameraManager.checkPermissions() }
+            catch { cameraError = error as? CameraManager.Error }
+        }
+    }
+    
     var body: some View {
         ZStack {
             Color("Background")
@@ -46,18 +53,12 @@ struct AddEventView: View {
                 CustomTexField(text: $adress,size:false, placeholder: "Entre full adress")
                 
                 HStack(alignment: .center){
-                    PhotosPicker(selection:$selectedItems,
-                                 matching:.images) {
-                        
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 52, height:52)
-                                .foregroundColor(.white)
-                                .cornerRadius(16)
-                            
-                            Image("Camera")
+                    ZStack { switch cameraError {
+                                case .some(let error): createErrorStateView(error)
+                                case nil: createCameraView()
+                            }}
+                            .onAppear(perform: checkCameraPermissions)
                         }
-                    }
                     
                     PhotosPicker(selection:$selectedItems,
                                  matching:.images) {
