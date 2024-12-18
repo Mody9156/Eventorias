@@ -22,6 +22,22 @@ struct AddressInputView: View {
             CustomTexField(text: $city, size: false, placeholder: "Entrez le nom de votre ville")
             CustomTexField(text: $city, size: false, placeholder: "Entrez le le code postale")
             CustomTexField(text: $city, size: false, placeholder: "Entrez le nom de votre pays")
+            
+            Spacer()
+            
+            Button(action:{
+               
+            }){
+                ZStack {
+                    Rectangle()
+                        .frame(width: 358, height: 52)
+                        .foregroundColor(Color("Button"))
+                    
+                    Text("Validate")
+                        .foregroundColor(.white)
+                }
+                
+            }
         }
     }
     }
