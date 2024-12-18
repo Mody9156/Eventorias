@@ -29,7 +29,7 @@ struct AddEventView: View {
     @State var image : UIImage?
     @State var selectedItems : [PhotosPickerItem] = []
     @State private var errorMessage: String?
-    @State private var showAddress : Bool = false 
+    @State private var showAddress : Bool = false
     
     func geocodeAdress(address:String){
         let geocoder = CLGeocoder()
@@ -85,7 +85,7 @@ struct AddEventView: View {
 //                CustomTexField(text: $address,size:false, placeholder: "Entre full adress")
                 
                 Button(action:{
-                    
+                    showAddress.toggle()
                 }){
                     ZStack(alignment: .leading) {
                         Rectangle()
