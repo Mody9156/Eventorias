@@ -29,6 +29,7 @@ struct AddEventView: View {
     @State var image : UIImage?
     @State var selectedItems : [PhotosPickerItem] = []
     @State private var errorMessage: String?
+    @State private var showAddress : Bool = false 
     
     func geocodeAdress(address:String){
         let geocoder = CLGeocoder()
