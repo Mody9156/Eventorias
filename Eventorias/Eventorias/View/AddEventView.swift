@@ -8,6 +8,7 @@
 import SwiftUI
 import PhotosUI
 import UIKit
+import CoreLocation
 
 struct AddEventView: View {
     @State var title = ""
