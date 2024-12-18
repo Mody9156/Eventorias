@@ -36,7 +36,7 @@ struct AddEventView: View {
     @State private var country : String = ""
     @State private var hours : Date = Date()
     @State private var savedFilePath: String?
-
+    
     func saveImageToTemporaryDirectory(image:UIImage, fileName:String) -> String? {
         guard let data = image.jpegData(compressionQuality: 1.0) else {return nil }
         let tempDir = FileManager.default.temporaryDirectory
@@ -125,7 +125,6 @@ struct AddEventView: View {
                         accessCameraView(selectedImage: self.$selectedImage)
                             .background(.black)
                     }
-                        Text("")
                     
                     PhotosPicker(selection:$selectedItems,
                                  matching:.images) {
@@ -164,9 +163,9 @@ struct AddEventView: View {
                     geocodeAdress(address: address)
                     if let selectedImage = selectedImage {
                         if let selected = saveImageToTemporaryDirectory(image: selectedImage, fileName: "\(title).jpg") {
-                        resultPicture = selected
+                            resultPicture = selected
+                        }
                     }
-                }
                     
                 }){
                     ZStack {
