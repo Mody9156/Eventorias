@@ -81,7 +81,21 @@ struct AddEventView: View {
                     CustomTexField(text: $time,size:true, placeholder: "HH:MM")
                 }
                 
-                CustomTexField(text: $address,size:false, placeholder: "Entre full adress")
+//                CustomTexField(text: $address,size:false, placeholder: "Entre full adress")
+                
+                Button(action:{
+                    
+                }){
+                    ZStack(alignment: .leading) {
+                        Rectangle()
+                            .frame(height: 56)
+                            .foregroundColor(Color("BackgroundDocument"))
+                            .cornerRadius(5)
+                      
+                       Text("Entre full adress")
+                    }
+                    .padding()
+                }
                 
                 HStack(alignment: .center){
                     
@@ -118,7 +132,12 @@ struct AddEventView: View {
                     }
                 }
                 .padding()
-                
+                if let latitude = coordinates?.latitude {
+                    Text("latitude \(latitude)")
+                }
+                if let latitude = coordinates?.longitude {
+                Text("Longitude \(latitude)")
+                }
                 Spacer()
                 Button(action:{
                     geocodeAdress(address: address)
