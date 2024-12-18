@@ -155,9 +155,9 @@ struct AddEventView: View {
                 if let latitude = coordinates?.longitude {
                     Text("Longitude \(latitude)")
                 }
-                
-                Text("\(savedFilePath)")
-                
+                if let item = savedFilePath {
+                    Text(item)
+                }
                 Spacer()
                 
                 Button(action:{
