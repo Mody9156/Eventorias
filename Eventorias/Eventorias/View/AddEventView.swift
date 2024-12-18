@@ -167,7 +167,7 @@ struct AddEventView: View {
                     if let selectedImage = selectedImage , let savedFilePath = savedFilePath, let selected = saveImageToTemporaryDirectory(image: selectedImage, fileName: "\(title).jpg"), let latitude = coordinates?.latitude, let longitude = coordinates?.longitude{
                        
                             resultPicture = selected
-                            var stringFromHour = Date.stringFromHour(hours)
+                            var stringFromHour = String(Date.stringFromHour(hours))
                                 addEventViewModel.saveToFirestore(picture: selected, title: title, dateCreation: date, poster: savedFilePath, description: description, hour: stringFromHour, category: category, street: street, city: city, postalCode: postalCode, country: country, latitude: latitude, longitude: longitude)
                     }
                 }){
