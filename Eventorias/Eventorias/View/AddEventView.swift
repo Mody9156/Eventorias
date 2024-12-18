@@ -111,6 +111,14 @@ struct AddEventView: View {
                     AddressInputView(street: $street, city: $city, postalCode: $postalCode, country: $country, address: $address)
                 }
                 
+                Picker("Category", selection:$category) {
+                    ForEach(indexCategory,id:\.self){ index in
+                        Text(index)
+                            .tag(index)
+                    }
+                }
+                .pickerStyle(.wheel)
+                
                 HStack(alignment: .center){
                     Button(action:{
                         self.showCamera.toggle()
@@ -153,13 +161,7 @@ struct AddEventView: View {
                 }
                 .padding()
               
-                Picker("Category", selection:$category) {
-                    ForEach(indexCategory,id:\.self){ index in
-                        Text(index)
-                            .tag(index)
-                    }
-                }
-                .pickerStyle(.segmented)
+                
                 
                 Spacer()
                 
