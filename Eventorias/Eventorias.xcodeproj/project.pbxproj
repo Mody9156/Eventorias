@@ -166,6 +166,7 @@
 		236060852D0DE47200E3504F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				23F9E9AE2D12F0330030C221 /* New Group */,
 				2311CB472D118A5200518BC5 /* Camera */,
 				236060892D0DE47200E3504F /* UserDetailViewModel.swift */,
 				2360608A2D0DE47200E3504F /* ViewModelManager.swift */,
@@ -282,6 +283,13 @@
 				23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */,
 			);
 			path = Event;
+			sourceTree = "<group>";
+		};
+		23F9E9AE2D12F0330030C221 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

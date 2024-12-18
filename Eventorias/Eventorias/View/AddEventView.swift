@@ -97,7 +97,7 @@ struct AddEventView: View {
                     }
                     .padding()
                 }.sheet(isPresented: $showAddress) {
-                    <#code#>
+                    Text("NOOOO")
                 }
                 
                 HStack(alignment: .center){
