@@ -162,6 +162,10 @@ struct AddEventView: View {
                 }
                 .padding()
               
+                if let savedFilePath = savedFilePath {
+                    Text(savedFilePath)
+                        .foregroundColor(.white)
+                }
                 
                 
                 Spacer()
