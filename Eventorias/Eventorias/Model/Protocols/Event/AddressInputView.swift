@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct AddressInputView: View {
-    @State var street: String = ""
-    @State var city: String = ""
-    @State var postalCode: String = ""
-    @State var country: String = ""
+    @Binding var street: String
+    @Binding var city: String
+    @Binding var postalCode: String
+    @Binding var country: String
     @Binding var address : String
     @Environment(\.dismiss) var dismiss
     
@@ -29,7 +29,7 @@ struct AddressInputView: View {
             Spacer()
             
             Button(action:{
-                self.address = street + city + postalCode + country
+                self.address = "\(street) \(city) \(postalCode) \(country)"
                 dismiss()
             }){
                 ZStack {
@@ -49,7 +49,12 @@ struct AddressInputView: View {
 
 struct AddressInputView_Previews: PreviewProvider {
     @State static var sampleAdress : String = ""
+    @State static var sampleCity : String = ""
+    @State static var samplePostalCode : String = ""
+    @State static var sampleCountry: String = ""
+    @State static var sampleAddress: String = ""
+    
     static var previews: some View {
-        AddressInputView(address: $sampleAdress)
+        AddressInputView(street: $sampleAdress, city: $sampleCity, postalCode: $samplePostalCode, country: $sampleCountry, address: $sampleAddress)
     }
 }

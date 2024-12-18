@@ -30,6 +30,13 @@ struct AddEventView: View {
     @State var selectedItems : [PhotosPickerItem] = []
     @State private var errorMessage: String?
     @State private var showAddress : Bool = false
+    @State private var street : String = ""
+    @State private var city : String = ""
+    @State private var postalCode : String = ""
+    @State private var country : String = ""
+    
+    
+    
     
     func geocodeAdress(address:String){
         let geocoder = CLGeocoder()
@@ -86,6 +93,7 @@ struct AddEventView: View {
                 
                 Button(action:{
                     showAddress.toggle()
+                    
                 }){
                     ZStack(alignment: .leading) {
                         Rectangle()
@@ -97,7 +105,8 @@ struct AddEventView: View {
                     }
                     .padding()
                 }.sheet(isPresented: $showAddress) {
-                    Text("NOOOO")
+                    AddressInputView(street: street, city: city, postalCode: postalCode, country: country, address: $address)
+
                 }
                 
                 HStack(alignment: .center){
