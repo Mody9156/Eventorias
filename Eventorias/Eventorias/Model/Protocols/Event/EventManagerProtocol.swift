@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+protocol EventManagerProtocol {
+    func saveToFirestore(_ event: EventEntry,completion:@escaping(Bool,Error?)-> Void )
+}
+
