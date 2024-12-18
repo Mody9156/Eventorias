@@ -16,7 +16,7 @@ struct AddEventView: View {
     @State var adress : String = ""
     @State var time : String = ""
     @Environment(\.dismiss) var dismiss
-    
+    @StateObject var addEventViewModel : AddEventViewModel
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -101,7 +101,10 @@ struct AddEventView: View {
                 .padding()
                 
                 Spacer()
-                Button(action:{}){
+                Button(action:{
+                    
+                    
+                }){
                     ZStack {
                         Rectangle()
                             .frame(width: 358, height: 52)
