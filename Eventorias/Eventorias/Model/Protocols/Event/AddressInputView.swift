@@ -12,6 +12,8 @@ struct AddressInputView: View {
     @State var city: String = ""
     @State var postalCode: String = ""
     @State var country: String = ""
+    @Binding var address : String
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ZStack {
@@ -20,13 +22,14 @@ struct AddressInputView: View {
         VStack{
             CustomTexField(text: $street, size: false, placeholder: "Entrez le nom de votre rue")
             CustomTexField(text: $city, size: false, placeholder: "Entrez le nom de votre ville")
-            CustomTexField(text: $city, size: false, placeholder: "Entrez le le code postale")
-            CustomTexField(text: $city, size: false, placeholder: "Entrez le nom de votre pays")
+            CustomTexField(text: $postalCode, size: false, placeholder: "Entrez le le code postale")
+            CustomTexField(text: $country, size: false, placeholder: "Entrez le nom de votre pays")
             
             Spacer()
             
             Button(action:{
-               
+                self.address = street + city + postalCode + country
+                dismiss()
             }){
                 ZStack {
                     Rectangle()
@@ -45,6 +48,6 @@ struct AddressInputView: View {
 
 struct AddressInputView_Previews: PreviewProvider {
     static var previews: some View {
-        AddressInputView()
+        AddressInputView(address: $address)
     }
 }
