@@ -11,4 +11,6 @@ import PhotosUI
 class AddEventViewModel : ObservableObject {
     let eventRepository: EventRepository
     
+    
+    
 }
