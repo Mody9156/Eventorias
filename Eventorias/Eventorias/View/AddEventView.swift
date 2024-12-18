@@ -35,6 +35,10 @@ struct AddEventView: View {
     @State private var country : String = ""
     @State private var hours : Date = Date()
     
+    func saveImageToTemporaryDirectory(image:UIImage,fileName:String) -> String{
+        
+    }
+    
     func geocodeAdress(address:String){
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address){ placemarks, error in
@@ -51,7 +55,6 @@ struct AddEventView: View {
         }
     }
     
-    
     var body: some View {
         ZStack {
             Color("Background")
@@ -62,7 +65,6 @@ struct AddEventView: View {
                 CustomTexField(text: $description,size:false, placeholder: "Tap here entrer your description")
                 
                 HStack {
-                    
                     DatePicker("", selection: $date, displayedComponents: .date)
                         .datePickerStyle(.automatic)
                         .foregroundColor(.white)
@@ -74,13 +76,10 @@ struct AddEventView: View {
                         .foregroundColor(.white)
                         .padding(.leading, 5)
                         .labelsHidden()
-                    
                 }
                 
-                Text(address)
                 Button(action:{
                     showAddress.toggle()
-                    
                 }){
                     ZStack(alignment: .leading) {
                         Rectangle()
@@ -93,12 +92,9 @@ struct AddEventView: View {
                     .padding()
                 }.sheet(isPresented: $showAddress) {
                     AddressInputView(street: $street, city: $city, postalCode: $postalCode, country: $country, address: $address)
-                    
                 }
                 
                 HStack(alignment: .center){
-                    
-                    
                     Button(action:{
                         self.showCamera.toggle()
                     }){
@@ -116,6 +112,7 @@ struct AddEventView: View {
                         accessCameraView(selectedImage: self.$selectedImage)
                             .background(.black)
                     }
+                        Text("")
                     
                     PhotosPicker(selection:$selectedItems,
                                  matching:.images) {
@@ -149,7 +146,6 @@ struct AddEventView: View {
                         Text("Validate")
                             .foregroundColor(.white)
                     }
-                    
                 }
             }
         }
@@ -180,12 +176,10 @@ struct CustomTexField: View {
             
             TextField("", text: $text)
                 .foregroundColor(.white)
-            
         }
         .padding()
     }
 }
-
 
 struct accessCameraView: UIViewControllerRepresentable {
     
