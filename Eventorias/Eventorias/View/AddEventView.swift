@@ -201,6 +201,7 @@ struct CustomTexField: View {
             if text.isEmpty{
                 Text(placeholder)
                     .foregroundColor(.white)
+                    .opacity(0.5)
                     .padding()
             }
             
