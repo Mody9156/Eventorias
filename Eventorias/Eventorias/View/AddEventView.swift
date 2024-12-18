@@ -122,7 +122,7 @@ struct AddEventView: View {
 
 struct AddEventView_Previews: PreviewProvider {
     static var previews: some View {
-        AddEventView()
+        AddEventView(addEventViewModel: AddEventViewModel())
     }
 }
 
