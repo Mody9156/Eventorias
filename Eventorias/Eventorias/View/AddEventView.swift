@@ -15,7 +15,6 @@ struct AddEventView: View {
     @State var description = ""
     @State private var date : Date = Date()
     @State var address : String = ""
-    @State var time : String = ""
     @Environment(\.dismiss) var dismiss
     @StateObject var addEventViewModel : AddEventViewModel
     private let dateFormatter : DateFormatter = {
@@ -64,36 +63,20 @@ struct AddEventView: View {
                 
                 HStack {
                     
-                    ZStack(alignment: .leading) {
-                        Rectangle()
-                            .frame(width: 171 , height: 56)
-                            .foregroundColor(Color("BackgroundDocument"))
-                            .cornerRadius(10)
-                        
-                        if date == Date() {
-                            Text("")
-                                .foregroundColor(.white)
-                                .padding(.leading, 5)
-                        }
-                        
-                        DatePicker("", selection: $date, displayedComponents: .date)
-                            .datePickerStyle(.automatic)
-                            .foregroundColor(.white)
-                            .padding(.leading, 5)
-                            .labelsHidden()
-                    }
-                    .padding(.leading)
-                    
-                    //                    CustomTexField(text: $time,size:true, placeholder: "HH:MM")
-                    DatePicker("Heure", selection: $hours, displayedComponents: .hourAndMinute)
+                    DatePicker("", selection: $date, displayedComponents: .date)
                         .datePickerStyle(.automatic)
                         .foregroundColor(.white)
                         .padding(.leading, 5)
                         .labelsHidden()
-               
+                    
+                    DatePicker("HH:MM", selection: $hours, displayedComponents: .hourAndMinute)
+                        .datePickerStyle(.automatic)
+                        .foregroundColor(.white)
+                        .padding(.leading, 5)
+                        .labelsHidden()
+                    
                 }
                 
-                //                CustomTexField(text: $address,size:false, placeholder: "Entre full adress")
                 Text(address)
                 Button(action:{
                     showAddress.toggle()
