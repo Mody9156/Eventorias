@@ -102,6 +102,7 @@ struct AddEventView: View {
                         
                         Text("Entre full adress")
                             .foregroundColor(.black)
+                            .font(.bold)
                     }
                     .padding()
                 }.sheet(isPresented: $showAddress) {
