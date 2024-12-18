@@ -15,7 +15,13 @@ class AddEventViewModel : ObservableObject {
         self.eventRepository = eventRepository
     }
     
-    func saveToFirestore(){
-        
+    func saveToFirestore(_ event : EventEntry){
+        eventRepository.saveToFirestore(event) { success, error in
+            if success {
+                print("L'évènement a été sauvegardé avec succès.")
+            }else{
+                print("Erreur, \(error?.localizedDescription ?? "Inconnue")")
+            }
+        }
     }
 }
