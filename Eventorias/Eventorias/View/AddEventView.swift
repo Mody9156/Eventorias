@@ -36,7 +36,8 @@ struct AddEventView: View {
     @State private var country : String = ""
     @State private var hours : Date = Date()
     @State private var savedFilePath: String?
-    @State private var category : [String] = ["Music","Food","Book","Conference","Exhibition","Charity","Film"]
+    var indexCategory = ["Music","Food","Book","Conference","Exhibition","Charity","Film"]
+    @State private var category : String = ""
     
     func saveImageToTemporaryDirectory(image:UIImage, fileName:String) -> String? {
         guard let data = image.jpegData(compressionQuality: 1.0) else {return nil }
@@ -153,7 +154,7 @@ struct AddEventView: View {
                 .padding()
               
                 Picker("Category", selection:$category) {
-                    ForEach(category,id:\.self){ index in
+                    ForEach(indexCategory,id:\.self){ index in
                         Text(index)
                             .tag(index)
                     }
