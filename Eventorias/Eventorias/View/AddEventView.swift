@@ -163,10 +163,11 @@ struct AddEventView: View {
                 
                 Button(action:{
                     geocodeAdress(address: address)
-                    if let selectedImage = selectedImage {
-                        if let selected = saveImageToTemporaryDirectory(image: selectedImage, fileName: "\(title).jpg") {
+                    if let selectedImage = selectedImage , let savedFilePath = savedFilePath, let selected = saveImageToTemporaryDirectory(image: selectedImage, fileName: "\(title).jpg"), let latitude = coordinates?.latitude, let longitude = coordinates?.longitude{
+                       
                             resultPicture = selected
-                        }
+                            var stringFromHour = Date.stringFromHour(hours)
+                                addEventViewModel.saveToFirestore(picture: selected, title: title, dateCreation: date, poster: savedFilePath, description: description, hour: stringFromHour, category: <#T##String#>, street: street, city: city, postalCode: postalCode, country: country, latitude: latitude, longitude: longitude)
                     }
                     
                 }){
