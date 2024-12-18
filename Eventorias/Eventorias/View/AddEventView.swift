@@ -22,6 +22,7 @@ struct AddEventView: View {
         formatter.dateStyle = .medium
         return formatter
     }()
+    @State private var imageURL: URL? = nil
     @State var resultPicture : String = ""
     @State private var coordinates : CLLocationCoordinate2D?
     @State private var showCamera = false
@@ -43,8 +44,8 @@ struct AddEventView: View {
         guard let data = image.jpegData(compressionQuality: 1.0) else {
             print("Erreur : impossible de convertir l'image.")
             return nil
-            
         }
+        
         let tempDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileURL = tempDir.appendingPathComponent(fileName)
         
@@ -172,19 +173,30 @@ struct AddEventView: View {
                     Text(savedFilePath)
                         .foregroundColor(.white)
                 }
-                
-                
+//                if let selectedImage = savedFilePath, let image =  UIImage(contentsOfFile: selectedImage) {
+//                    Image(uiImage: image)
+//                }
+               
                 Spacer()
                 
                 Button(action:{
                     geocodeAddress(address: address)
-                    if let selectedImage = selectedImage , let savedFilePath = savedFilePath, let selected = saveImageToTemporaryDirectory(image: selectedImage, fileName: "\(title).jpg"), let latitude = coordinates?.latitude, let longitude = coordinates?.longitude{
-                       
-                            resultPicture = selected
-//                            var stringFromHour = String(Date.stringFromHour(hours))
-//                                addEventViewModel.saveToFirestore(picture: selected, title: title, dateCreation: date, poster: savedFilePath, description: description, hour: stringFromHour, category: category, street: street, city: city, postalCode: postalCode, country: country, latitude: latitude, longitude: longitude)
-                    }
+                   
                     
+                    if let selectedImage = selectedImage , var savedFilePath , let selected = saveImageToTemporaryDirectory(image: selectedImage, fileName: "\(title).jpg"), let latitude = coordinates?.latitude, let longitude = coordinates?.longitude{
+                        
+                        let dummyImage = UIImage(contentsOfFile: savedFilePath)!
+
+                        if let path = saveImageToTemporaryDirectory(image: dummyImage, fileName: "\(title)Post.jpg") {
+                            
+                            savedFilePath = path
+                            imageURL = URL(fileURLWithPath: path)
+                            
+                            resultPicture = selected
+                            var stringFromHour = String(Date.stringFromHour(hours))
+                                addEventViewModel.saveToFirestore(picture: selected, title: title, dateCreation: date, poster: savedFilePath, description: description, hour: stringFromHour, category: category, street: street, city: city, postalCode: postalCode, country: country, latitude: latitude, longitude: longitude)
+                    }
+                }
                     
                 }){
                     ZStack {
