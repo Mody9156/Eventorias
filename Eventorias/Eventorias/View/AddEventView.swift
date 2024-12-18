@@ -94,7 +94,7 @@ struct AddEventView: View {
                 Button(action:{
                     showAddress.toggle()
                 }){
-                    ZStack(alignment: .leading) {
+                    ZStack(alignment: .center) {
                         Rectangle()
                             .frame(height: 56)
                             .foregroundColor(Color("BackgroundDocument"))
