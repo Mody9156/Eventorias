@@ -34,9 +34,7 @@ struct AddEventView: View {
     @State private var city : String = ""
     @State private var postalCode : String = ""
     @State private var country : String = ""
-    
-    
-    
+    @State private var hours : Double = 0.0
     
     func geocodeAdress(address:String){
         let geocoder = CLGeocoder()
@@ -86,10 +84,17 @@ struct AddEventView: View {
                     }
                     .padding(.leading)
                     
-                    CustomTexField(text: $time,size:true, placeholder: "HH:MM")
+                    //                    CustomTexField(text: $time,size:true, placeholder: "HH:MM")
+                    Picker("section",selection:$hours){
+                        ForEach(0..<24, id: \.self) { i in
+                            ForEach(0..<24, id: \.self) { a in
+                                Text("\(i) : \(a)")
+                            }
+                        }
+                    }
                 }
                 
-//                CustomTexField(text: $address,size:false, placeholder: "Entre full adress")
+                //                CustomTexField(text: $address,size:false, placeholder: "Entre full adress")
                 Text(address)
                 Button(action:{
                     showAddress.toggle()
@@ -100,13 +105,13 @@ struct AddEventView: View {
                             .frame(height: 56)
                             .foregroundColor(Color("BackgroundDocument"))
                             .cornerRadius(5)
-                      
-                       Text("Entre full adress")
+                        
+                        Text("Entre full adress")
                     }
                     .padding()
                 }.sheet(isPresented: $showAddress) {
                     AddressInputView(street: $street, city: $city, postalCode: $postalCode, country: $country, address: $address)
-
+                    
                 }
                 
                 HStack(alignment: .center){
@@ -148,7 +153,7 @@ struct AddEventView: View {
                     Text("latitude \(latitude)")
                 }
                 if let latitude = coordinates?.longitude {
-                Text("Longitude \(latitude)")
+                    Text("Longitude \(latitude)")
                 }
                 Spacer()
                 Button(action:{
