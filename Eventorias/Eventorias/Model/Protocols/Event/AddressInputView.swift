@@ -47,7 +47,8 @@ struct AddressInputView: View {
 }
 
 struct AddressInputView_Previews: PreviewProvider {
+    @State static var sampleAdress : String = ""
     static var previews: some View {
-        AddressInputView(address: $address)
+        AddressInputView(address: $sampleAdress)
     }
 }
