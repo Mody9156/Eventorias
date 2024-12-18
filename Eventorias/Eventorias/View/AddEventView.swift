@@ -115,6 +115,7 @@ struct AddEventView: View {
                     ForEach(indexCategory,id:\.self){ index in
                         Text(index)
                             .tag(index)
+                            .foregroundColor(.white)
                     }
                 }
                 .pickerStyle(.wheel)
