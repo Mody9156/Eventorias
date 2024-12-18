@@ -151,15 +151,14 @@ struct AddEventView: View {
                     }
                 }
                 .padding()
-                if let latitude = coordinates?.latitude {
-                    Text("latitude \(latitude)")
+              
+                Picker("Category", selection:$category) {
+                    ForEach(category,id:\.self){ index in
+                        Text(index)
+                            .tag(index)
+                    }
                 }
-                if let latitude = coordinates?.longitude {
-                    Text("Longitude \(latitude)")
-                }
-                if let item = savedFilePath {
-                    Text(item)
-                }
+                
                 Spacer()
                 
                 Button(action:{
