@@ -111,7 +111,7 @@ struct AddEventView: View {
                             .frame(width: 358, height: 52)
                             .foregroundColor(Color("Button"))
                         
-                        Text("Selection")
+                        Text("Validate")
                             .foregroundColor(.white)
                     }
                     
