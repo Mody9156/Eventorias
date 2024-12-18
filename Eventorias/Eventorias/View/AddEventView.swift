@@ -159,6 +159,7 @@ struct AddEventView: View {
                             .tag(index)
                     }
                 }
+                .pickerStyle(.segmented)
                 
                 Spacer()
                 
