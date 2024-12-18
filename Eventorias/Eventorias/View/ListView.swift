@@ -52,7 +52,7 @@ struct ListView: View {
                         HStack{
                             Spacer()
                             NavigationLink {
-                                AddEventView()
+                                AddEventView(addEventViewModel: AddEventViewModel())
                                 
                             } label: {
                                 ZStack {
