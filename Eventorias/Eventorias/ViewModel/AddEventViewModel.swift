@@ -9,8 +9,10 @@ import Foundation
 import PhotosUI
 
 class AddEventViewModel : ObservableObject {
-    let eventRepository: EventRepository
+    let eventRepository: EventManagerProtocol
     
-    
+    init(eventRepository: EventManagerProtocol = EventRepository()) {
+        self.eventRepository = eventRepository
+    }
     
 }
