@@ -101,6 +101,7 @@ struct AddEventView: View {
                             .cornerRadius(5)
                         
                         Text("Entre full adress")
+                            .foregroundColor(.black)
                     }
                     .padding()
                 }.sheet(isPresented: $showAddress) {
