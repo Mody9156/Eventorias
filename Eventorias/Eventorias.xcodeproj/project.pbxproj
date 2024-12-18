@@ -41,6 +41,7 @@
 		236060BA2D0DE48300E3504F /* EventListRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060AA2D0DE48200E3504F /* EventListRepresentable.swift */; };
 		236060BB2D0DE48300E3504F /* protocolsFirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060AC2D0DE48200E3504F /* protocolsFirebaseData.swift */; };
 		23F9E9AD2D12C2430030C221 /* EventManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */; };
+		23F9E9B02D12F0710030C221 /* AddressInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9E9AF2D12F0700030C221 /* AddressInputView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		236060AA2D0DE48200E3504F /* EventListRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListRepresentable.swift; sourceTree = "<group>"; };
 		236060AC2D0DE48200E3504F /* protocolsFirebaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = protocolsFirebaseData.swift; sourceTree = "<group>"; };
 		23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagerProtocol.swift; sourceTree = "<group>"; };
+		23F9E9AF2D12F0700030C221 /* AddressInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddressInputView.swift; path = Eventorias/Model/Protocols/Event/AddressInputView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +290,7 @@
 		23F9E9AE2D12F0330030C221 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
+				23F9E9AF2D12F0700030C221 /* AddressInputView.swift */,
 			);
 			path = "New Group";
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23F9E9B02D12F0710030C221 /* AddressInputView.swift in Sources */,
 				236060B22D0DE48200E3504F /* GoogleMapView.swift in Sources */,
 				230474212D1091C80067BB54 /* AddEventView.swift in Sources */,
 				236060812D0DE43B00E3504F /* ProfileView.swift in Sources */,
