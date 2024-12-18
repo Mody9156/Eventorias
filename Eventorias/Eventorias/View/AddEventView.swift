@@ -90,7 +90,7 @@ struct AddEventView: View {
                 }
                 
 //                CustomTexField(text: $address,size:false, placeholder: "Entre full adress")
-                
+                Text(address)
                 Button(action:{
                     showAddress.toggle()
                     

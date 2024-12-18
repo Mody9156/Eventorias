@@ -31,6 +31,10 @@ struct AddressInputView: View {
             Button(action:{
                 self.address = "\(street) \(city) \(postalCode) \(country)"
                 dismiss()
+                self.street = ""
+                self.city = ""
+                self.postalCode = ""
+                self.country = ""
             }){
                 ZStack {
                     Rectangle()
