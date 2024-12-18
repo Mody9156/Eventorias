@@ -36,6 +36,7 @@ struct AddEventView: View {
     @State private var country : String = ""
     @State private var hours : Date = Date()
     @State private var savedFilePath: String?
+    @State private var category : [String] = ["Music","Food","Book","Conference","Exhibition","Charity","Film"]
     
     func saveImageToTemporaryDirectory(image:UIImage, fileName:String) -> String? {
         guard let data = image.jpegData(compressionQuality: 1.0) else {return nil }
@@ -169,7 +170,6 @@ struct AddEventView: View {
                             var stringFromHour = Date.stringFromHour(hours)
                                 addEventViewModel.saveToFirestore(picture: selected, title: title, dateCreation: date, poster: savedFilePath, description: description, hour: stringFromHour, category: <#T##String#>, street: street, city: city, postalCode: postalCode, country: country, latitude: latitude, longitude: longitude)
                     }
-                    
                 }){
                     ZStack {
                         Rectangle()
