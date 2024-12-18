@@ -15,7 +15,7 @@ public class EventRepository : ObservableObject{
     func saveToFirestore(_ event: EventEntry,completion:@escaping(Bool,Error?)-> Void ){
       
         do {
-                let encodedEvent = try Firestore.Encoder().encode(event)
+            let encodedEvent = try Firestore.Encoder().encode(event)
                 
              db.addDocument(data: encodedEvent) { error in
                     if let error = error {

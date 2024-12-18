@@ -8,4 +8,7 @@
 import Foundation
 import PhotosUI
 
-class AddEventViewModel : ObservableObject {}
+class AddEventViewModel : ObservableObject {
+    let eventRepository: EventRepository
+    
+}
