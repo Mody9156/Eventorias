@@ -40,12 +40,18 @@ struct AddEventView: View {
     @State private var category : String = ""
     
     func saveImageToTemporaryDirectory(image:UIImage, fileName:String) -> String? {
-        guard let data = image.jpegData(compressionQuality: 1.0) else {return nil }
-        let tempDir = FileManager.default.temporaryDirectory
+        guard let data = image.jpegData(compressionQuality: 1.0) else {
+            print("Erreur : impossible de convertir l'image.")
+            return nil
+            
+        }
+        let tempDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileURL = tempDir.appendingPathComponent(fileName)
         
         do{
             try data.write(to: fileURL)
+            print("Chemin temporaire : \(fileURL.path)")
+
             return fileURL.path
             
         }catch{
@@ -175,9 +181,11 @@ struct AddEventView: View {
                     if let selectedImage = selectedImage , let savedFilePath = savedFilePath, let selected = saveImageToTemporaryDirectory(image: selectedImage, fileName: "\(title).jpg"), let latitude = coordinates?.latitude, let longitude = coordinates?.longitude{
                        
                             resultPicture = selected
-                            var stringFromHour = String(Date.stringFromHour(hours))
-                                addEventViewModel.saveToFirestore(picture: selected, title: title, dateCreation: date, poster: savedFilePath, description: description, hour: stringFromHour, category: category, street: street, city: city, postalCode: postalCode, country: country, latitude: latitude, longitude: longitude)
+//                            var stringFromHour = String(Date.stringFromHour(hours))
+//                                addEventViewModel.saveToFirestore(picture: selected, title: title, dateCreation: date, poster: savedFilePath, description: description, hour: stringFromHour, category: category, street: street, city: city, postalCode: postalCode, country: country, latitude: latitude, longitude: longitude)
                     }
+                    
+                    
                 }){
                     ZStack {
                         Rectangle()
