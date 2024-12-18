@@ -34,7 +34,7 @@ struct AddEventView: View {
     @State private var city : String = ""
     @State private var postalCode : String = ""
     @State private var country : String = ""
-    @State private var hours : Double = 0.0
+    @State private var hours : Date = Date()
     
     func geocodeAdress(address:String){
         let geocoder = CLGeocoder()
@@ -85,13 +85,12 @@ struct AddEventView: View {
                     .padding(.leading)
                     
                     //                    CustomTexField(text: $time,size:true, placeholder: "HH:MM")
-                    Picker("section",selection:$hours){
-                        ForEach(0..<24, id: \.self) { i in
-                            ForEach(0..<24, id: \.self) { a in
-                                Text("\(i) : \(a)")
-                            }
-                        }
-                    }
+                    DatePicker("Heure", selection: $hours, displayedComponents: .hourAndMinute)
+                        .datePickerStyle(.automatic)
+                        .foregroundColor(.white)
+                        .padding(.leading, 5)
+                        .labelsHidden()
+               
                 }
                 
                 //                CustomTexField(text: $address,size:false, placeholder: "Entre full adress")
