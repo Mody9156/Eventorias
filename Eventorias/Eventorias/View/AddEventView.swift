@@ -105,7 +105,7 @@ struct AddEventView: View {
                     }
                     .padding()
                 }.sheet(isPresented: $showAddress) {
-                    AddressInputView(street: street, city: city, postalCode: postalCode, country: country, address: $address)
+                    AddressInputView(street: $street, city: $city, postalCode: $postalCode, country: $country, address: $address)
 
                 }
                 
