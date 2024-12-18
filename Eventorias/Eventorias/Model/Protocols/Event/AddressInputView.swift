@@ -10,14 +10,18 @@ import SwiftUI
 struct AddressInputView: View {
     @State var street: String = ""
     @State var city: String = ""
-//    var postalCode: String
-//    var country: String
-//    var localisation : GeoPoint
+    @State var postalCode: String = ""
+    @State var country: String = ""
+    
     var body: some View {
+        ZStack {
+            Color("Background")
+                .ignoresSafeArea()
         VStack{
             CustomTexField(text: $street, size: false, placeholder: "Entrez le nom de votre rue")
             CustomTexField(text: $city, size: false, placeholder: "Entrez le nom de votre ville")
         }
+    }
     }
 }
 
