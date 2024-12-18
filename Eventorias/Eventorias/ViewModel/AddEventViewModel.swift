@@ -9,7 +9,6 @@ import Foundation
 import PhotosUI
 
 class AddEventViewModel : ObservableObject {
-    @Published var picture : String = ""
     let eventRepository: EventManagerProtocol
     
     init(eventRepository: EventManagerProtocol = EventRepository()) {
