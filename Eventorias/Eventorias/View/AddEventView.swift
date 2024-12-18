@@ -22,6 +22,7 @@ struct AddEventView: View {
         formatter.dateStyle = .medium
         return formatter
     }()
+    @State var resultPicture : String = ""
     @State private var coordinates : CLLocationCoordinate2D?
     @State private var showCamera = false
     @State private var selectedImage: UIImage?
@@ -34,7 +35,8 @@ struct AddEventView: View {
     @State private var postalCode : String = ""
     @State private var country : String = ""
     @State private var hours : Date = Date()
-    
+    @State private var savedFilePath: String?
+
     func saveImageToTemporaryDirectory(image:UIImage, fileName:String) -> String? {
         guard let data = image.jpegData(compressionQuality: 1.0) else {return nil }
         let tempDir = FileManager.default.temporaryDirectory
@@ -136,6 +138,14 @@ struct AddEventView: View {
                             
                             Image("attach")
                         }
+                    }.onChange(of: selectedItems) { newValue in
+                        for item in newValue {
+                            Task{
+                                if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data){
+                                    savedFilePath = saveImageToTemporaryDirectory(image: image, fileName: "\(title).jpg")
+                                }
+                            }
+                        }
                     }
                 }
                 .padding()
@@ -145,9 +155,19 @@ struct AddEventView: View {
                 if let latitude = coordinates?.longitude {
                     Text("Longitude \(latitude)")
                 }
+                
+                Text("\(savedFilePath)")
+                
                 Spacer()
+                
                 Button(action:{
                     geocodeAdress(address: address)
+                    if let selectedImage = selectedImage {
+                        if let selected = saveImageToTemporaryDirectory(image: selectedImage, fileName: "\(title).jpg") {
+                        resultPicture = selected
+                    }
+                }
+                    
                 }){
                     ZStack {
                         Rectangle()
