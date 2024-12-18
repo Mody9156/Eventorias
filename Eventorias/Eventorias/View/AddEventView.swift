@@ -14,7 +14,7 @@ struct AddEventView: View {
     @State var title = ""
     @State var description = ""
     @State private var date : Date = Date()
-    @State var adress : String = ""
+    @State var address : String = ""
     @State var time : String = ""
     @Environment(\.dismiss) var dismiss
     @StateObject var addEventViewModel : AddEventViewModel
@@ -36,7 +36,7 @@ struct AddEventView: View {
             if let error = error {
                 self.errorMessage = error.localizedDescription
                 self.coordinates = nil
-            }else if placemarks = placemarks?.first, let location = placemarks.location {
+            }else if let placemark = placemarks?.first, let location = placemark.location {
                 self.coordinates = location.coordinate
                 self.errorMessage = nil
             }else{
@@ -81,7 +81,7 @@ struct AddEventView: View {
                     CustomTexField(text: $time,size:true, placeholder: "HH:MM")
                 }
                 
-                CustomTexField(text: $adress,size:false, placeholder: "Entre full adress")
+                CustomTexField(text: $address,size:false, placeholder: "Entre full adress")
                 
                 HStack(alignment: .center){
                     
@@ -121,7 +121,7 @@ struct AddEventView: View {
                 
                 Spacer()
                 Button(action:{
-                    
+                    geocodeAdress(address: address)
                 }){
                     ZStack {
                         Rectangle()
