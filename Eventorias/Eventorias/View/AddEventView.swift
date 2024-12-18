@@ -96,6 +96,8 @@ struct AddEventView: View {
                        Text("Entre full adress")
                     }
                     .padding()
+                }.sheet(isPresented: $showAddress) {
+                    <#code#>
                 }
                 
                 HStack(alignment: .center){
