@@ -25,6 +25,7 @@ struct AddressInputView: View {
             CustomTexField(text: $postalCode, size: false, placeholder: "Entrez le le code postale")
             CustomTexField(text: $country, size: false, placeholder: "Entrez le nom de votre pays")
             Text(address)
+                .foregroundColor(.white)
             Spacer()
             
             Button(action:{
