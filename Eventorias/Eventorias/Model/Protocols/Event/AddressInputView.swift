@@ -20,6 +20,8 @@ struct AddressInputView: View {
         VStack{
             CustomTexField(text: $street, size: false, placeholder: "Entrez le nom de votre rue")
             CustomTexField(text: $city, size: false, placeholder: "Entrez le nom de votre ville")
+            CustomTexField(text: $city, size: false, placeholder: "Entrez le le code postale")
+            CustomTexField(text: $city, size: false, placeholder: "Entrez le nom de votre pays")
         }
     }
     }
