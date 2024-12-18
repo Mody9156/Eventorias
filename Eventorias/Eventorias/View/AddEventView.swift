@@ -23,11 +23,29 @@ struct AddEventView: View {
         formatter.dateStyle = .medium
         return formatter
     }()
-    
+    @State private var coordinates : CLLocationCoordinate2D?
     @State private var showCamera = false
     @State private var selectedImage: UIImage?
     @State var image : UIImage?
     @State var selectedItems : [PhotosPickerItem] = []
+    @State private var errorMessage: String?
+    
+    func geocodeAdress(address:String){
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(address){ placemarks, error in
+            if let error = error {
+                self.errorMessage = error.localizedDescription
+                self.coordinates = nil
+            }else if placemarks = placemarks?.first, let location = placemarks.location {
+                self.coordinates = location.coordinate
+                self.errorMessage = nil
+            }else{
+                self.errorMessage = "Adresse introuvable"
+                self.coordinates = nil
+            }
+        }
+    }
+    
     
     var body: some View {
         ZStack {
@@ -103,7 +121,6 @@ struct AddEventView: View {
                 
                 Spacer()
                 Button(action:{
-                    
                     
                 }){
                     ZStack {
