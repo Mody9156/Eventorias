@@ -40,6 +40,8 @@
 		236060B72D0DE48300E3504F /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060A62D0DE48200E3504F /* HTTPService.swift */; };
 		236060BA2D0DE48300E3504F /* EventListRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060AA2D0DE48200E3504F /* EventListRepresentable.swift */; };
 		236060BB2D0DE48300E3504F /* protocolsFirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060AC2D0DE48200E3504F /* protocolsFirebaseData.swift */; };
+		23F9E9AD2D12C2430030C221 /* EventManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */; };
+		23F9E9B02D12F0710030C221 /* AddressInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9E9AF2D12F0700030C221 /* AddressInputView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,8 @@
 		236060A62D0DE48200E3504F /* HTTPService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
 		236060AA2D0DE48200E3504F /* EventListRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListRepresentable.swift; sourceTree = "<group>"; };
 		236060AC2D0DE48200E3504F /* protocolsFirebaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = protocolsFirebaseData.swift; sourceTree = "<group>"; };
+		23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagerProtocol.swift; sourceTree = "<group>"; };
+		23F9E9AF2D12F0700030C221 /* AddressInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddressInputView.swift; path = Eventorias/Model/Protocols/Event/AddressInputView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,7 @@
 		236060852D0DE47200E3504F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				23F9E9AE2D12F0330030C221 /* Address */,
 				2311CB472D118A5200518BC5 /* Camera */,
 				236060892D0DE47200E3504F /* UserDetailViewModel.swift */,
 				2360608A2D0DE47200E3504F /* ViewModelManager.swift */,
@@ -241,6 +246,7 @@
 		236060A32D0DE48200E3504F /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				23F9E9AB2D12C1C20030C221 /* Event */,
 				236060A42D0DE48200E3504F /* Maps */,
 				236060A82D0DE48200E3504F /* List */,
 				236060AB2D0DE48200E3504F /* Authentification */,
@@ -271,6 +277,22 @@
 				236060AC2D0DE48200E3504F /* protocolsFirebaseData.swift */,
 			);
 			path = Authentification;
+			sourceTree = "<group>";
+		};
+		23F9E9AB2D12C1C20030C221 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		23F9E9AE2D12F0330030C221 /* Address */ = {
+			isa = PBXGroup;
+			children = (
+				23F9E9AF2D12F0700030C221 /* AddressInputView.swift */,
+			);
+			path = Address;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -355,6 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23F9E9B02D12F0710030C221 /* AddressInputView.swift in Sources */,
 				236060B22D0DE48200E3504F /* GoogleMapView.swift in Sources */,
 				230474212D1091C80067BB54 /* AddEventView.swift in Sources */,
 				236060812D0DE43B00E3504F /* ProfileView.swift in Sources */,
@@ -374,6 +397,7 @@
 				236060BB2D0DE48300E3504F /* protocolsFirebaseData.swift in Sources */,
 				236060AF2D0DE48200E3504F /* DateExtension.swift in Sources */,
 				236060832D0DE43B00E3504F /* HomeView.swift in Sources */,
+				23F9E9AD2D12C2430030C221 /* EventManagerProtocol.swift in Sources */,
 				2311CB492D118BEB00518BC5 /* CameraManager.swift in Sources */,
 				236060B62D0DE48300E3504F /* BasicHTTPClient.swift in Sources */,
 				236060842D0DE43B00E3504F /* UserDetailView.swift in Sources */,

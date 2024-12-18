@@ -8,25 +8,74 @@
 import SwiftUI
 import PhotosUI
 import UIKit
+import CoreLocation
 
 struct AddEventView: View {
     @State var title = ""
     @State var description = ""
     @State private var date : Date = Date()
-    @State var adress : String = ""
-    @State var time : String = ""
+    @State var address : String = ""
     @Environment(\.dismiss) var dismiss
-    
+    @StateObject var addEventViewModel : AddEventViewModel
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         return formatter
     }()
-    
+    @State private var imageURL: URL? = nil
+    @State var resultPicture : String = ""
+    @State private var coordinates : CLLocationCoordinate2D?
     @State private var showCamera = false
     @State private var selectedImage: UIImage?
     @State var image : UIImage?
     @State var selectedItems : [PhotosPickerItem] = []
+    @State private var errorMessage: String?
+    @State private var showAddress : Bool = false
+    @State private var street : String = ""
+    @State private var city : String = ""
+    @State private var postalCode : String = ""
+    @State private var country : String = ""
+    @State private var hours : Date = Date()
+    @State private var savedFilePath: String?
+    var indexCategory = ["Music","Food","Book","Conference","Exhibition","Charity","Film"]
+    @State private var category : String = ""
+    
+    func saveImageToTemporaryDirectory(image:UIImage, fileName:String) -> String? {
+        guard let data = image.jpegData(compressionQuality: 1.0) else {
+            print("Erreur : impossible de convertir l'image.")
+            return nil
+        }
+        
+        let tempDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = tempDir.appendingPathComponent(fileName)
+        
+        do{
+            try data.write(to: fileURL)
+            print("Chemin temporaire : \(fileURL.path)")
+
+            return fileURL.path
+            
+        }catch{
+            print("Erreur \(error)")
+            return nil
+        }
+    }
+    
+    func geocodeAddress(address:String){
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(address){ placemarks, error in
+            if let error = error {
+                self.errorMessage = error.localizedDescription
+                self.coordinates = nil
+            }else if let placemark = placemarks?.first, let location = placemark.location {
+                self.coordinates = location.coordinate
+                self.errorMessage = nil
+            }else{
+                self.errorMessage = "Adresse introuvable"
+                self.coordinates = nil
+            }
+        }
+    }
     
     var body: some View {
         ZStack {
@@ -38,35 +87,47 @@ struct AddEventView: View {
                 CustomTexField(text: $description,size:false, placeholder: "Tap here entrer your description")
                 
                 HStack {
+                    DatePicker("", selection: $date, displayedComponents: .date)
+                        .datePickerStyle(.automatic)
+                        .foregroundColor(.white)
+                        .padding(.leading, 5)
+                        .labelsHidden()
                     
-                    ZStack(alignment: .leading) {
-                        Rectangle()
-                            .frame(width: 171 , height: 56)
-                            .foregroundColor(Color("BackgroundDocument"))
-                            .cornerRadius(10)
-                        
-                        if date == Date() {
-                            Text("")
-                                .foregroundColor(.white)
-                                .padding(.leading, 5)
-                        }
-                        
-                        DatePicker("", selection: $date, displayedComponents: .date)
-                            .datePickerStyle(.automatic)
-                            .foregroundColor(.white)
-                            .padding(.leading, 5)
-                            .labelsHidden()
-                    }
-                    .padding(.leading)
-                    
-                    CustomTexField(text: $time,size:true, placeholder: "HH:MM")
+                    DatePicker("HH:MM", selection: $hours, displayedComponents: .hourAndMinute)
+                        .datePickerStyle(.automatic)
+                        .foregroundColor(.white)
+                        .padding(.leading, 5)
+                        .labelsHidden()
                 }
                 
-                CustomTexField(text: $adress,size:false, placeholder: "Entre full adress")
+                Button(action:{
+                    showAddress.toggle()
+                }){
+                    ZStack(alignment: .center) {
+                        Rectangle()
+                            .frame(height: 56)
+                            .foregroundColor(Color("BackgroundDocument"))
+                            .cornerRadius(5)
+                        
+                        Text("Entre full adress")
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                    }
+                    .padding()
+                }.sheet(isPresented: $showAddress) {
+                    AddressInputView(street: $street, city: $city, postalCode: $postalCode, country: $country, address: $address)
+                }
+                
+                Picker("Category", selection:$category) {
+                    ForEach(indexCategory,id:\.self){ index in
+                        Text(index)
+                            .tag(index)
+                            .foregroundColor(.white)
+                    }
+                }
+                .pickerStyle(.wheel)
                 
                 HStack(alignment: .center){
-                    
-                    
                     Button(action:{
                         self.showCamera.toggle()
                     }){
@@ -96,21 +157,55 @@ struct AddEventView: View {
                             
                             Image("attach")
                         }
+                    }.onChange(of: selectedItems) { newValue in
+                        for item in newValue {
+                            Task{
+                                if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data){
+                                    savedFilePath = saveImageToTemporaryDirectory(image: image, fileName: "\(title).jpg")
+                                }
+                            }
+                        }
                     }
                 }
                 .padding()
-                
+              
+                if let savedFilePath = savedFilePath {
+                    Text(savedFilePath)
+                        .foregroundColor(.white)
+                }
+//                if let selectedImage = savedFilePath, let image =  UIImage(contentsOfFile: selectedImage) {
+//                    Image(uiImage: image)
+//                }
+               
                 Spacer()
-                Button(action:{}){
+                
+                Button(action:{
+                    geocodeAddress(address: address)
+//                    if let selectedImage = savedFilePath{
+//                    let dummyImage = UIImage(contentsOfFile: selectedImage)! // Remplacez par votre UIImage
+//                    if let path = saveImageToTemporaryDirectory(image: dummyImage, fileName: "\(title)Post.jpg") {
+//                        savedFilePath = path
+//                        imageURL = URL(fileURLWithPath: path) // Convertir le chemin en URL
+//                    }
+//                }
+                    
+                    if let selectedImage = selectedImage , let savedFilePath = savedFilePath, let selected = saveImageToTemporaryDirectory(image: selectedImage, fileName: "\(title).jpg"), let latitude = coordinates?.latitude, let longitude = coordinates?.longitude{
+                       
+                            resultPicture = selected
+                            var stringFromHour = String(Date.stringFromHour(hours))
+                                addEventViewModel.saveToFirestore(picture: selected, title: title, dateCreation: date, poster: savedFilePath, description: description, hour: stringFromHour, category: category, street: street, city: city, postalCode: postalCode, country: country, latitude: latitude, longitude: longitude)
+                    }
+                    
+                    
+                }){
                     ZStack {
                         Rectangle()
                             .frame(width: 358, height: 52)
                             .foregroundColor(Color("Button"))
                         
-                        Text("Selection")
+                        Text("Validate")
                             .foregroundColor(.white)
                     }
-                    
                 }
             }
         }
@@ -119,7 +214,7 @@ struct AddEventView: View {
 
 struct AddEventView_Previews: PreviewProvider {
     static var previews: some View {
-        AddEventView()
+        AddEventView(addEventViewModel: AddEventViewModel())
     }
 }
 
@@ -136,17 +231,16 @@ struct CustomTexField: View {
             if text.isEmpty{
                 Text(placeholder)
                     .foregroundColor(.white)
+                    .opacity(0.5)
                     .padding()
             }
             
             TextField("", text: $text)
                 .foregroundColor(.white)
-            
         }
         .padding()
     }
 }
-
 
 struct accessCameraView: UIViewControllerRepresentable {
     
