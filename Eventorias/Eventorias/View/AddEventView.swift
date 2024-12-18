@@ -35,8 +35,19 @@ struct AddEventView: View {
     @State private var country : String = ""
     @State private var hours : Date = Date()
     
-    func saveImageToTemporaryDirectory(image:UIImage,fileName:String) -> String{
+    func saveImageToTemporaryDirectory(image:UIImage, fileName:String) -> String? {
+        guard let data = image.jpegData(compressionQuality: 1.0) else {return nil }
+        let tempDir = FileManager.default.temporaryDirectory
+        let fileURL = tempDir.appendingPathComponent(fileName)
         
+        do{
+            try data.write(to: fileURL)
+            return fileURL.path
+            
+        }catch{
+            print("Erreur \(error)")
+            return nil
+        }
     }
     
     func geocodeAdress(address:String){
