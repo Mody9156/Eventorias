@@ -63,13 +63,15 @@ struct AddEventView: View {
                             .padding(.leading, 5)
                             .labelsHidden()
                     }
-                   
+                    
+                    VStack{
                         AddressCollect(text: "Street", textField: $street)
                         AddressCollect(text: "City", textField: $city)
                         AddressCollect(text: "PostalCode", textField: $postalCode)
                         AddressCollect(text: "country", textField: $country)
-                        
+                    }
                     
+                   
                     
                     Picker("Category", selection:$category) {
                         ForEach(indexCategory,id:\.self){ index in
@@ -249,28 +251,28 @@ struct AddressCollect: View {
     @Binding var textField : String
     
     var body: some View {
-            ZStack {
-                Rectangle()
-                    .frame(height: 56)
-                    .foregroundColor(Color("BackgroundDocument"))
-                    .cornerRadius(5)
-                VStack(alignment: .leading) {
-                    
-                    Text(text)
-                        .font(.custom("Inter", size: 12))
-                        .fontWeight(.regular)
-                        .lineSpacing(4)
-                        .multilineTextAlignment(.leading)
-                        .textCase(.none)
-                        .foregroundColor(.gray)
-                    
-                    TextField("", text: $textField)
-                        .foregroundColor(.white)
-                }
-                .padding()
+        ZStack {
+            Rectangle()
+                .frame(height: 56)
+                .foregroundColor(Color("BackgroundDocument"))
+                .cornerRadius(5)
+            VStack(alignment: .leading) {
+                
+                Text(text)
+                    .font(.custom("Inter", size: 12))
+                    .fontWeight(.regular)
+                    .lineSpacing(4)
+                    .multilineTextAlignment(.leading)
+                    .textCase(.none)
+                    .foregroundColor(.gray)
+                
+                TextField("", text: $textField)
+                    .foregroundColor(.white)
             }
+            .padding()
         }
-
+    }
+    
 }
 
 struct AddEventView_Previews: PreviewProvider {
