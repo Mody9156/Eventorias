@@ -39,26 +39,7 @@ struct AddEventView: View {
     var indexCategory = ["Music","Food","Book","Conference","Exhibition","Charity","Film"]
     @State private var category : String = ""
     
-    func saveImageToTemporaryDirectory(image:UIImage, fileName:String) -> String? {
-        guard let data = image.jpegData(compressionQuality: 1.0) else {
-            print("Erreur : impossible de convertir l'image.")
-            return nil
-        }
-        
-        let tempDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let fileURL = tempDir.appendingPathComponent(fileName)
-        
-        do{
-            try data.write(to: fileURL)
-            print("Chemin temporaire : \(fileURL.path)")
-
-            return fileURL.path
-            
-        }catch{
-            print("Erreur \(error)")
-            return nil
-        }
-    }
+    
     
   
     
@@ -146,7 +127,7 @@ struct AddEventView: View {
                         for item in newValue {
                             Task{
                                 if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data){
-                                    savedFilePath = saveImageToTemporaryDirectory(image: image, fileName: "\(title).jpg")
+                                    savedFilePath = addEventViewModel.saveImageToTemporaryDirectory(image: image, fileName: "\(title).jpg")
                                 }
                             }
                         }
@@ -174,7 +155,7 @@ struct AddEventView: View {
 //                    }
 //                }
                     
-                    if let selectedImage = selectedImage , let savedFilePath = savedFilePath, let selected = saveImageToTemporaryDirectory(image: selectedImage, fileName: "\(title).jpg"), let latitude = coordinates?.latitude, let longitude = coordinates?.longitude{
+                    if let selectedImage = selectedImage , let savedFilePath = savedFilePath, let selected = addEventViewModel.saveImageToTemporaryDirectory(image: selectedImage, fileName: "\(title).jpg"), let latitude = coordinates?.latitude, let longitude = coordinates?.longitude{
                        
                             resultPicture = selected
                             var stringFromHour = String(Date.stringFromHour(hours))
