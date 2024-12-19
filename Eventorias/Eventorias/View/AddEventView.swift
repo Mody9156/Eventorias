@@ -14,7 +14,6 @@ struct AddEventView: View {
     @State var title = ""
     @State var description = ""
     @State private var date : Date = Date()
-    @State var address : String = ""
     @Environment(\.dismiss) var dismiss
     @StateObject var addEventViewModel : AddEventViewModel
     private let dateFormatter : DateFormatter = {
@@ -35,6 +34,8 @@ struct AddEventView: View {
     @State private var postalCode : String = ""
     @State private var country : String = ""
     @State private var hours : Date = Date()
+    @State var address : String = ""
+    
     @State private var savedFilePath: String?
     var indexCategory = ["Music","Food","Book","Conference","Exhibition","Charity","Film"]
     @State private var category : String = ""
@@ -42,6 +43,7 @@ struct AddEventView: View {
     func initialiseAddress() -> String{
         var localisation = address
         localisation = "\(street) + \(city) \(postalCode) \(country)"
+        print(localisation)
         return localisation
     }
     
@@ -68,7 +70,7 @@ struct AddEventView: View {
                         .labelsHidden()
                 }
                 
-          
+                
                 VStack {
                     HStack {
                         ZStack {
@@ -108,6 +110,7 @@ struct AddEventView: View {
                                     .foregroundColor(.white)
                             }
                         }
+                        
                         ZStack {
                             Rectangle()
                                 .frame(height: 56)
@@ -121,20 +124,21 @@ struct AddEventView: View {
                         }
                     }
                     ZStack {
-                    Rectangle()
-                        .frame(width: 100, height: 56)
-                        .foregroundColor(Color("BackgroundDocument"))
-                        .cornerRadius(5)
+                        Rectangle()
+                            .frame(height: 56)
+                            .foregroundColor(Color("BackgroundDocument"))
+                            .cornerRadius(5)
                         HStack {
                             Text("country")
                             TextField("", text: $country)
                                 .foregroundColor(.white)
                         }
-                }
+                    }
                     
                     Text(address)
-                    }
-             
+                }
+                .padding()
+                
                 //                Button(action:{
                 //                    showAddress.toggle()
                 //                }){
@@ -257,6 +261,9 @@ struct AddEventView: View {
                     }
                 }
             }
+        }
+        .onAppear{
+            initialiseAddress()
         }
     }
 }
