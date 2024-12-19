@@ -63,37 +63,30 @@ struct AddEventView: View {
                         .labelsHidden()
                 }
                 
-                ZStack(alignment: .leading) {
-                    Rectangle()
-                        .frame(height: 56)
-                        .foregroundColor(Color("BackgroundDocument"))
-                        .cornerRadius(5)
-                    if address.isEmpty{
-                        Text("Entre full adress")
-                            .foregroundColor(.white)
-                            .opacity(0.5)
-                            .padding()
-                    }
-                    
+          
                     VStack {
                         HStack {
                             TextField("", text: $street)
                                 .foregroundColor(.white)
+                                .frame(width: 100)
                         }
                         
                         TextField("", text: $address)
                             .foregroundColor(.white)
+                            .frame(width: 100)
                         HStack {
                             TextField("", text: $city)
                                 .foregroundColor(.white)
+                                .frame(width: 100)
                             TextField("", text: $postalCode)
                                 .foregroundColor(.white)
+                                .frame(width: 50)
                         }
                         TextField("", text: $country)
                             .foregroundColor(.white)
+                            .frame(width: 100)
                     }
-                }
-                .padding()
+             
                 //                Button(action:{
                 //                    showAddress.toggle()
                 //                }){
