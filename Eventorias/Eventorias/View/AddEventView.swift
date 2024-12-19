@@ -64,7 +64,7 @@ struct AddEventView: View {
                 }
                 
                 VStack {
-                    AddressCollect(Text: "Street", TextField:  $street)
+                    AddressCollect(text: "Street", textField:  $street)
                     
                     HStack {
                         ZStack {
@@ -281,8 +281,8 @@ struct accessCameraView: UIViewControllerRepresentable {
 
 
 struct AddressCollect: View {
-    @Binding var Text : String
-    @Binding var TextField : String
+    @Binding var text : String
+    @Binding var textField : String
     
     var body: some View {
         HStack {
@@ -292,8 +292,8 @@ struct AddressCollect: View {
                     .foregroundColor(Color("BackgroundDocument"))
                     .cornerRadius(5)
                 HStack {
-                    Text(Text)
-                    TextField("", text: TextField)
+                    Text(text)
+                    TextField("", text: textField)
                         .foregroundColor(.white)
                 }
             }
