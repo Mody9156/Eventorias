@@ -45,9 +45,9 @@ struct AddEventView: View {
                 .ignoresSafeArea()
             ScrollView {
                 VStack{
-                    CustomTexField(text: $title, infos: "Title", size: false, placeholder: "New event")
+                    CustomTexField(text: $title, infos: "Title", placeholder: "New event")
                     
-                    CustomTexField(text: $description, infos: "Description",size:false, placeholder: "Tap here entrer your description")
+                    CustomTexField(text: $description, infos: "Description", placeholder: "Tap here entrer your description")
                     
                     HStack {
                         DatePicker("", selection: $date, displayedComponents: .date)
