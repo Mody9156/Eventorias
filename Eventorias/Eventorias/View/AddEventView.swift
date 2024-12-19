@@ -155,7 +155,7 @@ struct AddEventView: View {
 //                    }
 //                }
                     
-                    if let selectedImage = selectedImage , let savedFilePath = savedFilePath, let selected = addEventViewModel.saveImageToTemporaryDirectory(image: selectedImage, fileName: "\(title).jpg"), let latitude = coordinates?.latitude, let longitude = coordinates?.longitude{
+                    if let selectedImage = selectedImage , let savedFilePath = savedFilePath, let selected = addEventViewModel.saveImageToTemporaryDirectory(image: selectedImage, fileName: "\(title).jpg"), let latitude = addEventViewModel.coordinates?.latitude, let longitude = addEventViewModel.coordinates?.longitude{
                        
                             resultPicture = selected
                             var stringFromHour = String(Date.stringFromHour(hours))

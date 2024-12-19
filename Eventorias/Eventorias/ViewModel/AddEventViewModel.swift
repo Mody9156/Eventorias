@@ -12,9 +12,10 @@ import CoreLocation
 class AddEventViewModel : ObservableObject {
     let eventRepository: EventManagerProtocol
     @Published private var errorMessage: String?
-    @Published private var coordinates : CLLocationCoordinate2D?
-    init(eventRepository: EventManagerProtocol = EventRepository()) {
+    @Published var coordinates : CLLocationCoordinate2D?
+    init(eventRepository: EventManagerProtocol = EventRepository(), coordinates : CLLocationCoordinate2D?) {
         self.eventRepository = eventRepository
+        self.coordinates = coordinates
     }
     
     func saveToFirestore(picture: String, title: String, dateCreation: Date, poster: String, description: String, hour: String, category: String, street: String, city: String, postalCode: String, country: String, latitude: Double, longitude: Double  ){
