@@ -194,7 +194,6 @@ struct AddEventView_Previews: PreviewProvider {
 struct CustomTexField: View {
     @Binding var text : String
     var infos : String
-    var size : Bool
     var placeholder : String
     var body: some View {
         ZStack(alignment: .leading) {
@@ -203,11 +202,19 @@ struct CustomTexField: View {
                 .foregroundColor(Color("BackgroundDocument"))
                 .cornerRadius(5)
             
-            HStack {
+            VStack(alignment: .leading) {
                 Text(infos)
+                    .font(.custom("Inter", size: 12))
+                    .fontWeight(.regular)
+                    .lineSpacing(4)
+                    .multilineTextAlignment(.leading)
+                    .textCase(.none)
+                    .foregroundColor(.gray)
+                
                 TextField(placeholder, text: $text)
                     .foregroundColor(.white)
             }
+            .padding()
         }
         .padding()
     }
