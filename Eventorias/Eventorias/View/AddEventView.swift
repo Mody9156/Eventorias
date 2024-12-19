@@ -133,7 +133,7 @@ struct AddEventView: View {
                     Spacer()
                     
                     Button(action:{
-                        var localisation = "\(street) + \(city) \(postalCode) \(country)"
+                        let localisation = "\(street) + \(city) \(postalCode) \(country)".trimmingCharacters(in: .whitespaces)
                         
                         addEventViewModel.geocodeAddress(address: localisation)
                         //                    if let selectedImage = savedFilePath{
