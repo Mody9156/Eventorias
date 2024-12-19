@@ -75,27 +75,42 @@ struct AddEventView: View {
                             .padding()
                     }
                     
-                    TextField("", text: $address)
-                        .foregroundColor(.white)
+                    VStack {
+                        HStack {
+                            TextField("", text: $street)
+                                .foregroundColor(.white)
+                        }
+                        
+                        TextField("", text: $address)
+                            .foregroundColor(.white)
+                        HStack {
+                            TextField("", text: $city)
+                                .foregroundColor(.white)
+                            TextField("", text: $postalCode)
+                                .foregroundColor(.white)
+                        }
+                        TextField("", text: $country)
+                            .foregroundColor(.white)
+                    }
                 }
                 .padding()
-//                Button(action:{
-//                    showAddress.toggle()
-//                }){
-//                    ZStack(alignment: .center) {
-//                        Rectangle()
-//                            .frame(height: 56)
-//                            .foregroundColor(Color("BackgroundDocument"))
-//                            .cornerRadius(5)
-//
-//                        Text("Entre full adress")
-//                            .fontWeight(.bold)
-//                            .foregroundColor(.white)
-//                    }
-//                    .padding()
-//                }.sheet(isPresented: $showAddress) {
-//                    AddressInputView(street: $street, city: $city, postalCode: $postalCode, country: $country, address: $address)
-//                }
+                //                Button(action:{
+                //                    showAddress.toggle()
+                //                }){
+                //                    ZStack(alignment: .center) {
+                //                        Rectangle()
+                //                            .frame(height: 56)
+                //                            .foregroundColor(Color("BackgroundDocument"))
+                //                            .cornerRadius(5)
+                //
+                //                        Text("Entre full adress")
+                //                            .fontWeight(.bold)
+                //                            .foregroundColor(.white)
+                //                    }
+                //                    .padding()
+                //                }.sheet(isPresented: $showAddress) {
+                //                    AddressInputView(street: $street, city: $city, postalCode: $postalCode, country: $country, address: $address)
+                //                }
                 
                 Picker("Category", selection:$category) {
                     ForEach(indexCategory,id:\.self){ index in
@@ -179,7 +194,9 @@ struct AddEventView: View {
                         addEventViewModel.saveToFirestore(picture: selected, title: title,
                                                           dateCreation: date, poster: savedFilePath,
                                                           description: description,
-                                                          hour: stringFromHour, category: category, street: street,
+                                                          hour: stringFromHour,
+                                                          category: category,
+                                                          street: street,
                                                           city: city,
                                                           postalCode: postalCode,
                                                           country: country,
