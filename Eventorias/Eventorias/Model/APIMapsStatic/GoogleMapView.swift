@@ -28,7 +28,6 @@ class GoogleMapView {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        print("Request URL: \(String(describing: request.url))")
         return request
     }
     
@@ -38,15 +37,13 @@ class GoogleMapView {
         let (data, response) = try await httpService.fetchRequest(request)
         
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            print("HTTP Error")
-             throw URLError(.badServerResponse)
+            throw URLError(.badServerResponse)
         }
         
         guard !data.isEmpty else {
-                   throw AuthenticationError.invalidData
-               }
-               
-      
+            throw AuthenticationError.invalidData
+        }
+        
         return data
     }
 }
