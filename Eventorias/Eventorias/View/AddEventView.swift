@@ -180,7 +180,7 @@ struct AddEventView: View {
 
 struct AddEventView_Previews: PreviewProvider {
     static var previews: some View {
-        AddEventView(addEventViewModel: AddEventViewModel())
+        AddEventView(addEventViewModel: AddEventViewModel(coordinates: CLLocationCoordinate2D.init(latitude: 2.22, longitude: 33.3)))
     }
 }
 
