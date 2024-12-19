@@ -261,8 +261,8 @@ struct AddressCollect: View {
                 HStack {
                     ZStack {
                         Rectangle()
-                            .frame(width:20,height: 56)
-                            .foregroundColor(Color("BackgroundDocument"))
+                            .frame(width:56, height: 56)
+                            .foregroundColor(.black)
                             .cornerRadius(5)
                         Text(text)
                             .foregroundColor(.white)
