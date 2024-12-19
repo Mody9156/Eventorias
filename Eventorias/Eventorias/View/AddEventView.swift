@@ -185,11 +185,6 @@ struct AddEventView: View {
     }
 }
 
-struct AddEventView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddEventView(addEventViewModel: AddEventViewModel(coordinates: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)))
-    }
-}
 
 struct CustomTexField: View {
     @Binding var text : String
@@ -216,7 +211,6 @@ struct CustomTexField: View {
             }
             .padding()
         }
-        .padding()
     }
 }
 
@@ -278,6 +272,11 @@ struct AddressCollect: View {
                 .padding()
             }
         }
-        .padding()
+    }
+}
+
+struct AddEventView_Previews: PreviewProvider {
+    static var previews: some View {
+        AddEventView(addEventViewModel: AddEventViewModel(coordinates: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)))
     }
 }
