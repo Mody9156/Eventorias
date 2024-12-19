@@ -40,9 +40,6 @@ struct AddEventView: View {
     @State private var category : String = ""
     
     
-    
-    
-    
     var body: some View {
         ZStack {
             Color("Background")
@@ -66,23 +63,23 @@ struct AddEventView: View {
                         .labelsHidden()
                 }
                 
-                Button(action:{
-                    showAddress.toggle()
-                }){
-                    ZStack(alignment: .center) {
-                        Rectangle()
-                            .frame(height: 56)
-                            .foregroundColor(Color("BackgroundDocument"))
-                            .cornerRadius(5)
-                        
-                        Text("Entre full adress")
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                    }
-                    .padding()
-                }.sheet(isPresented: $showAddress) {
-                    AddressInputView(street: $street, city: $city, postalCode: $postalCode, country: $country, address: $address)
-                }
+//                Button(action:{
+//                    showAddress.toggle()
+//                }){
+//                    ZStack(alignment: .center) {
+//                        Rectangle()
+//                            .frame(height: 56)
+//                            .foregroundColor(Color("BackgroundDocument"))
+//                            .cornerRadius(5)
+//
+//                        Text("Entre full adress")
+//                            .fontWeight(.bold)
+//                            .foregroundColor(.white)
+//                    }
+//                    .padding()
+//                }.sheet(isPresented: $showAddress) {
+//                    AddressInputView(street: $street, city: $city, postalCode: $postalCode, country: $country, address: $address)
+//                }
                 
                 Picker("Category", selection:$category) {
                     ForEach(indexCategory,id:\.self){ index in
