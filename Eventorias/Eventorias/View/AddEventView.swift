@@ -39,6 +39,9 @@ struct AddEventView: View {
     var indexCategory = ["Music","Food","Book","Conference","Exhibition","Charity","Film"]
     @State private var category : String = ""
     
+    func initialiseAddress(){
+        address = "\(street) + \(city) \(postalCode) \(country)"
+    }
     
     var body: some View {
         ZStack {
@@ -126,6 +129,8 @@ struct AddEventView: View {
                                 .foregroundColor(.white)
                         }
                 }
+                    
+                    Text(address)
                     }
              
                 //                Button(action:{
