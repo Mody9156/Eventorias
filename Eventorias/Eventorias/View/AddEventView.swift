@@ -14,16 +14,8 @@ struct AddEventView: View {
     @State var title = ""
     @State var description = ""
     @State private var date : Date = Date()
-    @Environment(\.dismiss) var dismiss
-    @StateObject var addEventViewModel : AddEventViewModel
-    private let dateFormatter : DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        return formatter
-    }()
     @State private var imageURL: URL? = nil
     @State var resultPicture : String = ""
-    
     @State private var showCamera = false
     @State private var selectedImage: UIImage?
     @State var image : UIImage?
@@ -34,11 +26,18 @@ struct AddEventView: View {
     @State private var postalCode : String = ""
     @State private var country : String = ""
     @State private var hours : Date = Date()
-    
     @State private var savedFilePath: String?
-    var indexCategory = ["Music","Food","Book","Conference","Exhibition","Charity","Film"]
     @State private var category : String = ""
-   
+    @StateObject var addEventViewModel : AddEventViewModel
+    @Environment(\.dismiss) var dismiss
+    
+    private let dateFormatter : DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter
+    }()
+    
+    var indexCategory = ["Music","Food","Book","Conference","Exhibition","Charity","Film"]
     
     var body: some View {
         ZStack {
@@ -64,48 +63,13 @@ struct AddEventView: View {
                 }
                 
                 VStack {
-                    AddressCollect(text: "Street", textField: $street)
-                    
-                    HStack {
-                        ZStack {
-                            Rectangle()
-                                .frame(height: 56)
-                                .foregroundColor(Color("BackgroundDocument"))
-                                .cornerRadius(5)
-                            HStack {
-                                Text("City: ")
-                                TextField("", text: $city)
-                                    .foregroundColor(.white)
-                            }
-                        }
-                        
-                        ZStack {
-                            Rectangle()
-                                .frame(height: 56)
-                                .foregroundColor(Color("BackgroundDocument"))
-                                .cornerRadius(5)
-                            HStack {
-                                Text("PostalCode: ")
-                                TextField("", text: $postalCode)
-                                    .foregroundColor(.white)
-                            }
-                        }
-                    }
-                    ZStack {
-                        Rectangle()
-                            .frame(height: 56)
-                            .foregroundColor(Color("BackgroundDocument"))
-                            .cornerRadius(5)
-                        HStack {
-                            Text("country: ")
-                            TextField("", text: $country)
-                                .foregroundColor(.white)
-                        }
-                    }
+                    AddressCollect(text: "Street: ", textField: $street)
+                    AddressCollect(text: "City: ", textField: $city)
+                    AddressCollect(text: "PostalCode: ", textField: $postalCode)
+                    AddressCollect(text: "country: ", textField: $country)
                     
                 }
                 .padding()
-             
                 
                 Picker("Category", selection:$category) {
                     ForEach(indexCategory,id:\.self){ index in
@@ -169,7 +133,7 @@ struct AddEventView: View {
                 Spacer()
                 
                 Button(action:{
-                   var localisation = "\(street) + \(city) \(postalCode) \(country)"
+                    var localisation = "\(street) + \(city) \(postalCode) \(country)"
                     
                     addEventViewModel.geocodeAddress(address: localisation)
                     //                    if let selectedImage = savedFilePath{
@@ -186,22 +150,24 @@ struct AddEventView: View {
                        let latitude = addEventViewModel.coordinates?.latitude, let longitude = addEventViewModel.coordinates?.longitude{
                         
                         resultPicture = selected
+                        
                         var stringFromHour = String(Date.stringFromHour(hours))
                         
-                        addEventViewModel.saveToFirestore(picture: selected, title: title,
-                                                          dateCreation: date, poster: savedFilePath,
-                                                          description: description,
-                                                          hour: stringFromHour,
-                                                          category: category,
-                                                          street: street,
-                                                          city: city,
-                                                          postalCode: postalCode,
-                                                          country: country,
-                                                          latitude: latitude,
-                                                          longitude: longitude)
+                        addEventViewModel.saveToFirestore(
+                            picture: selected,
+                            title: title,
+                            dateCreation: date,
+                            poster: savedFilePath,
+                            description: description,
+                            hour: stringFromHour,
+                            category: category,
+                            street: street,
+                            city: city,
+                            postalCode: postalCode,
+                            country: country,
+                            latitude: latitude,
+                            longitude: longitude)
                     }
-                    
-                    
                 }){
                     ZStack {
                         Rectangle()
@@ -214,7 +180,6 @@ struct AddEventView: View {
                 }
             }
         }
-       
     }
 }
 
@@ -298,5 +263,6 @@ struct AddressCollect: View {
                 }
             }
         }
+        .padding()
     }
 }
