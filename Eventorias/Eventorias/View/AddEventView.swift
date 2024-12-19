@@ -39,8 +39,10 @@ struct AddEventView: View {
     var indexCategory = ["Music","Food","Book","Conference","Exhibition","Charity","Film"]
     @State private var category : String = ""
     
-    func initialiseAddress(){
-        address = "\(street) + \(city) \(postalCode) \(country)"
+    func initialiseAddress() -> String{
+        var localisation = address
+        localisation = "\(street) + \(city) \(postalCode) \(country)"
+        return localisation
     }
     
     var body: some View {
