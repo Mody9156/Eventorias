@@ -10,7 +10,7 @@ import SwiftUI
 struct RegistrationView: View {
     @State var email = ""
     @State var password = ""
-    @StateObject var authentificationViewModel : AuthentificationViewModel
+    @StateObject var authentificationViewModel : LoginViewModel
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -58,7 +58,7 @@ struct RegistrationView: View {
 
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView(authentificationViewModel: AuthentificationViewModel({}))
+        RegistrationView(authentificationViewModel: LoginViewModel({}))
     }
 }
 

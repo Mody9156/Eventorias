@@ -17,8 +17,8 @@ class ViewModelManager:ObservableObject {
     }
    
     
-    var authentificationViewModel : AuthentificationViewModel {
-        return AuthentificationViewModel { [weak self] in
+    var authentificationViewModel : LoginViewModel {
+        return LoginViewModel { [weak self] in
             self?.isAuthenticated = true
         }
     }

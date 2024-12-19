@@ -13,7 +13,7 @@ struct HomeView: View {
     @State var showOtherButton : Bool = false
     @State var email = ""
     @State var password = ""
-    @StateObject var authentificationViewModel : AuthentificationViewModel
+    @StateObject var authentificationViewModel : LoginViewModel
     
     var body: some View {
         NavigationStack {
@@ -82,7 +82,7 @@ struct ActionButtonView: View {
                 .foregroundColor(Color("Button"))
             
             NavigationLink {
-                RegistrationView(authentificationViewModel: AuthentificationViewModel({}))
+                RegistrationView(authentificationViewModel: LoginViewModel({}))
             } label: {
                 HStack {
                     Image("letter")
