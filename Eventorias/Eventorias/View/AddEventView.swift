@@ -45,6 +45,7 @@ struct AddEventView: View {
                 .ignoresSafeArea()
             ScrollView {
                 VStack{
+                    
                     CustomTexField(text: $title, infos: "Title", placeholder: "New event")
                     
                     CustomTexField(text: $description, infos: "Description", placeholder: "Tap here entrer your description")
@@ -62,15 +63,13 @@ struct AddEventView: View {
                             .padding(.leading, 5)
                             .labelsHidden()
                     }
-                    
-                    VStack {
+                   
                         AddressCollect(text: "Street", textField: $street)
                         AddressCollect(text: "City", textField: $city)
                         AddressCollect(text: "PostalCode", textField: $postalCode)
                         AddressCollect(text: "country", textField: $country)
                         
-                    }
-                    .padding()
+                    
                     
                     Picker("Category", selection:$category) {
                         ForEach(indexCategory,id:\.self){ index in
@@ -180,6 +179,7 @@ struct AddEventView: View {
                         }
                     }
                 }
+                .padding()
             }
         }
     }
