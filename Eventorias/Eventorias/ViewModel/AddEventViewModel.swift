@@ -82,4 +82,8 @@ class AddEventViewModel : ObservableObject {
             return nil
         }
     }
+    func formatHourString(_ hour:Date) -> String{
+        let date = Date.stringFromHour(hour)
+        return date
+    }
 }

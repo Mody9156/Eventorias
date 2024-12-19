@@ -151,7 +151,7 @@ struct AddEventView: View {
                             
                             resultPicture = selected
                             
-                            var stringFromHour = String(Date.stringFromHour(hours))
+                            var stringFromHour = addEventViewModel.formatHourString(hours)
                             
                             addEventViewModel.saveToFirestore(
                                 picture: selected,
