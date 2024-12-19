@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct ListView: View {
     enum focusedTexfield : Hashable {
