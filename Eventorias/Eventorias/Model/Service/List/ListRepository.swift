@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-public class EventoriasRepository : EventListRepresentable {
+public class ListRepository : EventListRepresentable {
     var db = Firestore.firestore().collection("eventorias")
     
     // Méthode pour récupérer tous les produits (événements)

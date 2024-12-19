@@ -24,7 +24,7 @@ class ListViewModel : ObservableObject {
     
     private var eventoriasRepository : EventListRepresentable
     
-    init(eventoriasRepository : EventListRepresentable = EventoriasRepository()) {
+    init(eventoriasRepository : EventListRepresentable = ListRepository()) {
         self.eventoriasRepository = eventoriasRepository
     }
     

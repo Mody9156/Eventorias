@@ -34,7 +34,7 @@
 		236060B02D0DE48200E3504F /* EventEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060992D0DE48200E3504F /* EventEntry.swift */; };
 		236060B12D0DE48200E3504F /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2360609A2D0DE48200E3504F /* Config.plist */; };
 		236060B22D0DE48200E3504F /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360609C2D0DE48200E3504F /* GoogleMapView.swift */; };
-		236060B32D0DE48200E3504F /* EventoriasRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360609F2D0DE48200E3504F /* EventoriasRepository.swift */; };
+		236060B32D0DE48200E3504F /* ListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360609F2D0DE48200E3504F /* ListRepository.swift */; };
 		236060B52D0DE48200E3504F /* FirebaseAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060A22D0DE48200E3504F /* FirebaseAuthenticationManager.swift */; };
 		236060B62D0DE48300E3504F /* BasicHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060A52D0DE48200E3504F /* BasicHTTPClient.swift */; };
 		236060B72D0DE48300E3504F /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060A62D0DE48200E3504F /* HTTPService.swift */; };
@@ -70,7 +70,7 @@
 		236060992D0DE48200E3504F /* EventEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventEntry.swift; sourceTree = "<group>"; };
 		2360609A2D0DE48200E3504F /* Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		2360609C2D0DE48200E3504F /* GoogleMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
-		2360609F2D0DE48200E3504F /* EventoriasRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventoriasRepository.swift; sourceTree = "<group>"; };
+		2360609F2D0DE48200E3504F /* ListRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRepository.swift; sourceTree = "<group>"; };
 		236060A22D0DE48200E3504F /* FirebaseAuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationManager.swift; sourceTree = "<group>"; };
 		236060A52D0DE48200E3504F /* BasicHTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicHTTPClient.swift; sourceTree = "<group>"; };
 		236060A62D0DE48200E3504F /* HTTPService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
@@ -155,6 +155,7 @@
 		2360607A2D0DE43300E3504F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				23F9E9AE2D12F0330030C221 /* Address */,
 				2360607B2D0DE43300E3504F /* RegistrationView.swift */,
 				2360607C2D0DE43300E3504F /* ProfileView.swift */,
 				2360607D2D0DE43300E3504F /* ListView.swift */,
@@ -168,7 +169,6 @@
 		236060852D0DE47200E3504F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				23F9E9AE2D12F0330030C221 /* Address */,
 				2311CB472D118A5200518BC5 /* Camera */,
 				236060892D0DE47200E3504F /* UserDetailViewModel.swift */,
 				2360608A2D0DE47200E3504F /* ViewModelManager.swift */,
@@ -230,7 +230,7 @@
 		2360609E2D0DE48200E3504F /* List */ = {
 			isa = PBXGroup;
 			children = (
-				2360609F2D0DE48200E3504F /* EventoriasRepository.swift */,
+				2360609F2D0DE48200E3504F /* ListRepository.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -384,7 +384,7 @@
 				236060802D0DE43B00E3504F /* RegistrationView.swift in Sources */,
 				236060BA2D0DE48300E3504F /* EventListRepresentable.swift in Sources */,
 				236060932D0DE47200E3504F /* ListViewModel.swift in Sources */,
-				236060B32D0DE48200E3504F /* EventoriasRepository.swift in Sources */,
+				236060B32D0DE48200E3504F /* ListRepository.swift in Sources */,
 				236060822D0DE43B00E3504F /* ListView.swift in Sources */,
 				236060922D0DE47200E3504F /* LoginViewModel.swift in Sources */,
 				236060902D0DE47200E3504F /* UserDetailViewModel.swift in Sources */,

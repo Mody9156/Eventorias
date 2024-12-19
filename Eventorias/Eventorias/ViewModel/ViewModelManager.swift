@@ -10,14 +10,14 @@ import Foundation
 class ViewModelManager:ObservableObject {
     @Published var isAuthenticated : Bool
     private var eventoriasRepository: EventListRepresentable
-
-    init(eventoriasRepository: EventListRepresentable = EventoriasRepository()){
-       isAuthenticated = false
+    
+    init(eventoriasRepository: EventListRepresentable = ListRepository()){
+        isAuthenticated = false
         self.eventoriasRepository = eventoriasRepository
     }
-   
     
-    var authentificationViewModel : LoginViewModel {
+    
+    var loginViewModel : LoginViewModel {
         return LoginViewModel { [weak self] in
             self?.isAuthenticated = true
         }
