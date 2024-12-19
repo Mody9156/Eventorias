@@ -85,19 +85,7 @@ struct AddEventView: View {
                             }
                         }
                     }
-                    
-                    ZStack {
-                        Rectangle()
-                            .frame(height: 56)
-                            .foregroundColor(Color("BackgroundDocument"))
-                            .cornerRadius(5)
-                        HStack {
-                            Text("Address")
-                            TextField("", text: $address)
-                                .foregroundColor(.white)
-                        }
-                    }
-                    
+                   
                     HStack {
                         ZStack {
                             Rectangle()
