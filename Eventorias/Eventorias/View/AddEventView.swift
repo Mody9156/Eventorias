@@ -63,6 +63,22 @@ struct AddEventView: View {
                         .labelsHidden()
                 }
                 
+                ZStack(alignment: .leading) {
+                    Rectangle()
+                        .frame(height: 56)
+                        .foregroundColor(Color("BackgroundDocument"))
+                        .cornerRadius(5)
+                    if address.isEmpty{
+                        Text("Entre full adress")
+                            .foregroundColor(.white)
+                            .opacity(0.5)
+                            .padding()
+                    }
+                    
+                    TextField("", text: $address)
+                        .foregroundColor(.white)
+                }
+                .padding()
 //                Button(action:{
 //                    showAddress.toggle()
 //                }){
