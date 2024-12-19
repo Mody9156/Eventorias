@@ -122,20 +122,17 @@ struct AddEventView: View {
                     }
                     .padding()
                     
-                    if let savedFilePath = savedFilePath {
-                        Text(savedFilePath)
-                            .foregroundColor(.white)
-                    }
-                    //                if let selectedImage = savedFilePath, let image =  UIImage(contentsOfFile: selectedImage) {
-                    //                    Image(uiImage: image)
-                    //                }
-                    
+//                    if let savedFilePath = savedFilePath {
+//                        Text(savedFilePath)
+//                            .foregroundColor(.white)
+//                    }
+                  
                     Spacer()
                     
                     Button(action:{
                         let localisation = "\(street) + \(city) \(postalCode) \(country)".trimmingCharacters(in: .whitespaces)
                         
-                        addEventViewModel.geocodeAddress(address: localisation)
+                     addEventViewModel.geocodeAddress(address: localisation)
                         //                    if let selectedImage = savedFilePath{
                         //                    let dummyImage = UIImage(contentsOfFile: selectedImage)! // Remplacez par votre UIImage
                         //                    if let path = saveImageToTemporaryDirectory(image: dummyImage, fileName: "\(title)Post.jpg") {
@@ -143,6 +140,7 @@ struct AddEventView: View {
                         //                        imageURL = URL(fileURLWithPath: path) // Convertir le chemin en URL
                         //                    }
                         //                }
+                      
                         
                         if let selectedImage = selectedImage ,
                            let savedFilePath = savedFilePath,
