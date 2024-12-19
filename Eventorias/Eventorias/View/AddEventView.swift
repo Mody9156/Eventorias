@@ -24,7 +24,7 @@ struct AddEventView: View {
     }()
     @State private var imageURL: URL? = nil
     @State var resultPicture : String = ""
-   
+    
     @State private var showCamera = false
     @State private var selectedImage: UIImage?
     @State var image : UIImage?
@@ -41,7 +41,7 @@ struct AddEventView: View {
     
     
     
-  
+    
     
     var body: some View {
         ZStack {
@@ -134,32 +134,44 @@ struct AddEventView: View {
                     }
                 }
                 .padding()
-              
+                
                 if let savedFilePath = savedFilePath {
                     Text(savedFilePath)
                         .foregroundColor(.white)
                 }
-//                if let selectedImage = savedFilePath, let image =  UIImage(contentsOfFile: selectedImage) {
-//                    Image(uiImage: image)
-//                }
-               
+                //                if let selectedImage = savedFilePath, let image =  UIImage(contentsOfFile: selectedImage) {
+                //                    Image(uiImage: image)
+                //                }
+                
                 Spacer()
                 
                 Button(action:{
                     addEventViewModel.geocodeAddress(address: address)
-//                    if let selectedImage = savedFilePath{
-//                    let dummyImage = UIImage(contentsOfFile: selectedImage)! // Remplacez par votre UIImage
-//                    if let path = saveImageToTemporaryDirectory(image: dummyImage, fileName: "\(title)Post.jpg") {
-//                        savedFilePath = path
-//                        imageURL = URL(fileURLWithPath: path) // Convertir le chemin en URL
-//                    }
-//                }
+                    //                    if let selectedImage = savedFilePath{
+                    //                    let dummyImage = UIImage(contentsOfFile: selectedImage)! // Remplacez par votre UIImage
+                    //                    if let path = saveImageToTemporaryDirectory(image: dummyImage, fileName: "\(title)Post.jpg") {
+                    //                        savedFilePath = path
+                    //                        imageURL = URL(fileURLWithPath: path) // Convertir le chemin en URL
+                    //                    }
+                    //                }
                     
-                    if let selectedImage = selectedImage , let savedFilePath = savedFilePath, let selected = addEventViewModel.saveImageToTemporaryDirectory(image: selectedImage, fileName: "\(title).jpg"), let latitude = addEventViewModel.coordinates?.latitude, let longitude = addEventViewModel.coordinates?.longitude{
-                       
-                            resultPicture = selected
-                            var stringFromHour = String(Date.stringFromHour(hours))
-                                addEventViewModel.saveToFirestore(picture: selected, title: title, dateCreation: date, poster: savedFilePath, description: description, hour: stringFromHour, category: category, street: street, city: city, postalCode: postalCode, country: country, latitude: latitude, longitude: longitude)
+                    if let selectedImage = selectedImage ,
+                       let savedFilePath = savedFilePath,
+                       let selected = addEventViewModel.saveImageToTemporaryDirectory(image: selectedImage,fileName: "\(title).jpg"),
+                       let latitude = addEventViewModel.coordinates?.latitude, let longitude = addEventViewModel.coordinates?.longitude{
+                        
+                        resultPicture = selected
+                        var stringFromHour = String(Date.stringFromHour(hours))
+                        
+                        addEventViewModel.saveToFirestore(picture: selected, title: title,
+                                                          dateCreation: date, poster: savedFilePath,
+                                                          description: description,
+                                                          hour: stringFromHour, category: category, street: street,
+                                                          city: city,
+                                                          postalCode: postalCode,
+                                                          country: country,
+                                                          latitude: latitude,
+                                                          longitude: longitude)
                     }
                     
                     

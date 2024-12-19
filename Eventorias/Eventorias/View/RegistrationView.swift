@@ -10,7 +10,7 @@ import SwiftUI
 struct RegistrationView: View {
     @State var email = ""
     @State var password = ""
-    @StateObject var authentificationViewModel : LoginViewModel
+    @StateObject var loginViewModel : LoginViewModel
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -32,8 +32,8 @@ struct RegistrationView: View {
                         
                     
                     Button {
-                        authentificationViewModel.registerUser(email: email, password: password)
-                        if authentificationViewModel.isAuthenticated {
+                        loginViewModel.registerUser(email: email, password: password)
+                        if loginViewModel.isAuthenticated {
                             // change
                         }
                         
@@ -46,7 +46,7 @@ struct RegistrationView: View {
                 }
                 .padding(.top)
                 
-                if let error = authentificationViewModel.errorMessage {
+                if let error = loginViewModel.errorMessage {
                     Text(error)
                         .foregroundColor(.red)
                 }
@@ -58,7 +58,7 @@ struct RegistrationView: View {
 
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView(authentificationViewModel: LoginViewModel({}))
+        RegistrationView(loginViewModel: LoginViewModel({}))
     }
 }
 

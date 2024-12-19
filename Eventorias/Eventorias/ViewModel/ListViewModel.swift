@@ -22,10 +22,10 @@ class ListViewModel : ObservableObject {
     @Published
     var eventEntry : [EventEntry] = []
     
-    private var eventoriasRepository : EventListRepresentable
+    private var eventListRepresentable : EventListRepresentable
     
-    init(eventoriasRepository : EventListRepresentable = ListRepository()) {
-        self.eventoriasRepository = eventoriasRepository
+    init(eventListRepresentable : EventListRepresentable = ListRepository()) {
+        self.eventListRepresentable = eventListRepresentable
     }
     
     func formatDateString(_ date:Date) -> String {
@@ -35,7 +35,7 @@ class ListViewModel : ObservableObject {
     
     @MainActor
     func getAllProducts() async throws {
-        self.eventEntry = try await eventoriasRepository.getAllProducts()
+        self.eventEntry = try await eventListRepresentable.getAllProducts()
     }
     
     @MainActor
@@ -45,11 +45,11 @@ class ListViewModel : ObservableObject {
         
         switch option {
         case .noFilter :
-            self.eventEntry = try await eventoriasRepository.getAllProducts()
+            self.eventEntry = try await eventListRepresentable.getAllProducts()
         case .category :
-            self.eventEntry = try await eventoriasRepository.getAllProductsSortedByCategory()
+            self.eventEntry = try await eventListRepresentable.getAllProductsSortedByCategory()
         case .date:
-            self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate()
+            self.eventEntry = try await eventListRepresentable.getAllProductsSortedByDate()
         }
     }
     

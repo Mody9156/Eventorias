@@ -9,11 +9,11 @@ import Foundation
 
 class ViewModelManager:ObservableObject {
     @Published var isAuthenticated : Bool
-    private var eventoriasRepository: EventListRepresentable
+    private var eventListRepresentable: EventListRepresentable
     
-    init(eventoriasRepository: EventListRepresentable = ListRepository()){
+    init(eventListRepresentable: EventListRepresentable = ListRepository()){
         isAuthenticated = false
-        self.eventoriasRepository = eventoriasRepository
+        self.eventListRepresentable = eventListRepresentable
     }
     
     
@@ -24,7 +24,7 @@ class ViewModelManager:ObservableObject {
     }
     
     var listViewModel : ListViewModel {
-        return ListViewModel(eventoriasRepository: eventoriasRepository)
+        return ListViewModel(eventListRepresentable: eventListRepresentable)
     }
     
 }
