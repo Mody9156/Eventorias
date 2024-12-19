@@ -24,12 +24,11 @@ struct AddEventView: View {
     }()
     @State private var imageURL: URL? = nil
     @State var resultPicture : String = ""
-    @State private var coordinates : CLLocationCoordinate2D?
+   
     @State private var showCamera = false
     @State private var selectedImage: UIImage?
     @State var image : UIImage?
     @State var selectedItems : [PhotosPickerItem] = []
-    @State private var errorMessage: String?
     @State private var showAddress : Bool = false
     @State private var street : String = ""
     @State private var city : String = ""
@@ -61,21 +60,7 @@ struct AddEventView: View {
         }
     }
     
-    func geocodeAddress(address:String){
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(address){ placemarks, error in
-            if let error = error {
-                self.errorMessage = error.localizedDescription
-                self.coordinates = nil
-            }else if let placemark = placemarks?.first, let location = placemark.location {
-                self.coordinates = location.coordinate
-                self.errorMessage = nil
-            }else{
-                self.errorMessage = "Adresse introuvable"
-                self.coordinates = nil
-            }
-        }
-    }
+  
     
     var body: some View {
         ZStack {
@@ -180,7 +165,7 @@ struct AddEventView: View {
                 Spacer()
                 
                 Button(action:{
-                    geocodeAddress(address: address)
+                    addEventViewModel.geocodeAddress(address: address)
 //                    if let selectedImage = savedFilePath{
 //                    let dummyImage = UIImage(contentsOfFile: selectedImage)! // Remplacez par votre UIImage
 //                    if let path = saveImageToTemporaryDirectory(image: dummyImage, fileName: "\(title)Post.jpg") {

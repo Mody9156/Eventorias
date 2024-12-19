@@ -7,10 +7,12 @@
 
 import Foundation
 import PhotosUI
+import CoreLocation
 
 class AddEventViewModel : ObservableObject {
     let eventRepository: EventManagerProtocol
-    
+    @Published private var errorMessage: String?
+    @Published private var coordinates : CLLocationCoordinate2D?
     init(eventRepository: EventManagerProtocol = EventRepository()) {
         self.eventRepository = eventRepository
     }
@@ -28,6 +30,21 @@ class AddEventViewModel : ObservableObject {
                 print("L'évènement a été sauvegardé avec succès.")
             }else{
                 print("Erreur, \(error?.localizedDescription ?? "Inconnue")")
+            }
+        }
+    }
+    func geocodeAddress(address:String){
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(address){ placemarks, error in
+            if let error = error {
+                self.errorMessage = error.localizedDescription
+                self.coordinates = nil
+            }else if let placemark = placemarks?.first, let location = placemark.location {
+                self.coordinates = location.coordinate
+                self.errorMessage = nil
+            }else{
+                self.errorMessage = "Adresse introuvable"
+                self.coordinates = nil
             }
         }
     }
