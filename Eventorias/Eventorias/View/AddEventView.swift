@@ -185,13 +185,12 @@ struct AddEventView: View {
     }
 }
 
-
 struct CustomTexField: View {
     @Binding var text : String
     var infos : String
     var placeholder : String
     var body: some View {
-        ZStack(alignment: .leading) {
+        ZStack{
             Rectangle()
                 .frame(height: 56)
                 .foregroundColor(Color("BackgroundDocument"))
@@ -250,7 +249,6 @@ struct AddressCollect: View {
     @Binding var textField : String
     
     var body: some View {
-        HStack {
             ZStack {
                 Rectangle()
                     .frame(height: 56)
@@ -272,7 +270,7 @@ struct AddressCollect: View {
                 .padding()
             }
         }
-    }
+
 }
 
 struct AddEventView_Previews: PreviewProvider {
