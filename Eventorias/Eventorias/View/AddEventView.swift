@@ -34,18 +34,11 @@ struct AddEventView: View {
     @State private var postalCode : String = ""
     @State private var country : String = ""
     @State private var hours : Date = Date()
-    @State var address : String = ""
     
     @State private var savedFilePath: String?
     var indexCategory = ["Music","Food","Book","Conference","Exhibition","Charity","Film"]
     @State private var category : String = ""
-    
-    func initialiseAddress() -> String{
-        var localisation = address
-        localisation = "\(street) + \(city) \(postalCode) \(country)"
-        print(localisation)
-        return localisation
-    }
+   
     
     var body: some View {
         ZStack {
@@ -70,7 +63,6 @@ struct AddEventView: View {
                         .labelsHidden()
                 }
                 
-                
                 VStack {
                     HStack {
                         ZStack {
@@ -79,7 +71,7 @@ struct AddEventView: View {
                                 .foregroundColor(Color("BackgroundDocument"))
                                 .cornerRadius(5)
                             HStack {
-                                Text("Street")
+                                Text("Street: ")
                                 TextField("", text: $street)
                                     .foregroundColor(.white)
                             }
@@ -93,7 +85,7 @@ struct AddEventView: View {
                                 .foregroundColor(Color("BackgroundDocument"))
                                 .cornerRadius(5)
                             HStack {
-                                Text("City")
+                                Text("City: ")
                                 TextField("", text: $city)
                                     .foregroundColor(.white)
                             }
@@ -105,7 +97,7 @@ struct AddEventView: View {
                                 .foregroundColor(Color("BackgroundDocument"))
                                 .cornerRadius(5)
                             HStack {
-                                Text("PostalCode")
+                                Text("PostalCode: ")
                                 TextField("", text: $postalCode)
                                     .foregroundColor(.white)
                             }
@@ -117,7 +109,7 @@ struct AddEventView: View {
                             .foregroundColor(Color("BackgroundDocument"))
                             .cornerRadius(5)
                         HStack {
-                            Text("country")
+                            Text("country: ")
                             TextField("", text: $country)
                                 .foregroundColor(.white)
                         }
@@ -125,24 +117,7 @@ struct AddEventView: View {
                     
                 }
                 .padding()
-                
-                //                Button(action:{
-                //                    showAddress.toggle()
-                //                }){
-                //                    ZStack(alignment: .center) {
-                //                        Rectangle()
-                //                            .frame(height: 56)
-                //                            .foregroundColor(Color("BackgroundDocument"))
-                //                            .cornerRadius(5)
-                //
-                //                        Text("Entre full adress")
-                //                            .fontWeight(.bold)
-                //                            .foregroundColor(.white)
-                //                    }
-                //                    .padding()
-                //                }.sheet(isPresented: $showAddress) {
-                //                    AddressInputView(street: $street, city: $city, postalCode: $postalCode, country: $country, address: $address)
-                //                }
+             
                 
                 Picker("Category", selection:$category) {
                     ForEach(indexCategory,id:\.self){ index in
@@ -206,7 +181,9 @@ struct AddEventView: View {
                 Spacer()
                 
                 Button(action:{
-                    addEventViewModel.geocodeAddress(address: address)
+                   var localisation = "\(street) + \(city) \(postalCode) \(country)"
+                    
+                    addEventViewModel.geocodeAddress(address: localisation)
                     //                    if let selectedImage = savedFilePath{
                     //                    let dummyImage = UIImage(contentsOfFile: selectedImage)! // Remplacez par votre UIImage
                     //                    if let path = saveImageToTemporaryDirectory(image: dummyImage, fileName: "\(title)Post.jpg") {
