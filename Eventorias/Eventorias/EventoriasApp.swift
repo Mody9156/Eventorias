@@ -62,7 +62,7 @@ struct EventoriasApp: App {
                 }
                 .accentColor(.red)
             }else{
-                HomeView(authentificationViewModel: viewModelManager.authentificationViewModel)
+                HomeView(loginViewModel: viewModelManager.loginViewModel)
                     .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity),removal: .move(edge: .top).combined(with: .opacity)))
             }
         }

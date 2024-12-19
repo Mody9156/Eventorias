@@ -13,7 +13,7 @@ struct HomeView: View {
     @State var showOtherButton : Bool = false
     @State var email = ""
     @State var password = ""
-    @StateObject var authentificationViewModel : AuthentificationViewModel
+    @StateObject var loginViewModel : LoginViewModel
     
     var body: some View {
         NavigationStack {
@@ -41,7 +41,7 @@ struct HomeView: View {
                                 .foregroundColor(Color("Button"))
                             
                             Button {
-                                authentificationViewModel.login(email: email, password: password)
+                                loginViewModel.login(email: email, password: password)
                                 
                             } label: {
                                 HStack {
@@ -54,7 +54,7 @@ struct HomeView: View {
                         }
                         .padding(.top)
                         
-                        if let error = authentificationViewModel.errorMessage {
+                        if let error = loginViewModel.errorMessage {
                             Text(error)
                                 .foregroundColor(.red)
                         }
@@ -82,7 +82,7 @@ struct ActionButtonView: View {
                 .foregroundColor(Color("Button"))
             
             NavigationLink {
-                RegistrationView(authentificationViewModel: AuthentificationViewModel({}))
+                RegistrationView(loginViewModel: LoginViewModel({}))
             } label: {
                 HStack {
                     Image("letter")

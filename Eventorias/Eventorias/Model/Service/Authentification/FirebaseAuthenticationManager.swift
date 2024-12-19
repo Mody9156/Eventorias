@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseCore
 
-class FirebaseAuthenticationManager :protocolsFirebaseData {
+class FirebaseAuthenticationManager :ProtocolsFirebaseData {
     
     func signIn(email: String, password: String, completion: @escaping (Result<Any, Error>) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password){ result , error in

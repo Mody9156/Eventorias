@@ -8,23 +8,28 @@
 import Foundation
 import FirebaseAuth
 
-class AuthentificationViewModel : ObservableObject {
-    @Published var errorMessage: String? = nil
-    @Published var isAuthenticated : Bool = false
-    @Published var onLoginSucceed : (() -> ())
-    let firebaseAuthenticationManager : protocolsFirebaseData = FirebaseAuthenticationManager()
-  
-    init(_ callback:@escaping (() -> ())) {
+class LoginViewModel : ObservableObject {
+    @Published
+    var errorMessage: String? = nil
+    @Published
+    var isAuthenticated : Bool = false
+    @Published
+    var onLoginSucceed : (() -> ())
+    
+    let firebaseAuthenticationManager : ProtocolsFirebaseData
+    
+    init(_ callback:@escaping (() -> ()),firebaseAuthenticationManager : ProtocolsFirebaseData = FirebaseAuthenticationManager()) {
         self.onLoginSucceed = callback
+        self.firebaseAuthenticationManager = firebaseAuthenticationManager
     }
     
     func login(email : String,password:String) {
         //Validation du mail et du mot de passe
         guard !email.isEmpty, !password.isEmpty else {
-                   self.errorMessage = "Veuillez remplir tout les champs."
+            self.errorMessage = "Veuillez remplir tout les champs."
             print(String(describing:errorMessage))
-                   return
-               }
+            return
+        }
         
         firebaseAuthenticationManager.signIn(email: email, password: password){ result in
             switch result {
@@ -47,10 +52,10 @@ class AuthentificationViewModel : ObservableObject {
     func registerUser(email:String,password:String) {
         
         guard !email.isEmpty, !password.isEmpty else {
-                   self.errorMessage = "L'email ou le mot de passe ne peuvent pas être vides."
-                   return
-               }
-
+            self.errorMessage = "L'email ou le mot de passe ne peuvent pas être vides."
+            return
+        }
+        
         firebaseAuthenticationManager.createUser(email: email, password: password){ result in
             switch result {
                 // Création réussie

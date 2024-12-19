@@ -29,6 +29,7 @@ class UserDetailViewModel: ObservableObject{
         return date
     }
     
+    //Config Key
     func loadAPIKey() throws -> String {
         if let path = Bundle.main.path(forResource: "Config", ofType: "plist"),
            let config = NSDictionary(contentsOfFile: path) as? [String: Any],
@@ -37,19 +38,15 @@ class UserDetailViewModel: ObservableObject{
         }
         throw Failure.missingAPIKey
     }
-
+    
     
     func showMapsStatic(_ Latitude:Double,_ Longitude:Double) async throws -> Data {
         do{
             let api =  try loadAPIKey()
             let data = try await googleMapView.showMapsWithURLRequest(Latitude, Longitude, api)
-            print("Carte récupérée avec succès : \(data)")
             return data
         }catch{
-            print("Erreur lors du chargement de la carte : \(error.localizedDescription)")
-
             throw Failure.invalidMaps
         }
     }
-   
 }

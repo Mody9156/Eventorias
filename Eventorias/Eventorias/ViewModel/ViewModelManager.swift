@@ -9,22 +9,22 @@ import Foundation
 
 class ViewModelManager:ObservableObject {
     @Published var isAuthenticated : Bool
-    private var eventoriasRepository: EventListRepresentable
-
-    init(eventoriasRepository: EventListRepresentable = EventoriasRepository()){
-       isAuthenticated = false
-        self.eventoriasRepository = eventoriasRepository
-    }
-   
+    private var eventListRepresentable: EventListRepresentable
     
-    var authentificationViewModel : AuthentificationViewModel {
-        return AuthentificationViewModel { [weak self] in
+    init(eventListRepresentable: EventListRepresentable = ListRepository()){
+        isAuthenticated = false
+        self.eventListRepresentable = eventListRepresentable
+    }
+    
+    
+    var loginViewModel : LoginViewModel {
+        return LoginViewModel { [weak self] in
             self?.isAuthenticated = true
         }
     }
     
     var listViewModel : ListViewModel {
-        return ListViewModel(eventoriasRepository: eventoriasRepository)
+        return ListViewModel(eventListRepresentable: eventListRepresentable)
     }
     
 }

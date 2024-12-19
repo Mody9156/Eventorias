@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct ListView: View {
     enum focusedTexfield : Hashable {
@@ -52,7 +53,7 @@ struct ListView: View {
                         HStack{
                             Spacer()
                             NavigationLink {
-                                AddEventView(addEventViewModel: AddEventViewModel())
+                                AddEventView(addEventViewModel: AddEventViewModel(coordinates: CLLocationCoordinate2D.init(latitude: 33.44, longitude: 222.44)))
                                 
                             } label: {
                                 ZStack {

@@ -19,15 +19,12 @@ public class EventRepository : ObservableObject,EventManagerProtocol{
             
             db.addDocument(data: encodedEvent) { error in
                 if let error = error {
-                    print("Erreur lors de l'enregistrement de l'événement : \(error.localizedDescription)")
                     completion(false, error)
                 } else {
-                    print("Événement ajouté avec succès dans Firestore !")
                     completion(true, nil)
                 }
             }
         } catch let encodingError {
-            print("Erreur d'encodage : \(encodingError.localizedDescription)")
             completion(false, encodingError)
         }
     }

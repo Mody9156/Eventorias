@@ -15,7 +15,6 @@ class ListViewModel : ObservableObject {
         case category
     }
     
-    
     @Published
     var FilterOption : FilterOption? = .noFilter
     @Published
@@ -23,21 +22,20 @@ class ListViewModel : ObservableObject {
     @Published
     var eventEntry : [EventEntry] = []
     
-    private var eventoriasRepository : EventListRepresentable
+    private var eventListRepresentable : EventListRepresentable
     
-    init(eventoriasRepository : EventListRepresentable = EventoriasRepository()) {
-        self.eventoriasRepository = eventoriasRepository
+    init(eventListRepresentable : EventListRepresentable = ListRepository()) {
+        self.eventListRepresentable = eventListRepresentable
     }
     
     func formatDateString(_ date:Date) -> String {
         let date = Date.stringFromDate(date)
         return date
     }
-   
     
     @MainActor
     func getAllProducts() async throws {
-        self.eventEntry = try await eventoriasRepository.getAllProducts()
+        self.eventEntry = try await eventListRepresentable.getAllProducts()
     }
     
     @MainActor
@@ -47,27 +45,21 @@ class ListViewModel : ObservableObject {
         
         switch option {
         case .noFilter :
-            self.eventEntry = try await eventoriasRepository.getAllProducts()
-            print("Produits récupérés sans filtre. Nombre de produits : \(self.eventEntry.count)")
-            print("Données : \(self.eventEntry)")  // Affiche les données récupérées
+            self.eventEntry = try await eventListRepresentable.getAllProducts()
         case .category :
-            self.eventEntry = try await eventoriasRepository.getAllProductsSortedByCategory()
-            print("Produits récupérés triés par catégorie. Nombre de produits : \(self.eventEntry.count)")
-            print("Données : \(self.eventEntry)")  // Affiche les données récupérées
+            self.eventEntry = try await eventListRepresentable.getAllProductsSortedByCategory()
         case .date:
-            self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate()
-            print("Produits récupérés triés par date. Nombre de produits : \(self.eventEntry.count)")
-            print("Données : \(self.eventEntry)")  // Affiche les données récupérées
+            self.eventEntry = try await eventListRepresentable.getAllProductsSortedByDate()
         }
     }
     
     func filterTitle(_ searchText:String) -> [EventEntry]{
-            if searchText.isEmpty{
-                return eventEntry
-            }else{
-                return eventEntry.filter {title in
-                    title.title.localizedStandardContains(searchText)
-                }
+        if searchText.isEmpty{
+            return eventEntry
+        }else{
+            return eventEntry.filter {title in
+                title.title.localizedStandardContains(searchText)
             }
+        }
     }
 }
