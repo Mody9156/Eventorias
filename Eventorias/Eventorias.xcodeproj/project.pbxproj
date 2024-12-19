@@ -153,7 +153,6 @@
 		2360607A2D0DE43300E3504F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				23F9E9AE2D12F0330030C221 /* Address */,
 				2360607B2D0DE43300E3504F /* RegistrationView.swift */,
 				2360607C2D0DE43300E3504F /* ProfileView.swift */,
 				2360607D2D0DE43300E3504F /* ListView.swift */,
@@ -283,13 +282,6 @@
 				23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */,
 			);
 			path = Event;
-			sourceTree = "<group>";
-		};
-		23F9E9AE2D12F0330030C221 /* Address */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Address;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
