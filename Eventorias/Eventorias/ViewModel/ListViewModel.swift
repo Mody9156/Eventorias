@@ -15,7 +15,6 @@ class ListViewModel : ObservableObject {
         case category
     }
     
-    
     @Published
     var FilterOption : FilterOption? = .noFilter
     @Published
@@ -33,7 +32,6 @@ class ListViewModel : ObservableObject {
         let date = Date.stringFromDate(date)
         return date
     }
-   
     
     @MainActor
     func getAllProducts() async throws {
@@ -48,26 +46,20 @@ class ListViewModel : ObservableObject {
         switch option {
         case .noFilter :
             self.eventEntry = try await eventoriasRepository.getAllProducts()
-            print("Produits récupérés sans filtre. Nombre de produits : \(self.eventEntry.count)")
-            print("Données : \(self.eventEntry)")  // Affiche les données récupérées
         case .category :
             self.eventEntry = try await eventoriasRepository.getAllProductsSortedByCategory()
-            print("Produits récupérés triés par catégorie. Nombre de produits : \(self.eventEntry.count)")
-            print("Données : \(self.eventEntry)")  // Affiche les données récupérées
         case .date:
             self.eventEntry = try await eventoriasRepository.getAllProductsSortedByDate()
-            print("Produits récupérés triés par date. Nombre de produits : \(self.eventEntry.count)")
-            print("Données : \(self.eventEntry)")  // Affiche les données récupérées
         }
     }
     
     func filterTitle(_ searchText:String) -> [EventEntry]{
-            if searchText.isEmpty{
-                return eventEntry
-            }else{
-                return eventEntry.filter {title in
-                    title.title.localizedStandardContains(searchText)
-                }
+        if searchText.isEmpty{
+            return eventEntry
+        }else{
+            return eventEntry.filter {title in
+                title.title.localizedStandardContains(searchText)
             }
+        }
     }
 }

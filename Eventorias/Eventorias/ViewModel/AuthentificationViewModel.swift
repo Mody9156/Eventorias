@@ -12,7 +12,7 @@ class AuthentificationViewModel : ObservableObject {
     @Published var errorMessage: String? = nil
     @Published var isAuthenticated : Bool = false
     @Published var onLoginSucceed : (() -> ())
-    let firebaseAuthenticationManager : protocolsFirebaseData = FirebaseAuthenticationManager()
+    let firebaseAuthenticationManager : ProtocolsFirebaseData = FirebaseAuthenticationManager()
   
     init(_ callback:@escaping (() -> ())) {
         self.onLoginSucceed = callback

@@ -11,20 +11,36 @@ import CoreLocation
 
 class AddEventViewModel : ObservableObject {
     let eventRepository: EventManagerProtocol
-    @Published private var errorMessage: String?
-    @Published var coordinates : CLLocationCoordinate2D?
+    @Published
+    private var errorMessage: String?
+    @Published
+    var coordinates : CLLocationCoordinate2D?
+    
     init(eventRepository: EventManagerProtocol = EventRepository(), coordinates : CLLocationCoordinate2D?) {
         self.eventRepository = eventRepository
         self.coordinates = coordinates
     }
     
-    func saveToFirestore(picture: String, title: String, dateCreation: Date, poster: String, description: String, hour: String, category: String, street: String, city: String, postalCode: String, country: String, latitude: Double, longitude: Double  ){
+    func saveToFirestore(picture: String,
+                         title: String,
+                         dateCreation: Date,
+                         poster: String,
+                         description: String,
+                         hour: String,
+                         category: String,
+                         street: String,
+                         city: String,
+                         postalCode: String,
+                         country: String,
+                         latitude: Double,
+                         longitude: Double
+    ){
         
-        var  geoPoint =  GeoPoint(latitude: latitude, longitude: longitude)
+        let geoPoint =  GeoPoint(latitude: latitude, longitude: longitude)
         
-        var adresse = Address(street: street, city: city, postalCode: postalCode, country: country, localisation: geoPoint)
+        let adresse = Address(street: street, city: city, postalCode: postalCode, country: country, localisation: geoPoint)
         
-        var event  = EventEntry(picture: picture, title: title, dateCreation: dateCreation, poster: poster, description: description, hour: hour, category: category, place: adresse )
+        let event  = EventEntry(picture: picture, title: title, dateCreation: dateCreation, poster: poster, description: description, hour: hour, category: category, place: adresse )
         
         eventRepository.saveToFirestore(event) { success, error in
             if success {
@@ -52,7 +68,6 @@ class AddEventViewModel : ObservableObject {
     
     func saveImageToTemporaryDirectory(image:UIImage, fileName:String) -> String? {
         guard let data = image.jpegData(compressionQuality: 1.0) else {
-            print("Erreur : impossible de convertir l'image.")
             return nil
         }
         
@@ -61,12 +76,9 @@ class AddEventViewModel : ObservableObject {
         
         do{
             try data.write(to: fileURL)
-            print("Chemin temporaire : \(fileURL.path)")
-
             return fileURL.path
             
         }catch{
-            print("Erreur \(error)")
             return nil
         }
     }

@@ -39,7 +39,7 @@
 		236060B62D0DE48300E3504F /* BasicHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060A52D0DE48200E3504F /* BasicHTTPClient.swift */; };
 		236060B72D0DE48300E3504F /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060A62D0DE48200E3504F /* HTTPService.swift */; };
 		236060BA2D0DE48300E3504F /* EventListRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060AA2D0DE48200E3504F /* EventListRepresentable.swift */; };
-		236060BB2D0DE48300E3504F /* protocolsFirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060AC2D0DE48200E3504F /* protocolsFirebaseData.swift */; };
+		236060BB2D0DE48300E3504F /* ProtocolsFirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060AC2D0DE48200E3504F /* ProtocolsFirebaseData.swift */; };
 		23F9E9AD2D12C2430030C221 /* EventManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */; };
 		23F9E9B02D12F0710030C221 /* AddressInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9E9AF2D12F0700030C221 /* AddressInputView.swift */; };
 /* End PBXBuildFile section */
@@ -75,7 +75,7 @@
 		236060A52D0DE48200E3504F /* BasicHTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicHTTPClient.swift; sourceTree = "<group>"; };
 		236060A62D0DE48200E3504F /* HTTPService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
 		236060AA2D0DE48200E3504F /* EventListRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListRepresentable.swift; sourceTree = "<group>"; };
-		236060AC2D0DE48200E3504F /* protocolsFirebaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = protocolsFirebaseData.swift; sourceTree = "<group>"; };
+		236060AC2D0DE48200E3504F /* ProtocolsFirebaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtocolsFirebaseData.swift; sourceTree = "<group>"; };
 		23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagerProtocol.swift; sourceTree = "<group>"; };
 		23F9E9AF2D12F0700030C221 /* AddressInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddressInputView.swift; path = Eventorias/Model/Protocols/Event/AddressInputView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -274,7 +274,7 @@
 		236060AB2D0DE48200E3504F /* Authentification */ = {
 			isa = PBXGroup;
 			children = (
-				236060AC2D0DE48200E3504F /* protocolsFirebaseData.swift */,
+				236060AC2D0DE48200E3504F /* ProtocolsFirebaseData.swift */,
 			);
 			path = Authentification;
 			sourceTree = "<group>";
@@ -394,7 +394,7 @@
 				236060AE2D0DE48200E3504F /* AuthToken.swift in Sources */,
 				2311CB4B2D1199A700518BC5 /* AddEventViewModel.swift in Sources */,
 				236060B02D0DE48200E3504F /* EventEntry.swift in Sources */,
-				236060BB2D0DE48300E3504F /* protocolsFirebaseData.swift in Sources */,
+				236060BB2D0DE48300E3504F /* ProtocolsFirebaseData.swift in Sources */,
 				236060AF2D0DE48200E3504F /* DateExtension.swift in Sources */,
 				236060832D0DE43B00E3504F /* HomeView.swift in Sources */,
 				23F9E9AD2D12C2430030C221 /* EventManagerProtocol.swift in Sources */,
