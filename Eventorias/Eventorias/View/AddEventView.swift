@@ -68,17 +68,20 @@ struct AddEventView: View {
                     HStack {
                         ZStack {
                             Rectangle()
-                                .frame(width: 100, height: 56)
+                                .frame(height: 56)
                                 .foregroundColor(Color("BackgroundDocument"))
                                 .cornerRadius(5)
-                            TextField("", text: $street)
-                                .foregroundColor(.white)
+                            HStack {
+                                Text("Street")
+                                TextField("", text: $street)
+                                    .foregroundColor(.white)
+                            }
                         }
                     }
                     
                     ZStack {
                         Rectangle()
-                            .frame(width: 100, height: 56)
+                            .frame(height: 56)
                             .foregroundColor(Color("BackgroundDocument"))
                             .cornerRadius(5)
                         HStack {
@@ -91,7 +94,7 @@ struct AddEventView: View {
                     HStack {
                         ZStack {
                             Rectangle()
-                                .frame(width: 100, height: 56)
+                                .frame(height: 56)
                                 .foregroundColor(Color("BackgroundDocument"))
                                 .cornerRadius(5)
                             HStack {
@@ -102,7 +105,7 @@ struct AddEventView: View {
                         }
                         ZStack {
                             Rectangle()
-                                .frame(width: 100, height: 56)
+                                .frame(height: 56)
                                 .foregroundColor(Color("BackgroundDocument"))
                                 .cornerRadius(5)
                             HStack {
