@@ -222,7 +222,7 @@ struct AddEventView: View {
 
 struct AddEventView_Previews: PreviewProvider {
     static var previews: some View {
-        AddEventView(addEventViewModel: AddEventViewModel(coordinates: CLLocationCoordinate2D.init(latitude: 2.22, longitude: 33.3)))
+        AddEventView(addEventViewModel: AddEventViewModel(coordinates: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)))
     }
 }
 
