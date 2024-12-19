@@ -64,10 +64,10 @@ struct AddEventView: View {
                     }
                     
                     VStack {
-                        AddressCollect(text: "Street: ", textField: $street)
-                        AddressCollect(text: "City: ", textField: $city)
-                        AddressCollect(text: "PostalCode: ", textField: $postalCode)
-                        AddressCollect(text: "country: ", textField: $country)
+                        AddressCollect(text: "Street", textField: $street)
+                        AddressCollect(text: "City", textField: $city)
+                        AddressCollect(text: "PostalCode", textField: $postalCode)
+                        AddressCollect(text: "country", textField: $country)
                         
                     }
                     .padding()
@@ -263,10 +263,12 @@ struct AddressCollect: View {
                         .lineSpacing(4)
                         .multilineTextAlignment(.leading)
                         .textCase(.none)
+                        .foregroundColor(.gray)
                     
                     TextField("", text: $textField)
                         .foregroundColor(.white)
                 }
+                .padding()
             }
         }
         .padding()
