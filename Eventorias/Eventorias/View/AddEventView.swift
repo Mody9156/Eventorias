@@ -64,27 +64,65 @@ struct AddEventView: View {
                 }
                 
           
-                    VStack {
-                        HStack {
+                VStack {
+                    HStack {
+                        ZStack {
+                            Rectangle()
+                                .frame(width: 100, height: 56)
+                                .foregroundColor(Color("BackgroundDocument"))
+                                .cornerRadius(5)
                             TextField("", text: $street)
                                 .foregroundColor(.white)
-                                .frame(width: 100)
                         }
-                        
-                        TextField("", text: $address)
-                            .foregroundColor(.white)
-                            .frame(width: 100)
+                    }
+                    
+                    ZStack {
+                        Rectangle()
+                            .frame(width: 100, height: 56)
+                            .foregroundColor(Color("BackgroundDocument"))
+                            .cornerRadius(5)
                         HStack {
-                            TextField("", text: $city)
+                            Text("Address")
+                            TextField("", text: $address)
                                 .foregroundColor(.white)
-                                .frame(width: 100)
-                            TextField("", text: $postalCode)
-                                .foregroundColor(.white)
-                                .frame(width: 50)
                         }
-                        TextField("", text: $country)
-                            .foregroundColor(.white)
-                            .frame(width: 100)
+                    }
+                    
+                    HStack {
+                        ZStack {
+                            Rectangle()
+                                .frame(width: 100, height: 56)
+                                .foregroundColor(Color("BackgroundDocument"))
+                                .cornerRadius(5)
+                            HStack {
+                                Text("City")
+                                TextField("", text: $city)
+                                    .foregroundColor(.white)
+                            }
+                        }
+                        ZStack {
+                            Rectangle()
+                                .frame(width: 100, height: 56)
+                                .foregroundColor(Color("BackgroundDocument"))
+                                .cornerRadius(5)
+                            HStack {
+                                Text("PostalCode")
+                                TextField("", text: $postalCode)
+                                    .foregroundColor(.white)
+                            }
+                        }
+                    }
+                    ZStack {
+                    Rectangle()
+                        .frame(width: 100, height: 56)
+                        .foregroundColor(Color("BackgroundDocument"))
+                        .cornerRadius(5)
+                        HStack {
+                            Text("country")
+                            TextField("", text: $country)
+                                .foregroundColor(.white)
+                        }
+                }
                     }
              
                 //                Button(action:{
