@@ -259,15 +259,9 @@ struct AddressCollect: View {
                     .foregroundColor(Color("BackgroundDocument"))
                     .cornerRadius(5)
                 HStack {
-                    ZStack {
-                        Rectangle()
-                            .frame(width:56, height: 56)
-                            .foregroundColor(.black)
-                            .cornerRadius(5)
-                        Text(text)
-                            .foregroundColor(.white)
-                    }
-                    
+                   
+                    Text(text)
+                        .foregroundColor(.white)
                     TextField("", text: $textField)
                         .foregroundColor(.white)
                 }
