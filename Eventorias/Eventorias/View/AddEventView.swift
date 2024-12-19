@@ -68,11 +68,9 @@ struct AddEventView: View {
                         AddressCollect(text: "Street", textField: $street)
                         AddressCollect(text: "City", textField: $city)
                         AddressCollect(text: "PostalCode", textField: $postalCode)
-                        AddressCollect(text: "country", textField: $country)
+                        AddressCollect(text: "Country", textField: $country)
                     }
-                    
                    
-                    
                     Picker("Category", selection:$category) {
                         ForEach(indexCategory,id:\.self){ index in
                             Text(index)
