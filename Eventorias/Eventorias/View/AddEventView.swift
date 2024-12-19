@@ -64,7 +64,7 @@ struct AddEventView: View {
                 }
                 
                 VStack {
-                    AddressCollect()
+                    AddressCollect(Text: <#String#>, TextField: <#String#>)
                     
                     HStack {
                         ZStack {
@@ -280,7 +280,9 @@ struct accessCameraView: UIViewControllerRepresentable {
 }
 
 
-struct                     AddressCollect: View {
+struct AddressCollect: View {
+    var Text : String
+    var TextField : String
     var body: some View {
         HStack {
             ZStack {
