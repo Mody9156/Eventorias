@@ -255,14 +255,13 @@ struct AddressCollect: View {
                     .frame(height: 56)
                     .foregroundColor(Color("BackgroundDocument"))
                     .cornerRadius(5)
-                VStack {
+                VStack(alignment: .leading) {
                     
                     Text(text)
                         .font(.custom("Inter", size: 12))
                         .fontWeight(.regular)
                         .lineSpacing(4)
                         .multilineTextAlignment(.leading)
-                        .underline(true, color: .black)
                         .textCase(.none)
                     
                     TextField("", text: $textField)
