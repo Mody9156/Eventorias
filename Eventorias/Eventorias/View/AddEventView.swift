@@ -85,7 +85,7 @@ struct AddEventView: View {
                             }
                         }
                     }
-                   
+                    
                     HStack {
                         ZStack {
                             Rectangle()
@@ -123,7 +123,6 @@ struct AddEventView: View {
                         }
                     }
                     
-                    Text(address)
                 }
                 .padding()
                 
@@ -250,9 +249,7 @@ struct AddEventView: View {
                 }
             }
         }
-        .onAppear{
-            initialiseAddress()
-        }
+       
     }
 }
 
