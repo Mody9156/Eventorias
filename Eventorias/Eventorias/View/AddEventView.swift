@@ -45,9 +45,9 @@ struct AddEventView: View {
                 .ignoresSafeArea()
             ScrollView {
                 VStack{
-                    CustomTexField(text: $title, size: false, placeholder: "New event")
+                    CustomTexField(text: $title, infos: "Title", size: false, placeholder: "New event")
                     
-                    CustomTexField(text: $description,size:false, placeholder: "Tap here entrer your description")
+                    CustomTexField(text: $description, infos: "Description",size:false, placeholder: "Tap here entrer your description")
                     
                     HStack {
                         DatePicker("", selection: $date, displayedComponents: .date)
@@ -193,6 +193,7 @@ struct AddEventView_Previews: PreviewProvider {
 
 struct CustomTexField: View {
     @Binding var text : String
+    var infos : String
     var size : Bool
     var placeholder : String
     var body: some View {
@@ -201,15 +202,12 @@ struct CustomTexField: View {
                 .frame(height: 56)
                 .foregroundColor(Color("BackgroundDocument"))
                 .cornerRadius(5)
-            if text.isEmpty{
-                Text(placeholder)
-                    .foregroundColor(.white)
-                    .opacity(0.5)
-                    .padding()
-            }
             
-            TextField("", text: $text)
-                .foregroundColor(.white)
+            HStack {
+                Text(infos)
+                TextField(placeholder, text: $text)
+                    .foregroundColor(.white)
+            }
         }
         .padding()
     }
@@ -245,7 +243,6 @@ struct accessCameraView: UIViewControllerRepresentable {
         return CameraManager(picker: self)
     }
 }
-
 
 struct AddressCollect: View {
     var text : String
