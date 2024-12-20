@@ -50,6 +50,8 @@ class AddEventViewModel : ObservableObject {
             }
         }
     }
+    
+    @MainActor
     func geocodeAddress(address: String) {
         guard !address.isEmpty else {
             self.errorMessage = "L'adresse est vide."
