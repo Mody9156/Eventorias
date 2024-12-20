@@ -136,11 +136,14 @@ struct AddEventView: View {
                         if street.isEmpty || city.isEmpty || postalCode.isEmpty || country.isEmpty {
                                self.addEventViewModel.errorMessage = "Tous les champs de l'adresse doivent être remplis."
                         } else {
-                           
-                            guard let latitude = addEventViewModel.coordinates?.latitude else {
+                            var address = "\(street) \(city) \(postalCode) \(country)"
+                            addEventViewModel.geocodeAddress(address: address)
+                            guard let latitude = addEventViewModel.coordinates?.latitude, latitude != 0.0 else {
+                                addEventViewModel.errorMessage = "Coordonnées de localisation invalides"
                                 return
                             }
-                            guard let longitude = addEventViewModel.coordinates?.longitude else {
+                            guard let longitude = addEventViewModel.coordinates?.longitude, longitude != 0.0 else {
+                                addEventViewModel.errorMessage = "Coordonnées de localisation invalides"
                                 return
                             }
                             print("latitude: \(latitude)")
@@ -192,10 +195,6 @@ struct AddEventView: View {
                 }
                 .padding()
             }
-        }
-        .onAppear{
-            var address = "\(street) \(city) \(postalCode) \(country)"
-            addEventViewModel.geocodeAddress(address: address)
         }
     }
 }
