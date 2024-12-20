@@ -17,7 +17,6 @@ struct AddEventView: View {
     @State private var date : Date = Date()
     @State private var imageURL: URL? = nil
     @State var resultPicture : String = ""
-    @State var address : String = ""
     @State private var showCamera = false
     @State private var selectedImage: UIImage?
     @State var image : UIImage?
@@ -124,27 +123,20 @@ struct AddEventView: View {
                     }
                     .padding()
                     
-//                    if let savedFilePath = savedFilePath ,let image = UIImage(contentsOfFile: savedFilePath){
-//                        Image(uiImage: image)
-//                    }
-//
-                    if let selectedImage = selectedImage {
-                        Image(uiImage:selectedImage)
-                    }
-                    
+                  
                     if let errorMessage = addEventViewModel.errorMessage {
                         Text(errorMessage)
                             .foregroundColor(.red)
-                            .font(.title)
                     }
                     
                     Spacer()
                     
                     Button(action:{
-                    address = "\(street) \(city) \(postalCode) \(country)"
+                   
                         if street.isEmpty || city.isEmpty || postalCode.isEmpty || country.isEmpty {
                                self.addEventViewModel.errorMessage = "Tous les champs de l'adresse doivent être remplis."
                         } else {
+                           let address = "\(street) \(city) \(postalCode) \(country)"
                             addEventViewModel.geocodeAddress(address: address)
                             
                             if let selectedImage = selectedImage ,
@@ -178,7 +170,6 @@ struct AddEventView: View {
                                 
                             }
                         }
-                        print(address)
                     }){
                         ZStack {
                             Rectangle()
