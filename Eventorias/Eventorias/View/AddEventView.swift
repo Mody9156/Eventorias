@@ -22,10 +22,10 @@ struct AddEventView: View {
     @State var image : UIImage?
     @State var selectedItems : [PhotosPickerItem] = []
     @State private var showAddress : Bool = false
-    @State private var street : String = ""
-    @State private var city : String = ""
-    @State private var postalCode : String = ""
-    @State private var country : String = ""
+    @State var street : String = ""
+    @State var city : String = ""
+    @State var postalCode : String = ""
+    @State var country : String = ""
     @State private var hours : Date = Date()
     @State private var savedFilePath: String?
     @State private var category : String = ""
@@ -130,7 +130,7 @@ struct AddEventView: View {
                     Spacer()
                     
                     Button(action:{
-                        address = "\(street) \(city)  \(postalCode) \(country)"
+                        address = "\(street) \(city) \(postalCode)  \(country)"
 
                      addEventViewModel.geocodeAddress(address: address)
                         //                    if let selectedImage = savedFilePath{
@@ -143,8 +143,10 @@ struct AddEventView: View {
                       
                         if let selectedImage = selectedImage ,
                            let savedFilePath = savedFilePath,
-                           let selected = addEventViewModel.saveImageToTemporaryDirectory(image: selectedImage,fileName: "\(title).jpg"),
-                           let latitude = addEventViewModel.coordinates?.latitude, let longitude = addEventViewModel.coordinates?.longitude{
+                           let selected = addEventViewModel.saveImageToTemporaryDirectory(image: selectedImage,
+                               fileName: "\(title).jpg"),
+                           let latitude = addEventViewModel.coordinates?.latitude,
+                           let longitude = addEventViewModel.coordinates?.longitude{
                             
                             resultPicture = selected
                             

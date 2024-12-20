@@ -51,17 +51,29 @@ class AddEventViewModel : ObservableObject {
         }
     }
     func geocodeAddress(address:String){
+        guard !address.isEmpty else {
+            self.errorMessage = "L'adresse est vide."
+            self.coordinates = nil
+            return
+        }
+        
+        
+        
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address){ placemarks, error in
             if let error = error {
                 self.errorMessage = error.localizedDescription
                 self.coordinates = nil
+                print("Adresse introuvable dommage")
+
             }else if let placemark = placemarks?.first, let location = placemark.location {
                 self.coordinates = location.coordinate
                 self.errorMessage = nil
+                print("super c'est bien")
             }else{
                 self.errorMessage = "Adresse introuvable"
                 self.coordinates = nil
+                print("Adresse introuvable")
             }
         }
     }
