@@ -71,7 +71,7 @@ struct AddEventView: View {
                         AddressCollect(text: "PostalCode", textField: $postalCode)
                         AddressCollect(text: "Country", textField: $country)
                     }
-                   
+                    
                     Picker("Category", selection:$category) {
                         ForEach(indexCategory,id:\.self){ index in
                             Text(index)
@@ -123,7 +123,7 @@ struct AddEventView: View {
                     }
                     .padding()
                     
-                  
+                    
                     if let errorMessage = addEventViewModel.errorMessage {
                         Text(errorMessage)
                             .foregroundColor(.red)
@@ -132,20 +132,23 @@ struct AddEventView: View {
                     Spacer()
                     
                     Button(action:{
-                   
+                        
                         if street.isEmpty || city.isEmpty || postalCode.isEmpty || country.isEmpty {
-                               self.addEventViewModel.errorMessage = "Tous les champs de l'adresse doivent être remplis."
+                            self.addEventViewModel.errorMessage = "Tous les champs de l'adresse doivent être remplis."
                         } else {
-                            var address = "\(street) \(city) \(postalCode) \(country)"
+                            
+                            address = "\(street) \(city) \(postalCode) \(country)"
                             addEventViewModel.geocodeAddress(address: address)
                             guard let latitude = addEventViewModel.coordinates?.latitude, latitude != 0.0 else {
                                 addEventViewModel.errorMessage = "Coordonnées de localisation invalides"
                                 return
                             }
+                            
                             guard let longitude = addEventViewModel.coordinates?.longitude, longitude != 0.0 else {
                                 addEventViewModel.errorMessage = "Coordonnées de localisation invalides"
                                 return
                             }
+                            
                             print("latitude: \(latitude)")
                             print("longitude: \(longitude)")
                             guard let selectedImage = selectedImage else {
@@ -158,29 +161,29 @@ struct AddEventView: View {
                             guard let selected = addEventViewModel.saveImageToTemporaryDirectory(image: selectedImage,fileName: "\(title).jpg") else {
                                 return
                             }
-                               
-                                let fileURLSelected = URL(fileURLWithPath: selected)
-                                let fileURLStringSelected = fileURLSelected.absoluteString
-                                
-                                let stringFromHour = addEventViewModel.formatHourString(hours)
-                                let fileURL = URL(fileURLWithPath: savedFilePath)
-                                let fileURLString = fileURL.absoluteString
-//
-//                                addEventViewModel.saveToFirestore(
-//                                    picture: fileURLStringSelected,
-//                                    title: title,
-//                                    dateCreation: date,
-//                                    poster: fileURLString,
-//                                    description: description,
-//                                    hour: stringFromHour,
-//                                    category: category,
-//                                    street: street,
-//                                    city: city,
-//                                    postalCode: postalCode,
-//                                    country: country,
-//                                    latitude: latitude,
-//                                    longitude: longitude)
-                          
+                            
+                            let fileURLSelected = URL(fileURLWithPath: selected)
+                            let fileURLStringSelected = fileURLSelected.absoluteString
+                            
+                            let stringFromHour = addEventViewModel.formatHourString(hours)
+                            let fileURL = URL(fileURLWithPath: savedFilePath)
+                            let fileURLString = fileURL.absoluteString
+                            //
+                            //                                addEventViewModel.saveToFirestore(
+                            //                                    picture: fileURLStringSelected,
+                            //                                    title: title,
+                            //                                    dateCreation: date,
+                            //                                    poster: fileURLString,
+                            //                                    description: description,
+                            //                                    hour: stringFromHour,
+                            //                                    category: category,
+                            //                                    street: street,
+                            //                                    city: city,
+                            //                                    postalCode: postalCode,
+                            //                                    country: country,
+                            //                                    latitude: latitude,
+                            //                                    longitude: longitude)
+                            
                         }
                     }){
                         ZStack {
