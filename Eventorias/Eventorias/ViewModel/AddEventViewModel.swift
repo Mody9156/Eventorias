@@ -62,16 +62,13 @@ class AddEventViewModel : ObservableObject {
             if let error = error {
                 self.errorMessage = error.localizedDescription
                 self.coordinates = nil
-                print("Adresse introuvable dommage")
 
             }else if let placemark = placemarks?.first, let location = placemark.location {
                 self.coordinates = location.coordinate
                 self.errorMessage = nil
-                print("super c'est bien")
             }else{
                 self.errorMessage = "Adresse introuvable"
                 self.coordinates = nil
-                print("Adresse introuvable")
             }
         }
     }
