@@ -138,12 +138,18 @@ struct AddEventView: View {
                         } else {
                             var address = "\(street) \(city) \(postalCode) \(country)"
                             addEventViewModel.geocodeAddress(address: address)
-                            
+                            guard let latitude = addEventViewModel.coordinates?.latitude else {
+                                return
+                            }
+                            guard let longitude = addEventViewModel.coordinates?.latitude else {
+                                return
+                            }
+                            print("latitude: \(latitude)")
+                            print("longitude: \(longitude)")
                             if let selectedImage = selectedImage ,
                                let savedFilePath = savedFilePath,
-                               let selected = addEventViewModel.saveImageToTemporaryDirectory(image: selectedImage,fileName: "\(title).jpg"),
-                               var latitude = addEventViewModel.coordinates?.latitude,
-                               var longitude = addEventViewModel.coordinates?.longitude {
+                               let selected = addEventViewModel.saveImageToTemporaryDirectory(image: selectedImage,fileName: "\(title).jpg")
+                            {
                                 
                                 let fileURLSelected = URL(fileURLWithPath: selected)
                                 let fileURLStringSelected = fileURLSelected.absoluteString
@@ -151,8 +157,7 @@ struct AddEventView: View {
                                 let stringFromHour = addEventViewModel.formatHourString(hours)
                                 let fileURL = URL(fileURLWithPath: savedFilePath)
                                 let fileURLString = fileURL.absoluteString
-                                print("latitude: \(latitude)")
-                                print("longitude: \(longitude)")
+                                
 //
 //                                addEventViewModel.saveToFirestore(
 //                                    picture: fileURLStringSelected,
