@@ -159,7 +159,8 @@ struct AddEventView: View {
                            let latitude = addEventViewModel.coordinates?.latitude,
                            let longitude = addEventViewModel.coordinates?.longitude{
                             
-                            
+                            let fileURLSelected = URL(fileURLWithPath: selected)
+                            let fileURLStringSelected = fileURLSelected.absoluteString
                             
                             var stringFromHour = addEventViewModel.formatHourString(hours)
                             let fileURL = URL(fileURLWithPath: savedFilePath)
@@ -167,7 +168,7 @@ struct AddEventView: View {
                             
                           
                             addEventViewModel.saveToFirestore(
-                                picture: selected,
+                                picture: fileURLStringSelected,
                                 title: title,
                                 dateCreation: date,
                                 poster: fileURLString,

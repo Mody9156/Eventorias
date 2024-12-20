@@ -237,16 +237,15 @@ struct ViewModeList: View {
                 ForEach(listViewModel.filterTitle(searchText),id: \.self) { entry in
                     
                     HStack {
-                      
+                       
                         AsyncImage(url: URL(string: "\(entry.picture)")) { image in
                             image
                                 .resizable()
-                                .
                         } placeholder: {
                             ProgressView()
                                 
                         }
-                        frame(width: 40,height: 40)
+                        .frame(width: 40,height: 40)
                         .padding()
                     
                         VStack(alignment:.leading){
@@ -266,9 +265,10 @@ struct ViewModeList: View {
                         }
                         
                         Spacer()
+                        
                         AsyncImage(url:URL(string:"\(entry.poster)")){ image in
                             image
-                                .resizable()
+                            .resizable()
                             
                         } placeholder:{
                             ProgressView()

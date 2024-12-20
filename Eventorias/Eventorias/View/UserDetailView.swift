@@ -52,7 +52,7 @@ struct UserDetailView: View {
                                         .resizable()
                                     
                                 } placeholder:{
-                                    
+                                    ProgressView()
                                 }
                                 .frame(width: 60, height: 60)
                                 .padding()
