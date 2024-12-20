@@ -128,7 +128,7 @@ struct AddEventView: View {
                         Text(errorMessage)
                             .foregroundColor(.red)
                     }
-                    
+                    Text(address)
                     Spacer()
                     
                     Button(action:{
@@ -137,7 +137,7 @@ struct AddEventView: View {
                             self.addEventViewModel.errorMessage = "Tous les champs de l'adresse doivent être remplis."
                         } else {
                             
-                            address = "\(street) \(city) \(postalCode) \(country)"
+                            address = "\(street), \(city) \(postalCode), \(country)"
                             addEventViewModel.geocodeAddress(address: address)
                             guard let latitude = addEventViewModel.coordinates?.latitude, latitude != 0.0 else {
                                 addEventViewModel.errorMessage = "Coordonnées de localisation invalides"

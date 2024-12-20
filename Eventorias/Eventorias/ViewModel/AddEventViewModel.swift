@@ -53,6 +53,9 @@ class AddEventViewModel : ObservableObject {
     
     @MainActor
     func geocodeAddress(address: String) {
+        let formattedAddress = address.replacingOccurrences(of: ",", with: ",")
+            .capitalized
+        
         guard !address.isEmpty else {
             self.errorMessage = "L'adresse est vide."
             self.coordinates = nil
@@ -61,7 +64,7 @@ class AddEventViewModel : ObservableObject {
 
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) { placemarks, error in
-            if let error = error {
+            if let error = error { 
                 self.errorMessage = error.localizedDescription
                 self.coordinates = nil
             } else if let placemark = placemarks?.first, let location = placemark.location {
