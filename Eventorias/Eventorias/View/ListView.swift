@@ -237,11 +237,18 @@ struct ViewModeList: View {
                 ForEach(listViewModel.filterTitle(searchText),id: \.self) { entry in
                     
                     HStack {
-                        Image(entry.picture)
-                            .resizable()
-                            .frame(width: 40,height: 40)
-                            .padding()
-                        
+                      
+                        AsyncImage(url: URL(string: "\(entry.picture)")) { image in
+                            image
+                                .resizable()
+                        } placeholder: {
+                            ProgressView()
+                                
+                        }
+                        .resizable()
+                        .frame(width: 40,height: 40)
+                        .padding()
+                    
                         VStack(alignment:.leading){
                             Text(entry.title)
                                 .font(.custom("Inter-Medium", size: 16))
