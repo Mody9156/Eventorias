@@ -141,7 +141,7 @@ struct AddEventView: View {
                             guard let latitude = addEventViewModel.coordinates?.latitude else {
                                 return
                             }
-                            guard let longitude = addEventViewModel.coordinates?.latitude else {
+                            guard let longitude = addEventViewModel.coordinates?.longitude else {
                                 return
                             }
                             print("latitude: \(latitude)")
