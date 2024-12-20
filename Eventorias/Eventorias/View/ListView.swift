@@ -241,12 +241,12 @@ struct ViewModeList: View {
                         AsyncImage(url: URL(string: "\(entry.picture)")) { image in
                             image
                                 .resizable()
+                                .
                         } placeholder: {
                             ProgressView()
                                 
                         }
-                        .resizable()
-                        .frame(width: 40,height: 40)
+                        frame(width: 40,height: 40)
                         .padding()
                     
                         VStack(alignment:.leading){
