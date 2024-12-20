@@ -128,6 +128,10 @@ struct AddEventView: View {
 //                        Image(uiImage: image)
 //                    }
 //
+                    if let selectedImage = selectedImage {
+                        Image(uiImage:selectedImage)
+                    }
+                    
                     if let errorMessage = addEventViewModel.errorMessage {
                         Text(errorMessage)
                             .foregroundColor(.red)
