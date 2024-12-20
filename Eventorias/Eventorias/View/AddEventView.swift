@@ -129,6 +129,8 @@ struct AddEventView: View {
 //
                     if let errorMessage = addEventViewModel.errorMessage {
                         Text(errorMessage)
+                            .foregroundColor(.red)
+                            .font(.title)
                     }
                     
                     Spacer()
