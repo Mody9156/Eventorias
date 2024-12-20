@@ -131,10 +131,10 @@ struct AddEventView: View {
                     Spacer()
                     
                     Button(action:{
-                        let localisation = "\(street) \(city)  \(postalCode) \(country)"
+                        address = "\(street) \(city)  \(postalCode) \(country)"
 
                         
-                     addEventViewModel.geocodeAddress(address: localisation)
+                     addEventViewModel.geocodeAddress(address: address)
                         //                    if let selectedImage = savedFilePath{
                         //                    let dummyImage = UIImage(contentsOfFile: selectedImage)! // Remplacez par votre UIImage
                         //                    if let path = saveImageToTemporaryDirectory(image: dummyImage, fileName: "\(title)Post.jpg") {
