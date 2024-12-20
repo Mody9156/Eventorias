@@ -136,8 +136,7 @@ struct AddEventView: View {
                         if street.isEmpty || city.isEmpty || postalCode.isEmpty || country.isEmpty {
                                self.addEventViewModel.errorMessage = "Tous les champs de l'adresse doivent être remplis."
                         } else {
-                            var address = "\(street) \(city) \(postalCode) \(country)"
-                            addEventViewModel.geocodeAddress(address: address)
+                           
                             guard let latitude = addEventViewModel.coordinates?.latitude else {
                                 return
                             }
@@ -146,11 +145,17 @@ struct AddEventView: View {
                             }
                             print("latitude: \(latitude)")
                             print("longitude: \(longitude)")
-                            if let selectedImage = selectedImage ,
-                               let savedFilePath = savedFilePath,
-                               let selected = addEventViewModel.saveImageToTemporaryDirectory(image: selectedImage,fileName: "\(title).jpg")
-                            {
-                                
+                            guard let selectedImage = selectedImage else {
+                                return
+                            }
+                            guard let savedFilePath = savedFilePath else {
+                                return
+                            }
+                            
+                            guard let selected = addEventViewModel.saveImageToTemporaryDirectory(image: selectedImage,fileName: "\(title).jpg") else {
+                                return
+                            }
+                               
                                 let fileURLSelected = URL(fileURLWithPath: selected)
                                 let fileURLStringSelected = fileURLSelected.absoluteString
                                 
@@ -172,8 +177,7 @@ struct AddEventView: View {
                                     country: country,
                                     latitude: latitude,
                                     longitude: longitude)
-                                
-                            }
+                          
                         }
                     }){
                         ZStack {
@@ -188,6 +192,10 @@ struct AddEventView: View {
                 }
                 .padding()
             }
+        }
+        .onAppear{
+            var address = "\(street) \(city) \(postalCode) \(country)"
+            addEventViewModel.geocodeAddress(address: address)
         }
     }
 }
