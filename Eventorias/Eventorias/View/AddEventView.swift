@@ -123,17 +123,15 @@ struct AddEventView: View {
                     }
                     .padding()
                     
-//                    if let savedFilePath = savedFilePath {
-//                        Text(savedFilePath)
-//                            .foregroundColor(.white)
+//                    if let savedFilePath = savedFilePath ,let image = UIImage(contentsOfFile: savedFilePath){
+//                        Image(uiImage: image)
 //                    }
-                  Text(address)
+//
                     Spacer()
                     
                     Button(action:{
                         address = "\(street) \(city)  \(postalCode) \(country)"
 
-                        
                      addEventViewModel.geocodeAddress(address: address)
                         //                    if let selectedImage = savedFilePath{
                         //                    let dummyImage = UIImage(contentsOfFile: selectedImage)! // Remplacez par votre UIImage
@@ -143,7 +141,6 @@ struct AddEventView: View {
                         //                    }
                         //                }
                       
-                        
                         if let selectedImage = selectedImage ,
                            let savedFilePath = savedFilePath,
                            let selected = addEventViewModel.saveImageToTemporaryDirectory(image: selectedImage,fileName: "\(title).jpg"),
@@ -152,21 +149,25 @@ struct AddEventView: View {
                             resultPicture = selected
                             
                             var stringFromHour = addEventViewModel.formatHourString(hours)
-//
-//                            addEventViewModel.saveToFirestore(
-//                                picture: selected,
-//                                title: title,
-//                                dateCreation: date,
-//                                poster: savedFilePath,
-//                                description: description,
-//                                hour: stringFromHour,
-//                                category: category,
-//                                street: street,
-//                                city: city,
-//                                postalCode: postalCode,
-//                                country: country,
-//                                latitude: latitude,
-//                                longitude: longitude)
+                            let fileURL = URL(fileURLWithPath: savedFilePath)
+                            let fileURLString = fileURL.absoluteString
+                            print("\(fileURLString)")
+                            
+                            addEventViewModel.saveToFirestore(
+                                picture: selected,
+                                title: title,
+                                dateCreation: date,
+                                poster: fileURLString,
+                                description: description,
+                                hour: stringFromHour,
+                                category: category,
+                                street: street,
+                                city: city,
+                                postalCode: postalCode,
+                                country: country,
+                                latitude: latitude,
+                                longitude: longitude)
+                            
                         }
                     }){
                         ZStack {
