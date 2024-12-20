@@ -57,8 +57,6 @@ class AddEventViewModel : ObservableObject {
             return
         }
         
-        
-        
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address){ placemarks, error in
             if let error = error {

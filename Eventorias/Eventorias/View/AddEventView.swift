@@ -141,16 +141,9 @@ struct AddEventView: View {
                     Spacer()
                     
                     Button(action:{
-                        address = "\(street) \(city) \(postalCode)  \(country)"
+                    address = "\(street) \(city) \(postalCode) \(country)"
 
                      addEventViewModel.geocodeAddress(address: address)
-                        //                    if let selectedImage = savedFilePath{
-                        //                    let dummyImage = UIImage(contentsOfFile: selectedImage)! // Remplacez par votre UIImage
-                        //                    if let path = saveImageToTemporaryDirectory(image: dummyImage, fileName: "\(title)Post.jpg") {
-                        //                        savedFilePath = path
-                        //                        imageURL = URL(fileURLWithPath: path) // Convertir le chemin en URL
-                        //                    }
-                        //                }
                       
                         if let selectedImage = selectedImage ,
                            let savedFilePath = savedFilePath,
@@ -162,10 +155,9 @@ struct AddEventView: View {
                             let fileURLSelected = URL(fileURLWithPath: selected)
                             let fileURLStringSelected = fileURLSelected.absoluteString
                             
-                            var stringFromHour = addEventViewModel.formatHourString(hours)
+                            let stringFromHour = addEventViewModel.formatHourString(hours)
                             let fileURL = URL(fileURLWithPath: savedFilePath)
                             let fileURLString = fileURL.absoluteString
-                            
                           
                             addEventViewModel.saveToFirestore(
                                 picture: fileURLStringSelected,
@@ -183,6 +175,7 @@ struct AddEventView: View {
                                 longitude: longitude)
                             
                         }
+                        print(address)
                     }){
                         ZStack {
                             Rectangle()
