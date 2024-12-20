@@ -264,6 +264,7 @@ struct accessCameraView: UIViewControllerRepresentable {
 struct AddressCollect: View {
     var text : String
     @Binding var textField : String
+    var placeholder : String
     
     var body: some View {
         ZStack {
@@ -281,7 +282,7 @@ struct AddressCollect: View {
                     .textCase(.none)
                     .foregroundColor(.gray)
                 
-                TextField("", text: $textField)
+                TextField(placeholder, text: $textField)
                     .foregroundColor(.white)
             }
             .padding()

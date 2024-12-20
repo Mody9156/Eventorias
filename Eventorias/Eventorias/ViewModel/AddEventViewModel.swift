@@ -56,7 +56,7 @@ class AddEventViewModel : ObservableObject {
         let formattedAddress = address.replacingOccurrences(of: ",", with: ",")
             .capitalized
         
-        guard !address.isEmpty else {
+        guard !formattedAddress.isEmpty else {
             self.errorMessage = "L'adresse est vide."
             self.coordinates = nil
             return
