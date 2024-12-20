@@ -2,29 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <!-- Autorisations pour la caméra -->
-    <key>NSCameraUsageDescription</key>
-    <string>Nous avons besoin de votre caméra pour prendre des photos.</string>
-    
-    <!-- Configuration de App Transport Security (ATS) -->
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <!-- Permet d'utiliser des connexions HTTP non sécurisées -->
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-        
-        <!-- Si tu veux autoriser des exceptions spécifiques à un domaine HTTP non sécurisé, tu peux aussi le faire comme ceci :
-        <key>NSExceptionDomains</key>
-        <dict>
-            <key>example.com</key>
-            <dict>
-                <key>NSExceptionAllowsInsecureHTTPLoads</key>
-                <true/>
-                <key>NSExceptionMinimumTLSVersion</key>
-                <string>TLSv1.1</string>
-            </dict>
-        </dict>
-        -->
-    </dict>
+	<key>MKDirectionsApplicationSupportedModes</key>
+	<array/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

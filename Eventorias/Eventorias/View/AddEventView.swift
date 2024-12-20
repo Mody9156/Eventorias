@@ -9,6 +9,7 @@ import SwiftUI
 import PhotosUI
 import UIKit
 import CoreLocation
+import AVFoundation
 
 struct AddEventView: View {
     @State var title = ""
