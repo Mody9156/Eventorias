@@ -22,16 +22,16 @@ struct AddEventView: View {
     @State var image : UIImage?
     @State var selectedItems : [PhotosPickerItem] = []
     @State private var showAddress : Bool = false
-    @State var street : String = ""
-    @State var city : String = ""
-    @State var postalCode : String = ""
-    @State var country : String = ""
+    @State private var street : String = ""
+    @State private var city : String = ""
+    @State private var postalCode : String = ""
+    @State private var country : String = ""
     @State private var hours : Date = Date()
     @State private var savedFilePath: String?
     @State private var category : String = ""
     @StateObject var addEventViewModel : AddEventViewModel
     @Environment(\.dismiss) var dismiss
-    
+    @State private var address : String = ""
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
