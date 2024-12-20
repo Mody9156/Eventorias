@@ -16,22 +16,22 @@ struct AddEventView: View {
     @State var description = ""
     @State private var date : Date = Date()
     @State private var imageURL: URL? = nil
-    @State var resultPicture : String = ""
     @State private var showCamera = false
     @State private var selectedImage: UIImage?
     @State var image : UIImage?
     @State var selectedItems : [PhotosPickerItem] = []
-    @State private var showAddress : Bool = false
-    @State private var street : String = ""
-    @State private var city : String = ""
-    @State private var postalCode : String = ""
-    @State private var country : String = ""
-    @State private var hours : Date = Date()
+    @State var showAddress : Bool = false
+    @State var street : String = ""
+    @State var city : String = ""
+    @State var postalCode : String = ""
+    @State var country : String = ""
+    @State var hours : Date = Date()
     @State private var savedFilePath: String?
-    @State private var category : String = ""
+    @State var category : String = ""
     @StateObject var addEventViewModel : AddEventViewModel
     @Environment(\.dismiss) var dismiss
-    @State private var address : String = ""
+    @State var address : String = ""
+    
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -66,10 +66,10 @@ struct AddEventView: View {
                     }
                     
                     VStack{
-                        AddressCollect(text: "Street", textField: $street)
-                        AddressCollect(text: "City", textField: $city)
-                        AddressCollect(text: "PostalCode", textField: $postalCode)
-                        AddressCollect(text: "Country", textField: $country)
+                        AddressCollect(text: "Street", textField: $street, placeholder: "Street")
+                        AddressCollect(text: "City", textField: $city, placeholder: "City")
+                        AddressCollect(text: "PostalCode", textField: $postalCode, placeholder: "PostalCode")
+                        AddressCollect(text: "Country", textField: $country, placeholder: "Country")
                     }
                     
                     Picker("Category", selection:$category) {
