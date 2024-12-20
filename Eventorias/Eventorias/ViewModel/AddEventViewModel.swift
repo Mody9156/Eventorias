@@ -12,7 +12,7 @@ import CoreLocation
 class AddEventViewModel : ObservableObject {
     let eventRepository: EventManagerProtocol
     @Published
-    private var errorMessage: String?
+     var errorMessage: String?
     @Published
     var coordinates : CLLocationCoordinate2D?
     

@@ -127,6 +127,10 @@ struct AddEventView: View {
 //                        Image(uiImage: image)
 //                    }
 //
+                    if let errorMessage = addEventViewModel.errorMessage {
+                        Text(errorMessage)
+                    }
+                    
                     Spacer()
                     
                     Button(action:{
