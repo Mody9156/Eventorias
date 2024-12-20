@@ -16,6 +16,7 @@ struct AddEventView: View {
     @State private var date : Date = Date()
     @State private var imageURL: URL? = nil
     @State var resultPicture : String = ""
+    @State var address : String = ""
     @State private var showCamera = false
     @State private var selectedImage: UIImage?
     @State var image : UIImage?
@@ -78,7 +79,7 @@ struct AddEventView: View {
                                 .foregroundColor(.white)
                         }
                     }
-                    .pickerStyle(.wheel)
+                    
                     
                     HStack(alignment: .center){
                         Button(action:{
@@ -126,11 +127,12 @@ struct AddEventView: View {
 //                        Text(savedFilePath)
 //                            .foregroundColor(.white)
 //                    }
-                  
+                  Text(address)
                     Spacer()
                     
                     Button(action:{
-                        let localisation = street + city + postalCode + country
+                        let localisation = "\(street) \(city)  \(postalCode) \(country)"
+
                         
                      addEventViewModel.geocodeAddress(address: localisation)
                         //                    if let selectedImage = savedFilePath{
@@ -150,21 +152,21 @@ struct AddEventView: View {
                             resultPicture = selected
                             
                             var stringFromHour = addEventViewModel.formatHourString(hours)
-                            
-                            addEventViewModel.saveToFirestore(
-                                picture: selected,
-                                title: title,
-                                dateCreation: date,
-                                poster: savedFilePath,
-                                description: description,
-                                hour: stringFromHour,
-                                category: category,
-                                street: street,
-                                city: city,
-                                postalCode: postalCode,
-                                country: country,
-                                latitude: latitude,
-                                longitude: longitude)
+//
+//                            addEventViewModel.saveToFirestore(
+//                                picture: selected,
+//                                title: title,
+//                                dateCreation: date,
+//                                poster: savedFilePath,
+//                                description: description,
+//                                hour: stringFromHour,
+//                                category: category,
+//                                street: street,
+//                                city: city,
+//                                postalCode: postalCode,
+//                                country: country,
+//                                latitude: latitude,
+//                                longitude: longitude)
                         }
                     }){
                         ZStack {
