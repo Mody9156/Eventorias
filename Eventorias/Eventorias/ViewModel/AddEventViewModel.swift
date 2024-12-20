@@ -50,28 +50,37 @@ class AddEventViewModel : ObservableObject {
             }
         }
     }
-    func geocodeAddress(address:String){
+    func geocodeAddress(address: String) {
         guard !address.isEmpty else {
             self.errorMessage = "L'adresse est vide."
             self.coordinates = nil
             return
         }
-        
+
         let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(address){ placemarks, error in
+        geocoder.geocodeAddressString(address) { placemarks, error in
             if let error = error {
                 self.errorMessage = error.localizedDescription
                 self.coordinates = nil
+            } else if let placemark = placemarks?.first, let location = placemark.location {
+                let latitude = location.coordinate.latitude
+                let longitude = location.coordinate.longitude
 
-            }else if let placemark = placemarks?.first, let location = placemark.location {
-                self.coordinates = location.coordinate
-                self.errorMessage = nil
-            }else{
-                self.errorMessage = "Adresse introuvable"
+                // Vérification pour éviter les coordonnées nulles
+                if latitude == 0.0 || longitude == 0.0 {
+                    self.errorMessage = "Adresse géolocalisée avec des coordonnées invalides."
+                    self.coordinates = nil
+                } else {
+                    self.coordinates = location.coordinate
+                    self.errorMessage = nil
+                }
+            } else {
+                self.errorMessage = "Adresse introuvable."
                 self.coordinates = nil
             }
         }
     }
+
     
     func saveImageToTemporaryDirectory(image:UIImage, fileName:String) -> String? {
         guard let data = image.jpegData(compressionQuality: 1.0) else {
