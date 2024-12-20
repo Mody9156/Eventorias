@@ -142,38 +142,41 @@ struct AddEventView: View {
                     
                     Button(action:{
                     address = "\(street) \(city) \(postalCode) \(country)"
-
-                     addEventViewModel.geocodeAddress(address: address)
-                      
-                        if let selectedImage = selectedImage ,
-                           let savedFilePath = savedFilePath,
-                           let selected = addEventViewModel.saveImageToTemporaryDirectory(image: selectedImage,
-                               fileName: "\(title).jpg"),
-                           let latitude = addEventViewModel.coordinates?.latitude,
-                           let longitude = addEventViewModel.coordinates?.longitude{
+                        if street.isEmpty || city.isEmpty || postalCode.isEmpty || country.isEmpty {
+                               self.addEventViewModel.errorMessage = "Tous les champs de l'adresse doivent être remplis."
+                        } else {
+                            addEventViewModel.geocodeAddress(address: address)
                             
-                            let fileURLSelected = URL(fileURLWithPath: selected)
-                            let fileURLStringSelected = fileURLSelected.absoluteString
-                            
-                            let stringFromHour = addEventViewModel.formatHourString(hours)
-                            let fileURL = URL(fileURLWithPath: savedFilePath)
-                            let fileURLString = fileURL.absoluteString
-                          
-                            addEventViewModel.saveToFirestore(
-                                picture: fileURLStringSelected,
-                                title: title,
-                                dateCreation: date,
-                                poster: fileURLString,
-                                description: description,
-                                hour: stringFromHour,
-                                category: category,
-                                street: street,
-                                city: city,
-                                postalCode: postalCode,
-                                country: country,
-                                latitude: latitude,
-                                longitude: longitude)
-                            
+                            if let selectedImage = selectedImage ,
+                               let savedFilePath = savedFilePath,
+                               let selected = addEventViewModel.saveImageToTemporaryDirectory(image: selectedImage,
+                                                                                              fileName: "\(title).jpg"),
+                               let latitude = addEventViewModel.coordinates?.latitude,
+                               let longitude = addEventViewModel.coordinates?.longitude{
+                                
+                                let fileURLSelected = URL(fileURLWithPath: selected)
+                                let fileURLStringSelected = fileURLSelected.absoluteString
+                                
+                                let stringFromHour = addEventViewModel.formatHourString(hours)
+                                let fileURL = URL(fileURLWithPath: savedFilePath)
+                                let fileURLString = fileURL.absoluteString
+                                
+                                addEventViewModel.saveToFirestore(
+                                    picture: fileURLStringSelected,
+                                    title: title,
+                                    dateCreation: date,
+                                    poster: fileURLString,
+                                    description: description,
+                                    hour: stringFromHour,
+                                    category: category,
+                                    street: street,
+                                    city: city,
+                                    postalCode: postalCode,
+                                    country: country,
+                                    latitude: latitude,
+                                    longitude: longitude)
+                                
+                            }
                         }
                         print(address)
                     }){
