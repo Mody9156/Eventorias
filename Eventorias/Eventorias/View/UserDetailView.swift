@@ -46,11 +46,16 @@ struct UserDetailView: View {
                                 }
                                 .padding()
                                 Spacer()
-                                
-                                Image(eventEntry.picture)
-                                    .resizable()
-                                    .frame(width: 60, height: 60)
-                                    .padding()
+                             
+                                AsyncImage(url:URL(string:"\(eventEntry.picture)")){ image in
+                                    image
+                                        .resizable()
+                                    
+                                } placeholder:{
+                                    ProgressView()
+                                }
+                                .frame(width: 60, height: 60)
+                                .padding()
                                 
                             }
                             

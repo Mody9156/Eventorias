@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
 <plist version="1.0">
 <dict>
-	<key>NSAppTransportSecurity</key>
-	<dict/>
+    <!-- Permet de gérer les permissions de géolocalisation -->
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Nous avons besoin de votre position pour...</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Nous avons besoin de votre position en arrière-plan pour...</string>
+
+    <!-- Configuration de MapKit (si nécessaire pour les directions) -->
+    <key>MKDirectionsApplicationSupportedModes</key>
+    <array/>
+    
+    <!-- Configuration du transport d'application (ATS) -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
 </dict>
 </plist>

@@ -9,27 +9,28 @@ import SwiftUI
 import PhotosUI
 import UIKit
 import CoreLocation
+import AVFoundation
 
 struct AddEventView: View {
     @State var title = ""
     @State var description = ""
     @State private var date : Date = Date()
     @State private var imageURL: URL? = nil
-    @State var resultPicture : String = ""
     @State private var showCamera = false
     @State private var selectedImage: UIImage?
     @State var image : UIImage?
     @State var selectedItems : [PhotosPickerItem] = []
-    @State private var showAddress : Bool = false
-    @State private var street : String = ""
-    @State private var city : String = ""
-    @State private var postalCode : String = ""
-    @State private var country : String = ""
-    @State private var hours : Date = Date()
+    @State var showAddress : Bool = false
+    @State var street : String = ""
+    @State var city : String = ""
+    @State var postalCode : String = ""
+    @State var country : String = ""
+    @State var hours : Date = Date()
     @State private var savedFilePath: String?
-    @State private var category : String = ""
+    @State var category : String = ""
     @StateObject var addEventViewModel : AddEventViewModel
     @Environment(\.dismiss) var dismiss
+    @State var address : String = ""
     
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
@@ -65,12 +66,12 @@ struct AddEventView: View {
                     }
                     
                     VStack{
-                        AddressCollect(text: "Street", textField: $street)
-                        AddressCollect(text: "City", textField: $city)
-                        AddressCollect(text: "PostalCode", textField: $postalCode)
-                        AddressCollect(text: "Country", textField: $country)
+                        AddressCollect(text: "Street", textField: $street, placeholder: "Street")
+                        AddressCollect(text: "City", textField: $city, placeholder: "City")
+                        AddressCollect(text: "PostalCode", textField: $postalCode, placeholder: "PostalCode")
+                        AddressCollect(text: "Country", textField: $country, placeholder: "Country")
                     }
-                   
+                    
                     Picker("Category", selection:$category) {
                         ForEach(indexCategory,id:\.self){ index in
                             Text(index)
@@ -78,7 +79,7 @@ struct AddEventView: View {
                                 .foregroundColor(.white)
                         }
                     }
-                    .pickerStyle(.wheel)
+                    
                     
                     HStack(alignment: .center){
                         Button(action:{
@@ -122,49 +123,67 @@ struct AddEventView: View {
                     }
                     .padding()
                     
-//                    if let savedFilePath = savedFilePath {
-//                        Text(savedFilePath)
-//                            .foregroundColor(.white)
-//                    }
-                  
+                    
+                    if let errorMessage = addEventViewModel.errorMessage {
+                        Text(errorMessage)
+                            .foregroundColor(.red)
+                    }
+                    Text(address)
                     Spacer()
                     
                     Button(action:{
-                        let localisation = street + city + postalCode + country
                         
-                     addEventViewModel.geocodeAddress(address: localisation)
-                        //                    if let selectedImage = savedFilePath{
-                        //                    let dummyImage = UIImage(contentsOfFile: selectedImage)! // Remplacez par votre UIImage
-                        //                    if let path = saveImageToTemporaryDirectory(image: dummyImage, fileName: "\(title)Post.jpg") {
-                        //                        savedFilePath = path
-                        //                        imageURL = URL(fileURLWithPath: path) // Convertir le chemin en URL
-                        //                    }
-                        //                }
-                      
-                        
-                        if let selectedImage = selectedImage ,
-                           let savedFilePath = savedFilePath,
-                           let selected = addEventViewModel.saveImageToTemporaryDirectory(image: selectedImage,fileName: "\(title).jpg"),
-                           let latitude = addEventViewModel.coordinates?.latitude, let longitude = addEventViewModel.coordinates?.longitude{
+                        if street.isEmpty || city.isEmpty || postalCode.isEmpty || country.isEmpty {
+                            self.addEventViewModel.errorMessage = "Tous les champs de l'adresse doivent être remplis."
+                        } else {
                             
-                            resultPicture = selected
+                            address = "\(street), \(city) \(postalCode), \(country)"
+                            addEventViewModel.geocodeAddress(address: address)
+                            guard let latitude = addEventViewModel.coordinates?.latitude, latitude != 0.0 else {
+                                addEventViewModel.errorMessage = "Coordonnées de localisation invalides"
+                                return
+                            }
                             
-                            var stringFromHour = addEventViewModel.formatHourString(hours)
+                            guard let longitude = addEventViewModel.coordinates?.longitude, longitude != 0.0 else {
+                                addEventViewModel.errorMessage = "Coordonnées de localisation invalides"
+                                return
+                            }
                             
-                            addEventViewModel.saveToFirestore(
-                                picture: selected,
-                                title: title,
-                                dateCreation: date,
-                                poster: savedFilePath,
-                                description: description,
-                                hour: stringFromHour,
-                                category: category,
-                                street: street,
-                                city: city,
-                                postalCode: postalCode,
-                                country: country,
-                                latitude: latitude,
-                                longitude: longitude)
+                            print("latitude: \(latitude)")
+                            print("longitude: \(longitude)")
+                            guard let selectedImage = selectedImage else {
+                                return
+                            }
+                            guard let savedFilePath = savedFilePath else {
+                                return
+                            }
+                            
+                            guard let selected = addEventViewModel.saveImageToTemporaryDirectory(image: selectedImage,fileName: "\(title).jpg") else {
+                                return
+                            }
+                            
+                            let fileURLSelected = URL(fileURLWithPath: selected)
+                            let fileURLStringSelected = fileURLSelected.absoluteString
+                            
+                            let stringFromHour = addEventViewModel.formatHourString(hours)
+                            let fileURL = URL(fileURLWithPath: savedFilePath)
+                            let fileURLString = fileURL.absoluteString
+                            //
+                            //                                addEventViewModel.saveToFirestore(
+                            //                                    picture: fileURLStringSelected,
+                            //                                    title: title,
+                            //                                    dateCreation: date,
+                            //                                    poster: fileURLString,
+                            //                                    description: description,
+                            //                                    hour: stringFromHour,
+                            //                                    category: category,
+                            //                                    street: street,
+                            //                                    city: city,
+                            //                                    postalCode: postalCode,
+                            //                                    country: country,
+                            //                                    latitude: latitude,
+                            //                                    longitude: longitude)
+                            
                         }
                     }){
                         ZStack {
@@ -245,6 +264,7 @@ struct accessCameraView: UIViewControllerRepresentable {
 struct AddressCollect: View {
     var text : String
     @Binding var textField : String
+    var placeholder : String
     
     var body: some View {
         ZStack {
@@ -262,7 +282,7 @@ struct AddressCollect: View {
                     .textCase(.none)
                     .foregroundColor(.gray)
                 
-                TextField("", text: $textField)
+                TextField(placeholder, text: $textField)
                     .foregroundColor(.white)
             }
             .padding()
