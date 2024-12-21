@@ -53,7 +53,7 @@ struct ListView: View {
                         HStack{
                             Spacer()
                             NavigationLink {
-                                AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate(coordinates: CLLocationCoordinate2D.init(latitude: 33.44, longitude: 222.44)))
+                                AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
                                 
                             } label: {
                                 ZStack {
@@ -171,14 +171,8 @@ struct ViewCalendar: View {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
                 ForEach(listViewModel.filterTitle(searchText), id: \.self) { entry in
                     NavigationLink(destination: {
-                        UserDetailView(
-                            eventEntry: entry,
-                            userDetailViewModel: UserDetailViewModel(
-                                eventEntry: [entry],
-                                listViewModel: ListViewModel(),
-                                googleMapView: GoogleMapView()
-                            ), locationCoordinate: LocationCoordinate()
-                        )
+                        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate()) // Paris
+
                     }) {
                         ZStack {
                             AsyncImage(url: URL(string: "\(entry.poster)")) { image in

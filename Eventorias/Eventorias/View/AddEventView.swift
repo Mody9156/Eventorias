@@ -140,18 +140,18 @@ struct AddEventView: View {
                             
                             address = "\(street), \(city) \(postalCode), \(country)"
                             locationCoordinate.geocodeAddress(address: address)
-                            guard let latitude = locationCoordinate.coordinates?.latitude, latitude != 0.0 else {
-                                locationCoordinate.errorMessage = "Coordonnées de localisation invalides"
-                                return
-                            }
+//                            guard let latitude = locationCoordinate.coordinates?.latitude, latitude != 0.0 else {
+//                                locationCoordinate.errorMessage = "Coordonnées de localisation invalides"
+//                                return
+//                            }
+//                            
+//                            guard let longitude = locationCoordinate.coordinates?.longitude, longitude != 0.0 else {
+//                                locationCoordinate.errorMessage = "Coordonnées de localisation invalides"
+//                                return
+//                            }
                             
-                            guard let longitude = locationCoordinate.coordinates?.longitude, longitude != 0.0 else {
-                                locationCoordinate.errorMessage = "Coordonnées de localisation invalides"
-                                return
-                            }
-                            
-                            print("latitude: \(latitude)")
-                            print("longitude: \(longitude)")
+                            print("latitude: \(locationCoordinate.latitude)")
+                            print("longitude: \(locationCoordinate.longitude)")
                             guard let selectedImage = selectedImage else {
                                 return
                             }
@@ -291,9 +291,9 @@ struct AddressCollect: View {
     }
     
 }
-
-struct AddEventView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
-    }
-}
+//
+//struct AddEventView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate(coordinates: CLLocationCoordinate2D))
+//    }
+//}

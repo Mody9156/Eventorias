@@ -10,7 +10,7 @@ import SwiftUI
 struct UserDetailView: View {
     let eventEntry : EventEntry
     @StateObject var userDetailViewModel : UserDetailViewModel
-    @StateObject var  locationCoordinate : LocationCoordinate
+    @StateObject  var locationCoordinate : LocationCoordinate
     @State var maps : UIImage?
     @State var address : String = ""
     
@@ -106,7 +106,7 @@ struct UserDetailView: View {
                                     locationCoordinate.geocodeAddress(address: address)
                                     
                                     
-                                    let imageData =  try await userDetailViewModel.showMapsStatic(locationCoordinate.latitude,locationCoordinate.longitude)
+                                    let imageData =  try await userDetailViewModel.showMapsStatic(eventEntry.place.localisation.latitude,eventEntry.place.localisation.longitude)
                                         if let image = UIImage(data: imageData){
                                             maps = image
                                         }

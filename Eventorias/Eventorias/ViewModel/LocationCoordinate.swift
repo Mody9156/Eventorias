@@ -13,13 +13,12 @@ class LocationCoordinate: ObservableObject{
     @Published
      var errorMessage: String?
     @Published
-    var coordinates : CLLocationCoordinate2D?
+    private var coordinates : CLLocationCoordinate2D? = nil
     @Published var latitude : Double = 0.0
     @Published var longitude : Double = 0.0
     
-    init(errorMessage: String? = nil, coordinates: CLLocationCoordinate2D? = nil) {
+    init(errorMessage: String? = nil) {
         self.errorMessage = errorMessage
-        self.coordinates = coordinates
     }
     
     @MainActor
