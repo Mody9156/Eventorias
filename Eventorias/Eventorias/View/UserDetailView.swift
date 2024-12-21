@@ -107,9 +107,12 @@ struct UserDetailView: View {
                                     
                                     
                                     let imageData =  try await userDetailViewModel.showMapsStatic(locationCoordinate.latitude,locationCoordinate.longitude)
+                                    if !imageData.isEmpty {
                                         if let image = UIImage(data: imageData){
                                             maps = image
                                         }
+                                    }
+                                        
                                     print("Latitude: \(locationCoordinate.latitude), Longitude: \(locationCoordinate.longitude)")
 
                                 }

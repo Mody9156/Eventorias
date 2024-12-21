@@ -19,7 +19,6 @@ class LocationCoordinate: ObservableObject{
         self.errorMessage = errorMessage
     }
     
-    @MainActor
     func geocodeAddress(address: String) {
         let geocoder = CLGeocoder()
         
@@ -43,3 +42,4 @@ class LocationCoordinate: ObservableObject{
             }
         }
     }
+}
