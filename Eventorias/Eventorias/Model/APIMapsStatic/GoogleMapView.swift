@@ -31,19 +31,23 @@ class GoogleMapView {
         return request
     }
     
-    func showMapsWithURLRequest(_ latitude: Double,_ longitude: Double, _ key: String) async throws -> Data {
+    func showMapsWithURLRequest(_ latitude: Double, _ longitude: Double, _ key: String) async throws -> Data {
+        guard latitude != 0 && longitude != 0 else {
+            throw AuthenticationError.invalidData
+        }
+
         let request = fetchURLRequest(latitude, longitude, key)
-        
         let (data, response) = try await httpService.fetchRequest(request)
-        
+
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             throw URLError(.badServerResponse)
         }
-        
+
         guard !data.isEmpty else {
             throw AuthenticationError.invalidData
         }
-        
+
         return data
     }
+
 }

@@ -18,6 +18,7 @@ struct ListView: View {
     @StateObject var listViewModel : ListViewModel
     @State var tryEvent : Bool = false
     @State var calendar : Bool = false
+    @State var address : String = ""
     
     var filtreElement : [EventEntry] {
         if searchText.isEmpty{
@@ -45,15 +46,15 @@ struct ListView: View {
                 ZStack(alignment: .bottomTrailing){
                     
                     if calendar {
-                        ViewCalendar(searchText: $searchText, listViewModel: listViewModel)
+                        ViewCalendar(searchText: $searchText, listViewModel: listViewModel, address: $address)
                     }else{
-                        ViewModeList(searchText: $searchText, listViewModel: listViewModel)
+                        ViewModeList(searchText: $searchText, listViewModel: listViewModel, address: $address)
                     }
                     ZStack {
                         HStack{
                             Spacer()
                             NavigationLink {
-                                AddEventView(addEventViewModel: AddEventViewModel(coordinates: CLLocationCoordinate2D.init(latitude: 33.44, longitude: 222.44)))
+                                AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
                                 
                             } label: {
                                 ZStack {
@@ -165,20 +166,15 @@ struct CustomButton: View {
 struct ViewCalendar: View {
     @Binding var searchText : String
     @StateObject var listViewModel : ListViewModel
-    
+    @Binding var address : String
+
     var body: some View {
         ScrollView {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
                 ForEach(listViewModel.filterTitle(searchText), id: \.self) { entry in
                     NavigationLink(destination: {
-                        UserDetailView(
-                            eventEntry: entry,
-                            userDetailViewModel: UserDetailViewModel(
-                                eventEntry: [entry],
-                                listViewModel: ListViewModel(),
-                                googleMapView: GoogleMapView()
-                            )
-                        )
+                        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate()) // Paris
+
                     }) {
                         ZStack {
                             AsyncImage(url: URL(string: "\(entry.poster)")) { image in
@@ -200,6 +196,9 @@ struct ViewCalendar: View {
                                 .multilineTextAlignment(.leading)
                                 .foregroundColor(.white)
                         }
+                        
+                    }.onAppear{
+                        address = "\(entry.place.street) \(entry.place.city) \(entry.place.postalCode) \(entry.place.country)"
                     }
                 }
             }
@@ -230,7 +229,8 @@ struct ToggleViewButton: View {
 struct ViewModeList: View {
     @Binding var searchText : String
     @StateObject var listViewModel : ListViewModel
-    
+    @Binding var address : String
+
     var body: some View {
         List {
             Section {
@@ -278,10 +278,13 @@ struct ViewModeList: View {
                         
                         
                     }.overlay(NavigationLink(destination: {
-                        UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()))
+                        UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate(), address: $address)
                     }, label: {
                         EmptyView()
                     }))
+                    .onAppear{
+                        address = "\(entry.place.street) \(entry.place.city) \(entry.place.postalCode) \(entry.place.country)"
+                    }
                 }
             }
             .listRowBackground(

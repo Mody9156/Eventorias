@@ -31,6 +31,7 @@ struct AddEventView: View {
     @StateObject var addEventViewModel : AddEventViewModel
     @Environment(\.dismiss) var dismiss
     @State var address : String = ""
+    @StateObject var locationCoordinate : LocationCoordinate
     
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
@@ -123,8 +124,7 @@ struct AddEventView: View {
                     }
                     .padding()
                     
-                    
-                    if let errorMessage = addEventViewModel.errorMessage {
+                    if let errorMessage = locationCoordinate.errorMessage {
                         Text(errorMessage)
                             .foregroundColor(.red)
                     }
@@ -134,23 +134,13 @@ struct AddEventView: View {
                     Button(action:{
                         
                         if street.isEmpty || city.isEmpty || postalCode.isEmpty || country.isEmpty {
-                            self.addEventViewModel.errorMessage = "Tous les champs de l'adresse doivent être remplis."
+                            self.locationCoordinate.errorMessage = "Tous les champs de l'adresse doivent être remplis."
                         } else {
                             
                             address = "\(street), \(city) \(postalCode), \(country)"
-                            addEventViewModel.geocodeAddress(address: address)
-                            guard let latitude = addEventViewModel.coordinates?.latitude, latitude != 0.0 else {
-                                addEventViewModel.errorMessage = "Coordonnées de localisation invalides"
-                                return
-                            }
-                            
-                            guard let longitude = addEventViewModel.coordinates?.longitude, longitude != 0.0 else {
-                                addEventViewModel.errorMessage = "Coordonnées de localisation invalides"
-                                return
-                            }
-                            
-                            print("latitude: \(latitude)")
-                            print("longitude: \(longitude)")
+                             locationCoordinate.geocodeAddress(address: address)
+                         
+                       
                             guard let selectedImage = selectedImage else {
                                 return
                             }
@@ -168,21 +158,21 @@ struct AddEventView: View {
                             let stringFromHour = addEventViewModel.formatHourString(hours)
                             let fileURL = URL(fileURLWithPath: savedFilePath)
                             let fileURLString = fileURL.absoluteString
-                            //
-                            //                                addEventViewModel.saveToFirestore(
-                            //                                    picture: fileURLStringSelected,
-                            //                                    title: title,
-                            //                                    dateCreation: date,
-                            //                                    poster: fileURLString,
-                            //                                    description: description,
-                            //                                    hour: stringFromHour,
-                            //                                    category: category,
-                            //                                    street: street,
-                            //                                    city: city,
-                            //                                    postalCode: postalCode,
-                            //                                    country: country,
-                            //                                    latitude: latitude,
-                            //                                    longitude: longitude)
+                            
+                            addEventViewModel.saveToFirestore(
+                                picture: fileURLStringSelected,
+                                title: title,
+                                dateCreation: date,
+                                poster: fileURLString,
+                                description: description,
+                                hour: stringFromHour,
+                                category: category,
+                                street: street,
+                                city: city,
+                                postalCode: postalCode,
+                                country: country,
+                                latitude: locationCoordinate.latitude,
+                                longitude: locationCoordinate.longitude)
                             
                         }
                     }){
@@ -290,9 +280,9 @@ struct AddressCollect: View {
     }
     
 }
-
-struct AddEventView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddEventView(addEventViewModel: AddEventViewModel(coordinates: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)))
-    }
-}
+//
+//struct AddEventView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate(coordinates: CLLocationCoordinate2D))
+//    }
+//}

@@ -10,7 +10,9 @@ import SwiftUI
 struct UserDetailView: View {
     let eventEntry : EventEntry
     @StateObject var userDetailViewModel : UserDetailViewModel
+    @StateObject  var locationCoordinate : LocationCoordinate
     @State var maps : UIImage?
+    @Binding var address : String
     
     var body: some View {
         VStack {
@@ -100,10 +102,13 @@ struct UserDetailView: View {
                                 }
                             }.onAppear{
                                 Task {
-                                    let  imageData =  try await userDetailViewModel.showMapsStatic(eventEntry.place.localisation.latitude, eventEntry.place.localisation.longitude)
-                                    if let image = UIImage(data: imageData){
-                                        maps = image
-                                    }
+                            
+                                    let coordinate = locationCoordinate.geocodeAddress(address: address)
+                                    let imageData =  try await userDetailViewModel.showMapsStatic(coordinate.0,coordinate.1)
+                                        
+                                            if let image = UIImage(data: imageData){
+                                                maps = image
+                                            }
                                 }
                             }
                         }
