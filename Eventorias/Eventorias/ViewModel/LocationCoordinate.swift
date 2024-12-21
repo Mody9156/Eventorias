@@ -36,7 +36,9 @@ class LocationCoordinate: ObservableObject{
             if let error = error {
                 self.errorMessage = error.localizedDescription
                 self.coordinates = nil
-            } else if let placemark = placemarks?.first, let location = placemark.location {
+            } else if let placemark = placemarks?.first, let location = placemark.location ,
+                      location.coordinate.latitude != 0.0,
+                      location.coordinate.longitude != 0.0 {
                 let latitude = location.coordinate.latitude
                 let longitude = location.coordinate.longitude
 
@@ -45,6 +47,7 @@ class LocationCoordinate: ObservableObject{
                     self.errorMessage = "Adresse géolocalisée avec des coordonnées invalides."
                     self.coordinates = nil
                     print("Erreur valeurs nulls")
+                    print("Voici le résultat : \(location.coordinate)")
                 } else {
                     self.coordinates = location.coordinate
                     self.errorMessage = nil

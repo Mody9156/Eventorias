@@ -110,6 +110,8 @@ struct UserDetailView: View {
                                         if let image = UIImage(data: imageData){
                                             maps = image
                                         }
+                                        print("Latitude: \(latitude), Longitude: \(longitude)")
+
                                     }
                                 }
                             }
