@@ -102,16 +102,16 @@ struct UserDetailView: View {
                                 }
                             }.onAppear{
                                 Task {
-                                    address = "\(eventEntry.place.street) \(eventEntry.place.city) \(eventEntry.place.postalCode) \(eventEntry.place.country)"
-                                    locationCoordinate.geocodeAddress(address: address)
+                                address = "\(eventEntry.place.street) \(eventEntry.place.city) \(eventEntry.place.postalCode) \(eventEntry.place.country)"
                                     
+                                    let coordinate = await locationCoordinate.geocodeAddress(address: address)
                                     
-                                    let imageData =  try await userDetailViewModel.showMapsStatic(locationCoordinate.latitude,locationCoordinate.longitude)
-                                    if !imageData.isEmpty {
-                                        if let image = UIImage(data: imageData){
-                                            maps = image
-                                        }
-                                    }
+                                    let imageData =  try await userDetailViewModel.showMapsStatic(coordinate.0,coordinate.1)
+                                        
+                                            if let image = UIImage(data: imageData){
+                                                maps = image
+                                            }
+                                   
                                         
                                     print("Latitude: \(locationCoordinate.latitude), Longitude: \(locationCoordinate.longitude)")
 
