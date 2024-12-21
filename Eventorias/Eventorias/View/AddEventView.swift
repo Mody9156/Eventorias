@@ -294,6 +294,6 @@ struct AddressCollect: View {
 
 struct AddEventView_Previews: PreviewProvider {
     static var previews: some View {
-        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate(coordinates:  CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)))
+        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
     }
 }

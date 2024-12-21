@@ -177,7 +177,7 @@ struct ViewCalendar: View {
                                 eventEntry: [entry],
                                 listViewModel: ListViewModel(),
                                 googleMapView: GoogleMapView()
-                            )
+                            ), locationCoordinate: LocationCoordinate()
                         )
                     }) {
                         ZStack {
@@ -278,7 +278,7 @@ struct ViewModeList: View {
                         
                         
                     }.overlay(NavigationLink(destination: {
-                        UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()))
+                        UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate())
                     }, label: {
                         EmptyView()
                     }))
