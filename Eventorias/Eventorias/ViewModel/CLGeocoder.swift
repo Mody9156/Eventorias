@@ -15,6 +15,11 @@ class CLGeocoder: ObservableObject{
     @Published
     var coordinates : CLLocationCoordinate2D?
     
+    init(errorMessage: String? = nil, coordinates: CLLocationCoordinate2D? = nil) {
+        self.errorMessage = errorMessage
+        self.coordinates = coordinates
+    }
+    
     @MainActor
     func geocodeAddress(address: String) {
         let formattedAddress = address.replacingOccurrences(of: ",", with: ",")
