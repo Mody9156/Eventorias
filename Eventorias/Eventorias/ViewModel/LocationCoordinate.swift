@@ -14,7 +14,8 @@ class LocationCoordinate: ObservableObject{
      var errorMessage: String?
     @Published
     var coordinates : CLLocationCoordinate2D?
-    
+    @Published var latitude : Double = 0.0
+    @Published var longitude : Double = 0.0
     init(errorMessage: String? = nil, coordinates: CLLocationCoordinate2D? = nil) {
         self.errorMessage = errorMessage
         self.coordinates = coordinates
@@ -52,6 +53,8 @@ class LocationCoordinate: ObservableObject{
                     self.coordinates = location.coordinate
                     self.errorMessage = nil
                     print("Validate Graduation")
+                    print("Voici le résultat : \(location.coordinate)")
+
                 }
             } else {
                 self.errorMessage = "Adresse introuvable."
