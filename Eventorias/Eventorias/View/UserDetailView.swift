@@ -10,6 +10,7 @@ import SwiftUI
 struct UserDetailView: View {
     let eventEntry : EventEntry
     @StateObject var userDetailViewModel : UserDetailViewModel
+    @StateObject var  locationCoordinate : LocationCoordinate
     @State var maps : UIImage?
     @State var address : String = ""
     
@@ -102,7 +103,8 @@ struct UserDetailView: View {
                             }.onAppear{
                                 Task {
                                     address = "\(eventEntry.place.street) \(eventEntry.place.city) \(eventEntry.place.postalCode) \(eventEntry.place.country)"
-                                    let  imageData =  try await userDetailViewModel.showMapsStatic(eventEntry.place.localisation.latitude, eventEntry.place.localisation.longitude)
+                                    locationCoordinate.geocodeAddress(address: address)
+                                    let  imageData =  try await userDetailViewModel.showMapsStatic(locationCoordinate.coordinates?.latitude,locationCoordinate.coordinates?.longitude)
                                     if let image = UIImage(data: imageData){
                                         maps = image
                                     }
