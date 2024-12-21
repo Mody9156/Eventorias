@@ -12,6 +12,7 @@ struct UserDetailView: View {
     @StateObject var userDetailViewModel : UserDetailViewModel
     @State var maps : UIImage?
     @State var address : String = ""
+    
     var body: some View {
         VStack {
             ZStack {
@@ -100,6 +101,7 @@ struct UserDetailView: View {
                                 }
                             }.onAppear{
                                 Task {
+                                    address = "\(eventEntry.place.street) \(eventEntry.place.city) \(eventEntry.place.postalCode) \(eventEntry.place.country)"
                                     let  imageData =  try await userDetailViewModel.showMapsStatic(eventEntry.place.localisation.latitude, eventEntry.place.localisation.longitude)
                                     if let image = UIImage(data: imageData){
                                         maps = image
