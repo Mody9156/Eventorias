@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 import PhotosUI
 
-class CLGeocoder: ObservableObject{
+class LocationCoordinate: ObservableObject{
     @Published
      var errorMessage: String?
     @Published
@@ -31,7 +31,7 @@ class CLGeocoder: ObservableObject{
             return
         }
 
-        let geocoder = CLGeocoder()
+        let geocoder = LocationCoordinate()
         geocoder.geocodeAddressString(address) { placemarks, error in
             if let error = error {
                 self.errorMessage = error.localizedDescription
