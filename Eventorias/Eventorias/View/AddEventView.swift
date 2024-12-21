@@ -31,6 +31,7 @@ struct AddEventView: View {
     @StateObject var addEventViewModel : AddEventViewModel
     @Environment(\.dismiss) var dismiss
     @State var address : String = ""
+    @StateObject var locationCoordinate : LocationCoordinate
     
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
@@ -124,7 +125,7 @@ struct AddEventView: View {
                     .padding()
                     
                     
-                    if let errorMessage = addEventViewModel.errorMessage {
+                    if let errorMessage = locationCoordinate.errorMessage {
                         Text(errorMessage)
                             .foregroundColor(.red)
                     }
@@ -134,18 +135,18 @@ struct AddEventView: View {
                     Button(action:{
                         
                         if street.isEmpty || city.isEmpty || postalCode.isEmpty || country.isEmpty {
-                            self.addEventViewModel.errorMessage = "Tous les champs de l'adresse doivent être remplis."
+                            self.locationCoordinate.errorMessage = "Tous les champs de l'adresse doivent être remplis."
                         } else {
                             
                             address = "\(street), \(city) \(postalCode), \(country)"
-                            addEventViewModel.geocodeAddress(address: address)
-                            guard let latitude = addEventViewModel.coordinates?.latitude, latitude != 0.0 else {
-                                addEventViewModel.errorMessage = "Coordonnées de localisation invalides"
+                            locationCoordinate.geocodeAddress(address: address)
+                            guard let latitude = locationCoordinate.coordinates?.latitude, latitude != 0.0 else {
+                                locationCoordinate.errorMessage = "Coordonnées de localisation invalides"
                                 return
                             }
                             
-                            guard let longitude = addEventViewModel.coordinates?.longitude, longitude != 0.0 else {
-                                addEventViewModel.errorMessage = "Coordonnées de localisation invalides"
+                            guard let longitude = locationCoordinate.coordinates?.longitude, longitude != 0.0 else {
+                                locationCoordinate.errorMessage = "Coordonnées de localisation invalides"
                                 return
                             }
                             
@@ -293,6 +294,6 @@ struct AddressCollect: View {
 
 struct AddEventView_Previews: PreviewProvider {
     static var previews: some View {
-        AddEventView(addEventViewModel: AddEventViewModel(coordinates: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)))
+        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate(coordinates:  CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)))
     }
 }

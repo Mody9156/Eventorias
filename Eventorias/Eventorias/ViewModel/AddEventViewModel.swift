@@ -11,8 +11,6 @@ import CoreLocation
 
 class AddEventViewModel : ObservableObject {
     let eventRepository: EventManagerProtocol
-    @Published
-     var errorMessage: String?
     
     init(eventRepository: EventManagerProtocol = EventRepository()) {
         self.eventRepository = eventRepository
@@ -49,7 +47,6 @@ class AddEventViewModel : ObservableObject {
     }
     
     
-
     
     func saveImageToTemporaryDirectory(image:UIImage, fileName:String) -> String? {
         guard let data = image.jpegData(compressionQuality: 1.0) else {

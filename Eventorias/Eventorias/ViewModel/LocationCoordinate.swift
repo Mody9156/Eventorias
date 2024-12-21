@@ -31,7 +31,7 @@ class LocationCoordinate: ObservableObject{
             return
         }
 
-        let geocoder = LocationCoordinate()
+        let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) { placemarks, error in
             if let error = error {
                 self.errorMessage = error.localizedDescription

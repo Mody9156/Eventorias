@@ -53,7 +53,7 @@ struct ListView: View {
                         HStack{
                             Spacer()
                             NavigationLink {
-                                AddEventView(addEventViewModel: AddEventViewModel(coordinates: CLLocationCoordinate2D.init(latitude: 33.44, longitude: 222.44)))
+                                AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate(coordinates: CLLocationCoordinate2D.init(latitude: 33.44, longitude: 222.44)))
                                 
                             } label: {
                                 ZStack {

@@ -11,7 +11,7 @@ struct UserDetailView: View {
     let eventEntry : EventEntry
     @StateObject var userDetailViewModel : UserDetailViewModel
     @State var maps : UIImage?
-    
+    @State var address : String = ""
     var body: some View {
         VStack {
             ZStack {
