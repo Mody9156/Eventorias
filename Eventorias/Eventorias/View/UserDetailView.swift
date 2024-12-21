@@ -105,14 +105,13 @@ struct UserDetailView: View {
                                     address = "\(eventEntry.place.street) \(eventEntry.place.city) \(eventEntry.place.postalCode) \(eventEntry.place.country)"
                                     locationCoordinate.geocodeAddress(address: address)
                                     
-                                    if let latitude = locationCoordinate.coordinates?.latitude,let longitude = locationCoordinate.coordinates?.longitude {
-                                        let imageData =  try await userDetailViewModel.showMapsStatic(latitude,longitude)
+                                    
+                                    let imageData =  try await userDetailViewModel.showMapsStatic(locationCoordinate.latitude,locationCoordinate.longitude)
                                         if let image = UIImage(data: imageData){
                                             maps = image
                                         }
-                                        print("Latitude: \(latitude), Longitude: \(longitude)")
+                                    print("Latitude: \(locationCoordinate.latitude), Longitude: \(locationCoordinate.longitude)")
 
-                                    }
                                 }
                             }
                         }

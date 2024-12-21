@@ -16,6 +16,7 @@ class LocationCoordinate: ObservableObject{
     var coordinates : CLLocationCoordinate2D?
     @Published var latitude : Double = 0.0
     @Published var longitude : Double = 0.0
+    
     init(errorMessage: String? = nil, coordinates: CLLocationCoordinate2D? = nil) {
         self.errorMessage = errorMessage
         self.coordinates = coordinates
@@ -33,18 +34,18 @@ class LocationCoordinate: ObservableObject{
         }
 
         let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(address) { placemarks, error in
+        geocoder.geocodeAddressString(address) { [self] placemarks, error in
             if let error = error {
                 self.errorMessage = error.localizedDescription
                 self.coordinates = nil
             } else if let placemark = placemarks?.first, let location = placemark.location ,
                       location.coordinate.latitude != 0.0,
                       location.coordinate.longitude != 0.0 {
-                let latitude = location.coordinate.latitude
-                let longitude = location.coordinate.longitude
+                self.latitude = location.coordinate.latitude
+                self.longitude = location.coordinate.longitude
 
                 // Vérification pour éviter les coordonnées nulles
-                if latitude == 0.0 || longitude == 0.0 {
+                if self.latitude == 0.0 || self.longitude == 0.0 {
                     self.errorMessage = "Adresse géolocalisée avec des coordonnées invalides."
                     self.coordinates = nil
                     print("Erreur valeurs nulls")
