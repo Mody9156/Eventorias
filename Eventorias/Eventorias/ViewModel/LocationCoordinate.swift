@@ -51,11 +51,12 @@ class LocationCoordinate: ObservableObject{
                     print("Erreur valeurs nulls")
                     print("Voici le résultat : \(location.coordinate)")
                 } else {
-                    self.coordinates = location.coordinate
-                    self.errorMessage = nil
-                    print("Validate Graduation")
-                    print("Voici le résultat : \(location.coordinate)")
-
+                    DispatchQueue.main.async {
+                        self.coordinates = location.coordinate
+                        self.errorMessage = nil
+                        print("Validate Graduation")
+                        print("Voici le résultat : \(location.coordinate)")
+                    }
                 }
             } else {
                 self.errorMessage = "Adresse introuvable."
