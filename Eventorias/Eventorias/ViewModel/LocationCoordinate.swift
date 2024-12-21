@@ -44,13 +44,16 @@ class LocationCoordinate: ObservableObject{
                 if latitude == 0.0 || longitude == 0.0 {
                     self.errorMessage = "Adresse géolocalisée avec des coordonnées invalides."
                     self.coordinates = nil
+                    print("Erreur valeurs nulls")
                 } else {
                     self.coordinates = location.coordinate
                     self.errorMessage = nil
+                    print("Validate Graduation")
                 }
             } else {
                 self.errorMessage = "Adresse introuvable."
                 self.coordinates = nil
+                print("Adresse introuvable")
             }
         }
     }
