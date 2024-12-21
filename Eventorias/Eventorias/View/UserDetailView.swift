@@ -12,7 +12,7 @@ struct UserDetailView: View {
     @StateObject var userDetailViewModel : UserDetailViewModel
     @StateObject  var locationCoordinate : LocationCoordinate
     @State var maps : UIImage?
-    @State var address : String = ""
+    @Binding var address : String
     
     var body: some View {
         VStack {
@@ -102,19 +102,13 @@ struct UserDetailView: View {
                                 }
                             }.onAppear{
                                 Task {
-                                address = "\(eventEntry.place.street) \(eventEntry.place.city) \(eventEntry.place.postalCode) \(eventEntry.place.country)"
-                                    
-                                    let coordinate = await locationCoordinate.geocodeAddress(address: address)
-                                    
+                            
+                                    let coordinate = locationCoordinate.geocodeAddress(address: address)
                                     let imageData =  try await userDetailViewModel.showMapsStatic(coordinate.0,coordinate.1)
                                         
                                             if let image = UIImage(data: imageData){
                                                 maps = image
                                             }
-                                   
-                                        
-                                    print("Latitude: \(locationCoordinate.latitude), Longitude: \(locationCoordinate.longitude)")
-
                                 }
                             }
                         }

@@ -19,7 +19,8 @@ class LocationCoordinate: ObservableObject{
         self.errorMessage = errorMessage
     }
     
-    func geocodeAddress(address: String) async -> (Double,Double){
+    @MainActor
+    func geocodeAddress(address: String)  -> (Double,Double){
         let geocoder = CLGeocoder()
         
         geocoder.geocodeAddressString(address) { [weak self] placemarks, error in
@@ -30,7 +31,8 @@ class LocationCoordinate: ObservableObject{
             }
             
             guard let placemark = placemarks?.first,
-                  let location = placemark.location  else {
+                  let location = placemark.location
+            else {
                 print("No valid placemark or location found for the address.")
                 return
             }

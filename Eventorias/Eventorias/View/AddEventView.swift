@@ -138,7 +138,7 @@ struct AddEventView: View {
                         } else {
                             
                             address = "\(street), \(city) \(postalCode), \(country)"
-                            locationCoordinate.geocodeAddress(address: address)
+                             locationCoordinate.geocodeAddress(address: address)
                          
                        
                             guard let selectedImage = selectedImage else {
