@@ -38,7 +38,7 @@ class UserDetailViewModel: ObservableObject{
         }
         throw Failure.missingAPIKey
     }
-    func showMapsStatic(_ Latitude:Double,_ Longitude:Double) async throws -> Data {
+    func showMapsStatic( Latitude:Double, Longitude:Double) async throws -> Data {
         do{
             let api =  try loadAPIKey()
             let data = try await googleMapView.showMapsWithURLRequest(Latitude, Longitude, api)

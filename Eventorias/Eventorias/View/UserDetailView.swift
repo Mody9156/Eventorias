@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct UserDetailView: View {
-    let eventEntry : EventEntry
-    @StateObject var userDetailViewModel : UserDetailViewModel
-    @StateObject  var locationCoordinate : LocationCoordinate
-    @State var maps : UIImage?
-    @Binding var address : String
+    let eventEntry: EventEntry
+    @StateObject var userDetailViewModel: UserDetailViewModel
+    @StateObject var locationCoordinate: LocationCoordinate
+    @State var maps: UIImage?
+    @State var address: String = ""
     @State var coordString = ""
-    @State var latitude : Double = 0.0
-    @State var longitude : Double = 0.0
+    @State var latitude: Double = 0.0
+    @State var longitude: Double = 0.0
+    @State private var showError = false
+    @State private var errorMessage = ""
     
     var body: some View {
         VStack {
@@ -74,6 +76,7 @@ struct UserDetailView: View {
                                     .padding()
                             }
                         }
+                        
                         VStack(alignment: .leading) {
                             HStack {
                                 VStack (alignment: .leading){
@@ -103,17 +106,8 @@ struct UserDetailView: View {
                                     Image(uiImage: picture)
                                         .cornerRadius(20)
                                 }
-                            }.onAppear{
-                                Task {
-                                    
-                                    locationCoordinate.geocodeAddress(address: address)
-                                    
-                                    let imageData =  try await userDetailViewModel.showMapsStatic(locationCoordinate.latitude,locationCoordinate.longitude)
-
-                                    if let image = UIImage(data: imageData){
-                                        maps = image
-                                    }
-                                }
+                            }.onAppear {
+                                fetchMapData()
                             }
                         }
                         .padding()
@@ -121,18 +115,22 @@ struct UserDetailView: View {
                 }
             }
         }
-        .onAppear{
-            
-        }
+    }
+    private func fetchMapData(){
+        let address = "\(eventEntry.place.street), \(eventEntry.place.postalCode) \(eventEntry.place.city), \(eventEntry.place.country)"
+        locationCoordinate.geocodeAddress(address: address) { result in
+               switch result {
+               case .success(let coords):
+                   print("Coordonnées récupérées : \(coords.0), \(coords.1)")
+                   Task {
+                       let imageData = try await userDetailViewModel.showMapsStatic(Latitude: coords.0, Longitude: coords.1)
+                       if let image = UIImage(data: imageData) {
+                           maps = image
+                       }
+                   }
+               case .failure(let error):
+                   print("Erreur lors du géocodage : \(error.localizedDescription)")
+               }
+           }
     }
 }
-//
-//struct UserDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        UserDetailView(eventEntry: EventEntry(picture: "MusicFestival", title: "Music festival"
-//, dateCreation: Date.now, poster: "https://s3-alpha-sig.figma.com/img/1826/61cb/1851012ea9af9e0347043719d004ab89?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=RJThaTMTQemLGIekREGN9rKLQ5RyMOjMWCXsKyEn~4agSqW1lcPkeIp6tDfeS3T1o-YiNoDUaDhlClwnI2T--aOfkZfrxmGqxGQWj93mSBFQmSVTDVXWUCKKw0~N7UiFf9Ia7VmVTuGzb2JwWjI9D8vACaptRvrShdaAgkgtlBYxSaOPWLD56F-9YV3x69K7VBbtHri1MHmp~MoRTpIZtzF9a1MXdP8Mfy9jZMRZ6NDuYDboO6xHEZV20ZeOs2AUfHS8zEe7LAs5XFIrjso~Ypa0qRHMAv-UCX4yzkfr36y1tUXPOEtRtqLok0IAah3yNDtvkTtcSNQxVuZk5krZ~Q__"
-//, description: "Join us for an unforgettable Music Festival celebrating the vibrant sounds of today's most talented artists. This event will feature an exciting lineup of performances, ranging from electrifying live bands to soulful solo acts, offering a diverse and immersive musical experience. Whether you're a devoted music enthusiast or simply looking for a weekend of fun, you'll have the chance to enjoy an eclectic mix of genres and discover emerging talent. Don't miss this opportunity to connect with fellow music lovers and create lasting memories in an energetic, festival atmosphere!", hour: "12:00", category: "Music", place: Address(street: "81-800 Avenue 51", city: "Indio", postalCode: "92201", country: "USA", localisation: GeoPoint(latitude: 33.71275, longitude: -116.20614))), userDetailViewModel: UserDetailViewModel(eventEntry: [EventEntry(picture: "MusicFestival", title: "Music festival"
-//                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              , dateCreation: Date.now, poster: "https://s3-alpha-sig.figma.com/img/1826/61cb/1851012ea9af9e0347043719d004ab89?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=RJThaTMTQemLGIekREGN9rKLQ5RyMOjMWCXsKyEn~4agSqW1lcPkeIp6tDfeS3T1o-YiNoDUaDhlClwnI2T--aOfkZfrxmGqxGQWj93mSBFQmSVTDVXWUCKKw0~N7UiFf9Ia7VmVTuGzb2JwWjI9D8vACaptRvrShdaAgkgtlBYxSaOPWLD56F-9YV3x69K7VBbtHri1MHmp~MoRTpIZtzF9a1MXdP8Mfy9jZMRZ6NDuYDboO6xHEZV20ZeOs2AUfHS8zEe7LAs5XFIrjso~Ypa0qRHMAv-UCX4yzkfr36y1tUXPOEtRtqLok0IAah3yNDtvkTtcSNQxVuZk5krZ~Q__"
-//                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              , description: "Join us for an unforgettable Music Festival celebrating the vibrant sounds of today's most talented artists. This event will feature an exciting lineup of performances, ranging from electrifying live bands to soulful solo acts, offering a diverse and immersive musical experience. Whether you're a devoted music enthusiast or simply looking for a weekend of fun, you'll have the chance to enjoy an eclectic mix of genres and discover emerging talent. Don't miss this opportunity to connect with fellow music lovers and create lasting memories in an energetic, festival atmosphere!", hour: "12:00", category: "Music", place: Address(street: "81-800 Avenue 51", city: "Indio", postalCode: "92201", country: "USA", localisation: GeoPoint(latitude: 33.71275, longitude: -116.20614)))], listViewModel: ListViewModel(), googleMapView: GoogleMapView()))
-//    }
-//}

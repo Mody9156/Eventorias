@@ -21,30 +21,27 @@ class LocationCoordinate: ObservableObject{
     }
     
     @MainActor
-    func geocodeAddress(address : String){
+    func geocodeAddress(address: String, completion: @escaping (Result<(Double, Double), Error>) -> Void) {
         let geocoder = CLGeocoder()
-             geocoder.geocodeAddressString(address, completionHandler: { (placemarks, error) in
-                 if error != nil {
-                     print("Failed to retrieve location")
-                     return
-                 }
-                 
-                 var location: CLLocation?
-                 
-                 if let placemarks = placemarks, placemarks.count > 0 {
-                     location = placemarks.first?.location
-                 }
-                 
-                 if let location = location {
-                     let coordinate = location.coordinate
-                     print("\nlat: \(coordinate.latitude), long: \(coordinate.longitude)")
-                     self.latitude = coordinate.latitude
-                     self.longitude = coordinate.longitude
-                 }
-                 else
-                 {
-                     print("No Matching Location Found")
-                 }
-             })
+        geocoder.geocodeAddressString(address) { (placemarks, error) in
+            if let error = error {
+                print("Erreur lors de la récupération de la localisation : \(error.localizedDescription)")
+                completion(.failure(error))
+                return
+            }
+            
+            guard let location = placemarks?.first?.location else {
+                print("Aucune localisation correspondante trouvée")
+                completion(.failure(NSError(domain: "GeocodeError", code: 404, userInfo: [NSLocalizedDescriptionKey: "No matching location found."])))
+                return
+            }
+            
+            let coordinate = location.coordinate
+            self.latitude = coordinate.latitude
+            self.longitude = coordinate.longitude
+            print("\nlat: \(coordinate.latitude), long: \(coordinate.longitude)")
+            completion(.success((coordinate.latitude, coordinate.longitude)))
+        }
     }
+
 }
