@@ -105,7 +105,7 @@ struct UserDetailView: View {
                                 Task {
                                     
                                     locationCoordinate.geocodeAddress(address: address){ coords in
-                                        
+                                        coordString = "\(coords.latitude), \(coords.longitude)"
                                     }
 //                                    let imageData =  try await userDetailViewModel.showMapsStatic(self.locationCoordinate.latitude,self.locationCoordinate.longitude)
 //
