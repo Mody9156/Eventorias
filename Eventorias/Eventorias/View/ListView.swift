@@ -198,7 +198,7 @@ struct ViewCalendar: View {
                         }
                         
                     }.onAppear{
-                        address = "\(entry.place.street) \(entry.place.city) \(entry.place.postalCode) \(entry.place.country)"
+                        address = "\(entry.place.street), \(entry.place.postalCode) \(entry.place.city), \(entry.place.country)"
                     }
                 }
             }
@@ -283,7 +283,7 @@ struct ViewModeList: View {
                         EmptyView()
                     }))
                     .onAppear{
-                        address = "\(entry.place.street) \(entry.place.city) \(entry.place.postalCode) \(entry.place.country)"
+                        address = "\(entry.place.street), \(entry.place.postalCode) \(entry.place.city), \(entry.place.country)"
                     }
                 }
             }

@@ -21,29 +21,11 @@ class LocationCoordinate: ObservableObject{
     }
     
     @MainActor
-    func geocodeAddress(address: String){
-        let geocoder = CLGeocoder()
+    func geocodeAddress(address : String,completion:@escaping((CLLocationCoordinate2D) -> Void)){
         
-        geocoder.geocodeAddressString(address) { [weak self] placemarks, error in
-            guard let self = self else {return}
-            if let error = error {
-                self.errorMessage = error.localizedDescription
-                print("Geocoding failed with error: \(error.localizedDescription)")
-            }
-            
-            guard let placemark = placemarks?.first,
-                  let location = placemark.location
-            else {
-                print("No valid placemark or location found for the address.")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self.latitude = location.coordinate.latitude
-                self.longitude = location.coordinate.longitude
-                print("Geocoding success: Latitude: \(self.latitude), Longitude: \(self.longitude)")
-                self.coordinates = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
-            }
+        CLGeocoder().geocodeAddressString(address){ ( placemark, error ) in
+            completion(placemark?.first?.location?.coordinate ?? CLLocationCoordinate2D())
         }
+        
     }
 }
