@@ -32,8 +32,8 @@ struct AddEventView: View {
     @Environment(\.dismiss) var dismiss
     @State var address : String = ""
     @StateObject var locationCoordinate : LocationCoordinate
-    @State var private var latitude : Double = 0.0
-    @State var private var longitude : Double = 0.0
+    @State private var latitude : Double = 0.0
+    @State private var longitude : Double = 0.0
     
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
@@ -143,6 +143,8 @@ struct AddEventView: View {
                             locationCoordinate.geocodeAddress(address: address){ result in
                                 switch result {
                                 case .success(let coord):
+                                latitude = coord.0
+                                longitude = coord.1
                                 print("Coordonnées récupérées : \(coord.0), \(coord.1)")
                                 break
                                 case .failure(let error):
@@ -182,8 +184,8 @@ struct AddEventView: View {
                                 city: city,
                                 postalCode: postalCode,
                                 country: country,
-                                latitude: locationCoordinate.latitude,
-                                longitude: locationCoordinate.longitude)
+                                latitude: latitude,
+                                longitude: longitude)
                             
                         }
                     }){
