@@ -20,7 +20,7 @@ class LocationCoordinate: ObservableObject{
     }
     
     @MainActor
-    func geocodeAddress(address: String)  -> (Double,Double){
+    func geocodeAddress(address: String) {
         let geocoder = CLGeocoder()
         
         geocoder.geocodeAddressString(address) { [weak self] placemarks, error in
@@ -43,6 +43,5 @@ class LocationCoordinate: ObservableObject{
                 print("Geocoding success: Latitude: \(self.latitude), Longitude: \(self.longitude)")
             }
         }
-        return (latitude,longitude)
     }
 }
