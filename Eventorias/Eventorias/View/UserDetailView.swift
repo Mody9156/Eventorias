@@ -106,12 +106,13 @@ struct UserDetailView: View {
                                     
                                     locationCoordinate.geocodeAddress(address: address){ coords in
                                         coordString = "\(coords.latitude), \(coords.longitude)"
+
+                                        let imageData =  try await userDetailViewModel.showMapsStatic(coords.latitude,coords.longitude)
+
+                                        if let image = UIImage(data: imageData){
+                                            maps = image
+                                        }
                                     }
-//                                    let imageData =  try await userDetailViewModel.showMapsStatic(self.locationCoordinate.latitude,self.locationCoordinate.longitude)
-//
-//                                    if let image = UIImage(data: imageData){
-//                                        maps = image
-//                                    }
                                 }
                             }
                         }

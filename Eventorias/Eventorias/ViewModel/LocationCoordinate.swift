@@ -21,10 +21,18 @@ class LocationCoordinate: ObservableObject{
     }
     
     @MainActor
-    func geocodeAddress(address : String,completion:@escaping((CLLocationCoordinate2D) -> Void)){
+    func geocodeAddress(address : String,completion:@escaping(Result<CLLocationCoordinate2D, Error>) -> Void){
         
-        CLGeocoder().geocodeAddressString(address){ ( placemark, error ) in
-            completion(placemark?.first?.location?.coordinate ?? CLLocationCoordinate2D())
+        CLGeocoder().geocodeAddressString(address){ ( placemarks, error ) in
+//            completion(placemark?.first?.location?.coordinate ?? CLLocationCoordinate2D())
+            if let error = error {
+                completion(.failure(error))
+            }else if let location = placemarks?.first?.location?.coordinate {
+                completion(.success(location))
+            }else{
+                completion(.failure(NSError(domain: "GeocoderError", code: -1, userInfo: [NSLocalizedDescriptionKey: "No location found."])))
+            }
+            
         }
         
     }
