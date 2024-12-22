@@ -21,11 +21,30 @@ class LocationCoordinate: ObservableObject{
     }
     
     @MainActor
-    func geocodeAddress(address : String,completion:@escaping((CLLocationCoordinate2D) -> Void)){
-        
-        CLGeocoder().geocodeAddressString(address){ ( placemark, error ) in
-            completion(placemark?.first?.location?.coordinate ?? CLLocationCoordinate2D())
-        }
-        
+    func geocodeAddress(address : String){
+        let geocoder = CLGeocoder()
+             geocoder.geocodeAddressString(address, completionHandler: { (placemarks, error) in
+                 if error != nil {
+                     print("Failed to retrieve location")
+                     return
+                 }
+                 
+                 var location: CLLocation?
+                 
+                 if let placemarks = placemarks, placemarks.count > 0 {
+                     location = placemarks.first?.location
+                 }
+                 
+                 if let location = location {
+                     let coordinate = location.coordinate
+                     print("\nlat: \(coordinate.latitude), long: \(coordinate.longitude)")
+                     self.latitude = coordinate.latitude
+                     self.longitude = coordinate.longitude
+                 }
+                 else
+                 {
+                     print("No Matching Location Found")
+                 }
+             })
     }
 }

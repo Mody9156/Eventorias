@@ -106,11 +106,9 @@ struct UserDetailView: View {
                             }.onAppear{
                                 Task {
                                     
-                                    locationCoordinate.geocodeAddress(address: address){ coords in
-                                        longitude = coords.longitude
-                                        latitude = coords.latitude
-                                    }
-                                    let imageData =  try await userDetailViewModel.showMapsStatic(latitude,longitude)
+                                    locationCoordinate.geocodeAddress(address: address)
+                                    
+                                    let imageData =  try await userDetailViewModel.showMapsStatic(locationCoordinate.latitude,locationCoordinate.longitude)
 
                                     if let image = UIImage(data: imageData){
                                         maps = image
@@ -119,7 +117,6 @@ struct UserDetailView: View {
                             }
                         }
                         .padding()
-                        
                     }
                 }
             }
