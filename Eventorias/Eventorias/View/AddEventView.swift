@@ -143,17 +143,17 @@ struct AddEventView: View {
                             locationCoordinate.geocodeAddress(address: address){ result in
                                 switch result {
                                 case .success(let coord):
-                                latitude = coord.0
-                                longitude = coord.1
-                                print("Coordonnées récupérées : \(coord.0), \(coord.1)")
-                                break
+                                    latitude = coord.0
+                                    longitude = coord.1
+                                    print("Coordonnées récupérées : \(coord.0), \(coord.1)")
+                                    break
                                 case .failure(let error):
-                                print("Erreur lors du géocodage : \(error.localizedDescription)")
-                                break
+                                    print("Erreur lors du géocodage : \(error.localizedDescription)")
+                                    break
                                 }
                             }
-                         
-                       
+                            
+                            
                             guard let selectedImage = selectedImage else {
                                 return
                             }
