@@ -18,7 +18,6 @@ struct ListView: View {
     @StateObject var listViewModel : ListViewModel
     @State var tryEvent : Bool = false
     @State var calendar : Bool = false
-    @State var address : String = ""
     
     var filtreElement : [EventEntry] {
         if searchText.isEmpty{
@@ -46,9 +45,9 @@ struct ListView: View {
                 ZStack(alignment: .bottomTrailing){
                     
                     if calendar {
-                        ViewCalendar(searchText: $searchText, listViewModel: listViewModel, address: $address)
+                        ViewCalendar(searchText: $searchText, listViewModel: listViewModel)
                     }else{
-                        ViewModeList(searchText: $searchText, listViewModel: listViewModel, address: $address)
+                        ViewModeList(searchText: $searchText, listViewModel: listViewModel)
                     }
                     ZStack {
                         HStack{
@@ -166,7 +165,6 @@ struct CustomButton: View {
 struct ViewCalendar: View {
     @Binding var searchText : String
     @StateObject var listViewModel : ListViewModel
-    @Binding var address : String
 
     var body: some View {
         ScrollView {
@@ -197,8 +195,6 @@ struct ViewCalendar: View {
                                 .foregroundColor(.white)
                         }
                         
-                    }.onAppear{
-                        address = "\(entry.place.street) \(entry.place.city) \(entry.place.postalCode) \(entry.place.country)"
                     }
                 }
             }
@@ -229,7 +225,6 @@ struct ToggleViewButton: View {
 struct ViewModeList: View {
     @Binding var searchText : String
     @StateObject var listViewModel : ListViewModel
-    @Binding var address : String
 
     var body: some View {
         List {
@@ -278,13 +273,11 @@ struct ViewModeList: View {
                         
                         
                     }.overlay(NavigationLink(destination: {
-                        UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate(), address: $address)
+                        UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate())
                     }, label: {
                         EmptyView()
                     }))
-                    .onAppear{
-                        address = "\(entry.place.street) \(entry.place.city) \(entry.place.postalCode) \(entry.place.country)"
-                    }
+                    
                 }
             }
             .listRowBackground(

@@ -49,5 +49,4 @@ class GoogleMapView {
 
         return data
     }
-
 }

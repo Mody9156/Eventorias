@@ -14,35 +14,34 @@ class LocationCoordinate: ObservableObject{
     var errorMessage: String?
     @Published var latitude : Double = 0.0
     @Published var longitude : Double = 0.0
+    var coordinates : CLLocationCoordinate2D? = nil
     
     init(errorMessage: String? = nil) {
         self.errorMessage = errorMessage
     }
     
     @MainActor
-    func geocodeAddress(address: String)  -> (Double,Double){
+    func geocodeAddress(address: String, completion: @escaping (Result<(Double, Double), Error>) -> Void) {
         let geocoder = CLGeocoder()
-        
-        geocoder.geocodeAddressString(address) { [weak self] placemarks, error in
-            guard let self = self else {return}
+        geocoder.geocodeAddressString(address) { (placemarks, error) in
             if let error = error {
-                self.errorMessage = error.localizedDescription
-                print("Geocoding failed with error: \(error.localizedDescription)")
-            }
-            
-            guard let placemark = placemarks?.first,
-                  let location = placemark.location
-            else {
-                print("No valid placemark or location found for the address.")
+                print("Erreur lors de la récupération de la localisation : \(error.localizedDescription)")
+                completion(.failure(error))
                 return
             }
             
-            DispatchQueue.main.async {
-                self.latitude = location.coordinate.latitude
-                self.longitude = location.coordinate.longitude
-                print("Geocoding success: Latitude: \(self.latitude), Longitude: \(self.longitude)")
+            guard let location = placemarks?.first?.location else {
+                print("Aucune localisation correspondante trouvée")
+                completion(.failure(NSError(domain: "GeocodeError", code: 404, userInfo: [NSLocalizedDescriptionKey: "No matching location found."])))
+                return
             }
+            
+            let coordinate = location.coordinate
+            self.latitude = coordinate.latitude
+            self.longitude = coordinate.longitude
+            print("\nlat: \(coordinate.latitude), long: \(coordinate.longitude)")
+            completion(.success((coordinate.latitude, coordinate.longitude)))
         }
-        return (latitude,longitude)
     }
+
 }
