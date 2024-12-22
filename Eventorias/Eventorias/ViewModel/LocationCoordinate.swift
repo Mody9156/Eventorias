@@ -14,13 +14,14 @@ class LocationCoordinate: ObservableObject{
     var errorMessage: String?
     @Published var latitude : Double = 0.0
     @Published var longitude : Double = 0.0
+    var coordinates : CLLocationCoordinate2D? = nil
     
     init(errorMessage: String? = nil) {
         self.errorMessage = errorMessage
     }
     
     @MainActor
-    func geocodeAddress(address: String) {
+    func geocodeAddress(address: String){
         let geocoder = CLGeocoder()
         
         geocoder.geocodeAddressString(address) { [weak self] placemarks, error in
@@ -41,6 +42,7 @@ class LocationCoordinate: ObservableObject{
                 self.latitude = location.coordinate.latitude
                 self.longitude = location.coordinate.longitude
                 print("Geocoding success: Latitude: \(self.latitude), Longitude: \(self.longitude)")
+                self.coordinates = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
             }
         }
     }

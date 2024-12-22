@@ -48,7 +48,7 @@ struct UserDetailView: View {
                                 }
                                 .padding()
                                 Spacer()
-                             
+                                
                                 AsyncImage(url:URL(string:"\(eventEntry.picture)")){ image in
                                     image
                                         .resizable()
@@ -102,13 +102,13 @@ struct UserDetailView: View {
                                 }
                             }.onAppear{
                                 Task {
-                            
                                     
-                                    let imageData =  try await userDetailViewModel.showMapsStatic(locationCoordinate.latitude,locationCoordinate.longitude)
-                                        
-                                            if let image = UIImage(data: imageData){
-                                                maps = image
-                                            }
+                                    locationCoordinate.geocodeAddress(address: address)
+                                    let imageData = try await userDetailViewModel.showMapsStatic(self.locationCoordinate.latitude,self.locationCoordinate.longitude)
+                                    
+                                    if let image = UIImage(data: imageData){
+                                        maps = image
+                                    }
                                 }
                             }
                         }
@@ -119,7 +119,7 @@ struct UserDetailView: View {
             }
         }
         .onAppear{
-            locationCoordinate.geocodeAddress(address: address)
+            
         }
     }
 }
