@@ -9,5 +9,5 @@ import Foundation
 
 protocol ProtocolsFirebaseData{
     func signIn(email : String, password:String, completion:@escaping(Result<User, Error>)-> Void)
-    func createUser(email: String, password: String, firtName: String, lastName: String, picture: String, completion: @escaping (Result<User, Error>) -> Void)
+    func createUser(email: String, password: String, firstName: String, lastName: String, picture: String, completion: @escaping (Result<User, Error>) -> Void)
 }

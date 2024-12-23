@@ -12,6 +12,7 @@ struct RegistrationView: View {
     @State var password = ""
     @State var firstName = ""
     @State var lastName = ""
+    @State var picture = ""
     @StateObject var loginViewModel : LoginViewModel
     @Environment(\.dismiss) var dismiss
     
@@ -37,7 +38,7 @@ struct RegistrationView: View {
                     
                     Button {
                         if loginViewModel.errorMessage == nil {
-                            loginViewModel.registerUser(email: email, password: password, firtName:firstName, lastName:lastName)
+                            loginViewModel.registerUser(email: email, password: password, firstName:firstName, lastName:lastName, picture: picture)
                             
                             dismiss()
                         }

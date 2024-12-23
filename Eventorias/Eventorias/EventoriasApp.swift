@@ -36,7 +36,6 @@ struct EventoriasApp: App {
     @UIApplicationDelegateAdaptor (AppDelegate.self) var delegate
     @StateObject private var viewModelManager = ViewModelManager()
     @State private var selectedTab : Tab = .list
-    @State var userIdentity: [UserIdentity] = []  // Initialisez votre tableau d'utilisateurs
     
     enum Tab {
         case list,profil

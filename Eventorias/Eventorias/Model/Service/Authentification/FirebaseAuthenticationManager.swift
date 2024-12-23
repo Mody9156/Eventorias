@@ -11,7 +11,7 @@ import FirebaseFirestore
 import FirebaseCore
 
 class FirebaseAuthenticationManager :ProtocolsFirebaseData {
-   
+    
     func signIn(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if let error = error {
@@ -47,7 +47,7 @@ class FirebaseAuthenticationManager :ProtocolsFirebaseData {
     }
 
     
-    func createUser(email: String, password: String, firtName: String, lastName: String, completion: @escaping (Result<User, Error>) -> Void) -> Void) {
+    func createUser(email: String, password: String, firstName: String, lastName: String, picture: String, completion: @escaping (Result<User, Error>) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password){ result , error in
             if let error = error  {
                 completion(.failure(error))
@@ -61,7 +61,7 @@ class FirebaseAuthenticationManager :ProtocolsFirebaseData {
             
             // Mettre à jour le profil Firebase
             let changeRequest = user.createProfileChangeRequest()
-            changeRequest.displayName = "\(firtName) \(lastName) \(picture)"
+            changeRequest.displayName = "\(firstName) \(lastName) \(picture)"
             changeRequest.commitChanges { error in
                 if let error = error {
                     completion(.failure(error))
@@ -69,7 +69,7 @@ class FirebaseAuthenticationManager :ProtocolsFirebaseData {
                 }
                 let db = Firestore.firestore()
                 db.collection("users").document(user.uid).setData([
-                    "firstName": firtName,
+                    "firstName": firstName,
                     "lastName": lastName,
                     "email": email,
                     "uid": user.uid,
