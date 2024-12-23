@@ -14,6 +14,7 @@ struct RegistrationView: View {
     @State var lastName = ""
     @StateObject var loginViewModel : LoginViewModel
     @Environment(\.dismiss) var dismiss
+   
     
     var body: some View {
         ZStack {
@@ -25,7 +26,7 @@ struct RegistrationView: View {
                     .font(.title)
                     .foregroundColor(.white)
                 
-                AuthFieldsView(email: $email, password: $password)
+                AuthFieldsView(textField: $email, password: $password)
                 
                 ZStack {
                     Rectangle()
@@ -34,7 +35,7 @@ struct RegistrationView: View {
                         
                     
                     Button {
-                        loginViewModel.registerUser(email: email, password: password)
+                        loginViewModel.registerUser(email: email, password: password, firtName:firstName, lastName:lastName)
                         if loginViewModel.isAuthenticated {
                             // change
                         }
@@ -65,23 +66,35 @@ struct RegistrationView_Previews: PreviewProvider {
 }
 
 struct AuthFieldsView: View {
-    @Binding var email : String
+    @Binding var textField : String
     @Binding var password : String
+    var text : String
+    var title : String
     @FocusState private var focusedField : Field?
     
     enum Field : Hashable {
-        case email,password
+        case email, password, firstName, lastName
     }
     
     var body: some View {
         VStack (alignment: .leading){
-            Text("Email")
+            Text(title)
                 .foregroundColor(.white)
-            
-            TextField("email", text:$email)
+            if text == "email" {
+                TextField(text, text:$textField)
+                    .focused($focusedField, equals: .email)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            }
+            if text == "firstName" {
+            TextField(text, text:$textField)
                 .focused($focusedField, equals: .email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            
+            }
+            if text == "lastName" {
+            TextField(text, text:$textField)
+                .focused($focusedField, equals: .email)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            }
             Text("Password")
                 .foregroundColor(.white)
             
