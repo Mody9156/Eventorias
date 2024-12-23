@@ -8,24 +8,18 @@
 import SwiftUI
 
 struct ProfileView: View {
-    let user : [User]
+    @State private var loginViewModel : LoginViewModel
     var body: some View {
         ZStack {
             Color("Background")
                 .ignoresSafeArea()
             VStack {
-                ForEach(user,id: \.self) { user in
-                    HStack {
-                        Text(user.firstName)
-                            .foregroundColor(.white)
-                        Text(user.lastName)
-                            .foregroundColor(.white)
-                        Text(user.email)
-                            .foregroundColor(.white)
-                    }
-                    .padding()
-                }
-               
+                Text(loginViewModel.firstName)
+                    .foregroundColor(.white)
+                Text(loginViewModel.lastName)
+                    .foregroundColor(.white)
+                Text(loginViewModel.email)
+                    .foregroundColor(.white)
             }
         }
     }
