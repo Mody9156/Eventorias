@@ -14,7 +14,7 @@ struct RegistrationView: View {
     @State var lastName = ""
     @StateObject var loginViewModel : LoginViewModel
     @Environment(\.dismiss) var dismiss
-   
+    
     
     var body: some View {
         ZStack {
@@ -26,20 +26,19 @@ struct RegistrationView: View {
                     .font(.title)
                     .foregroundColor(.white)
                 
-                AuthFieldsView(textField: $email, password: $password)
+                AuthFieldsView(textField: $email, password: $password, text:"email",title:"Email")
+                AuthFieldsView(textField: $email, password: $firstName, text:"firstName",title:"FirstName")
+                AuthFieldsView(textField: $email, password: $lastName, text:"lastName",title:"LastName")
                 
                 ZStack {
                     Rectangle()
                         .frame(height: 50)
                         .foregroundColor(Color("Button"))
-                        
+                    
                     
                     Button {
                         loginViewModel.registerUser(email: email, password: password, firtName:firstName, lastName:lastName)
-                        if loginViewModel.isAuthenticated {
-                            // change
-                        }
-                        
+                        dismiss()
                     } label: {
                         Image(systemName:"person.fill")
                             .foregroundColor(.white)
@@ -84,23 +83,26 @@ struct AuthFieldsView: View {
                 TextField(text, text:$textField)
                     .focused($focusedField, equals: .email)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                Text("Password")
+                    .foregroundColor(.white)
+                
+                SecureField("password", text:$password)
+                    .focused($focusedField, equals: .password)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
             }
-            if text == "firstName" {
-            TextField(text, text:$textField)
-                .focused($focusedField, equals: .email)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            }
-            if text == "lastName" {
-            TextField(text, text:$textField)
-                .focused($focusedField, equals: .email)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            }
-            Text("Password")
-                .foregroundColor(.white)
             
-            SecureField("password", text:$password)
-                .focused($focusedField, equals: .password)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+            if text == "firstName" {
+                TextField(text, text:$textField)
+                    .focused($focusedField, equals: .firstName)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            }
+            
+            if text == "lastName" {
+                TextField(text, text:$textField)
+                    .focused($focusedField, equals: .lastName)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            }
         }
     }
 }
