@@ -32,7 +32,7 @@ class FirebaseAuthenticationManager :ProtocolsFirebaseData {
         }
     }
     
-    func createUser(email: String, password: String, completion: @escaping (Result<Any, Error>) -> Void) {
+    func createUser(email: String, password: String,name:String, completion: @escaping (Result<Any, Error>) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password){ result , error in
             if let error = error  {
                 completion(.failure(error))

@@ -56,7 +56,7 @@ class LoginViewModel : ObservableObject {
             return
         }
         
-        firebaseAuthenticationManager.createUser(email: email, password: password){ result in
+        firebaseAuthenticationManager.createUser(email: email, password: password, name: <#String#>){ result in
             switch result {
                 // Création réussie
             case .success(let result) :
