@@ -45,11 +45,6 @@ class LoginViewModel : ObservableObject {
                 }
                 self.errorMessage = nil
                 self.isAuthenticated = true
-                print("firstName = \(result.firstName)")
-                print("firstName = \(result.lastName)")
-                print("Graduation \(result) Vous venez de vous connecter")
-                print("lastName from result: \(self.lastName)")
-
                 self.onLoginSucceed()
                 break
                 // Connexion échoue
