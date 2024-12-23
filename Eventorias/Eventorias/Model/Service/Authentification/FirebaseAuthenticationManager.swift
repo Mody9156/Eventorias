@@ -32,6 +32,7 @@ class FirebaseAuthenticationManager :ProtocolsFirebaseData {
                 case .success(let data):
                     print("User data fetched: \(data)")
                     completion(.success(data)) // Retourner les données récupérées
+                    
                 case .failure(let error):
                     completion(.failure(error))
                 }
@@ -86,7 +87,7 @@ class FirebaseAuthenticationManager :ProtocolsFirebaseData {
     }
     
     
-    func fetchUserData(userID: String, completion: @escaping (Result<[String: Any], Error>) -> Void) {
+    func fetchUserData(userID: String, completion: @escaping (Result<User, Error>) -> Void) {
         let db = Firestore.firestore()
         db.collection("users").document(userID).getDocument { document, error in
             if let error = error {
@@ -98,9 +99,11 @@ class FirebaseAuthenticationManager :ProtocolsFirebaseData {
                 completion(.failure(NSError(domain: "FirestoreError", code: -1, userInfo: [NSLocalizedDescriptionKey: "No data found."])))
                 return
             }
-            
-            completion(.success(data))
+            if let user =  User(from: data){
+                completion(.success(user))
+            }else{
+                completion(.failure(NSError(domain: "FirestoreError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid user data."])))
+            }
         }
     }
-    
 }
