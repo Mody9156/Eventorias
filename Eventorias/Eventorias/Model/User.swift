@@ -10,7 +10,7 @@
 //
 // Created by KEITA on 23/12/2024.
 //
-struct User {
+struct User : Codable, Hashable{
     let firstName: String
     let lastName: String
     let email: String
