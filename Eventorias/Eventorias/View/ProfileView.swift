@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @StateObject var loginViewModel : LoginViewModel
+    @ObservedObject var loginViewModel : LoginViewModel
     var body: some View {
         ZStack {
             Color("Background")
