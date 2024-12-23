@@ -12,7 +12,9 @@ struct ProfileView: View {
     @State var email = UserDefaults.standard.string(forKey:  "userEmail")
     @State var firstName = UserDefaults.standard.string(forKey: "userFirstName")
     @State var lastName = UserDefaults.standard.string(forKey: "userLastName")
+    @State var picture = UserDefaults.standard.string(forKey: "userPicture")
     @State var toggle : Bool = false
+    
     var body: some View {
         ZStack {
             Color("Background")

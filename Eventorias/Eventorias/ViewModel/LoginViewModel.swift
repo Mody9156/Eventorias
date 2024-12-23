@@ -43,6 +43,7 @@ class LoginViewModel : ObservableObject {
                     UserDefaults.standard.set(result.email, forKey: "userEmail")
                     UserDefaults.standard.set(result.firstName, forKey: "userFirstName")
                     UserDefaults.standard.set(result.lastName, forKey: "userLastName")
+                    UserDefaults.standard.set(result.picture, forKey: "userPicture")
                 }
                 self.errorMessage = nil
                 self.isAuthenticated = true
