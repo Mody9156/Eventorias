@@ -53,9 +53,6 @@ class FirebaseAuthenticationManager :ProtocolsFirebaseData {
                     return
                 }
             }
-            
-            
-            
         }
     }
 }
