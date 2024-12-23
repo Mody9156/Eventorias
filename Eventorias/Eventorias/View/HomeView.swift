@@ -43,6 +43,7 @@ struct HomeView: View {
                             Button {
                                 loginViewModel.login(email: email, password: password)
                                 
+                                
                             } label: {
                                 HStack {
                                     Image(systemName:"person.fill")
@@ -74,7 +75,7 @@ struct HomeView: View {
 
 struct ActionButtonView: View {
     @Binding var toggle : Bool
-    
+
     var body: some View {
         ZStack {
             Rectangle()

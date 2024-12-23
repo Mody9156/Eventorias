@@ -61,11 +61,11 @@ struct RegistrationView: View {
     }
 }
 
-struct RegistrationView_Previews: PreviewProvider {
-    static var previews: some View {
-        RegistrationView(loginViewModel: LoginViewModel({}))
-    }
-}
+//struct RegistrationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RegistrationView(loginViewModel: LoginViewModel({}, user: <#User#>))
+//    }
+//}
 
 struct AuthFieldsView: View {
     @Binding var textField : String

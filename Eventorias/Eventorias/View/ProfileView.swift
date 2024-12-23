@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @State var loginViewModel : LoginViewModel
+    @StateObject var loginViewModel : LoginViewModel
     var body: some View {
         ZStack {
             Color("Background")
                 .ignoresSafeArea()
             VStack {
-                Text(loginViewModel.firstName)
+                Text("firstName : \(self.loginViewModel.firstName)")
                     .foregroundColor(.white)
-                Text(loginViewModel.lastName)
+                Text("lastName : \(self.loginViewModel.lastName)")
                     .foregroundColor(.white)
-                Text(loginViewModel.email)
+                Text("email : \(self.loginViewModel.email)")
                     .foregroundColor(.white)
             }
         }

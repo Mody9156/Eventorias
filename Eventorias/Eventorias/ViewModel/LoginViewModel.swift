@@ -15,12 +15,9 @@ class LoginViewModel : ObservableObject {
     var isAuthenticated : Bool = false
     @Published
     var onLoginSucceed : (() -> ())
-    @Published
-    var email : String = ""
-    @Published
-    var firstName : String = ""
-    @Published
-    var lastName : String = ""
+    @Published var email : String = ""
+    @Published var firstName : String = ""
+    @Published var lastName : String = ""
     
     let firebaseAuthenticationManager : ProtocolsFirebaseData
     
@@ -37,17 +34,25 @@ class LoginViewModel : ObservableObject {
             return
         }
         
-        firebaseAuthenticationManager.signIn(email: email, password: password){ result in
+        firebaseAuthenticationManager.signIn(email: email, password: password){ [weak self] result in
+            guard let self = self else { return }  // Éviter les fuites de mémoire
+
             switch result {
                 // Connexion réussie
             case .success(let result):
+                DispatchQueue.main.async {
+                    self.email = result.email
+                    self.firstName = result.firstName
+                    self.lastName = result.lastName
+                }
                 self.errorMessage = nil
                 self.isAuthenticated = true
-                self.onLoginSucceed()
-                self.email = result.email
-                self.firstName = result.firstName
-                self.lastName = result.lastName
+                print("firstName = \(result.firstName)")
+                print("firstName = \(result.lastName)")
                 print("Graduation \(result) Vous venez de vous connecter")
+                print("lastName from result: \(self.lastName)")
+
+                self.onLoginSucceed()
                 break
                 // Connexion échoue
             case .failure(let error):
