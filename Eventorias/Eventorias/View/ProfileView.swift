@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ProfileView: View {
+    let user : [User]
     var body: some View {
         VStack {
+            
             Text("User profile")
         }
     }
