@@ -18,10 +18,15 @@ class FirebaseAuthenticationManager :ProtocolsFirebaseData {
                 completion(.failure(error))
                 return
             }
+            guard let userId = result?.user.uid else {
+                completion(.failure(NSError(domain: "AuthError", code: -1, userInfo: [NSLocalizedDescriptionKey: "UID not found."])))
+                return
+            }
+            
             
             if let result = result {
                 completion(.success(result))
-                
+               
             }else{
                 completion(.failure(NSError(
                     domain: "AuthError",
@@ -31,6 +36,15 @@ class FirebaseAuthenticationManager :ProtocolsFirebaseData {
             }
         }
     }
+    
+    
+    func fetchUserData(userID:String,competion:@escaping(Result<User,Error>)->Void){
+        
+    }
+    
+    
+    
+    
     
     func createUser(email: String, password: String, firtName: String, lastName: String, completion: @escaping (Result<Any, Error>) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password){ result , error in
