@@ -9,22 +9,27 @@ import SwiftUI
 
 struct ProfileView: View {
     @StateObject var loginViewModel : LoginViewModel
-    @State var email = UserDefaults.standard.integer(forKey: "userEmail")
-    @State var firstName = UserDefaults.standard.integer(forKey: "userFirstName")
-    @State var lastName = UserDefaults.standard.integer(forKey: "userLastName")
+    @State var email = UserDefaults.standard.string(forKey:  "userEmail")
+    @State var firstName = UserDefaults.standard.string(forKey: "userFirstName")
+    @State var lastName = UserDefaults.standard.string(forKey: "userLastName")
     var body: some View {
         ZStack {
             Color("Background")
                 .ignoresSafeArea()
             VStack {
+                if let firstName {
+                    Text(firstName)
+                        .foregroundColor(.white)
+                }
+                if let lastName {
+                    Text(lastName)
+                        .foregroundColor(.white)
+                }
+                if let email {
+                    Text(email)
+                        .foregroundColor(.white)
+                }
                 
-                Text("firstName : \(firstName)")
-                    .foregroundColor(.white)
-                Text("lastName : \(lastName)")
-                    .foregroundColor(.white)
-                Text("email : \(email)")
-                    .foregroundColor(.white)
-               
             }
         }
     }
