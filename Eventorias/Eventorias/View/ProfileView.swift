@@ -12,11 +12,22 @@ struct ProfileView: View {
     @State var email = UserDefaults.standard.string(forKey:  "userEmail")
     @State var firstName = UserDefaults.standard.string(forKey: "userFirstName")
     @State var lastName = UserDefaults.standard.string(forKey: "userLastName")
+    @State var toggle : Bool =f alse
     var body: some View {
         ZStack {
             Color("Background")
                 .ignoresSafeArea()
-            
+            VStack{
+                if let lastName, let firstName, let email {
+                        InfoSecure(name: "Name", text: "\(firstName) \(lastName)")
+                        InfoSecure(name: "E-mail", text: email)
+                }
+                
+                Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Is On@*/.constant(true)/*@END_MENU_TOKEN@*/) {
+                    /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
+                }
+            }
+           
         }
     }
 }
@@ -27,26 +38,11 @@ struct MyPreviewProvider_Previews: PreviewProvider {
     }
 }
 
-struct ExtractedView: View {
+struct InfoSecure: View {
     var name : String
     var text : String
     
     var body: some View {
-//        {
-//            if let firstName {
-//                Text(firstName)
-//                    .foregroundColor(.white)
-//            }
-//            if let lastName {
-//                Text(lastName)
-//                    .foregroundColor(.white)
-//            }
-//            if let email {
-//                Text(email)
-//                    .foregroundColor(.white)
-//            }
-//
-//        }
         ZStack{
             Rectangle()
                 .frame(height: 56)
