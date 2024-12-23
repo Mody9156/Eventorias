@@ -34,3 +34,9 @@ struct ProfileView: View {
         }
     }
 }
+
+struct MyPreviewProvider_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfileView(loginViewModel: LoginViewModel())
+    }
+}

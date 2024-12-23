@@ -15,9 +15,6 @@ class LoginViewModel : ObservableObject {
     var isAuthenticated : Bool = false
     @Published
     var onLoginSucceed : (() -> ())
-    @Published var email : String = "fdsg"
-    @Published var firstName : String = "jack"
-    @Published var lastName : String = "fgg"
     
     let firebaseAuthenticationManager : ProtocolsFirebaseData
     
