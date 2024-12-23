@@ -33,7 +33,8 @@ class FirebaseAuthenticationManager :ProtocolsFirebaseData {
                 switch fetchResult {
                 case .success(let data):
                     // Créer un objet User à partir des données Firestore
-                    if let userData = User(from: User.toDictionary(data)()) {
+                    let userID = User.toDictionary(data)()
+                    if let userData = User(from: userID) {
                         completion(.success(userData))
                     } else {
                         completion(.failure(NSError(domain: "FirestoreError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid user data."])))
