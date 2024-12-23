@@ -13,6 +13,7 @@ struct RegistrationView: View {
     @State var firstName = ""
     @State var lastName = ""
     @State var picture = ""
+    @State var selectedItems : [PhotosPickerItem] = []
     @StateObject var loginViewModel : LoginViewModel
     @Environment(\.dismiss) var dismiss
     
@@ -29,7 +30,6 @@ struct RegistrationView: View {
                 AuthFieldsView(textField: $lastName, password: $password, text:"lastName",title:"LastName")
                 AuthFieldsView(textField: $firstName, password: $password, text:"firstName",title:"FirstName")
                 AuthFieldsView(textField: $email, password: $password, text:"email",title:"Email")
-                
                 
                 ZStack {
                     Rectangle()
@@ -61,12 +61,6 @@ struct RegistrationView: View {
         }
     }
 }
-
-//struct RegistrationView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RegistrationView(loginViewModel: LoginViewModel({}, user: <#User#>))
-//    }
-//}
 
 struct AuthFieldsView: View {
     @Binding var textField : String
