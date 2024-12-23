@@ -37,7 +37,7 @@ struct EventoriasApp: App {
     @StateObject private var viewModelManager = ViewModelManager()
     @State private var selectedTab : Tab = .list
     @State var userIdentity: [UserIdentity] = []  // Initialisez votre tableau d'utilisateurs
-
+    
     enum Tab {
         case list,profil
     }
@@ -54,7 +54,7 @@ struct EventoriasApp: App {
                         Label("Events", image: "event")
                     }
                     .tag(Tab.list)
-
+                    
                     ProfileView(loginViewModel: viewModelManager.loginViewModel)
                         .tabItem {
                             Label("Profile", systemImage: "person")

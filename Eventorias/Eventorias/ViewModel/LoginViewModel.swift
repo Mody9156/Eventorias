@@ -42,9 +42,6 @@ class LoginViewModel : ObservableObject {
                 // Connexion réussie
             case .success(let result):
                 DispatchQueue.main.async {
-                    self.email = result.email
-                    self.firstName = result.firstName
-                    self.lastName = result.lastName
                     UserDefaults.standard.set(result.email, forKey: "userEmail")
                     UserDefaults.standard.set(result.firstName, forKey: "userFirstName")
                     UserDefaults.standard.set(result.lastName, forKey: "userLastName")
