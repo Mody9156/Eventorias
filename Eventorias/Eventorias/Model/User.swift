@@ -10,24 +10,31 @@
 //
 // Created by KEITA on 23/12/2024.
 //
-
-import Foundation
-
 struct User {
     let firstName: String
     let lastName: String
     let email: String
     let uid: String
-    
-    // Vous pouvez ajouter un init pour créer un utilisateur à partir d'un dictionnaire, si nécessaire.
+
+    // Initialiseur pour la création d'un utilisateur
     init(firstName: String, lastName: String, email: String, uid: String) {
         self.firstName = firstName
         self.lastName = lastName
         self.email = email
         self.uid = uid
     }
-    
-    // Un init à partir d'un dictionnaire Firestore peut être ajouté ici si vous en avez besoin
+
+    // Méthode pour convertir l'objet User en dictionnaire [String: Any]
+    func toDictionary() -> [String: Any] {
+        return [
+            "firstName": self.firstName,
+            "lastName": self.lastName,
+            "email": self.email,
+            "uid": self.uid
+        ]
+    }
+
+    // Initialiseur pour créer un User à partir d'un dictionnaire Firestore
     init?(from dictionary: [String: Any]) {
         guard let firstName = dictionary["firstName"] as? String,
               let lastName = dictionary["lastName"] as? String,

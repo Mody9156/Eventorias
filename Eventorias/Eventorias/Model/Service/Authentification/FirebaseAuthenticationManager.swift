@@ -13,35 +13,40 @@ import FirebaseCore
 class FirebaseAuthenticationManager :ProtocolsFirebaseData {
     
     func signIn(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
-        Auth.auth().signIn(withEmail: email, password: password){ result , error in
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if let error = error {
                 completion(.failure(error))
                 return
             }
-            guard let userId = result?.user else {
+
+            guard let user = result?.user else {
                 completion(.failure(NSError(
-                            domain: "AuthError",
-                            code: -1,
-                            userInfo: [NSLocalizedDescriptionKey: "User authentication failed."]
-                        )))
+                    domain: "AuthError",
+                    code: -1,
+                    userInfo: [NSLocalizedDescriptionKey: "User authentication failed."]
+                )))
                 return
             }
-            
-            self.fetchUserData(userID: userId.uid){ fetchResult in
+
+            // Récupérer les informations de l'utilisateur depuis Firestore
+            self.fetchUserData(userID: user.uid) { fetchResult in
                 switch fetchResult {
                 case .success(let data):
-                    print("User data fetched: \(data)")
-                    completion(.success(data)) // Retourner les données récupérées
-                    
+                    // Créer un objet User à partir des données Firestore
+                    if let userData = User(from: User.toDictionary(data)()) {
+                        completion(.success(userData))
+                    } else {
+                        completion(.failure(NSError(domain: "FirestoreError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid user data."])))
+                    }
                 case .failure(let error):
                     completion(.failure(error))
                 }
             }
-        
         }
     }
+
     
-    func createUser(email: String, password: String, firtName: String, lastName: String, completion: @escaping (Result<Any, Error>) -> Void) {
+    func createUser(email: String, password: String, firtName: String, lastName: String, completion: @escaping (Result<User, Error>) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password){ result , error in
             if let error = error  {
                 completion(.failure(error))
