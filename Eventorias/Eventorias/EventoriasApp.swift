@@ -54,7 +54,7 @@ struct EventoriasApp: App {
                     }
                     .tag(Tab.list)
 
-                    ProfileView(user: [])
+                    ProfileView(loginViewModel: self.LoginViewModel)
                         .tabItem {
                             Label("Profile", systemImage: "person")
                         }
