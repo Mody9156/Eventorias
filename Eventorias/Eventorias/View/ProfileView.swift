@@ -20,6 +20,18 @@ struct ProfileView: View {
             Color("Background")
                 .ignoresSafeArea()
             VStack{
+                
+                AsyncImage(url: URL(string: "\(String(describing: picture))")) { image in
+                    image
+                        .resizable()
+                } placeholder: {
+                    ProgressView()
+                        
+                }
+                .frame(width: 40,height: 40)
+                .padding()
+            
+                
                 if let lastName, let firstName, let email {
                     InfoSecure(name: "Name", text: "\(firstName) \(lastName)")
                     InfoSecure(name: "E-mail", text: email)
