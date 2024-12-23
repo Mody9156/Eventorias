@@ -15,12 +15,15 @@ struct ProfileView: View {
                 .ignoresSafeArea()
             VStack {
                 ForEach(user,id: \.self) { user in
-                    Text(user.firstName)
-                        .foregroundColor(.white)
-                    Text(user.lastName)
-                        .foregroundColor(.white)
-                    Text(user.email)
-                        .foregroundColor(.white)
+                    HStack {
+                        Text(user.firstName)
+                            .foregroundColor(.white)
+                        Text(user.lastName)
+                            .foregroundColor(.white)
+                        Text(user.email)
+                            .foregroundColor(.white)
+                    }
+                   
                 }
                
             }
