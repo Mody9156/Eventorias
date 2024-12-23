@@ -23,7 +23,7 @@ struct ProfileView: View {
                         Text(user.email)
                             .foregroundColor(.white)
                     }
-                   
+                    .padding()
                 }
                
             }
