@@ -15,6 +15,12 @@ class LoginViewModel : ObservableObject {
     var isAuthenticated : Bool = false
     @Published
     var onLoginSucceed : (() -> ())
+    @Published
+    var email : String = ""
+    @Published
+    var firstName : String = ""
+    @Published
+    var lastName : String = ""
     
     let firebaseAuthenticationManager : ProtocolsFirebaseData
     
@@ -38,6 +44,9 @@ class LoginViewModel : ObservableObject {
                 self.errorMessage = nil
                 self.isAuthenticated = true
                 self.onLoginSucceed()
+                self.email = result.email
+                self.firstName = result.firstName
+                self.lastName = result.lastName
                 print("Graduation \(result) Vous venez de vous connecter")
                 break
                 // Connexion échoue
