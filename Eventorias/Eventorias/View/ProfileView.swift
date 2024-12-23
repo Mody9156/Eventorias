@@ -10,13 +10,20 @@ import SwiftUI
 struct ProfileView: View {
     let user : [User]
     var body: some View {
-        VStack {
-            ForEach(user,id: \.self) { user in
-                Text(user.firstName)
-                Text(user.lastName)
-                Text(user.email)
+        ZStack {
+            Color("Background")
+                .ignoresSafeArea()
+            VStack {
+                ForEach(user,id: \.self) { user in
+                    Text(user.firstName)
+                        .foregroundColor(.white)
+                    Text(user.lastName)
+                        .foregroundColor(.white)
+                    Text(user.email)
+                        .foregroundColor(.white)
+                }
+               
             }
-           
         }
     }
 }
