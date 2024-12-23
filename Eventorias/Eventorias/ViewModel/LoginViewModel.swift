@@ -59,14 +59,14 @@ class LoginViewModel : ObservableObject {
     }
     
    
-    func registerUser(email:String,password:String,firtName: String,lastName: String) {
+    func registerUser(email:String,password:String,firtName: String,lastName: String, picture: String) {
         
         guard !email.isEmpty, !password.isEmpty else {
             self.errorMessage = "L'email ou le mot de passe ne peuvent pas être vides."
             return
         }
         
-        firebaseAuthenticationManager.createUser(email: email, password: password, firtName: firtName, lastName: lastName){ result in
+        firebaseAuthenticationManager.createUser(email: email, password: password, firtName: firtName, lastName: lastName, picture:  picture){ result in
             switch result {
                 // Création réussie
             case .success(let result) :
