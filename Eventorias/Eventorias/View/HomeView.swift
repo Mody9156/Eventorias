@@ -14,7 +14,6 @@ struct HomeView: View {
     @State var email = ""
     @State var password = ""
     @StateObject var loginViewModel : LoginViewModel
-    @StateObject var profileViewModel : ProfileViewModel
 
     var body: some View {
         NavigationStack {

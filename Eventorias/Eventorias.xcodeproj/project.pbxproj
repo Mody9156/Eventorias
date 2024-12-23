@@ -100,6 +100,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2302CE912D198CB4005F6EB4 /* User */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		2311CB472D118A5200518BC5 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +233,7 @@
 		2360609D2D0DE48200E3504F /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				2302CE912D198CB4005F6EB4 /* User */,
 				2311CB4D2D11FF1200518BC5 /* Event */,
 				2360609E2D0DE48200E3504F /* List */,
 				236060A02D0DE48200E3504F /* Authentification */,
