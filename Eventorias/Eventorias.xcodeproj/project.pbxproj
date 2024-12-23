@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2302CE8E2D198491005F6EB4 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2302CE8D2D198491005F6EB4 /* ProfileViewModel.swift */; };
+		2302CE902D198AD6005F6EB4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2302CE8F2D198AD6005F6EB4 /* User.swift */; };
 		230474212D1091C80067BB54 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230474202D1091C80067BB54 /* AddEventView.swift */; };
 		2311CB492D118BEB00518BC5 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2311CB482D118BEB00518BC5 /* CameraManager.swift */; };
 		2311CB4B2D1199A700518BC5 /* AddEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2311CB4A2D1199A700518BC5 /* AddEventViewModel.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		2302CE8D2D198491005F6EB4 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		2302CE8F2D198AD6005F6EB4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		230474202D1091C80067BB54 /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
 		2311CB452D11839800518BC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2311CB462D11849000518BC5 /* Eventorias.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Eventorias.entitlements; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				2360609B2D0DE48200E3504F /* APIMapsStatic */,
 				2360609D2D0DE48200E3504F /* Service */,
 				236060A32D0DE48200E3504F /* Protocols */,
+				2302CE8F2D198AD6005F6EB4 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				236060B02D0DE48200E3504F /* EventEntry.swift in Sources */,
 				236060BB2D0DE48300E3504F /* ProtocolsFirebaseData.swift in Sources */,
 				236060AF2D0DE48200E3504F /* DateExtension.swift in Sources */,
+				2302CE902D198AD6005F6EB4 /* User.swift in Sources */,
 				236060832D0DE43B00E3504F /* HomeView.swift in Sources */,
 				23F9E9AD2D12C2430030C221 /* EventManagerProtocol.swift in Sources */,
 				2311CB492D118BEB00518BC5 /* CameraManager.swift in Sources */,
