@@ -18,33 +18,27 @@ class FirebaseAuthenticationManager :ProtocolsFirebaseData {
                 completion(.failure(error))
                 return
             }
-            guard let userId = result?.user.uid else {
-                completion(.failure(NSError(domain: "AuthError", code: -1, userInfo: [NSLocalizedDescriptionKey: "UID not found."])))
+            guard let userId = result?.user else {
+                completion(.failure(NSError(
+                            domain: "AuthError",
+                            code: -1,
+                            userInfo: [NSLocalizedDescriptionKey: "User authentication failed."]
+                        )))
                 return
             }
             
-            
-            if let result = result {
-                completion(.success(result))
-               
-            }else{
-                completion(.failure(NSError(
-                    domain: "AuthError",
-                    code: -1,
-                    userInfo: [NSLocalizedDescriptionKey :"Unknown error occurred."]
-                )))
+            self.fetchUserData(userID: userId.uid){ fetchResult in
+                switch fetchResult {
+                case .success(let data):
+                    print("User data fetched: \(data)")
+                    completion(.success(data)) // Retourner les données récupérées
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
+        
         }
     }
-    
-    
-    func fetchUserData(userID:String,competion:@escaping(Result<User,Error>)->Void){
-        
-    }
-    
-    
-    
-    
     
     func createUser(email: String, password: String, firtName: String, lastName: String, completion: @escaping (Result<Any, Error>) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password){ result , error in
@@ -66,7 +60,47 @@ class FirebaseAuthenticationManager :ProtocolsFirebaseData {
                     completion(.failure(error))
                     return
                 }
+                let db = Firestore.firestore()
+                db.collection("users").document(user.uid).setData([
+                    "firstName": firtName,
+                    "lastName": lastName,
+                    "email": email,
+                    "uid": user.uid
+                ]) { error in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else {
+                        self.fetchUserData(userID: user.uid){ fetchResult in
+                            switch fetchResult {
+                            case .success(let data):
+                                print("User data fetched: \(data)")
+                                completion(.success(data)) // Retourner les données récupérées
+                            case .failure(let error):
+                                completion(.failure(error))
+                            }
+                        }
+                    }
+                }
             }
         }
     }
+    
+    
+    func fetchUserData(userID: String, completion: @escaping (Result<[String: Any], Error>) -> Void) {
+        let db = Firestore.firestore()
+        db.collection("users").document(userID).getDocument { document, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = document?.data() else {
+                completion(.failure(NSError(domain: "FirestoreError", code: -1, userInfo: [NSLocalizedDescriptionKey: "No data found."])))
+                return
+            }
+            
+            completion(.success(data))
+        }
+    }
+    
 }
