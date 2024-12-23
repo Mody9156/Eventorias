@@ -27,18 +27,21 @@ struct RegistrationView: View {
                     .foregroundColor(.white)
                 
                 AuthFieldsView(textField: $email, password: $password, text:"email",title:"Email")
-                AuthFieldsView(textField: $email, password: $firstName, text:"firstName",title:"FirstName")
-                AuthFieldsView(textField: $email, password: $lastName, text:"lastName",title:"LastName")
+                AuthFieldsView(textField: $firstName, password: $password, text:"firstName",title:"FirstName")
+                AuthFieldsView(textField: $lastName, password: $password, text:"lastName",title:"LastName")
                 
                 ZStack {
                     Rectangle()
                         .frame(height: 50)
                         .foregroundColor(Color("Button"))
                     
-                    
                     Button {
-                        loginViewModel.registerUser(email: email, password: password, firtName:firstName, lastName:lastName)
-                        dismiss()
+                        if loginViewModel.errorMessage == nil {
+                            loginViewModel.registerUser(email: email, password: password, firtName:firstName, lastName:lastName)
+                            
+                            dismiss()
+                        }
+                        
                     } label: {
                         Image(systemName:"person.fill")
                             .foregroundColor(.white)
