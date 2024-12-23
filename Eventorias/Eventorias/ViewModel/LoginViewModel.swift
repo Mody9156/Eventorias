@@ -45,6 +45,9 @@ class LoginViewModel : ObservableObject {
                     self.email = result.email
                     self.firstName = result.firstName
                     self.lastName = result.lastName
+                    UserDefaults.standard.set(result.email, forKey: "userEmail")
+                    UserDefaults.standard.set(result.firstName, forKey: "userFirstName")
+                    UserDefaults.standard.set(result.lastName, forKey: "userLastName")
                 }
                 self.errorMessage = nil
                 self.isAuthenticated = true
@@ -64,6 +67,10 @@ class LoginViewModel : ObservableObject {
         }
         
         
+    }
+    
+    func result()->String{
+        return "hello \(self.lastName) \(self.firstName) avec le mail \(self.email)"
     }
     
     func registerUser(email:String,password:String,firtName: String,lastName: String) {
