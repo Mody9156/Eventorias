@@ -22,7 +22,6 @@ class LoginViewModel : ObservableObject {
     init(_ callback:@escaping (() -> ()),firebaseAuthenticationManager : ProtocolsFirebaseData = FirebaseAuthenticationManager()) {
         self.onLoginSucceed = callback
         self.firebaseAuthenticationManager = firebaseAuthenticationManager
-     
     }
     
     func login(email : String,password:String) {
@@ -56,10 +55,7 @@ class LoginViewModel : ObservableObject {
                 break
             }
         }
-        
-        
     }
-    
    
     func registerUser(email:String,password:String,firstName: String,lastName: String, picture: String) {
         
@@ -100,5 +96,4 @@ class LoginViewModel : ObservableObject {
             return nil
         }
     }
-
 }

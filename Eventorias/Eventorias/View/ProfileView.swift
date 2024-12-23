@@ -19,8 +19,8 @@ struct ProfileView: View {
         ZStack {
             Color("Background")
                 .ignoresSafeArea()
+            
             VStack{
-                
                 AsyncImage(url: URL(string: "\(String(describing: picture))")) { image in
                     image
                         .resizable()
