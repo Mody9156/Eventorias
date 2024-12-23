@@ -16,6 +16,7 @@ struct RegistrationView: View {
     @State var picture = ""
     @State var selectedItems : [PhotosPickerItem] = []
     @StateObject var loginViewModel : LoginViewModel
+    @State private var savedFilePath: String?
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -31,6 +32,27 @@ struct RegistrationView: View {
                 AuthFieldsView(textField: $lastName, password: $password, text:"lastName",title:"LastName")
                 AuthFieldsView(textField: $firstName, password: $password, text:"firstName",title:"FirstName")
                 AuthFieldsView(textField: $email, password: $password, text:"email",title:"Email")
+                
+                PhotosPicker(selection:$selectedItems,
+                             matching:.images) {
+                    
+                    ZStack {
+                        Rectangle()
+                            .frame(width: 52, height:52)
+                            .foregroundColor(Color("Button"))
+                            .cornerRadius(16)
+                        
+                        Image("attach")
+                    }
+                }.onChange(of: selectedItems) { newValue in
+                    for item in newValue {
+                        Task{
+                            if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data){
+                                savedFilePath = loginViewModel.saveImageToTemporaryDirectory(image: image, fileName: "\(title).jpg")
+                            }
+                        }
+                    }
+                }
                 
                 ZStack {
                     Rectangle()

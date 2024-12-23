@@ -81,4 +81,22 @@ class LoginViewModel : ObservableObject {
             }
         }
     }
+    
+    func saveImageToTemporaryDirectory(image:UIImage, fileName:String) -> String? {
+        guard let data = image.jpegData(compressionQuality: 1.0) else {
+            return nil
+        }
+        
+        let tempDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = tempDir.appendingPathComponent(fileName)
+        
+        do{
+            try data.write(to: fileURL)
+            return fileURL.path
+            
+        }catch{
+            return nil
+        }
+    }
+
 }
