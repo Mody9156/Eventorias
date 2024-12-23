@@ -16,21 +16,7 @@ struct ProfileView: View {
         ZStack {
             Color("Background")
                 .ignoresSafeArea()
-            VStack {
-                if let firstName {
-                    Text(firstName)
-                        .foregroundColor(.white)
-                }
-                if let lastName {
-                    Text(lastName)
-                        .foregroundColor(.white)
-                }
-                if let email {
-                    Text(email)
-                        .foregroundColor(.white)
-                }
-                
-            }
+            
         }
     }
 }
@@ -38,5 +24,48 @@ struct ProfileView: View {
 struct MyPreviewProvider_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView(loginViewModel: LoginViewModel({}))
+    }
+}
+
+struct ExtractedView: View {
+    var name : String
+    var text : String
+    
+    var body: some View {
+//        {
+//            if let firstName {
+//                Text(firstName)
+//                    .foregroundColor(.white)
+//            }
+//            if let lastName {
+//                Text(lastName)
+//                    .foregroundColor(.white)
+//            }
+//            if let email {
+//                Text(email)
+//                    .foregroundColor(.white)
+//            }
+//
+//        }
+        ZStack{
+            Rectangle()
+                .frame(height: 56)
+                .foregroundColor(Color("BackgroundDocument"))
+                .cornerRadius(5)
+            
+            VStack(alignment: .leading) {
+                Text(text)
+                    .font(.custom("Inter", size: 12))
+                    .fontWeight(.regular)
+                    .lineSpacing(4)
+                    .multilineTextAlignment(.leading)
+                    .textCase(.none)
+                    .foregroundColor(.gray)
+                
+                Text(name)
+                    .foregroundColor(.white)
+            }
+            .padding()
+        }
     }
 }
