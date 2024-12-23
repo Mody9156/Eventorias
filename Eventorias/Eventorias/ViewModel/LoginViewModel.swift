@@ -15,15 +15,16 @@ class LoginViewModel : ObservableObject {
     var isAuthenticated : Bool = false
     @Published
     var onLoginSucceed : (() -> ())
-    @Published var email : String? = ""
-    @Published var firstName : String? = ""
-    @Published var lastName : String? = ""
+    @Published var email : String = "fdsg"
+    @Published var firstName : String = "jack"
+    @Published var lastName : String = "fgg"
     
     let firebaseAuthenticationManager : ProtocolsFirebaseData
     
     init(_ callback:@escaping (() -> ()),firebaseAuthenticationManager : ProtocolsFirebaseData = FirebaseAuthenticationManager()) {
         self.onLoginSucceed = callback
         self.firebaseAuthenticationManager = firebaseAuthenticationManager
+     
     }
     
     func login(email : String,password:String) {
@@ -61,6 +62,8 @@ class LoginViewModel : ObservableObject {
                 break
             }
         }
+        
+        
     }
     
     func registerUser(email:String,password:String,firtName: String,lastName: String) {

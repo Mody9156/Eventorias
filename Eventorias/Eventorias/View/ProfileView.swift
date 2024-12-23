@@ -15,19 +15,13 @@ struct ProfileView: View {
             Color("Background")
                 .ignoresSafeArea()
             VStack {
-                if let firstName = loginViewModel.firstName {
-                    Text("firstName : \(firstName)")
-                        .foregroundColor(.white)
-                }
-                if let lastName = loginViewModel.lastName {
-                    Text("lastName : \(lastName)")
-                        .foregroundColor(.white)
-                }
-                if let email = loginViewModel.email {
-                    Text("email : \(email)")
-                        .foregroundColor(.white)
-                }
-              
+                
+                Text("firstName : \(self.loginViewModel.firstName)")
+                    .foregroundColor(.white)
+                Text("lastName : \(self.loginViewModel.lastName)")
+                    .foregroundColor(.white)
+                Text("email : \(self.loginViewModel.email)")
+                    .foregroundColor(.white)
             }
         }
     }
