@@ -15,7 +15,6 @@ struct RegistrationView: View {
     @StateObject var loginViewModel : LoginViewModel
     @Environment(\.dismiss) var dismiss
     
-    
     var body: some View {
         ZStack {
             Color("Background")
@@ -26,9 +25,10 @@ struct RegistrationView: View {
                     .font(.title)
                     .foregroundColor(.white)
                 
-                AuthFieldsView(textField: $email, password: $password, text:"email",title:"Email")
-                AuthFieldsView(textField: $firstName, password: $password, text:"firstName",title:"FirstName")
                 AuthFieldsView(textField: $lastName, password: $password, text:"lastName",title:"LastName")
+                AuthFieldsView(textField: $firstName, password: $password, text:"firstName",title:"FirstName")
+                AuthFieldsView(textField: $email, password: $password, text:"email",title:"Email")
+                
                 
                 ZStack {
                     Rectangle()
