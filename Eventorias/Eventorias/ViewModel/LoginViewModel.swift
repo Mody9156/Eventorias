@@ -58,10 +58,7 @@ class LoginViewModel : ObservableObject {
         
     }
     
-    func result()->String{
-        return "hello \(self.lastName) \(self.firstName) avec le mail \(self.email)"
-    }
-    
+   
     func registerUser(email:String,password:String,firtName: String,lastName: String) {
         
         guard !email.isEmpty, !password.isEmpty else {
