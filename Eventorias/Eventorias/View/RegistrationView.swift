@@ -48,11 +48,13 @@ struct RegistrationView: View {
                     for item in newValue {
                         Task{
                             if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data){
-                                savedFilePath = loginViewModel.saveImageToTemporaryDirectory(image: image, fileName: "\(title).jpg")
+                                savedFilePath = loginViewModel.saveImageToTemporaryDirectory(image: image, fileName: "\(firstName).jpg")
                             }
                         }
                     }
                 }
+                
+                
                 
                 ZStack {
                     Rectangle()
@@ -61,7 +63,14 @@ struct RegistrationView: View {
                     
                     Button {
                         if loginViewModel.errorMessage == nil {
-                            loginViewModel.registerUser(email: email, password: password, firstName:firstName, lastName:lastName, picture: picture)
+                            guard let savedFilePath = savedFilePath else {
+                                return
+                            }
+                            
+                            let fileURL = URL(fileURLWithPath: savedFilePath)
+                            let fileURLString = fileURL.absoluteString
+                            
+                            loginViewModel.registerUser(email: email, password: password, firstName:firstName, lastName:lastName, picture: fileURLString)
                             
                             dismiss()
                         }
