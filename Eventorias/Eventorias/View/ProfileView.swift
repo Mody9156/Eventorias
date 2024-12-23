@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ProfileView: View {
     var body: some View {
-        Text("User profile")
+        VStack {
+            Text("User profile")
+        }
     }
 }
 
