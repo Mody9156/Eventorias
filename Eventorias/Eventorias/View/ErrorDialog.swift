@@ -34,12 +34,20 @@ struct ErrorDialog: View {
                 
                 VStack(alignment: .leading){
                     Text("An error has occurred, please try again later")
-                                .font(.custom("Inter-Regular", size: 16))
-                                .multilineTextAlignment(.center)
-                                .lineSpacing(6)
-                                .frame(width: 164, height: 44)
-                            .foregroundColor(.white)
+                        .font(.custom("Inter-Regular", size: 16))
+                        .multilineTextAlignment(.center)
+                        .lineSpacing(6)
+                        .frame(width: 164, height: 44)
+                        .foregroundColor(.white)
                 }
+                
+                Button(action:{
+                    
+                }){
+                    Text("Try again")
+                        .foregroundColor(.white)
+                }
+                .foregroundColor(Color("Button"))
             }
         }
     }
