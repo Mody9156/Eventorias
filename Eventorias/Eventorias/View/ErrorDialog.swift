@@ -46,16 +46,28 @@ struct ErrorDialog: View {
                 .padding(.bottom)
                 
                 Button(action: {
-                    Task{
-                      try? await listViewModel.getAllProducts()
+                    isLoading = true
+                    defer { isLoading = false }
+                    Task {
+                            try? await listViewModel.getAllProducts()
                     }
                 }) {
-                    Text("Try again")
-                        .frame(width: 159, height: 40)
-                        .background(Color("Button"))
-                        .foregroundColor(.white)
-                        .cornerRadius(4)
+                    if isLoading {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            .frame(width: 159, height: 40)
+                            .background(Color("Button"))
+                            .cornerRadius(4)
+                    } else {
+                        Text("Try again")
+                            .frame(width: 159, height: 40)
+                            .background(Color("Button"))
+                            .foregroundColor(.white)
+                            .cornerRadius(4)
+                    }
                 }
+                .disabled(isLoading) // Désactive le bouton pendant le chargement
+
             }
         }
     }
