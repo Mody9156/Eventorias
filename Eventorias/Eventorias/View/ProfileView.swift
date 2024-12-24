@@ -21,8 +21,6 @@ struct ProfileView: View {
                 .ignoresSafeArea()
             
             VStack{
-                
-                
                 if let lastName, let firstName, let email {
                     InfoSecure(name: "Name", text: "\(firstName) \(lastName)")
                     InfoSecure(name: "E-mail", text: email)
@@ -31,6 +29,8 @@ struct ProfileView: View {
                 Toggle(isOn: $toggle) {
                     Text("Notifications")
                 }
+                
+                Spacer()
             }
             .toolbar {
                 ToolbarItem(placement:.navigationBarLeading) {
