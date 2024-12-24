@@ -35,7 +35,7 @@ struct AddEventView: View {
     @State private var latitude : Double = 0.0
     @State private var longitude : Double = 0.0
     @State var picture = UserDefaults.standard.string(forKey: "userPicture")
-
+    @State var file : String = ""
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -173,7 +173,6 @@ struct AddEventView: View {
                             let fileURL = URL(fileURLWithPath: savedFilePath)
                             var fileURLString = fileURL.absoluteString
                             
-                            var file = ""
                             
                             if fileURLString.isEmpty && !fileURLStringSelected.isEmpty {
                                 file = fileURLStringSelected
@@ -198,7 +197,7 @@ struct AddEventView: View {
                                 picture: picture,
                                 title: title,
                                 dateCreation: date,
-                                poster: fileURLString,
+                                poster: file,
                                 description: description,
                                 hour: stringFromHour,
                                 category: category,
