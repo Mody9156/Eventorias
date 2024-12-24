@@ -221,8 +221,14 @@ struct ToggleViewButton: View {
         }){
             if calendar {
                 Image(systemName:"list.bullet")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .padding(.trailing,30)
             }else {
                 Image(systemName:"rectangle.grid.2x2")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .padding(.trailing,30)
             }
         }
         .controlSize(.large)
