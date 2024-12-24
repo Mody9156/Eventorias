@@ -259,6 +259,8 @@ struct ViewModeList: View {
                                 .lineSpacing(24 - 16)
                                 .fontWeight(.medium)
                                 .multilineTextAlignment(.leading)
+                                .truncationMode(.tail)
+                                .lineLimit(1) 
                                 .foregroundColor(.white)
                             
                             Text("\(listViewModel.formatDateString( entry.dateCreation))")
