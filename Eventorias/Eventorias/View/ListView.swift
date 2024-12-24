@@ -78,7 +78,7 @@ struct ListView: View {
             HStack {
                 ZStack {
                     Rectangle()
-                        .frame(width: isActive ? 300 : 358, height: 35)
+                        .frame(width: 358, height: 35)
                         .foregroundColor(Color("BackgroundDocument"))
                         .cornerRadius(10)
                     
