@@ -158,7 +158,7 @@ struct CustomButton: View {
 //
 struct MyPreviewProvider_Previewss: PreviewProvider {
     static var previews: some View {
-        ListView(listViewModel: ListViewModel())
+        ListView(listViewModel: ListViewModel.mock())
     }
 }
 extension ListViewModel {
@@ -242,10 +242,10 @@ struct ViewModeList: View {
                 ForEach(listViewModel.filterTitle(searchText),id: \.self) { entry in
                     
                     HStack {
-                       
                         AsyncImage(url: URL(string: "\(entry.picture)")) { image in
                             image
                                 .resizable()
+                                .cornerRadius(50)
                         } placeholder: {
                             ProgressView()
                                 
