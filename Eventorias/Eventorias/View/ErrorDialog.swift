@@ -16,6 +16,7 @@ struct ErrorDialog: View {
                 ZStack{
                     Circle()
                         .frame(height: 64)
+                        .foregroundColor(Color("BackgroundDocument"))
                     
                     Image(systemName:"exclamationmark")
                         .foregroundColor(.white)
