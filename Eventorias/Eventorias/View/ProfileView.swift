@@ -51,6 +51,7 @@ struct ProfileView: View {
                             .foregroundColor(.white)
                             .lineSpacing(24.2 - 20)
                             .kerning(0.02)
+
                         
                     }
                     
@@ -59,12 +60,12 @@ struct ProfileView: View {
                             AsyncImage(url: URL(string:  picture)) { image in
                                 image
                                     .resizable()
+                                    .cornerRadius(50)
                             } placeholder: {
                                 ProgressView()
                                 
                             }
-                            .frame(width: 40,height: 40)
-                            .padding()
+                            .frame(width: 48,height: 48)
                         }
                         
                     }
