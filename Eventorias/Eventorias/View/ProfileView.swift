@@ -78,7 +78,7 @@ struct InfoSecure: View {
     var text : String
     
     var body: some View {
-        ZStack{
+        ZStack(alignment: .leading){
             Rectangle()
                 .frame(height: 56)
                 .foregroundColor(Color("BackgroundDocument"))
@@ -99,5 +99,6 @@ struct InfoSecure: View {
             }
            
         }
+        .padding()
     }
 }
