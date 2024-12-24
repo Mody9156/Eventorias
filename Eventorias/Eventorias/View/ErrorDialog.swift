@@ -34,7 +34,6 @@ struct ErrorDialog: View {
                 
                 Text("An error has occurred, please try again later")
                             .font(.custom("Inter-Regular", size: 16))
-                            .foregroundColor(.primary)
                             .multilineTextAlignment(.center)
                             .lineSpacing(6)
                             .frame(width: 164, height: 44)
