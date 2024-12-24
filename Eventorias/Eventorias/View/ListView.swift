@@ -58,7 +58,7 @@ struct ListView: View {
                             } label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 16)
-                                        .fill(.red)
+                                        .fill(Color("Button"))
                                         .frame(width: 56, height: 56)
                                     Image(systemName: "plus")
                                         .foregroundColor(.white)
