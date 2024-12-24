@@ -167,11 +167,28 @@ struct AddEventView: View {
                             }
                             
                             let fileURLSelected = URL(fileURLWithPath: selected)
-                            let fileURLStringSelected = fileURLSelected.absoluteString
+                            var fileURLStringSelected = fileURLSelected.absoluteString
                             
                             let stringFromHour = addEventViewModel.formatHourString(hours)
                             let fileURL = URL(fileURLWithPath: savedFilePath)
-                            let fileURLString = fileURL.absoluteString
+                            var fileURLString = fileURL.absoluteString
+                            
+                            var file = ""
+                            
+                            if fileURLString.isEmpty && !fileURLStringSelected.isEmpty {
+                                file = fileURLStringSelected
+                            }else if !fileURLString.isEmpty && fileURLStringSelected.isEmpty {
+                                file = fileURLString
+                                  
+                                }else {
+                                    file = ""
+                                }
+                            
+                            if !fileURLString.isEmpty{
+                                fileURLStringSelected = ""
+                            }else {
+                                fileURLString = ""
+                            }
                             
                             guard let picture = picture else {
                                 return
