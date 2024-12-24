@@ -22,8 +22,8 @@ struct ErrorDialog: View {
                         .foregroundColor(.white)
                     
                 }
-               
-                Text("Hello, World!")
+                Text("Error")
+                    .foregroundColor(.white)
             }
         }
     }
