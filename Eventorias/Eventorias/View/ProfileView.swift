@@ -20,18 +20,8 @@ struct ProfileView: View {
             Color("Background")
                 .ignoresSafeArea()
             
-            VStack{
-                if let picture {
-                    AsyncImage(url: URL(string:  picture)) { image in
-                        image
-                            .resizable()
-                    } placeholder: {
-                        ProgressView()
-                        
-                    }
-                    .frame(width: 40,height: 40)
-                    .padding()
-                }
+            VStack(alignment: .leading){
+               
                 
                 if let lastName, let firstName, let email {
                     InfoSecure(name: "Name", text: "\(firstName) \(lastName)")
@@ -46,6 +36,20 @@ struct ProfileView: View {
                 ToolbarItem(placement:.navigationBarLeading) {
                     Text("User Profile")
                         .foregroundColor(.white)
+                        
+                }
+                ToolbarItem(placement:.navigationBarTrailing) {
+                    if let picture {
+                        AsyncImage(url: URL(string:  picture)) { image in
+                            image
+                                .resizable()
+                        } placeholder: {
+                            ProgressView()
+                            
+                        }
+                        .frame(width: 40,height: 40)
+                        .padding()
+                    }
                         
                 }
             }
