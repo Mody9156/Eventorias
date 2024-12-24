@@ -81,33 +81,41 @@ struct UserDetailView: View {
                         
                         VStack(alignment: .leading) {
                             HStack {
-                                VStack (alignment: .leading){
+                                VStack(alignment: .leading) {
                                     Text(eventEntry.place.street)
                                         .foregroundColor(.white)
                                         .font(.custom("Inter-Medium", size: 16))
-                                        .lineSpacing(24 - 16)
+                                        .fontWeight(.medium) // Appliquer le poids de la police
+                                        .lineSpacing(24 - 16) // Espacement des lignes
                                         .multilineTextAlignment(.leading)
                                     
                                     HStack {
                                         Text("\(eventEntry.place.city),")
                                             .foregroundColor(.white)
                                             .font(.custom("Inter-Medium", size: 16))
+                                            .fontWeight(.medium)
                                         Text("\(eventEntry.place.postalCode),")
                                             .foregroundColor(.white)
                                             .font(.custom("Inter-Medium", size: 16))
+                                            .fontWeight(.medium)
                                         Text(eventEntry.place.country)
                                             .foregroundColor(.white)
                                             .font(.custom("Inter-Medium", size: 16))
+                                            .fontWeight(.medium)
                                     }
                                 }
                                 .frame(width: 167, height: 72)
+
                                 
                                 Spacer()
                                 
                                 if let picture = maps {
                                     Image(uiImage: picture)
                                         .cornerRadius(20)
+                                        .padding()
                                 }
+                                
+                                
                             }.onAppear {
                                 fetchMapData()
                             }
