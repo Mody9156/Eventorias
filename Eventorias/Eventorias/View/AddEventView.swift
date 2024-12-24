@@ -43,6 +43,7 @@ struct AddEventView: View {
     }()
     
     var indexCategory = ["Music","Food","Book","Conference","Exhibition","Charity","Film"]
+    @State private var selectedCategory = "Music"
     
     var body: some View {
         ZStack {
@@ -76,14 +77,14 @@ struct AddEventView: View {
                         AddressCollect(text: "Country", textField: $country, placeholder: "Country")
                     }
                     
-                    Picker("Category", selection:$category) {
+                    Picker("Category", selection:$selectedCategory) {
                         ForEach(indexCategory,id:\.self){ index in
                             Text(index)
                                 .tag(index)
                                 .foregroundColor(.white)
                         }
                     }
-                    
+                    .pickerStyle(.wheel)
                     
                     HStack(alignment: .center){
                         Button(action:{
