@@ -29,6 +29,7 @@ struct ProfileView: View {
                 Toggle(isOn: $toggle) {
                     Text("Notifications")
                 }
+                .padding()
                 
                 Spacer()
             }
