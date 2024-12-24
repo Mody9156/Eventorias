@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ErrorDialog: View {
     @StateObject var listViewModel : ListViewModel
-    
+    @State private var isLoading = false
+
     var body: some View {
         ZStack {
             Color("Background")
@@ -45,7 +46,9 @@ struct ErrorDialog: View {
                 .padding(.bottom)
                 
                 Button(action: {
-                    // Action du bouton
+                    Task{
+                      try? await listViewModel.getAllProducts()
+                    }
                 }) {
                     Text("Try again")
                         .frame(width: 159, height: 40)
@@ -53,7 +56,6 @@ struct ErrorDialog: View {
                         .foregroundColor(.white)
                         .cornerRadius(4)
                 }
-
             }
         }
     }
@@ -61,6 +63,6 @@ struct ErrorDialog: View {
 
 struct ErrorDialog_Previews: PreviewProvider {
     static var previews: some View {
-        ErrorDialog()
+        ErrorDialog(listViewModel: ListViewModel())
     }
 }

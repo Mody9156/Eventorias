@@ -71,7 +71,7 @@ struct ListView: View {
                     }
                 }
                 else{
-                    ErrorDialog()
+                    ErrorDialog(listViewModel: listViewModel)
                         .padding()
                         .transition(.opacity)
                 }
