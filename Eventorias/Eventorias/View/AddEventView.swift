@@ -14,7 +14,7 @@ import AVFoundation
 struct AddEventView: View {
     @State var title = ""
     @State var description = ""
-    @State private var date : Date = Date()
+    @State private var date : Date = .now
     @State private var imageURL: URL? = nil
     @State private var showCamera = false
     @State private var selectedImage: UIImage?
@@ -25,7 +25,7 @@ struct AddEventView: View {
     @State var city : String = ""
     @State var postalCode : String = ""
     @State var country : String = ""
-    @State var hours : Date = Date()
+    @State var hours : Date = .now
     @State private var savedFilePath: String?
     @State var category : String = ""
     @StateObject var addEventViewModel : AddEventViewModel
@@ -57,17 +57,29 @@ struct AddEventView: View {
                     CustomTexField(text: $description, infos: "Description", placeholder: "Tap here entrer your description")
                     
                     HStack {
-                        DatePicker("", selection: $date, displayedComponents: .date)
-                            .datePickerStyle(.automatic)
-                            .foregroundColor(.white)
-                            .padding(.leading, 5)
-                            .labelsHidden()
+                        ZStack {
+                            Rectangle()
+                                .frame(height:56)
+                                .foregroundColor(Color("BackgroundDocument"))
+                                .cornerRadius(5)
+                            DatePicker("", selection: $date, displayedComponents: .date)
+                                .datePickerStyle(.automatic)
+                                .foregroundColor(.white)
+                                .padding(.leading, 5)
+                                .labelsHidden()
+                        }
                         
-                        DatePicker("HH:MM", selection: $hours, displayedComponents: .hourAndMinute)
+                        ZStack {
+                            Rectangle()
+                                .frame(height:56)
+                                .foregroundColor(Color("BackgroundDocument"))
+                                .cornerRadius(5)
+                        DatePicker("", selection: $hours, displayedComponents: .hourAndMinute)
                             .datePickerStyle(.automatic)
                             .foregroundColor(.white)
                             .padding(.leading, 5)
                             .labelsHidden()
+                    }
                     }
                     
                     VStack{
@@ -84,7 +96,7 @@ struct AddEventView: View {
                                 .foregroundColor(.white)
                         }
                     }
-                    .pickerStyle(.wheel)
+                    .pickerStyle(.segmented)
                     
                     HStack(alignment: .center){
                         Button(action:{
