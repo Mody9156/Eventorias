@@ -13,7 +13,7 @@ struct ListView: View {
         case searchable
     }
     @State var searchText : String = ""
-    @State var isAactive : Bool = false
+    @State var isActive : Bool = false
     @FocusState var focused : focusedTexfield?
     @StateObject var listViewModel : ListViewModel
     @State var tryEvent : Bool = false
@@ -78,7 +78,7 @@ struct ListView: View {
             HStack {
                 ZStack {
                     Rectangle()
-                        .frame(width: isAactive ? 300 : 358, height: 35)
+                        .frame(width: isActive ? 300 : 358, height: 35)
                         .foregroundColor(Color("BackgroundDocument"))
                         .cornerRadius(10)
                     
@@ -90,10 +90,10 @@ struct ListView: View {
                         TextField("", text: $searchText,onEditingChanged: { changed in
                             
                             if changed {
-                                isAactive = true
+                                isActive = true
                                 
                             }else{
-                                isAactive = false
+                                isActive = false
                             }
                         })
                         .font(.system(size: 22, weight: .light, design: .default))
@@ -155,7 +155,7 @@ struct CustomButton: View {
         }
     }
 }
-//
+
 struct MyPreviewProvider_Previewss: PreviewProvider {
     static var previews: some View {
         ListView(listViewModel: ListViewModel.mock())
@@ -175,14 +175,14 @@ extension ListViewModel {
 struct ViewCalendar: View {
     @Binding var searchText : String
     @StateObject var listViewModel : ListViewModel
-
+    
     var body: some View {
         ScrollView {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
                 ForEach(listViewModel.filterTitle(searchText), id: \.self) { entry in
                     NavigationLink(destination: {
                         AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate()) // Paris
-
+                        
                     }) {
                         ZStack {
                             AsyncImage(url: URL(string: "\(entry.poster)")) { image in
@@ -235,7 +235,7 @@ struct ToggleViewButton: View {
 struct ViewModeList: View {
     @Binding var searchText : String
     @StateObject var listViewModel : ListViewModel
-
+    
     var body: some View {
         List {
             Section {
@@ -248,11 +248,11 @@ struct ViewModeList: View {
                                 .cornerRadius(50)
                         } placeholder: {
                             ProgressView()
-                                
+                            
                         }
                         .frame(width: 40,height: 40)
                         .padding()
-                    
+                        
                         VStack(alignment:.leading){
                             Text(entry.title)
                                 .font(.custom("Inter-Medium", size: 16))
@@ -260,7 +260,7 @@ struct ViewModeList: View {
                                 .fontWeight(.medium)
                                 .multilineTextAlignment(.leading)
                                 .truncationMode(.tail)
-                                .lineLimit(1) 
+                                .lineLimit(1)
                                 .foregroundColor(.white)
                             
                             Text("\(listViewModel.formatDateString( entry.dateCreation))")
@@ -275,7 +275,7 @@ struct ViewModeList: View {
                         
                         AsyncImage(url:URL(string:"\(entry.poster)")){ image in
                             image
-                            .resizable()
+                                .resizable()
                             
                         } placeholder:{
                             ProgressView()
