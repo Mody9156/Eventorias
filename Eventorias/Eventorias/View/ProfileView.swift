@@ -43,7 +43,11 @@ struct ProfileView: View {
                 }
             }
             .toolbar {
-                
+                ToolbarItem(placement:.navigationBarLeading) {
+                    Text("User Profile")
+                        .foregroundColor(.white)
+                        
+                }
             }
         }
     }
