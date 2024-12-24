@@ -13,7 +13,11 @@ struct ErrorDialog: View {
             Color("Background")
                 .ignoresSafeArea()
             VStack {
-                Image(systemName:"exclamationmark")
+                ZStack{
+                    Image(systemName:"exclamationmark")
+                    
+                }
+               
                 Text("Hello, World!")
             }
         }
