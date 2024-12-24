@@ -45,8 +45,12 @@ struct ProfileView: View {
                 }
                 .toolbar {
                     ToolbarItem(placement:.navigationBarLeading) {
-                        Text("User Profile")
+                        Text("User profile")
+                            .font(.custom("Inter", size: 20))
+                            .fontWeight(.semibold)
                             .foregroundColor(.white)
+                            .lineSpacing(24.2 - 20)
+                            .kerning(0.02)
                         
                     }
                     
