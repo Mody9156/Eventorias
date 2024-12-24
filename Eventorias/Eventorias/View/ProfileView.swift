@@ -16,52 +16,54 @@ struct ProfileView: View {
     @State var toggle : Bool = false
     
     var body: some View {
-        ZStack {
-            Color("Background")
-                .ignoresSafeArea()
-            
-            VStack{
-                if let lastName, let firstName, let email {
-                    InfoSecure(name: "Name", text: "\(firstName) \(lastName)")
-                    InfoSecure(name: "E-mail", text: email)
-                }
+        NavigationStack {
+            ZStack {
+                Color("Background")
+                    .ignoresSafeArea()
                 
-                HStack {
-                    Toggle("",isOn: $toggle)
-                     .labelsHidden()
-                     .tint(Color("Button"))
-                     .padding()
-                    
-                    Text("Notifications")
-                    .font(.custom("Inter-Regular", size: 20))
-                    .fontWeight(.bold)
-                    .lineSpacing(6)
-                    .multilineTextAlignment(.leading)
-                    .foregroundColor(.white)
-                    Spacer()
-                }
-                Spacer()
-            }
-            .toolbar {
-                ToolbarItem(placement:.navigationBarLeading) {
-                    Text("User Profile")
-                        .foregroundColor(.white)
-                    
-                }
-                
-                ToolbarItem(placement:.navigationBarTrailing) {
-                    if let picture {
-                        AsyncImage(url: URL(string:  picture)) { image in
-                            image
-                                .resizable()
-                        } placeholder: {
-                            ProgressView()
-                            
-                        }
-                        .frame(width: 40,height: 40)
-                        .padding()
+                VStack{
+                    if let lastName, let firstName, let email {
+                        InfoSecure(name: "Name", text: "\(firstName) \(lastName)")
+                        InfoSecure(name: "E-mail", text: email)
                     }
                     
+                    HStack {
+                        Toggle("",isOn: $toggle)
+                         .labelsHidden()
+                         .tint(Color("Button"))
+                         .padding()
+                        
+                        Text("Notifications")
+                        .font(.custom("Inter-Regular", size: 20))
+                        .fontWeight(.bold)
+                        .lineSpacing(6)
+                        .multilineTextAlignment(.leading)
+                        .foregroundColor(.white)
+                        Spacer()
+                    }
+                    Spacer()
+                }
+                .toolbar {
+                    ToolbarItem(placement:.navigationBarLeading) {
+                        Text("User Profile")
+                            .foregroundColor(.white)
+                        
+                    }
+                    
+                    ToolbarItem(placement:.navigationBarTrailing) {
+                        if let picture {
+                            AsyncImage(url: URL(string:  picture)) { image in
+                                image
+                                    .resizable()
+                            } placeholder: {
+                                ProgressView()
+                                
+                            }
+                            .frame(width: 40,height: 40)
+                            .padding()
+                        }
+                        
+                    }
                 }
             }
         }
