@@ -28,12 +28,12 @@ struct ProfileView: View {
                 
                 HStack {
                     Toggle("",isOn: $toggle)
-                     .padding()
                      .labelsHidden()
-                    Spacer()
+                     .tint(.red)
+                     .padding()
                     Text("Notifications")
+                    Spacer()
                 }
-                
                 Spacer()
             }
             .toolbar {
