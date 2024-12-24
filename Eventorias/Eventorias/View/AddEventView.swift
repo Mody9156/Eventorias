@@ -173,8 +173,12 @@ struct AddEventView: View {
                             let fileURL = URL(fileURLWithPath: savedFilePath)
                             let fileURLString = fileURL.absoluteString
                             
+                            guard let picture = picture else {
+                                return
+                            }
+                            
                             addEventViewModel.saveToFirestore(
-                                picture: fileURLStringSelected,
+                                picture: picture,
                                 title: title,
                                 dateCreation: date,
                                 poster: fileURLString,
