@@ -41,7 +41,6 @@ struct ListView: View {
                     Spacer()
                     ToggleViewButton(calendar: $calendar)
                 }
-                if listViewModel.eventEntry.isEmpty{
 
                 ZStack(alignment: .bottomTrailing){
                     
@@ -69,10 +68,7 @@ struct ListView: View {
                         }
                     }
                 }
-                }
-                else{
-                ErrorDialog()
-                }
+                
             }.toolbar(content: myTollBarContent)
         }
        
@@ -185,6 +181,7 @@ struct ViewCalendar: View {
         ScrollView {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
                 ForEach(listViewModel.filterTitle(searchText), id: \.self) { entry in
+                   
                     NavigationLink(destination: {
                         AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
                     }) {

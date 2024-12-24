@@ -21,6 +21,8 @@ class ListViewModel : ObservableObject {
     var errorMessage :String? = ""
     @Published
     var eventEntry : [EventEntry] = []
+    @Published
+    var isError : Bool = false
     
     private var eventListRepresentable : EventListRepresentable
     
@@ -35,7 +37,12 @@ class ListViewModel : ObservableObject {
     
     @MainActor
     func getAllProducts() async throws {
-        self.eventEntry = try await eventListRepresentable.getAllProducts()
+        do {
+            self.eventEntry = try await eventListRepresentable.getAllProducts()
+            self.isError = false
+        }catch{
+            self.isError = true
+        }
     }
     
     @MainActor
