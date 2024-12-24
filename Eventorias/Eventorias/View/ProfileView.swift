@@ -20,8 +20,8 @@ struct ProfileView: View {
             Color("Background")
                 .ignoresSafeArea()
             
-            VStack(alignment: .leading){
-               
+            VStack{
+                
                 
                 if let lastName, let firstName, let email {
                     InfoSecure(name: "Name", text: "\(firstName) \(lastName)")
@@ -36,8 +36,9 @@ struct ProfileView: View {
                 ToolbarItem(placement:.navigationBarLeading) {
                     Text("User Profile")
                         .foregroundColor(.white)
-                        
+                    
                 }
+                
                 ToolbarItem(placement:.navigationBarTrailing) {
                     if let picture {
                         AsyncImage(url: URL(string:  picture)) { image in
@@ -50,7 +51,7 @@ struct ProfileView: View {
                         .frame(width: 40,height: 40)
                         .padding()
                     }
-                        
+                    
                 }
             }
         }
@@ -62,7 +63,7 @@ struct MyPreviewProvider_Previews: PreviewProvider {
     
     static var previews: some View {
         VStack {
-           
+            
             ProfileView(loginViewModel: LoginViewModel({}),
                         email: "john.doe@example.com",
                         firstName: "John",
@@ -82,9 +83,10 @@ struct InfoSecure: View {
                 .frame(height: 56)
                 .foregroundColor(Color("BackgroundDocument"))
                 .cornerRadius(5)
+                .padding()
             
             VStack(alignment: .leading) {
-                Text(text)
+                Text(name)
                     .font(.custom("Inter", size: 12))
                     .fontWeight(.regular)
                     .lineSpacing(4)
@@ -92,10 +94,10 @@ struct InfoSecure: View {
                     .textCase(.none)
                     .foregroundColor(.gray)
                 
-                Text(name)
+                Text(text)
                     .foregroundColor(.white)
             }
-            .padding()
+           
         }
     }
 }
