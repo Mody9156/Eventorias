@@ -9,12 +9,12 @@ import SwiftUI
 import CoreLocation
 
 struct ListView: View {
-    enum focusedTexfield : Hashable {
+    enum focusedTextfield : Hashable {
         case searchable
     }
     @State var searchText : String = ""
     @State var isActive : Bool = false
-    @FocusState var focused : focusedTexfield?
+    @FocusState var focused : focusedTextfield?
     @StateObject var listViewModel : ListViewModel
     @State var tryEvent : Bool = false
     @State var calendar : Bool = false
