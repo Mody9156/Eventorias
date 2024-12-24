@@ -13,7 +13,8 @@ struct ErrorDialog: View {
             Color("Background")
                 .ignoresSafeArea()
             VStack {
-                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+                Image(systemName:"exclamationmark")
+                Text("Hello, World!")
             }
         }
     }
