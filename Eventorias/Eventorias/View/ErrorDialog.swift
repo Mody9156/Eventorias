@@ -32,12 +32,14 @@ struct ErrorDialog: View {
                     .multilineTextAlignment(.center)
                     .kerning(0.02)
                 
-                Text("An error has occurred, please try again later")
-                            .font(.custom("Inter-Regular", size: 16))
-                            .multilineTextAlignment(.center)
-                            .lineSpacing(6)
-                            .frame(width: 164, height: 44)
+                VStack(alignment: .leading){
+                    Text("An error has occurred, please try again later")
+                                .font(.custom("Inter-Regular", size: 16))
+                                .multilineTextAlignment(.center)
+                                .lineSpacing(6)
+                                .frame(width: 164, height: 44)
                             .foregroundColor(.white)
+                }
             }
         }
     }
