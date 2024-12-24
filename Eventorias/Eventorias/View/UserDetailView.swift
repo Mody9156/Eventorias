@@ -95,10 +95,12 @@ struct UserDetailView: View {
                                             .foregroundColor(.white)
                                             .font(.custom("Inter-Medium", size: 16))
                                             .fontWeight(.medium)
+                                            .lineLimit(1)
                                         Text("\(eventEntry.place.postalCode),")
                                             .foregroundColor(.white)
                                             .font(.custom("Inter-Medium", size: 16))
                                             .fontWeight(.medium)
+                                            .lineLimit(1)
                                     }
                                     
                                     HStack{
@@ -106,6 +108,7 @@ struct UserDetailView: View {
                                             .foregroundColor(.white)
                                             .font(.custom("Inter-Medium", size: 16))
                                             .fontWeight(.medium)
+                                            .lineLimit(1)
                                     }
                                 }
                           
