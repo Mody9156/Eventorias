@@ -29,9 +29,15 @@ struct ProfileView: View {
                 HStack {
                     Toggle("",isOn: $toggle)
                      .labelsHidden()
-                     .tint(.red)
+                     .tint(Color("Button"))
                      .padding()
+                    
                     Text("Notifications")
+                    .font(.custom("Inter-Regular", size: 20))
+                    .fontWeight(.bold)
+                    .lineSpacing(6)
+                    .multilineTextAlignment(.leading)
+                    .foregroundColor(.white)
                     Spacer()
                 }
                 Spacer()
