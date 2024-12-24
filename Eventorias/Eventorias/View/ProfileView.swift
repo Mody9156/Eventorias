@@ -26,10 +26,13 @@ struct ProfileView: View {
                     InfoSecure(name: "E-mail", text: email)
                 }
                 
-                Toggle(isOn: $toggle) {
+                HStack {
+                    Toggle("",isOn: $toggle)
+                     .padding()
+                     .labelsHidden()
+                    Spacer()
                     Text("Notifications")
                 }
-                .padding()
                 
                 Spacer()
             }
