@@ -19,11 +19,17 @@ struct ErrorDialog: View {
                         .foregroundColor(Color("BackgroundDocument"))
                     
                     Image(systemName:"exclamationmark")
+                        .resizable()
                         .foregroundColor(.white)
+                        .frame(width: 5, height: 24)
                     
                 }
                 Text("Error")
+                    .font(.custom("Inter-SemiBold", size: 20))
                     .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                    .kerning(0.02)
+
             }
         }
     }
