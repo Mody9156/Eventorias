@@ -14,6 +14,8 @@ struct ErrorDialog: View {
                 .ignoresSafeArea()
             VStack {
                 ZStack{
+                    Circle()
+                        
                     Image(systemName:"exclamationmark")
                     
                 }
