@@ -128,7 +128,6 @@ struct ListView: View {
     }
 }
 
-
 struct CustomButton: View {
     @StateObject var listViewModel : ListViewModel
     @Binding var tryEvent : Bool
@@ -164,7 +163,7 @@ struct MyPreviewProvider_Previewss: PreviewProvider {
 extension ListViewModel {
     static func mock() -> ListViewModel {
         let viewModel = ListViewModel()
-        // Remplissez ici avec des données simulées
+        
         viewModel.eventEntry = [
             EventEntry( picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Kyrie_Irving_-_51831772061_01_%28cropped%29.jpg/1024px-Kyrie_Irving_-_51831772061_01_%28cropped%29.jpg", title: "NBA", dateCreation: Date.now, poster: "https://img.freepik.com/photos-gratuite/vaisseau-spatial-orbite-autour-planete-dans-superbe-decor-spatial-genere-par-ia_188544-15610.jpg?t=st=1735041951~exp=1735045551~hmac=9a2fa593903e1ecc1fb77937beca379c4f593ad080b7107e495c9cbb4ec72915&w=1800", description: "Une image est une représentation visuelle, voire mentale, de quelque chose (objet, être vivant ou concept).Elle peut être naturelle (ombre, reflet) ou artificielle (sculpture, peinture, photographie), visuelle ou non, tangible ou conceptuelle (métaphore), elle peut entretenir un rapport de ressemblance directe avec son modèle ou au contraire y être liée par un rapport plus symbolique.Pour la sémiologie ou sémiotique, qui a développé tout un secteur de sémiotique visuelle, l'image est conçue comme produite par un langage spécifique.", hour: "12:33", category: "Music", place: Address(street: "112 Av. de la République", city: "Montgeron", postalCode: "91230", country: "FRANCE", localisation: GeoPoint(latitude: 48.862725, longitude: 2.287592)))
         ]
@@ -181,8 +180,7 @@ struct ViewCalendar: View {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
                 ForEach(listViewModel.filterTitle(searchText), id: \.self) { entry in
                     NavigationLink(destination: {
-                        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate()) // Paris
-                        
+                        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
                     }) {
                         ZStack {
                             AsyncImage(url: URL(string: "\(entry.poster)")) { image in
@@ -207,7 +205,6 @@ struct ViewCalendar: View {
                                 .lineLimit(1)
                                 .foregroundColor(.white)
                         }
-                        
                     }
                 }
             }
@@ -224,7 +221,6 @@ struct ToggleViewButton: View {
         }){
             if calendar {
                 Image(systemName:"list.bullet")
-                
             }else {
                 Image(systemName:"rectangle.grid.2x2")
             }
@@ -245,7 +241,7 @@ struct ViewModeList: View {
                 ForEach(listViewModel.filterTitle(searchText),id: \.self) { entry in
                     
                     HStack {
-                        AsyncImage(url: URL(string: "\(entry.picture)")) { image in
+                        AsyncImage(url: URL(string: entry.picture)) { image in
                             image
                                 .resizable()
                                 .cornerRadius(50)
@@ -276,7 +272,7 @@ struct ViewModeList: View {
                         
                         Spacer()
                         
-                        AsyncImage(url:URL(string:"\(entry.poster)")){ image in
+                        AsyncImage(url:URL(string:entry.poster)){ image in
                             image
                                 .resizable()
                             
@@ -286,21 +282,18 @@ struct ViewModeList: View {
                         .frame(width: 136, height: 80)
                         .cornerRadius(12)
                         
-                        
                     }.overlay(NavigationLink(destination: {
                         UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate())
                     }, label: {
                         EmptyView()
                     }))
-                    
                 }
             }
             .listRowBackground(
                 RoundedRectangle(cornerRadius:16)
                     .fill(Color("BackgroundDocument"))
                     .frame(width: 358, height: 80)
-                    .padding(2)
-            )
+                    .padding(2))
         }
         .listStyle(GroupedListStyle())
         .scrollContentBackground(.hidden)
