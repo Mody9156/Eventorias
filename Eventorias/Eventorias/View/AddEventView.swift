@@ -34,7 +34,8 @@ struct AddEventView: View {
     @StateObject var locationCoordinate : LocationCoordinate
     @State private var latitude : Double = 0.0
     @State private var longitude : Double = 0.0
-    
+    @State var picture = UserDefaults.standard.string(forKey: "userPicture")
+
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -293,9 +294,13 @@ struct AddressCollect: View {
     }
     
 }
-//
-//struct AddEventView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate(coordinates: CLLocationCoordinate2D))
-//    }
-//}
+
+struct AddEventView_Previews: PreviewProvider {
+    static var previews: some View {
+        AddEventView(
+            addEventViewModel: AddEventViewModel(),
+            locationCoordinate: LocationCoordinate()
+            )
+        
+    }
+}
