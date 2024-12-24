@@ -18,6 +18,7 @@ struct ErrorDialog: View {
                         .frame(height: 64)
                     
                     Image(systemName:"exclamationmark")
+                        .foregroundColor(.white)
                     
                 }
                
