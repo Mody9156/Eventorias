@@ -29,7 +29,12 @@ struct ErrorDialog: View {
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .kerning(0.02)
-
+                
+                Text("An error has occurred, please try again later")
+                            .font(.custom("Inter-Regular", size: 16))
+                            .foregroundColor(.primary)
+                            .multilineTextAlignment(.center)
+                            .lineSpacing(6)
             }
         }
     }
