@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ErrorDialog: View {
+    @StateObject var listViewModel : ListViewModel
+    
     var body: some View {
         ZStack {
             Color("Background")

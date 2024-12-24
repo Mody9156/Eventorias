@@ -35,43 +35,49 @@ struct ListView: View {
                 .ignoresSafeArea()
             
             VStack(alignment: .leading) {
-                HStack {
-                    CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
-                        .padding()
-                    Spacer()
-                    ToggleViewButton(calendar: $calendar)
-                }
-
-                ZStack(alignment: .bottomTrailing){
-                    
-                    if calendar {
-                        ViewCalendar(searchText: $searchText, listViewModel: listViewModel)
-                    }else{
-                        ViewModeList(searchText: $searchText, listViewModel: listViewModel)
-                    }
-                    ZStack {
-                        HStack{
-                            Spacer()
-                            NavigationLink {
-                                AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
-                                
-                            } label: {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 16)
-                                        .fill(Color("Button"))
-                                        .frame(width: 56, height: 56)
-                                    Image(systemName: "plus")
-                                        .foregroundColor(.white)
-                                }
-                            }
+                if !listViewModel.isError{
+                    HStack {
+                        CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
                             .padding()
+                        Spacer()
+                        ToggleViewButton(calendar: $calendar)
+                    }
+                    
+                    ZStack(alignment: .bottomTrailing){
+                        
+                        if calendar {
+                            ViewCalendar(searchText: $searchText, listViewModel: listViewModel)
+                        }else{
+                            ViewModeList(searchText: $searchText, listViewModel: listViewModel)
+                        }
+                        ZStack {
+                            HStack{
+                                Spacer()
+                                NavigationLink {
+                                    AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
+                                    
+                                } label: {
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 16)
+                                            .fill(Color("Button"))
+                                            .frame(width: 56, height: 56)
+                                        Image(systemName: "plus")
+                                            .foregroundColor(.white)
+                                    }
+                                }
+                                .padding()
+                            }
                         }
                     }
                 }
-                
+                else{
+                    ErrorDialog()
+                        .padding()
+                        .transition(.opacity)
+                }
             }.toolbar(content: myTollBarContent)
         }
-       
+        
     }
     
     @ToolbarContentBuilder
@@ -181,7 +187,7 @@ struct ViewCalendar: View {
         ScrollView {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
                 ForEach(listViewModel.filterTitle(searchText), id: \.self) { entry in
-                   
+                    
                     NavigationLink(destination: {
                         AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
                     }) {
