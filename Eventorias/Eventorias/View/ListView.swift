@@ -41,7 +41,8 @@ struct ListView: View {
                     Spacer()
                     ToggleViewButton(calendar: $calendar)
                 }
-                
+                if listViewModel.eventEntry.isEmpty{
+
                 ZStack(alignment: .bottomTrailing){
                     
                     if calendar {
@@ -68,8 +69,13 @@ struct ListView: View {
                         }
                     }
                 }
+                }
+                else{
+                ErrorDialog()
+                }
             }.toolbar(content: myTollBarContent)
         }
+       
     }
     
     @ToolbarContentBuilder
