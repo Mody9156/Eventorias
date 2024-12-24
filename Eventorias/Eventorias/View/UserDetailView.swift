@@ -85,10 +85,11 @@ struct UserDetailView: View {
                                     Text(eventEntry.place.street)
                                         .foregroundColor(.white)
                                         .font(.custom("Inter-Medium", size: 16))
-                                        .fontWeight(.medium) // Appliquer le poids de la police
-                                        .lineSpacing(24 - 16) // Espacement des lignes
+                                        .fontWeight(.medium)
                                         .multilineTextAlignment(.leading)
-                                    
+                                        .lineLimit(2)
+                                        .truncationMode(.tail)
+
                                     HStack {
                                         Text("\(eventEntry.place.city),")
                                             .foregroundColor(.white)
@@ -98,13 +99,16 @@ struct UserDetailView: View {
                                             .foregroundColor(.white)
                                             .font(.custom("Inter-Medium", size: 16))
                                             .fontWeight(.medium)
+                                    }
+                                    
+                                    HStack{
                                         Text(eventEntry.place.country)
                                             .foregroundColor(.white)
                                             .font(.custom("Inter-Medium", size: 16))
                                             .fontWeight(.medium)
                                     }
                                 }
-                                .frame(width: 167, height: 72)
+                          
 
                                 
                                 Spacer()
