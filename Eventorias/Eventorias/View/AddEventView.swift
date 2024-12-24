@@ -57,29 +57,19 @@ struct AddEventView: View {
                     CustomTexField(text: $description, infos: "Description", placeholder: "Tap here entrer your description")
                     
                     HStack {
-                        ZStack {
-                            Rectangle()
-                                .frame(height:56)
-                                .foregroundColor(Color("BackgroundDocument"))
-                                .cornerRadius(5)
-                            DatePicker("", selection: $date, displayedComponents: .date)
-                                .datePickerStyle(.automatic)
-                                .foregroundColor(.white)
-                                .padding(.leading, 5)
-                                .labelsHidden()
-                        }
                         
-                        ZStack {
-                            Rectangle()
-                                .frame(height:56)
-                                .foregroundColor(Color("BackgroundDocument"))
-                                .cornerRadius(5)
+                        DatePicker("", selection: $date, displayedComponents: .date)
+                            .datePickerStyle(.automatic)
+                            .foregroundColor(.white)
+                            .padding(.leading, 5)
+                            .labelsHidden()
+                        
                         DatePicker("", selection: $hours, displayedComponents: .hourAndMinute)
                             .datePickerStyle(.automatic)
                             .foregroundColor(.white)
                             .padding(.leading, 5)
                             .labelsHidden()
-                    }
+                        
                     }
                     
                     VStack{
@@ -191,10 +181,10 @@ struct AddEventView: View {
                                 file = fileURLStringSelected
                             }else if !fileURLString.isEmpty && fileURLStringSelected.isEmpty {
                                 file = fileURLString
-                                  
-                                }else {
-                                    file = ""
-                                }
+                                
+                            }else {
+                                file = ""
+                            }
                             
                             if !fileURLString.isEmpty{
                                 fileURLStringSelected = ""
@@ -333,7 +323,7 @@ struct AddEventView_Previews: PreviewProvider {
         AddEventView(
             addEventViewModel: AddEventViewModel(),
             locationCoordinate: LocationCoordinate()
-            )
+        )
         
     }
 }
