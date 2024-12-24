@@ -9,12 +9,12 @@ import SwiftUI
 import CoreLocation
 
 struct ListView: View {
-    enum focusedTexfield : Hashable {
+    enum focusedTextfield : Hashable {
         case searchable
     }
     @State var searchText : String = ""
-    @State var isAactive : Bool = false
-    @FocusState var focused : focusedTexfield?
+    @State var isActive : Bool = false
+    @FocusState var focused : focusedTextfield?
     @StateObject var listViewModel : ListViewModel
     @State var tryEvent : Bool = false
     @State var calendar : Bool = false
@@ -35,41 +35,49 @@ struct ListView: View {
                 .ignoresSafeArea()
             
             VStack(alignment: .leading) {
-                HStack {
-                    CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
-                        .padding()
-                    Spacer()
-                    ToggleViewButton(calendar: $calendar)
-                }
-                
-                ZStack(alignment: .bottomTrailing){
-                    
-                    if calendar {
-                        ViewCalendar(searchText: $searchText, listViewModel: listViewModel)
-                    }else{
-                        ViewModeList(searchText: $searchText, listViewModel: listViewModel)
-                    }
-                    ZStack {
-                        HStack{
-                            Spacer()
-                            NavigationLink {
-                                AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
-                                
-                            } label: {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 16)
-                                        .fill(.red)
-                                        .frame(width: 56, height: 56)
-                                    Image(systemName: "plus")
-                                        .foregroundColor(.white)
-                                }
-                            }
+                if !listViewModel.isError{
+                    HStack {
+                        CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
                             .padding()
+                        Spacer()
+                        ToggleViewButton(calendar: $calendar)
+                    }
+                    
+                    ZStack(alignment: .bottomTrailing){
+                        
+                        if calendar {
+                            ViewCalendar(searchText: $searchText, listViewModel: listViewModel)
+                        }else{
+                            ViewModeList(searchText: $searchText, listViewModel: listViewModel)
+                        }
+                        ZStack {
+                            HStack{
+                                Spacer()
+                                NavigationLink {
+                                    AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
+                                    
+                                } label: {
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 16)
+                                            .fill(Color("Button"))
+                                            .frame(width: 56, height: 56)
+                                        Image(systemName: "plus")
+                                            .foregroundColor(.white)
+                                    }
+                                }
+                                .padding()
+                            }
                         }
                     }
                 }
+                else{
+                    ErrorDialog(listViewModel: listViewModel)
+                        .padding()
+                        .transition(.opacity)
+                }
             }.toolbar(content: myTollBarContent)
         }
+        
     }
     
     @ToolbarContentBuilder
@@ -78,7 +86,7 @@ struct ListView: View {
             HStack {
                 ZStack {
                     Rectangle()
-                        .frame(width: isAactive ? 300 : 358, height: 35)
+                        .frame(width: 358, height: 35)
                         .foregroundColor(Color("BackgroundDocument"))
                         .cornerRadius(10)
                     
@@ -90,10 +98,10 @@ struct ListView: View {
                         TextField("", text: $searchText,onEditingChanged: { changed in
                             
                             if changed {
-                                isAactive = true
+                                isActive = true
                                 
                             }else{
-                                isAactive = false
+                                isActive = false
                             }
                         })
                         .font(.system(size: 22, weight: .light, design: .default))
@@ -128,7 +136,6 @@ struct ListView: View {
     }
 }
 
-
 struct CustomButton: View {
     @StateObject var listViewModel : ListViewModel
     @Binding var tryEvent : Bool
@@ -155,24 +162,34 @@ struct CustomButton: View {
         }
     }
 }
-//
-//struct MyPreviewProvider_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ListView(eventEntry: EventEntry(picture: "MusicFestival", title: "Music festival", dateCreationString:"2024-06-15T12:00:00Z", poster: "MusicFestivalPoster",description:"Join us for an unforgettable Music Festival celebrating the vibrant sounds of today's most talented artists. This event will feature an exciting lineup of performances, ranging from electrifying live bands to soulful solo acts, offering a diverse and immersive musical experience. Whether you're a devoted music enthusiast or simply looking for a weekend of fun, you'll have the chance to enjoy an eclectic mix of genres and discover emerging talent. Don't miss this opportunity to connect with fellow music lovers and create lasting memories in an energetic, festival atmosphere!",hour:"2024-06-15T12:00:00Z", category: "Music",place: Adress(street: "81-800 Avenue 51", city: "Indio", posttalCode: "92201", country: "USA")), searchText: "", isAactive: true, listViewModel: ListViewModel(), tryEvent: true)
-//    }
-//}
+
+struct MyPreviewProvider_Previewss: PreviewProvider {
+    static var previews: some View {
+        ListView(listViewModel: ListViewModel.mock())
+    }
+}
+extension ListViewModel {
+    static func mock() -> ListViewModel {
+        let viewModel = ListViewModel()
+        
+        viewModel.eventEntry = [
+            EventEntry( picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Kyrie_Irving_-_51831772061_01_%28cropped%29.jpg/1024px-Kyrie_Irving_-_51831772061_01_%28cropped%29.jpg", title: "NBA", dateCreation: Date.now, poster: "https://img.freepik.com/photos-gratuite/vaisseau-spatial-orbite-autour-planete-dans-superbe-decor-spatial-genere-par-ia_188544-15610.jpg?t=st=1735041951~exp=1735045551~hmac=9a2fa593903e1ecc1fb77937beca379c4f593ad080b7107e495c9cbb4ec72915&w=1800", description: "Une image est une représentation visuelle, voire mentale, de quelque chose (objet, être vivant ou concept).Elle peut être naturelle (ombre, reflet) ou artificielle (sculpture, peinture, photographie), visuelle ou non, tangible ou conceptuelle (métaphore), elle peut entretenir un rapport de ressemblance directe avec son modèle ou au contraire y être liée par un rapport plus symbolique.Pour la sémiologie ou sémiotique, qui a développé tout un secteur de sémiotique visuelle, l'image est conçue comme produite par un langage spécifique.", hour: "12:33", category: "Music", place: Address(street: "112 Av. de la République", city: "Montgeron", postalCode: "91230", country: "FRANCE", localisation: GeoPoint(latitude: 48.862725, longitude: 2.287592)))
+        ]
+        return viewModel
+    }
+}
 
 struct ViewCalendar: View {
     @Binding var searchText : String
     @StateObject var listViewModel : ListViewModel
-
+    
     var body: some View {
         ScrollView {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
                 ForEach(listViewModel.filterTitle(searchText), id: \.self) { entry in
+                    
                     NavigationLink(destination: {
-                        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate()) // Paris
-
+                        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
                     }) {
                         ZStack {
                             AsyncImage(url: URL(string: "\(entry.poster)")) { image in
@@ -189,12 +206,14 @@ struct ViewCalendar: View {
                             Spacer()
                             
                             Text(entry.title)
+                                .font(.custom("Inter-Medium", size: 16))
                                 .lineSpacing(24 - 16)
-                                .fontWeight(.bold)
+                                .fontWeight(.medium)
                                 .multilineTextAlignment(.leading)
+                                .truncationMode(.tail)
+                                .lineLimit(1)
                                 .foregroundColor(.white)
                         }
-                        
                     }
                 }
             }
@@ -211,9 +230,14 @@ struct ToggleViewButton: View {
         }){
             if calendar {
                 Image(systemName:"list.bullet")
-                
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .padding(.trailing,30)
             }else {
                 Image(systemName:"rectangle.grid.2x2")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .padding(.trailing,30)
             }
         }
         .controlSize(.large)
@@ -225,30 +249,32 @@ struct ToggleViewButton: View {
 struct ViewModeList: View {
     @Binding var searchText : String
     @StateObject var listViewModel : ListViewModel
-
+    
     var body: some View {
         List {
             Section {
                 ForEach(listViewModel.filterTitle(searchText),id: \.self) { entry in
                     
                     HStack {
-                       
-                        AsyncImage(url: URL(string: "\(entry.picture)")) { image in
+                        AsyncImage(url: URL(string: entry.picture)) { image in
                             image
                                 .resizable()
+                                .cornerRadius(50)
                         } placeholder: {
                             ProgressView()
-                                
+                            
                         }
                         .frame(width: 40,height: 40)
                         .padding()
-                    
+                        
                         VStack(alignment:.leading){
                             Text(entry.title)
                                 .font(.custom("Inter-Medium", size: 16))
                                 .lineSpacing(24 - 16)
                                 .fontWeight(.medium)
                                 .multilineTextAlignment(.leading)
+                                .truncationMode(.tail)
+                                .lineLimit(1)
                                 .foregroundColor(.white)
                             
                             Text("\(listViewModel.formatDateString( entry.dateCreation))")
@@ -261,9 +287,9 @@ struct ViewModeList: View {
                         
                         Spacer()
                         
-                        AsyncImage(url:URL(string:"\(entry.poster)")){ image in
+                        AsyncImage(url:URL(string:entry.poster)){ image in
                             image
-                            .resizable()
+                                .resizable()
                             
                         } placeholder:{
                             ProgressView()
@@ -271,21 +297,18 @@ struct ViewModeList: View {
                         .frame(width: 136, height: 80)
                         .cornerRadius(12)
                         
-                        
                     }.overlay(NavigationLink(destination: {
                         UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate())
                     }, label: {
                         EmptyView()
                     }))
-                    
                 }
             }
             .listRowBackground(
                 RoundedRectangle(cornerRadius:16)
                     .fill(Color("BackgroundDocument"))
                     .frame(width: 358, height: 80)
-                    .padding(2)
-            )
+                    .padding(2))
         }
         .listStyle(GroupedListStyle())
         .scrollContentBackground(.hidden)

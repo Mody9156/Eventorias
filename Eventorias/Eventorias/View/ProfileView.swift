@@ -16,29 +16,59 @@ struct ProfileView: View {
     @State var toggle : Bool = false
     
     var body: some View {
-        ZStack {
-            Color("Background")
-                .ignoresSafeArea()
-            
-            VStack{
-                AsyncImage(url: URL(string: "\(String(describing: picture))")) { image in
-                    image
-                        .resizable()
-                } placeholder: {
-                    ProgressView()
+        NavigationStack {
+            ZStack {
+                Color("Background")
+                    .ignoresSafeArea()
+                
+                VStack{
+                    if let lastName, let firstName, let email {
+                        InfoSecure(name: "Name", text: "\(firstName) \(lastName)")
+                        InfoSecure(name: "E-mail", text: email)
+                    }
+                    
+                    HStack {
+                        Toggle("",isOn: $toggle)
+                         .labelsHidden()
+                         .tint(Color("Button"))
+                         .padding()
                         
+                        Text("Notifications")
+                        .font(.custom("Inter-Regular", size: 20))
+                        .fontWeight(.bold)
+                        .lineSpacing(6)
+                        .multilineTextAlignment(.leading)
+                        .foregroundColor(.white)
+                        Spacer()
+                    }
+                    Spacer()
                 }
-                .frame(width: 40,height: 40)
-                .padding()
-            
-                
-                if let lastName, let firstName, let email {
-                    InfoSecure(name: "Name", text: "\(firstName) \(lastName)")
-                    InfoSecure(name: "E-mail", text: email)
-                }
-                
-                Toggle(isOn: $toggle) {
-                    Text("Notifications")
+                .toolbar {
+                    ToolbarItem(placement:.navigationBarLeading) {
+                        Text("User profile")
+                            .font(.custom("Inter", size: 20))
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .lineSpacing(24.2 - 20)
+                            .kerning(0.02)
+
+                        
+                    }
+                    
+                    ToolbarItem(placement:.navigationBarTrailing) {
+                        if let picture {
+                            AsyncImage(url: URL(string:  picture)) { image in
+                                image
+                                    .resizable()
+                                    .cornerRadius(50)
+                            } placeholder: {
+                                ProgressView()
+                                
+                            }
+                            .frame(width: 48,height: 48)
+                        }
+                        
+                    }
                 }
             }
         }
@@ -46,8 +76,17 @@ struct ProfileView: View {
 }
 
 struct MyPreviewProvider_Previews: PreviewProvider {
+    @State var name = "Modibo"
+    
     static var previews: some View {
-        ProfileView(loginViewModel: LoginViewModel({}))
+        VStack {
+            
+            ProfileView(loginViewModel: LoginViewModel({}),
+                        email: "john.doe@example.com",
+                        firstName: "John",
+                        lastName: "Doe",
+                        picture:"https://upload.wikimedia.org/wikipedia/commons/0/01/Kyrie_Irving_-_51831772061_01_%28cropped%29.jpg")
+        }
     }
 }
 
@@ -56,14 +95,15 @@ struct InfoSecure: View {
     var text : String
     
     var body: some View {
-        ZStack{
+        ZStack(alignment: .leading){
             Rectangle()
                 .frame(height: 56)
                 .foregroundColor(Color("BackgroundDocument"))
                 .cornerRadius(5)
+                .padding()
             
             VStack(alignment: .leading) {
-                Text(text)
+                Text(name)
                     .font(.custom("Inter", size: 12))
                     .fontWeight(.regular)
                     .lineSpacing(4)
@@ -71,10 +111,11 @@ struct InfoSecure: View {
                     .textCase(.none)
                     .foregroundColor(.gray)
                 
-                Text(name)
+                Text(text)
                     .foregroundColor(.white)
             }
-            .padding()
+            .padding(.leading,34)
         }
+ 
     }
 }

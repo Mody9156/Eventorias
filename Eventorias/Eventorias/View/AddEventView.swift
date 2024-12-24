@@ -14,7 +14,7 @@ import AVFoundation
 struct AddEventView: View {
     @State var title = ""
     @State var description = ""
-    @State private var date : Date = Date()
+    @State private var date : Date = .now
     @State private var imageURL: URL? = nil
     @State private var showCamera = false
     @State private var selectedImage: UIImage?
@@ -25,7 +25,7 @@ struct AddEventView: View {
     @State var city : String = ""
     @State var postalCode : String = ""
     @State var country : String = ""
-    @State var hours : Date = Date()
+    @State var hours : Date = .now
     @State private var savedFilePath: String?
     @State var category : String = ""
     @StateObject var addEventViewModel : AddEventViewModel
@@ -34,7 +34,8 @@ struct AddEventView: View {
     @StateObject var locationCoordinate : LocationCoordinate
     @State private var latitude : Double = 0.0
     @State private var longitude : Double = 0.0
-    
+    @State var picture = UserDefaults.standard.string(forKey: "userPicture")
+    @State var file : String = ""
     private let dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -42,6 +43,7 @@ struct AddEventView: View {
     }()
     
     var indexCategory = ["Music","Food","Book","Conference","Exhibition","Charity","Film"]
+    @State private var selectedCategory = "Music"
     
     var body: some View {
         ZStack {
@@ -55,17 +57,19 @@ struct AddEventView: View {
                     CustomTexField(text: $description, infos: "Description", placeholder: "Tap here entrer your description")
                     
                     HStack {
+                        
                         DatePicker("", selection: $date, displayedComponents: .date)
                             .datePickerStyle(.automatic)
                             .foregroundColor(.white)
                             .padding(.leading, 5)
                             .labelsHidden()
                         
-                        DatePicker("HH:MM", selection: $hours, displayedComponents: .hourAndMinute)
+                        DatePicker("", selection: $hours, displayedComponents: .hourAndMinute)
                             .datePickerStyle(.automatic)
                             .foregroundColor(.white)
                             .padding(.leading, 5)
                             .labelsHidden()
+                        
                     }
                     
                     VStack{
@@ -75,14 +79,14 @@ struct AddEventView: View {
                         AddressCollect(text: "Country", textField: $country, placeholder: "Country")
                     }
                     
-                    Picker("Category", selection:$category) {
+                    Picker("Category", selection:$selectedCategory) {
                         ForEach(indexCategory,id:\.self){ index in
                             Text(index)
                                 .tag(index)
                                 .foregroundColor(.white)
                         }
                     }
-                    
+                    .pickerStyle(.segmented)
                     
                     HStack(alignment: .center){
                         Button(action:{
@@ -166,17 +170,37 @@ struct AddEventView: View {
                             }
                             
                             let fileURLSelected = URL(fileURLWithPath: selected)
-                            let fileURLStringSelected = fileURLSelected.absoluteString
+                            var fileURLStringSelected = fileURLSelected.absoluteString
                             
                             let stringFromHour = addEventViewModel.formatHourString(hours)
                             let fileURL = URL(fileURLWithPath: savedFilePath)
-                            let fileURLString = fileURL.absoluteString
+                            var fileURLString = fileURL.absoluteString
+                            
+                            
+                            if fileURLString.isEmpty && !fileURLStringSelected.isEmpty {
+                                file = fileURLStringSelected
+                            }else if !fileURLString.isEmpty && fileURLStringSelected.isEmpty {
+                                file = fileURLString
+                                
+                            }else {
+                                file = ""
+                            }
+                            
+                            if !fileURLString.isEmpty{
+                                fileURLStringSelected = ""
+                            }else {
+                                fileURLString = ""
+                            }
+                            
+                            guard let picture = picture else {
+                                return
+                            }
                             
                             addEventViewModel.saveToFirestore(
-                                picture: fileURLStringSelected,
+                                picture: picture,
                                 title: title,
                                 dateCreation: date,
-                                poster: fileURLString,
+                                poster: file,
                                 description: description,
                                 hour: stringFromHour,
                                 category: category,
@@ -293,9 +317,13 @@ struct AddressCollect: View {
     }
     
 }
-//
-//struct AddEventView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate(coordinates: CLLocationCoordinate2D))
-//    }
-//}
+
+struct AddEventView_Previews: PreviewProvider {
+    static var previews: some View {
+        AddEventView(
+            addEventViewModel: AddEventViewModel(),
+            locationCoordinate: LocationCoordinate()
+        )
+        
+    }
+}

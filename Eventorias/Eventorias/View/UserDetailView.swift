@@ -29,15 +29,16 @@ struct UserDetailView: View {
                     VStack(alignment: .leading) {
                         VStack{
                             
-                            AsyncImage(url:URL(string:"\(eventEntry.poster)")){ image in
+                            AsyncImage(url: URL(string: eventEntry.poster)) { image in
                                 image
                                     .resizable()
-                                
-                            } placeholder:{
-                                
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 358, height: 364)
+                                    .cornerRadius(12)
+                            } placeholder: {
+                                ProgressView()
                             }
-                            .frame(width: 358, height: 364)
-                            .cornerRadius(12)
+
                             
                             HStack {
                                 VStack(alignment: .leading) {
@@ -54,16 +55,17 @@ struct UserDetailView: View {
                                 .padding()
                                 Spacer()
                                 
-                                AsyncImage(url:URL(string:"\(eventEntry.picture)")){ image in
+                                AsyncImage(url: URL(string: eventEntry.picture)) { image in
                                     image
                                         .resizable()
-                                    
-                                } placeholder:{
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 60, height: 60)
+                                        .cornerRadius(50)
+                                } placeholder: {
                                     ProgressView()
                                 }
-                                .frame(width: 60, height: 60)
-                                .padding()
-                                
+                                .padding(.trailing,40)
+
                             }
                             
                             ScrollView {
@@ -79,33 +81,48 @@ struct UserDetailView: View {
                         
                         VStack(alignment: .leading) {
                             HStack {
-                                VStack (alignment: .leading){
+                                VStack(alignment: .leading) {
                                     Text(eventEntry.place.street)
                                         .foregroundColor(.white)
                                         .font(.custom("Inter-Medium", size: 16))
-                                        .lineSpacing(24 - 16)
+                                        .fontWeight(.medium)
                                         .multilineTextAlignment(.leading)
-                                    
+                                        .lineLimit(2)
+                                        .truncationMode(.tail)
+
                                     HStack {
                                         Text("\(eventEntry.place.city),")
                                             .foregroundColor(.white)
                                             .font(.custom("Inter-Medium", size: 16))
+                                            .fontWeight(.medium)
+                                            .lineLimit(1)
                                         Text("\(eventEntry.place.postalCode),")
                                             .foregroundColor(.white)
                                             .font(.custom("Inter-Medium", size: 16))
+                                            .fontWeight(.medium)
+                                            .lineLimit(1)
+                                    }
+                                    
+                                    HStack{
                                         Text(eventEntry.place.country)
                                             .foregroundColor(.white)
                                             .font(.custom("Inter-Medium", size: 16))
+                                            .fontWeight(.medium)
+                                            .lineLimit(1)
                                     }
                                 }
-                                .frame(width: 167, height: 72)
+                          
+
                                 
                                 Spacer()
                                 
                                 if let picture = maps {
                                     Image(uiImage: picture)
                                         .cornerRadius(20)
+                                        .padding()
                                 }
+                                
+                                
                             }.onAppear {
                                 fetchMapData()
                             }
@@ -132,5 +149,11 @@ struct UserDetailView: View {
                    print("Erreur lors du géocodage : \(error.localizedDescription)")
                }
            }
+    }
+}
+
+struct MyPreviewProvider_PreviewDetails: PreviewProvider {
+    static var previews: some View {
+        UserDetailView(eventEntry: EventEntry(picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Kyrie_Irving_-_51831772061_01_%28cropped%29.jpg/1024px-Kyrie_Irving_-_51831772061_01_%28cropped%29.jpg", title: "NBA", dateCreation: Date.now, poster: "https://img.freepik.com/photos-gratuite/vaisseau-spatial-orbite-autour-planete-dans-superbe-decor-spatial-genere-par-ia_188544-15610.jpg?t=st=1735041951~exp=1735045551~hmac=9a2fa593903e1ecc1fb77937beca379c4f593ad080b7107e495c9cbb4ec72915&w=1800", description: "Une image est une représentation visuelle, voire mentale, de quelque chose (objet, être vivant ou concept).Elle peut être naturelle (ombre, reflet) ou artificielle (sculpture, peinture, photographie), visuelle ou non, tangible ou conceptuelle (métaphore), elle peut entretenir un rapport de ressemblance directe avec son modèle ou au contraire y être liée par un rapport plus symbolique.Pour la sémiologie ou sémiotique, qui a développé tout un secteur de sémiotique visuelle, l'image est conçue comme produite par un langage spécifique.", hour: "12:33", category: "Music", place: Address(street: "112 Av. de la République", city: "Montgeron", postalCode: "91230", country: "FRANCE", localisation: GeoPoint(latitude: 48.862725, longitude: 2.287592))), userDetailViewModel: UserDetailViewModel(eventEntry: [EventEntry(picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Kyrie_Irving_-_51831772061_01_%28cropped%29.jpg/1024px-Kyrie_Irving_-_51831772061_01_%28cropped%29.jpg", title: "NBA", dateCreation: Date.now, poster: "https://img.freepik.com/photos-gratuite/vaisseau-spatial-orbite-autour-planete-dans-superbe-decor-spatial-genere-par-ia_188544-15610.jpg?t=st=1735041951~exp=1735045551~hmac=9a2fa593903e1ecc1fb77937beca379c4f593ad080b7107e495c9cbb4ec72915&w=1800", description: "Une image est une représentation visuelle, voire mentale, de quelque chose (objet, être vivant ou concept).Elle peut être naturelle (ombre, reflet) ou artificielle (sculpture, peinture, photographie), visuelle ou non, tangible ou conceptuelle (métaphore), elle peut entretenir un rapport de ressemblance directe avec son modèle ou au contraire y être liée par un rapport plus symbolique.Pour la sémiologie ou sémiotique, qui a développé tout un secteur de sémiotique visuelle, l'image est conçue comme produite par un langage spécifique.", hour: "12:33", category: "Music", place: Address(street: "112 Av. de la République", city: "Montgeron", postalCode: "91230", country: "FRANCE", localisation: GeoPoint(latitude: 48.862725, longitude: 2.287592)))], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate())
     }
 }
