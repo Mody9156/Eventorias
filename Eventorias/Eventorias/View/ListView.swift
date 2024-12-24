@@ -199,9 +199,12 @@ struct ViewCalendar: View {
                             Spacer()
                             
                             Text(entry.title)
+                                .font(.custom("Inter-Medium", size: 16))
                                 .lineSpacing(24 - 16)
-                                .fontWeight(.bold)
+                                .fontWeight(.medium)
                                 .multilineTextAlignment(.leading)
+                                .truncationMode(.tail)
+                                .lineLimit(1)
                                 .foregroundColor(.white)
                         }
                         
