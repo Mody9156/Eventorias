@@ -97,8 +97,8 @@ struct InfoSecure: View {
                 Text(text)
                     .foregroundColor(.white)
             }
-           
+            .padding(.leading,34)
         }
-        .padding()
+ 
     }
 }
