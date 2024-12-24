@@ -21,16 +21,17 @@ struct ProfileView: View {
                 .ignoresSafeArea()
             
             VStack{
-                AsyncImage(url: URL(string: "\(String(describing: picture))")) { image in
-                    image
-                        .resizable()
-                } placeholder: {
-                    ProgressView()
+                if let picture {
+                    AsyncImage(url: URL(string:  picture)) { image in
+                        image
+                            .resizable()
+                    } placeholder: {
+                        ProgressView()
                         
+                    }
+                    .frame(width: 40,height: 40)
+                    .padding()
                 }
-                .frame(width: 40,height: 40)
-                .padding()
-            
                 
                 if let lastName, let firstName, let email {
                     InfoSecure(name: "Name", text: "\(firstName) \(lastName)")
@@ -41,13 +42,25 @@ struct ProfileView: View {
                     Text("Notifications")
                 }
             }
+            .toolbar {
+                
+            }
         }
     }
 }
 
 struct MyPreviewProvider_Previews: PreviewProvider {
+    @State var name = "Modibo"
+    
     static var previews: some View {
-        ProfileView(loginViewModel: LoginViewModel({}))
+        VStack {
+           
+            ProfileView(loginViewModel: LoginViewModel({}),
+                        email: "john.doe@example.com",
+                        firstName: "John",
+                        lastName: "Doe",
+                        picture:"https://upload.wikimedia.org/wikipedia/commons/0/01/Kyrie_Irving_-_51831772061_01_%28cropped%29.jpg")
+        }
     }
 }
 
