@@ -24,6 +24,8 @@ struct ErrorDialog: View {
                         .frame(width: 5, height: 24)
                     
                 }
+                .padding()
+                
                 Text("Error")
                     .font(.custom("Inter-SemiBold", size: 20))
                     .foregroundColor(.white)
@@ -35,6 +37,8 @@ struct ErrorDialog: View {
                             .foregroundColor(.primary)
                             .multilineTextAlignment(.center)
                             .lineSpacing(6)
+                            .frame(width: 164, height: 44)
+                            .foregroundColor(.white)
             }
         }
     }
