@@ -15,7 +15,8 @@ struct ErrorDialog: View {
             VStack {
                 ZStack{
                     Circle()
-                        
+                        .frame(height: 64)
+                    
                     Image(systemName:"exclamationmark")
                     
                 }
