@@ -40,14 +40,18 @@ struct ErrorDialog: View {
                         .frame(width: 164, height: 44)
                         .foregroundColor(.white)
                 }
+                .padding(.bottom)
                 
-                Button(action:{
-                    
-                }){
+                Button(action: {
+                    // Action du bouton
+                }) {
                     Text("Try again")
+                        .frame(width: 159, height: 40)
+                        .background(Color("Button"))
                         .foregroundColor(.white)
+                        .cornerRadius(4)
                 }
-                .foregroundColor(Color("Button"))
+
             }
         }
     }
