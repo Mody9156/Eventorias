@@ -43,6 +43,7 @@
 		23BD155E2D1B227E00DE16E7 /* ErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BD155D2D1B227E00DE16E7 /* ErrorDialog.swift */; };
 		23C8F6C32D16FF6B003E473C /* LocationCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */; };
 		23F3063B2D1CBBDD004F5F75 /* EventoriasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F3063A2D1CBBDD004F5F75 /* EventoriasTests.swift */; };
+		23F3064D2D1CC14A004F5F75 /* EventRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F3064C2D1CC149004F5F75 /* EventRepositoryTests.swift */; };
 		23F9E9AD2D12C2430030C221 /* EventManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +93,7 @@
 		23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinate.swift; sourceTree = "<group>"; };
 		23F306382D1CBBDD004F5F75 /* EventoriasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventoriasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		23F3063A2D1CBBDD004F5F75 /* EventoriasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasTests.swift; sourceTree = "<group>"; };
+		23F3064C2D1CC149004F5F75 /* EventRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepositoryTests.swift; sourceTree = "<group>"; };
 		23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -299,6 +301,7 @@
 		23F306392D1CBBDD004F5F75 /* EventoriasTests */ = {
 			isa = PBXGroup;
 			children = (
+				23F3064E2D1CC185004F5F75 /* Mocks */,
 				23F306412D1CBCFD004F5F75 /* Model */,
 				23F3063A2D1CBBDD004F5F75 /* EventoriasTests.swift */,
 			);
@@ -316,8 +319,16 @@
 		23F306422D1CBD8F004F5F75 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				23F3064C2D1CC149004F5F75 /* EventRepositoryTests.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		23F3064E2D1CC185004F5F75 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		23F9E9AB2D12C1C20030C221 /* Event */ = {
@@ -474,6 +485,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23F3064D2D1CC14A004F5F75 /* EventRepositoryTests.swift in Sources */,
 				23F3063B2D1CBBDD004F5F75 /* EventoriasTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
