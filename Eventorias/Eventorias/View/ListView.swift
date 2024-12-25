@@ -245,29 +245,30 @@ struct ToggleViewButton: View {
         .padding()
     }
 }
-
 struct ViewModeList: View {
-    @Binding var searchText : String
-    @StateObject var listViewModel : ListViewModel
+    @Binding var searchText: String
+    @StateObject var listViewModel: ListViewModel
     
     var body: some View {
         List {
             Section {
-                ForEach(listViewModel.filterTitle(searchText),id: \.self) { entry in
-                    
+                ForEach(listViewModel.filterTitle(searchText), id: \.self) { entry in
                     HStack {
-                        AsyncImage(url: URL(string: entry.picture)) { image in
-                            image
-                                .resizable()
-                                .cornerRadius(50)
-                        } placeholder: {
-                            ProgressView()
-                            
+                        // Encodage de l'URL de l'image
+                        if let encodedPictureURL = entry.picture.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                           let pictureURL = URL(string: encodedPictureURL) {
+                            AsyncImage(url: pictureURL) { image in
+                                image
+                                    .resizable()
+                                    .cornerRadius(50)
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            .frame(width: 40, height: 40)
+                            .padding()
                         }
-                        .frame(width: 40,height: 40)
-                        .padding()
-                        
-                        VStack(alignment:.leading){
+
+                        VStack(alignment: .leading) {
                             Text(entry.title)
                                 .font(.custom("Inter-Medium", size: 16))
                                 .lineSpacing(24 - 16)
@@ -277,7 +278,7 @@ struct ViewModeList: View {
                                 .lineLimit(1)
                                 .foregroundColor(.white)
                             
-                            Text("\(listViewModel.formatDateString( entry.dateCreation))")
+                            Text("\(listViewModel.formatDateString(entry.dateCreation))")
                                 .font(.custom("Inter-Regular", size: 14))
                                 .lineSpacing(20 - 14)
                                 .fontWeight(.regular)
@@ -287,17 +288,20 @@ struct ViewModeList: View {
                         
                         Spacer()
                         
-                        AsyncImage(url:URL(string:entry.poster)){ image in
-                            image
-                                .resizable()
-                            
-                        } placeholder:{
-                            ProgressView()
+                        // Encodage de l'URL de l'affiche
+                        if let encodedPosterURL = entry.poster.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                           let posterURL = URL(string: encodedPosterURL) {
+                            AsyncImage(url: posterURL) { image in
+                                image
+                                    .resizable()
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            .frame(width: 136, height: 80)
+                            .cornerRadius(12)
                         }
-                        .frame(width: 136, height: 80)
-                        .cornerRadius(12)
-                        
-                    }.overlay(NavigationLink(destination: {
+                    }
+                    .overlay(NavigationLink(destination: {
                         UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate())
                     }, label: {
                         EmptyView()
@@ -305,16 +309,17 @@ struct ViewModeList: View {
                 }
             }
             .listRowBackground(
-                RoundedRectangle(cornerRadius:16)
+                RoundedRectangle(cornerRadius: 16)
                     .fill(Color("BackgroundDocument"))
                     .frame(width: 358, height: 80)
-                    .padding(2))
+                    .padding(2)
+            )
         }
         .listStyle(GroupedListStyle())
         .scrollContentBackground(.hidden)
         .background(Color("Background"))
-        .onAppear{
-            Task{
+        .onAppear {
+            Task {
                 try? await listViewModel.getAllProducts()
             }
         }
