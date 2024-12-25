@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2302CE8E2D198491005F6EB4 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2302CE8D2D198491005F6EB4 /* ProfileViewModel.swift */; };
 		2302CE902D198AD6005F6EB4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2302CE8F2D198AD6005F6EB4 /* User.swift */; };
 		2302CE932D198D03005F6EB4 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2302CE922D198D03005F6EB4 /* UserRepository.swift */; };
 		230474212D1091C80067BB54 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230474202D1091C80067BB54 /* AddEventView.swift */; };
@@ -49,7 +48,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2302CE8D2D198491005F6EB4 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		2302CE8F2D198AD6005F6EB4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2302CE922D198D03005F6EB4 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		230474202D1091C80067BB54 /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
@@ -192,7 +190,6 @@
 				2360608C2D0DE47200E3504F /* ListViewModel.swift */,
 				2311CB4A2D1199A700518BC5 /* AddEventViewModel.swift */,
 				23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */,
-				2302CE8D2D198491005F6EB4 /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -392,7 +389,6 @@
 				236060B22D0DE48200E3504F /* GoogleMapView.swift in Sources */,
 				230474212D1091C80067BB54 /* AddEventView.swift in Sources */,
 				236060812D0DE43B00E3504F /* ProfileView.swift in Sources */,
-				2302CE8E2D198491005F6EB4 /* ProfileViewModel.swift in Sources */,
 				236060802D0DE43B00E3504F /* RegistrationView.swift in Sources */,
 				23C8F6C32D16FF6B003E473C /* LocationCoordinate.swift in Sources */,
 				236060BA2D0DE48300E3504F /* EventListRepresentable.swift in Sources */,

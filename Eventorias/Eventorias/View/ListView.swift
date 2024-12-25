@@ -266,6 +266,8 @@ struct ViewModeList: View {
                             }
                             .frame(width: 40, height: 40)
                             .padding()
+                            
+                            
                         }
 
                         VStack(alignment: .leading) {
