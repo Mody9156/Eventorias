@@ -54,7 +54,19 @@ struct RegistrationView: View {
                     }
                 }
                 
-                
+                if let savedFilePath = savedFilePath {
+                                // Charger l'image depuis le chemin sauvegardé
+                                if let savedImage = UIImage(contentsOfFile: savedFilePath) {
+                                    // Affichage de l'image dans une vue SwiftUI
+                                    Image(uiImage: savedImage)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 200, height: 200)
+                                } else {
+                                    Text("Impossible de charger l'image.")
+                                }
+                            }
+                       
                 
                 ZStack {
                     Rectangle()

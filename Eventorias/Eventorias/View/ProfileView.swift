@@ -56,17 +56,17 @@ struct ProfileView: View {
                     }
                     
                     ToolbarItem(placement:.navigationBarTrailing) {
-                        if let picture = picture ,let encodedPosterURL = picture.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-                            AsyncImage(url: URL(string: encodedPosterURL)) { image in
-                                image
+                        if let picture = picture {
+                            if let savedImage = UIImage(contentsOfFile: picture) {
+                                Image(uiImage: savedImage)
                                     .resizable()
-                                    .cornerRadius(50)
-                            } placeholder: {
-                                ProgressView()
-                                
+                                    .scaledToFit()
+                                    .frame(width: 200, height: 200)
+                            } else {
+                                Text("Image non trouvée")  
                             }
-                            .frame(width: 48,height: 48)
                         }
+
                         
                     }
                 }
