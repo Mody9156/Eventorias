@@ -71,7 +71,18 @@ struct ProfileView: View {
                     
                     ToolbarItem(placement:.navigationBarTrailing) {
                      
-                        
+                        if let savedFilePath = picture {
+                                        // Charger l'image depuis le chemin sauvegardé
+                                        if let savedImage = UIImage(contentsOfFile: savedFilePath) {
+                                            // Affichage de l'image dans une vue SwiftUI
+                                            Image(uiImage: savedImage)
+                                                .resizable()
+                                                .frame(width: 48, height: 48)
+                                                .cornerRadius(50)
+                                        } else {
+                                            Text("Impossible de charger l'image.")
+                                        }
+                                    }
                         
                     }
                 }
