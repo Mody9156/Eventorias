@@ -56,8 +56,8 @@ struct ProfileView: View {
                     }
                     
                     ToolbarItem(placement:.navigationBarTrailing) {
-                        if let picture {
-                            AsyncImage(url: URL(string:  picture)) { image in
+                        if let picture = picture ,let encodedPosterURL = picture.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                            AsyncImage(url: URL(string: encodedPosterURL)) { image in
                                 image
                                     .resizable()
                                     .cornerRadius(50)
