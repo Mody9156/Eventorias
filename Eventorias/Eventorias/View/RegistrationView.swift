@@ -79,10 +79,8 @@ struct RegistrationView: View {
                                 return
                             }
                             
-                            let fileURL = URL(fileURLWithPath: savedFilePath)
-                            let fileURLString = fileURL.absoluteString
-                            
-                            loginViewModel.registerUser(email: email, password: password, firstName:firstName, lastName:lastName, picture: fileURLString)
+                       
+                            loginViewModel.registerUser(email: email, password: password, firstName:firstName, lastName:lastName, picture: savedFilePath)
                             
                             dismiss()
                         }
