@@ -14,11 +14,16 @@ struct ProfileView: View {
     @State var lastName = UserDefaults.standard.string(forKey: "userLastName")
     @State var picture = UserDefaults.standard.string(forKey: "userPicture")
     @State var toggle : Bool = false
-    func loadImage(from filePath: String) -> UIImage? {
-        // Vérifier si le fichier existe à ce chemin
-        let url = URL(fileURLWithPath: filePath)
-        return UIImage(contentsOfFile: url.path)
+    
+    func loadImageFromDocumentsDirectory(fileName: String) -> UIImage? {
+        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(fileName)
+        if let data = try? Data(contentsOf: url) {
+            return UIImage(data: data)
+        }
+        return nil
     }
+
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -44,18 +49,30 @@ struct ProfileView: View {
                             .multilineTextAlignment(.leading)
                             .foregroundColor(.white)
                         Spacer()
-                        if let picture = picture {
-                            AsyncImage(url: URL(string: picture)) { image in
-                                image
-                                    .resizable()
-                            } placeholder: {
-                                ProgressView()
-                            }
-                            .frame(width: 136, height: 80)
-                            .cornerRadius(12)
-                        }
-                         
                         
+                        if let savedFilePath = picture {
+                            // Charger l'image depuis le chemin sauvegardé
+                            if let savedImage = UIImage(contentsOfFile: savedFilePath) {
+                                // Affichage de l'image dans une vue SwiftUI
+                                Image(uiImage: savedImage)
+                                    .resizable()
+                                    .frame(width: 48, height: 48)
+                                    .cornerRadius(50)
+                            } else {
+                                Text("Impossible de charger l'image.")
+                            }
+                        }
+                        
+                        if let image = picture,
+                           let savedImage = UIImage(contentsOfFile: image) {
+                            Image(uiImage: savedImage)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 200, height: 200)
+                        } else {
+                            Text("No image found.")
+                        }
+
                     }
                     Spacer()
                 }
@@ -70,28 +87,25 @@ struct ProfileView: View {
                     }
                     
                     ToolbarItem(placement:.navigationBarTrailing) {
-                     
-                        if let savedFilePath = picture {
-                                        // Charger l'image depuis le chemin sauvegardé
-                                        if let savedImage = UIImage(contentsOfFile: savedFilePath) {
-                                            // Affichage de l'image dans une vue SwiftUI
-                                            Image(uiImage: savedImage)
-                                                .resizable()
-                                                .frame(width: 48, height: 48)
-                                                .cornerRadius(50)
-                                        } else {
-                                            Text("Impossible de charger l'image.")
-                                        }
-                                    }
                         
+                        if let savedFilePath = picture {
+                            // Charger l'image depuis le chemin sauvegardé
+                            if let savedImage = UIImage(contentsOfFile: savedFilePath) {
+                                // Affichage de l'image dans une vue SwiftUI
+                                Image(uiImage: savedImage)
+                                    .resizable()
+                                    .frame(width: 48, height: 48)
+                                    .cornerRadius(50)
+                            } else {
+                                Text("Impossible de charger l'image.")
+                            }
+                        }
                     }
                 }
             }
         }
     }
 }
-
-
 
 struct MyPreviewProvider_Previews: PreviewProvider {
     @State var name = "Modibo"
@@ -134,6 +148,5 @@ struct InfoSecure: View {
             }
             .padding(.leading,34)
         }
-        
     }
 }

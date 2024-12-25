@@ -16,7 +16,7 @@ struct RegistrationView: View {
     @State var picture = ""
     @State var selectedItems : [PhotosPickerItem] = []
     @StateObject var loginViewModel : LoginViewModel
-    @State private var savedFilePath: String?
+    @State private var savedFilePath: String = ""
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -47,27 +47,18 @@ struct RegistrationView: View {
                 }.onChange(of: selectedItems) { newValue in
                     for item in newValue {
                         Task{
-                            if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data){
-                                savedFilePath = loginViewModel.saveImageToTemporaryDirectory(image: image, fileName: "\(firstName).jpg")
+                            if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data), let file = loginViewModel.saveImageToTemporaryDirectory(image: image, fileName: "\(firstName).jpg"){
+                                savedFilePath =  file
                             }
                         }
                     }
                 }
                 
-                if let savedFilePath = savedFilePath {
-                                // Charger l'image depuis le chemin sauvegardé
-                                if let savedImage = UIImage(contentsOfFile: savedFilePath) {
-                                    // Affichage de l'image dans une vue SwiftUI
-                                    Image(uiImage: savedImage)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 200, height: 200)
-                                } else {
-                                    Text("Impossible de charger l'image.")
-                                }
-                            }
-                       
+                    Image(savedFilePath)
+                        .resizable()
+                        .frame(width:50, height: 50)
                 
+      
                 ZStack {
                     Rectangle()
                         .frame(height: 50)
@@ -75,12 +66,12 @@ struct RegistrationView: View {
                     
                     Button {
                         if loginViewModel.errorMessage == nil {
-                            guard let savedFilePath = savedFilePath else {
-                                return
-                            }
                             
-                       
-                            loginViewModel.registerUser(email: email, password: password, firstName:firstName, lastName:lastName, picture: savedFilePath)
+                            print(savedFilePath)
+                            let fileURL = URL(fileURLWithPath: savedFilePath)
+                            let fileURLString = fileURL.absoluteString
+                            print("\(fileURLString)")
+                            loginViewModel.registerUser(email: email, password: password, firstName:firstName, lastName:lastName, picture: fileURLString)
                             
                             dismiss()
                         }
