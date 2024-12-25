@@ -97,17 +97,5 @@ class LoginViewModel : ObservableObject {
                 return nil
             }
         }
-    func loadImageFromDocumentsDirectory(filePath: String) -> UIImage? {
-            var cleanPath = filePath
-            if cleanPath.hasPrefix("file://") {
-                cleanPath = String(cleanPath.dropFirst(7))  // Enlever "file://"
-            }
-            
-            let fileURL = URL(fileURLWithPath: cleanPath)
-            
-            if let data = try? Data(contentsOf: fileURL) {
-                return UIImage(data: data)
-            }
-            return nil
-        }
+ 
 }
