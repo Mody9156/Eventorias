@@ -69,7 +69,6 @@ struct AddEventView: View {
                             .foregroundColor(.white)
                             .padding(.leading, 5)
                             .labelsHidden()
-                        
                     }
                     
                     VStack{
@@ -118,6 +117,7 @@ struct AddEventView: View {
                                 
                                 Image("attach")
                             }
+                            
                         }.onChange(of: selectedItems) { newValue in
                             for item in newValue {
                                 Task{

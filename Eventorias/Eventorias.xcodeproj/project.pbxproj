@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2302CE8E2D198491005F6EB4 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2302CE8D2D198491005F6EB4 /* ProfileViewModel.swift */; };
 		2302CE902D198AD6005F6EB4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2302CE8F2D198AD6005F6EB4 /* User.swift */; };
-		2302CE932D198D03005F6EB4 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2302CE922D198D03005F6EB4 /* UserRepository.swift */; };
 		230474212D1091C80067BB54 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230474202D1091C80067BB54 /* AddEventView.swift */; };
 		2311CB492D118BEB00518BC5 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2311CB482D118BEB00518BC5 /* CameraManager.swift */; };
 		2311CB4B2D1199A700518BC5 /* AddEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2311CB4A2D1199A700518BC5 /* AddEventViewModel.swift */; };
@@ -32,7 +30,6 @@
 		236060912D0DE47200E3504F /* ViewModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360608A2D0DE47200E3504F /* ViewModelManager.swift */; };
 		236060922D0DE47200E3504F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360608B2D0DE47200E3504F /* LoginViewModel.swift */; };
 		236060932D0DE47200E3504F /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2360608C2D0DE47200E3504F /* ListViewModel.swift */; };
-		236060AE2D0DE48200E3504F /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060962D0DE48200E3504F /* AuthToken.swift */; };
 		236060AF2D0DE48200E3504F /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060982D0DE48200E3504F /* DateExtension.swift */; };
 		236060B02D0DE48200E3504F /* EventEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060992D0DE48200E3504F /* EventEntry.swift */; };
 		236060B12D0DE48200E3504F /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2360609A2D0DE48200E3504F /* Config.plist */; };
@@ -45,13 +42,23 @@
 		236060BB2D0DE48300E3504F /* ProtocolsFirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060AC2D0DE48200E3504F /* ProtocolsFirebaseData.swift */; };
 		23BD155E2D1B227E00DE16E7 /* ErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BD155D2D1B227E00DE16E7 /* ErrorDialog.swift */; };
 		23C8F6C32D16FF6B003E473C /* LocationCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */; };
+		23F3063B2D1CBBDD004F5F75 /* EventoriasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F3063A2D1CBBDD004F5F75 /* EventoriasTests.swift */; };
+		23F3064D2D1CC14A004F5F75 /* EventRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F3064C2D1CC149004F5F75 /* EventRepositoryTests.swift */; };
 		23F9E9AD2D12C2430030C221 /* EventManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		23F3063C2D1CBBDD004F5F75 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 236060362D0DC7BC00E3504F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2360603D2D0DC7BC00E3504F;
+			remoteInfo = Eventorias;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		2302CE8D2D198491005F6EB4 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		2302CE8F2D198AD6005F6EB4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		2302CE922D198D03005F6EB4 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		230474202D1091C80067BB54 /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
 		2311CB452D11839800518BC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2311CB462D11849000518BC5 /* Eventorias.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Eventorias.entitlements; sourceTree = "<group>"; };
@@ -72,7 +79,6 @@
 		2360608A2D0DE47200E3504F /* ViewModelManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelManager.swift; sourceTree = "<group>"; };
 		2360608B2D0DE47200E3504F /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		2360608C2D0DE47200E3504F /* ListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
-		236060962D0DE48200E3504F /* AuthToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		236060982D0DE48200E3504F /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		236060992D0DE48200E3504F /* EventEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventEntry.swift; sourceTree = "<group>"; };
 		2360609A2D0DE48200E3504F /* Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
@@ -85,6 +91,9 @@
 		236060AC2D0DE48200E3504F /* ProtocolsFirebaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtocolsFirebaseData.swift; sourceTree = "<group>"; };
 		23BD155D2D1B227E00DE16E7 /* ErrorDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDialog.swift; sourceTree = "<group>"; };
 		23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinate.swift; sourceTree = "<group>"; };
+		23F306382D1CBBDD004F5F75 /* EventoriasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventoriasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		23F3063A2D1CBBDD004F5F75 /* EventoriasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasTests.swift; sourceTree = "<group>"; };
+		23F3064C2D1CC149004F5F75 /* EventRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepositoryTests.swift; sourceTree = "<group>"; };
 		23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,17 +110,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		23F306352D1CBBDD004F5F75 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2302CE912D198CB4005F6EB4 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				2302CE922D198D03005F6EB4 /* UserRepository.swift */,
-			);
-			path = User;
-			sourceTree = "<group>";
-		};
 		2311CB472D118A5200518BC5 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				236060402D0DC7BC00E3504F /* Eventorias */,
+				23F306392D1CBBDD004F5F75 /* EventoriasTests */,
 				2360603F2D0DC7BC00E3504F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -140,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				2360603E2D0DC7BC00E3504F /* Eventorias.app */,
+				23F306382D1CBBDD004F5F75 /* EventoriasTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -192,7 +202,6 @@
 				2360608C2D0DE47200E3504F /* ListViewModel.swift */,
 				2311CB4A2D1199A700518BC5 /* AddEventViewModel.swift */,
 				23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */,
-				2302CE8D2D198491005F6EB4 /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -200,7 +209,6 @@
 		236060942D0DE48100E3504F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				236060952D0DE48200E3504F /* Token */,
 				236060972D0DE48200E3504F /* Extension */,
 				236060992D0DE48200E3504F /* EventEntry.swift */,
 				2360609A2D0DE48200E3504F /* Config.plist */,
@@ -210,14 +218,6 @@
 				2302CE8F2D198AD6005F6EB4 /* User.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		236060952D0DE48200E3504F /* Token */ = {
-			isa = PBXGroup;
-			children = (
-				236060962D0DE48200E3504F /* AuthToken.swift */,
-			);
-			path = Token;
 			sourceTree = "<group>";
 		};
 		236060972D0DE48200E3504F /* Extension */ = {
@@ -239,7 +239,6 @@
 		2360609D2D0DE48200E3504F /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				2302CE912D198CB4005F6EB4 /* User */,
 				2311CB4D2D11FF1200518BC5 /* Event */,
 				2360609E2D0DE48200E3504F /* List */,
 				236060A02D0DE48200E3504F /* Authentification */,
@@ -299,6 +298,39 @@
 			path = Authentification;
 			sourceTree = "<group>";
 		};
+		23F306392D1CBBDD004F5F75 /* EventoriasTests */ = {
+			isa = PBXGroup;
+			children = (
+				23F3064E2D1CC185004F5F75 /* Mocks */,
+				23F306412D1CBCFD004F5F75 /* Model */,
+				23F3063A2D1CBBDD004F5F75 /* EventoriasTests.swift */,
+			);
+			path = EventoriasTests;
+			sourceTree = "<group>";
+		};
+		23F306412D1CBCFD004F5F75 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				23F306422D1CBD8F004F5F75 /* Service */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		23F306422D1CBD8F004F5F75 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				23F3064C2D1CC149004F5F75 /* EventRepositoryTests.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		23F3064E2D1CC185004F5F75 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		23F9E9AB2D12C1C20030C221 /* Event */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,6 +366,24 @@
 			productReference = 2360603E2D0DC7BC00E3504F /* Eventorias.app */;
 			productType = "com.apple.product-type.application";
 		};
+		23F306372D1CBBDD004F5F75 /* EventoriasTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23F3063E2D1CBBDD004F5F75 /* Build configuration list for PBXNativeTarget "EventoriasTests" */;
+			buildPhases = (
+				23F306342D1CBBDD004F5F75 /* Sources */,
+				23F306352D1CBBDD004F5F75 /* Frameworks */,
+				23F306362D1CBBDD004F5F75 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				23F3063D2D1CBBDD004F5F75 /* PBXTargetDependency */,
+			);
+			name = EventoriasTests;
+			productName = EventoriasTests;
+			productReference = 23F306382D1CBBDD004F5F75 /* EventoriasTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -346,6 +396,10 @@
 				TargetAttributes = {
 					2360603D2D0DC7BC00E3504F = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					23F306372D1CBBDD004F5F75 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 2360603D2D0DC7BC00E3504F;
 					};
 				};
 			};
@@ -366,6 +420,7 @@
 			projectRoot = "";
 			targets = (
 				2360603D2D0DC7BC00E3504F /* Eventorias */,
+				23F306372D1CBBDD004F5F75 /* EventoriasTests */,
 			);
 		};
 /* End PBXProject section */
@@ -382,6 +437,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		23F306362D1CBBDD004F5F75 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -392,7 +454,6 @@
 				236060B22D0DE48200E3504F /* GoogleMapView.swift in Sources */,
 				230474212D1091C80067BB54 /* AddEventView.swift in Sources */,
 				236060812D0DE43B00E3504F /* ProfileView.swift in Sources */,
-				2302CE8E2D198491005F6EB4 /* ProfileViewModel.swift in Sources */,
 				236060802D0DE43B00E3504F /* RegistrationView.swift in Sources */,
 				23C8F6C32D16FF6B003E473C /* LocationCoordinate.swift in Sources */,
 				236060BA2D0DE48300E3504F /* EventListRepresentable.swift in Sources */,
@@ -405,11 +466,9 @@
 				2311CB4F2D11FF8F00518BC5 /* EventRepository.swift in Sources */,
 				236060912D0DE47200E3504F /* ViewModelManager.swift in Sources */,
 				236060B72D0DE48300E3504F /* HTTPService.swift in Sources */,
-				236060AE2D0DE48200E3504F /* AuthToken.swift in Sources */,
 				2311CB4B2D1199A700518BC5 /* AddEventViewModel.swift in Sources */,
 				236060B02D0DE48200E3504F /* EventEntry.swift in Sources */,
 				236060BB2D0DE48300E3504F /* ProtocolsFirebaseData.swift in Sources */,
-				2302CE932D198D03005F6EB4 /* UserRepository.swift in Sources */,
 				236060AF2D0DE48200E3504F /* DateExtension.swift in Sources */,
 				2302CE902D198AD6005F6EB4 /* User.swift in Sources */,
 				236060832D0DE43B00E3504F /* HomeView.swift in Sources */,
@@ -422,7 +481,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		23F306342D1CBBDD004F5F75 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23F3064D2D1CC14A004F5F75 /* EventRepositoryTests.swift in Sources */,
+				23F3063B2D1CBBDD004F5F75 /* EventoriasTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		23F3063D2D1CBBDD004F5F75 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2360603D2D0DC7BC00E3504F /* Eventorias */;
+			targetProxy = 23F3063C2D1CBBDD004F5F75 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		236060602D0DC7CB00E3504F /* Debug */ = {
@@ -611,6 +687,42 @@
 			};
 			name = Release;
 		};
+		23F3063F2D1CBBDD004F5F75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 99UMC25BBL;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Eventorias.EventoriasTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Eventorias.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Eventorias";
+			};
+			name = Debug;
+		};
+		23F306402D1CBBDD004F5F75 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 99UMC25BBL;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Eventorias.EventoriasTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Eventorias.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Eventorias";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -628,6 +740,15 @@
 			buildConfigurations = (
 				236060632D0DC7CB00E3504F /* Debug */,
 				236060642D0DC7CB00E3504F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		23F3063E2D1CBBDD004F5F75 /* Build configuration list for PBXNativeTarget "EventoriasTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23F3063F2D1CBBDD004F5F75 /* Debug */,
+				23F306402D1CBBDD004F5F75 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -14,7 +14,6 @@ struct HomeView: View {
     @State var email = ""
     @State var password = ""
     @StateObject var loginViewModel : LoginViewModel
-
     var body: some View {
         NavigationStack {
             ZStack {
@@ -42,7 +41,7 @@ struct HomeView: View {
                             
                             Button {
                                 loginViewModel.login(email: email, password: password)
-                                
+                               
                                 
                             } label: {
                                 HStack {
