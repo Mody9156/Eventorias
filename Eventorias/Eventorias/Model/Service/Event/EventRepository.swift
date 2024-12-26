@@ -10,7 +10,11 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 public class EventRepository : ObservableObject,EventManagerProtocol{
-    var db = Firestore.firestore().collection("eventorias")
+    var db : FirestoreCollectionProtocol
+    
+    init(db : FirestoreCollectionProtocol = Firestore.firestore().collection("eventorias")) {
+        self.db = db
+    }
     
     func saveToFirestore(_ event: EventEntry,completion:@escaping(Bool,Error?)-> Void ){
         

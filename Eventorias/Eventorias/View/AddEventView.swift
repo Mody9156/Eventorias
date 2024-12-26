@@ -14,7 +14,7 @@ import AVFoundation
 struct AddEventView: View {
     @State var title = ""
     @State var description = ""
-    @State private var date : Date = .now
+    @State private var date = Date()
     @State private var imageURL: URL? = nil
     @State private var showCamera = false
     @State private var selectedImage: UIImage?
@@ -25,7 +25,7 @@ struct AddEventView: View {
     @State var city : String = ""
     @State var postalCode : String = ""
     @State var country : String = ""
-    @State var hours : Date = .now
+    @State var hours = Date()
     @State private var savedFilePath: String?
     @State var category : String = ""
     @StateObject var addEventViewModel : AddEventViewModel
