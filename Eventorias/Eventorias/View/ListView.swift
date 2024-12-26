@@ -199,13 +199,13 @@ struct ViewCalendar: View {
     
     var body: some View {
         ScrollView {
-            DatePicker("Sélectionnez une date", selection: $selectedDate) {
+            DatePicker("Sélectionnez une date", selection: $selectedDate,displayedComponents: .date) {
                 ForEach(availableDates, id: \.self) { date in
                     Text(date.formatted(date: .abbreviated, time: .omitted))
                         .tag(Optional(date))
                 }
             }
-            .datePickerStyle(GraphicalDatePickerStyle())
+            .datePickerStyle(.graphical)
             .padding()
             
             List(filteredEvents, id: \.dateCreation) { event in
