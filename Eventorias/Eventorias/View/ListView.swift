@@ -247,10 +247,23 @@ struct ViewCalendar: View {
             List(filteredEvents, id: \.id) { event in
                 VStack(alignment: .leading) {
                     Text(event.title)
-                        .font(.headline)
+                        .font(.custom("Inter-Medium", size: 16))
+                        .lineSpacing(24 - 16)
+                        .fontWeight(.medium)
+                        .multilineTextAlignment(.leading)
+                        .truncationMode(.tail)
+                    
+                        .lineLimit(1)
+                        .foregroundColor(.white)
                     Text(event.description)
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
+                        .font(.custom("Inter-Medium", size: 16))
+                        .lineSpacing(24 - 16)
+                        .fontWeight(.medium)
+                        .multilineTextAlignment(.leading)
+                        .truncationMode(.tail)
+                    
+                        .lineLimit(1)
+                        .foregroundColor(.white)
                 }
             }
         }
