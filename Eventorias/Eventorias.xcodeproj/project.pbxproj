@@ -47,6 +47,8 @@
 		23FE1F772D1DFDBB00BE0624 /* EventRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE1F752D1DFDBB00BE0624 /* EventRepositoryTests.swift */; };
 		23FE1F7E2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE1F7D2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift */; };
 		23FE1F802D1E066800BE0624 /* CollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE1F7F2D1E066800BE0624 /* CollectionReference.swift */; };
+		23FE1F822D1E085100BE0624 /* MockFirestoreCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE1F812D1E085100BE0624 /* MockFirestoreCollection.swift */; };
+		23FE1F832D1E085100BE0624 /* MockFirestoreCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE1F812D1E085100BE0624 /* MockFirestoreCollection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,7 @@
 		23FE1F752D1DFDBB00BE0624 /* EventRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepositoryTests.swift; sourceTree = "<group>"; };
 		23FE1F7D2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreCollectionProtocol.swift; sourceTree = "<group>"; };
 		23FE1F7F2D1E066800BE0624 /* CollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReference.swift; sourceTree = "<group>"; };
+		23FE1F812D1E085100BE0624 /* MockFirestoreCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFirestoreCollection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +336,7 @@
 		23F3064E2D1CC185004F5F75 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				23FE1F812D1E085100BE0624 /* MockFirestoreCollection.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -494,6 +498,7 @@
 				2311CB492D118BEB00518BC5 /* CameraManager.swift in Sources */,
 				236060B62D0DE48300E3504F /* BasicHTTPClient.swift in Sources */,
 				236060842D0DE43B00E3504F /* UserDetailView.swift in Sources */,
+				23FE1F822D1E085100BE0624 /* MockFirestoreCollection.swift in Sources */,
 				236060B52D0DE48200E3504F /* FirebaseAuthenticationManager.swift in Sources */,
 				236060422D0DC7BC00E3504F /* EventoriasApp.swift in Sources */,
 			);
@@ -504,6 +509,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23FE1F772D1DFDBB00BE0624 /* EventRepositoryTests.swift in Sources */,
+				23FE1F832D1E085100BE0624 /* MockFirestoreCollection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
