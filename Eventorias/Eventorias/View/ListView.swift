@@ -182,6 +182,7 @@ extension ListViewModel {
 struct ViewCalendar: View {
     @Binding var searchText : String
     @StateObject var listViewModel : ListViewModel
+    @State private var birthDate = Date.now
     
     var body: some View {
         ScrollView {
@@ -218,6 +219,9 @@ struct ViewCalendar: View {
 //                }
 //            }
 //            .padding()
+            DatePicker(selection: $birthDate, in: ...Date.now, displayedComponents: .date)
+            
+            
         }
     }
 }
