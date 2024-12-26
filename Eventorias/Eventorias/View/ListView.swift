@@ -186,12 +186,10 @@ struct ViewCalendar: View {
     @State private var selectedDate = Date()
 
     var filterTitle : [EventEntry] {
-        let calendar = Calendar.current
         
-        return listViewModel.eventEntry.filter { calendar.isDate($0.date, inSameDayAs: selectedDate) }
-        
+        return listViewModel.eventEntry.filter { $0.isSameDay(as:selectedDate)}
     }
-  
+    
     var body: some View {
         ScrollView {
 //            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
