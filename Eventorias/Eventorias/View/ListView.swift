@@ -182,7 +182,7 @@ extension ListViewModel {
 struct ViewCalendar: View {
     @Binding var searchText : String
     @StateObject var listViewModel : ListViewModel
-    @State private var selectedDate: Date? = nil
+    @State private var selectedDate = Date()
     
     var availableDates: [Date] {
         let allDates = listViewModel.eventEntry.map { $0.dateCreation }
@@ -190,7 +190,7 @@ struct ViewCalendar: View {
     }
     
     var filteredEvents: [EventEntry] {
-        guard let selectedDate = selectedDate else { return [] }
+        let selectedDate = selectedDate
         let calendar = Calendar.current
         return listViewModel.filterTitle(searchText).filter {
             calendar.isDate($0.dateCreation, inSameDayAs: selectedDate)
@@ -201,17 +201,12 @@ struct ViewCalendar: View {
         ScrollView {
             VStack {
                 
-                DatePicker("Sélectionnez une date", selection: $selectedDate, displayedComponents: .date) {
-                    ForEach(availableDates, id: \.self) { date in
-                        Text(date.formatted(date: .abbreviated, time: .omitted))
-                            .tag(Optional(date))
-                    }
-                }
-                .datePickerStyle(.graphical)
-            .padding()
+                DatePicker("Sélectionnez une date", selection: $selectedDate, displayedComponents: listViewModel.eventEntry)
+                    .datePickerStyle(.graphical)
+                    .padding()
                 
                 
-                List(filteredEvents, id: \.dateCreation) { event in
+                List(listViewModel.filterTitle(searchText), id: \.self) { event in
                     
                     NavigationLink(destination: {AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
                     }) {
