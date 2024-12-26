@@ -199,43 +199,54 @@ struct ViewCalendar: View {
     
     var body: some View {
         ScrollView {
-            
             Picker("Sélectionnez une date", selection: $selectedDate) {
                 ForEach(availableDates, id: \.self) { date in
                     Text(date.formatted(date: .abbreviated, time: .omitted))
                         .tag(Optional(date))
                 }
             }
-            .pickerStyle(MenuPickerStyle()) // Changez le style si nécessaire
+            .pickerStyle(MenuPickerStyle())
             .padding()
             
-            
-            List(filteredEvents, id: \.id) { event in
+            List(filteredEvents, id: \.dateCreation) { event in
                 
                 NavigationLink(destination: {AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
-                                   }) {
-                VStack(alignment: .leading) {
-                    Text(event.title)
-                        .font(.custom("Inter-Medium", size: 16))
-                        .lineSpacing(24 - 16)
-                        .fontWeight(.medium)
-                        .multilineTextAlignment(.leading)
-                        .truncationMode(.tail)
-                    
-                        .lineLimit(1)
-                        .foregroundColor(.white)
-                    Text(event.description)
-                        .font(.custom("Inter-Medium", size: 16))
-                        .lineSpacing(24 - 16)
-                        .fontWeight(.medium)
-                        .multilineTextAlignment(.leading)
-                        .truncationMode(.tail)
-                    
-                        .lineLimit(1)
-                        .foregroundColor(.white)
+                }) {
+                    VStack(alignment: .leading) {
+                        Text(event.title)
+                            .font(.custom("Inter-Medium", size: 16))
+                            .lineSpacing(24 - 16)
+                            .fontWeight(.medium)
+                            .multilineTextAlignment(.leading)
+                            .truncationMode(.tail)
+                            .lineLimit(1)
+                            .foregroundColor(.white)
+                        
+                        Text("\(event.dateCreation)")
+                            .font(.custom("Inter-Medium", size: 16))
+                            .lineSpacing(24 - 16)
+                            .fontWeight(.medium)
+                            .multilineTextAlignment(.leading)
+                            .truncationMode(.tail)
+                        
+                        Text(event.description)
+                            .font(.custom("Inter-Medium", size: 16))
+                            .lineSpacing(24 - 16)
+                            .fontWeight(.medium)
+                            .multilineTextAlignment(.leading)
+                            .truncationMode(.tail)
+                        
+                            .lineLimit(1)
+                            .foregroundColor(.white)
+                    }
                 }
             }
-            }
+            
+            if filteredEvents.isEmpty {
+                           Text("Aucun événement trouvé pour cette date.")
+                               .foregroundColor(.gray)
+                               .padding()
+                       }
         }
     }
 }
@@ -285,7 +296,6 @@ struct ViewModeList: View {
                             }
                             .frame(width: 40, height: 40)
                             .padding()
-                            
                             
                         }
                         
