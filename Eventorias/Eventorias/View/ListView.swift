@@ -192,7 +192,7 @@ struct ViewCalendar: View {
     var filteredEvents: [EventEntry] {
         guard let selectedDate = selectedDate else { return [] }
         let calendar = Calendar.current
-        return listViewModel.eventEntry.filter {
+        return listViewModel.filterTitle(searchText).filter {
             calendar.isDate($0.dateCreation, inSameDayAs: selectedDate)
         }
     }
