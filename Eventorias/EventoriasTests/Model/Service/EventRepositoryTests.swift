@@ -1,6 +1,6 @@
 //
-//  EventRepositoryTests.swift
-//  Eventorias
+//  EventRepositoryTestss.swift
+//  EventoriasTests
 //
 //  Created by KEITA on 26/12/2024.
 //
@@ -9,13 +9,13 @@ import XCTest
 import Firebase
 import FirebaseAuth
 import FirebaseCore
+@testable import Eventorias
 final class EventRepositoryTests: XCTestCase {
-
 
     func testSaveToFirestoreSuccess()  {
         let mockDb = MockFirestoreCollection()
         mockDb.shouldSucceed = true
-        let repository = EventRepository(db: mockDb as! FirestoreCollectionProtocol)
+        let repository = EventRepository(db: mockDb)
         let testsEvent = EventEntry(
             picture: "https://example.com/event-picture.jpg",
             title: "Annual Tech Conference",
@@ -38,5 +38,6 @@ final class EventRepositoryTests: XCTestCase {
         waitForExpectations(timeout:10)
         
     }
+
 
 }
