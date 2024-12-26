@@ -182,15 +182,21 @@ extension ListViewModel {
 struct ViewCalendar: View {
     @Binding var searchText : String
     @StateObject var listViewModel : ListViewModel
-    @State private var date = Date.now
-    @State private var selectedDate = Date()
+    @State private var selectedDate: Date? = nil
     
-    
-    var filterTitle: [EventEntry] {
-        let calendar = Calendar.current
-        return listViewModel.eventEntry.filter { calendar.isDate($0.dateCreation, inSameDayAs: selectedDate) }
+    var availableDates: [Date] {
+        let allDates = listViewModel.eventEntry.map { $0.dateCreation }
+        return Array(Set(allDates)).sorted() // Supprime les doublons et trie les dates
     }
-
+    
+    var filteredEvents: [EventEntry] {
+        guard let selectedDate = selectedDate else { return [] }
+        let calendar = Calendar.current
+        return listViewModel.eventEntry.filter {
+            calendar.isDate($0.dateCreation, inSameDayAs: selectedDate)
+        }
+    }
+    
     var body: some View {
         ScrollView {
             //            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
@@ -219,7 +225,7 @@ struct ViewCalendar: View {
             //                                .fontWeight(.medium)
             //                                .multilineTextAlignment(.leading)
             //                                .truncationMode(.tail)
-        
+            
             //                                .lineLimit(1)
             //                                .foregroundColor(.white)
             //                        }
@@ -227,22 +233,30 @@ struct ViewCalendar: View {
             //                }
             //            }
             //            .padding()
-            DatePicker("Date",selection:$selectedDate, displayedComponents: .date)
-                .datePickerStyle(GraphicalDatePickerStyle())
             
-            List(filterTitle, id:\.self){ index in
-                NavigationLink(destination: {
-                    AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
-                }) {
-                    VStack(alignment: .leading) {
-                        Text(index.title)
-                    }
+            Picker("Sélectionnez une date", selection: $selectedDate) {
+                ForEach(availableDates, id: \.self) { date in
+                    Text(date.formatted(date: .abbreviated, time: .omitted))
+                        .tag(Optional(date))
                 }
             }
+            .pickerStyle(MenuPickerStyle()) // Changez le style si nécessaire
+            .padding()
             
+            
+            List(filteredEvents, id: \.id) { event in
+                VStack(alignment: .leading) {
+                    Text(event.title)
+                        .font(.headline)
+                    Text(event.description)
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                }
+            }
         }
     }
 }
+
 
 struct ToggleViewButton: View {
     @Binding var calendar : Bool
