@@ -229,8 +229,11 @@ struct ViewCalendar: View {
                     .datePickerStyle(GraphicalDatePickerStyle())
             
             List(filterTitle){ index in
-                Text(index.dateCreation)
-                
+                NavigationLink(destination: {
+                    //                        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
+                    //                    }) {
+                    Text(index.dateCreation)
+                }
             }
             
         }
