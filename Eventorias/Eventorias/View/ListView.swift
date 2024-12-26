@@ -219,9 +219,9 @@ struct ViewCalendar: View {
 //                }
 //            }
 //            .padding()
-            DatePicker(selection: $birthDate)
-                .datePickerStyle(GraphicalDatePickerStyle())
-            
+                DatePicker("Enter your birthday",selection: $listViewModel.filterTitle(searchText))
+                    .datePickerStyle(GraphicalDatePickerStyle())
+                
             
         }
     }
