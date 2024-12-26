@@ -185,39 +185,39 @@ struct ViewCalendar: View {
     
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
-                ForEach(listViewModel.filterTitle(searchText), id: \.self) { entry in
-                    
-                    NavigationLink(destination: {
-                        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
-                    }) {
-                        ZStack {
-                            AsyncImage(url: URL(string: "\(entry.poster)")) { image in
-                                image
-                                    .resizable()
-                            } placeholder: {
-                                ProgressView()
-                                    .frame(width: 136, height: 80)
-                            }
-                            .frame(width: 136, height: 80)
-                            .cornerRadius(12)
-                            .opacity(0.5)
-                            
-                            Spacer()
-                            
-                            Text(entry.title)
-                                .font(.custom("Inter-Medium", size: 16))
-                                .lineSpacing(24 - 16)
-                                .fontWeight(.medium)
-                                .multilineTextAlignment(.leading)
-                                .truncationMode(.tail)
-                                .lineLimit(1)
-                                .foregroundColor(.white)
-                        }
-                    }
-                }
-            }
-            .padding()
+//            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
+//                ForEach(listViewModel.filterTitle(searchText), id: \.self) { entry in
+//
+//                    NavigationLink(destination: {
+//                        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
+//                    }) {
+//                        ZStack {
+//                            AsyncImage(url: URL(string: "\(entry.poster)")) { image in
+//                                image
+//                                    .resizable()
+//                            } placeholder: {
+//                                ProgressView()
+//                                    .frame(width: 136, height: 80)
+//                            }
+//                            .frame(width: 136, height: 80)
+//                            .cornerRadius(12)
+//                            .opacity(0.5)
+//
+//                            Spacer()
+//
+//                            Text(entry.title)
+//                                .font(.custom("Inter-Medium", size: 16))
+//                                .lineSpacing(24 - 16)
+//                                .fontWeight(.medium)
+//                                .multilineTextAlignment(.leading)
+//                                .truncationMode(.tail)
+//                                .lineLimit(1)
+//                                .foregroundColor(.white)
+//                        }
+//                    }
+//                }
+//            }
+//            .padding()
         }
     }
 }
