@@ -182,8 +182,16 @@ extension ListViewModel {
 struct ViewCalendar: View {
     @Binding var searchText : String
     @StateObject var listViewModel : ListViewModel
-    @State private var birthDate = Date.now
-    
+    @State private var date = Date.now
+    @State private var selectedDate = Date()
+
+    var filterTitle : [EventEntry] {
+        let calendar = Calendar.current
+        
+        return listViewModel.eventEntry.filter { calendar.isDate($0.date, inSameDayAs: selectedDate) }
+        
+    }
+  
     var body: some View {
         ScrollView {
 //            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
@@ -219,9 +227,13 @@ struct ViewCalendar: View {
 //                }
 //            }
 //            .padding()
-                DatePicker("Enter your birthday",selection: $listViewModel.filterTitle(searchText))
+            DatePicker("Date",selection:$selectedDate, displayedComponents: .date)
                     .datePickerStyle(GraphicalDatePickerStyle())
+            
+            List(filterTitle){ index in
+                Text(index.dateCreation)
                 
+            }
             
         }
     }
