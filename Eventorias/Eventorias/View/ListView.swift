@@ -219,7 +219,8 @@ struct ViewCalendar: View {
 //                }
 //            }
 //            .padding()
-            DatePicker(selection: $birthDate, in: ...Date.now, displayedComponents: .date)
+            DatePicker(selection: $birthDate)
+                .datePickerStyle(GraphicalDatePickerStyle())
             
             
         }
