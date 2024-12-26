@@ -186,13 +186,13 @@ struct ViewCalendar: View {
     
     var availableDates: [Date] {
         let allDates = listViewModel.eventEntry.map { $0.dateCreation }
-        return Array(Set(allDates)).sorted() // Supprime les doublons et trie les dates
+        return Array(Set(allDates)).sorted()
     }
     
     var filteredEvents: [EventEntry] {
         let selectedDate = selectedDate
         let calendar = Calendar.current
-        return listViewModel.filterTitle(searchText).filter {
+        return listViewModel.eventEntry.filter {
             calendar.isDate($0.dateCreation, inSameDayAs: selectedDate)
         }
     }
@@ -201,14 +201,15 @@ struct ViewCalendar: View {
         ScrollView {
             VStack {
                 
-                DatePicker("Sélectionnez une date", selection: $selectedDate, displayedComponents: listViewModel.eventEntry)
-                    .datePickerStyle(.graphical)
-                    .padding()
-                
-                
-                List(listViewModel.filterTitle(searchText), id: \.self) { event in
+//                DatePicker("Sélectionnez une date", selection: $selectedDate)
+//                    .datePickerStyle(.graphical)
+//                    .navigationTitle("Vue calendar")
+//                      .padding()
+                             
+                List(filteredEvents, id: \.self) { event in
                     
-                    NavigationLink(destination: {AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
+                    NavigationLink(destination: {
+                        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
                     }) {
                         VStack(alignment: .leading) {
                             Text(event.title)
@@ -244,7 +245,11 @@ struct ViewCalendar: View {
                                Text("Aucun événement trouvé pour cette date.")
                                    .foregroundColor(.white)
                                    .padding()
-                           }
+                }else {
+                    Text("Date sélectionnée : \(selectedDate.formatted(date: .abbreviated, time: .omitted))")
+                }
+               
+
             }
             
         }
@@ -275,6 +280,7 @@ struct ToggleViewButton: View {
         .padding()
     }
 }
+
 struct ViewModeList: View {
     @Binding var searchText: String
     @StateObject var listViewModel: ListViewModel
