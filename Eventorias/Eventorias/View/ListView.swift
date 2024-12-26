@@ -205,7 +205,7 @@ struct ViewCalendar: View {
                         .tag(Optional(date))
                 }
             }
-            .pickerStyle(GraphicalDatePickerStyle())
+            .datePickerStyle(GraphicalDatePickerStyle())
             .padding()
             
             List(filteredEvents, id: \.dateCreation) { event in
