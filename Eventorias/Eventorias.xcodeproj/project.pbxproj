@@ -43,8 +43,9 @@
 		23BD155E2D1B227E00DE16E7 /* ErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BD155D2D1B227E00DE16E7 /* ErrorDialog.swift */; };
 		23C8F6C32D16FF6B003E473C /* LocationCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */; };
 		23F3063B2D1CBBDD004F5F75 /* EventoriasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F3063A2D1CBBDD004F5F75 /* EventoriasTests.swift */; };
-		23F3064D2D1CC14A004F5F75 /* EventRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F3064C2D1CC149004F5F75 /* EventRepositoryTests.swift */; };
 		23F9E9AD2D12C2430030C221 /* EventManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */; };
+		23FE1F6A2D1D4B3D00BE0624 /* EventRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE1F692D1D4B3D00BE0624 /* EventRepositoryTests.swift */; };
+		23FE1F6B2D1D4B3D00BE0624 /* EventRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE1F692D1D4B3D00BE0624 /* EventRepositoryTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,8 +94,8 @@
 		23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinate.swift; sourceTree = "<group>"; };
 		23F306382D1CBBDD004F5F75 /* EventoriasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventoriasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		23F3063A2D1CBBDD004F5F75 /* EventoriasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasTests.swift; sourceTree = "<group>"; };
-		23F3064C2D1CC149004F5F75 /* EventRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepositoryTests.swift; sourceTree = "<group>"; };
 		23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagerProtocol.swift; sourceTree = "<group>"; };
+		23FE1F692D1D4B3D00BE0624 /* EventRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepositoryTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,7 +320,7 @@
 		23F306422D1CBD8F004F5F75 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				23F3064C2D1CC149004F5F75 /* EventRepositoryTests.swift */,
+				23FE1F692D1D4B3D00BE0624 /* EventRepositoryTests.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -473,6 +474,7 @@
 				2302CE902D198AD6005F6EB4 /* User.swift in Sources */,
 				236060832D0DE43B00E3504F /* HomeView.swift in Sources */,
 				23F9E9AD2D12C2430030C221 /* EventManagerProtocol.swift in Sources */,
+				23FE1F6A2D1D4B3D00BE0624 /* EventRepositoryTests.swift in Sources */,
 				2311CB492D118BEB00518BC5 /* CameraManager.swift in Sources */,
 				236060B62D0DE48300E3504F /* BasicHTTPClient.swift in Sources */,
 				236060842D0DE43B00E3504F /* UserDetailView.swift in Sources */,
@@ -485,7 +487,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23F3064D2D1CC14A004F5F75 /* EventRepositoryTests.swift in Sources */,
+				23FE1F6B2D1D4B3D00BE0624 /* EventRepositoryTests.swift in Sources */,
 				23F3063B2D1CBBDD004F5F75 /* EventoriasTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
