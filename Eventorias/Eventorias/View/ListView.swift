@@ -184,55 +184,59 @@ struct ViewCalendar: View {
     @StateObject var listViewModel : ListViewModel
     @State private var date = Date.now
     @State private var selectedDate = Date()
-
-    var filterTitle : [EventEntry] {
-        
-        return listViewModel.eventEntry.filter { $0.isSameDay(as:selectedDate)}
-    }
     
+    
+    var filterTitle: [EventEntry] {
+        let calendar = Calendar.current
+        return listViewModel.eventEntry.filter { calendar.isDate($0.dateCreation, inSameDayAs: selectedDate) }
+    }
+
     var body: some View {
         ScrollView {
-//            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
-//                ForEach(listViewModel.filterTitle(searchText), id: \.self) { entry in
-//
-//                    NavigationLink(destination: {
-//                        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
-//                    }) {
-//                        ZStack {
-//                            AsyncImage(url: URL(string: "\(entry.poster)")) { image in
-//                                image
-//                                    .resizable()
-//                            } placeholder: {
-//                                ProgressView()
-//                                    .frame(width: 136, height: 80)
-//                            }
-//                            .frame(width: 136, height: 80)
-//                            .cornerRadius(12)
-//                            .opacity(0.5)
-//
-//                            Spacer()
-//
-//                            Text(entry.title)
-//                                .font(.custom("Inter-Medium", size: 16))
-//                                .lineSpacing(24 - 16)
-//                                .fontWeight(.medium)
-//                                .multilineTextAlignment(.leading)
-//                                .truncationMode(.tail)
-//                                .lineLimit(1)
-//                                .foregroundColor(.white)
-//                        }
-//                    }
-//                }
-//            }
-//            .padding()
+            //            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
+            //                ForEach(listViewModel.filterTitle(searchText), id: \.self) { entry in
+            //
+            //                    NavigationLink(destination: {
+            //                        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
+            //                    }) {
+            //                        ZStack {
+            //                            AsyncImage(url: URL(string: "\(entry.poster)")) { image in
+            //                                image
+            //                                    .resizable()
+            //                            } placeholder: {
+            //                                ProgressView()
+            //                                    .frame(width: 136, height: 80)
+            //                            }
+            //                            .frame(width: 136, height: 80)
+            //                            .cornerRadius(12)
+            //                            .opacity(0.5)
+            //
+            //                            Spacer()
+            //
+            //                            Text(entry.title)
+            //                                .font(.custom("Inter-Medium", size: 16))
+            //                                .lineSpacing(24 - 16)
+            //                                .fontWeight(.medium)
+            //                                .multilineTextAlignment(.leading)
+            //                                .truncationMode(.tail)
+        
+            //                                .lineLimit(1)
+            //                                .foregroundColor(.white)
+            //                        }
+            //                    }
+            //                }
+            //            }
+            //            .padding()
             DatePicker("Date",selection:$selectedDate, displayedComponents: .date)
-                    .datePickerStyle(GraphicalDatePickerStyle())
+                .datePickerStyle(GraphicalDatePickerStyle())
             
-            List(filterTitle){ index in
+            List(filterTitle, id:\.self){ index in
                 NavigationLink(destination: {
-                    //                        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
-                    //                    }) {
-                    Text(index.dateCreation)
+                    AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
+                }) {
+                    VStack(alignment: .leading) {
+                        Text(index.title)
+                    }
                 }
             }
             
@@ -287,7 +291,7 @@ struct ViewModeList: View {
                             
                             
                         }
-
+                        
                         VStack(alignment: .leading) {
                             Text(entry.title)
                                 .font(.custom("Inter-Medium", size: 16))
