@@ -163,6 +163,13 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		2359201B2D1ED9F100699E99 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
 		236060352D0DC7BC00E3504F = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +338,7 @@
 		23F0E1AF2D1EAEEF00C9A610 /* EventoriasTests */ = {
 			isa = PBXGroup;
 			children = (
+				2359201B2D1ED9F100699E99 /* Class */,
 				234794422D1EBEE300A03836 /* Service */,
 				23F0E1B72D1EAF8600C9A610 /* Mocks */,
 			);

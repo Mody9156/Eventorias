@@ -32,8 +32,36 @@ final class FirebaseAuthenticationManagerTests: XCTestCase {
                 ]
         
         //initialisation de l'object User
-        guard let user = User(from: <#T##[String : Any]#>)
-        waitForExpectations(timeout: 10, handler: nil)
-
-    }
+        guard let user = User(from: userDict) else {
+            XCTFail("User initialization failed")
+            return
+        }
+        
+        XCTAssertEqual(user.firstName, "John")
+            XCTAssertEqual(user.lastName, "Doe")
+            XCTAssertEqual(user.email, "john.doe@example.com")
+            XCTAssertEqual(user.uid, "12345")
+            XCTAssertEqual(user.picture, "http://example.com/picture.jpg")
+         }
+    
+    func testUserToDictionary() {
+           // Création d'un objet User
+           let user = User(firstName: "John", lastName: "Doe", email: "john.doe@example.com", uid: "12345", picture: "http://example.com/picture.jpg")
+           
+           // Conversion de l'objet User en dictionnaire
+           let userDict = user.toDictionary()
+           
+           // Vérification que le dictionnaire est correct
+           XCTAssertEqual(userDict["firstName"] as? String, "John")
+           XCTAssertEqual(userDict["lastName"] as? String, "Doe")
+           XCTAssertEqual(userDict["email"] as? String, "john.doe@example.com")
+           XCTAssertEqual(userDict["uid"] as? String, "12345")
+           XCTAssertEqual(userDict["picture"] as? String, "http://example.com/picture.jpg")
+       }
+  
+    
 }
+
+
+
+
