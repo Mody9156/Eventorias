@@ -163,25 +163,9 @@ struct CustomButton: View {
     }
 }
 
-struct MyPreviewProvider_Previewss: PreviewProvider {
-    static var previews: some View {
-        ListView(listViewModel: ListViewModel.mock())
-    }
-}
-extension ListViewModel {
-    static func mock() -> ListViewModel {
-        let viewModel = ListViewModel()
-        
-        viewModel.eventEntry = [
-            EventEntry( picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Kyrie_Irving_-_51831772061_01_%28cropped%29.jpg/1024px-Kyrie_Irving_-_51831772061_01_%28cropped%29.jpg", title: "NBA", dateCreation: Date.now, poster: "https://img.freepik.com/photos-gratuite/vaisseau-spatial-orbite-autour-planete-dans-superbe-decor-spatial-genere-par-ia_188544-15610.jpg?t=st=1735041951~exp=1735045551~hmac=9a2fa593903e1ecc1fb77937beca379c4f593ad080b7107e495c9cbb4ec72915&w=1800", description: "Une image est une représentation visuelle, voire mentale, de quelque chose (objet, être vivant ou concept).Elle peut être naturelle (ombre, reflet) ou artificielle (sculpture, peinture, photographie), visuelle ou non, tangible ou conceptuelle (métaphore), elle peut entretenir un rapport de ressemblance directe avec son modèle ou au contraire y être liée par un rapport plus symbolique.Pour la sémiologie ou sémiotique, qui a développé tout un secteur de sémiotique visuelle, l'image est conçue comme produite par un langage spécifique.", hour: "12:33", category: "Music", place: Address(street: "112 Av. de la République", city: "Montgeron", postalCode: "91230", country: "FRANCE", localisation: GeoPoint(latitude: 48.862725, longitude: 2.287592)))
-        ]
-        return viewModel
-    }
-}
-
 struct ViewCalendar: View {
-    @Binding var searchText : String
-    @StateObject var listViewModel : ListViewModel
+    @Binding var searchText: String
+    @StateObject var listViewModel: ListViewModel
     @State private var selectedDate = Date()
     
     var availableDates: [Date] {
@@ -190,7 +174,6 @@ struct ViewCalendar: View {
     }
     
     var filteredEvents: [EventEntry] {
-        let selectedDate = selectedDate
         let calendar = Calendar.current
         return listViewModel.eventEntry.filter {
             calendar.isDate($0.dateCreation, inSameDayAs: selectedDate)
@@ -198,61 +181,51 @@ struct ViewCalendar: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack {
-                
-//                DatePicker("Sélectionnez une date", selection: $selectedDate)
-//                    .datePickerStyle(.graphical)
-//                    .navigationTitle("Vue calendar")
-//                      .padding()
-                             
+        VStack {
+            // Affichage du DatePicker
+            DatePicker("Sélectionnez une date", selection: $selectedDate, displayedComponents: .date)
+                .datePickerStyle(.graphical)
+                .navigationTitle("Vue Calendar")
+                .padding()
+            
+            // Affichage des événements liés à la date sélectionnée
+            if filteredEvents.isEmpty {
+                Text("Aucun événement trouvé pour cette date.")
+                    .foregroundColor(.white)
+                    .padding()
+            } else {
+                Text("Date sélectionnée : \(selectedDate.formatted(date: .abbreviated, time: .omitted))")
+                    .foregroundColor(.white)
+                    .padding()
+
                 List(filteredEvents, id: \.self) { event in
-                    
-                    NavigationLink(destination: {
-                        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
-                    }) {
+                    NavigationLink(destination: AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())) {
                         VStack(alignment: .leading) {
                             Text(event.title)
                                 .font(.custom("Inter-Medium", size: 16))
                                 .lineSpacing(24 - 16)
                                 .fontWeight(.medium)
-                                .multilineTextAlignment(.leading)
-                                .truncationMode(.tail)
-                                .lineLimit(1)
                                 .foregroundColor(.white)
                             
-                            Text("\(event.dateCreation)")
+                            Text("\(event.dateCreation.formatted(date: .abbreviated, time: .omitted))")
                                 .font(.custom("Inter-Medium", size: 16))
-                                .lineSpacing(24 - 16)
-                                .fontWeight(.medium)
-                                .multilineTextAlignment(.leading)
-                                .truncationMode(.tail)
+                                .foregroundColor(.white)
                             
                             Text(event.description)
                                 .font(.custom("Inter-Medium", size: 16))
-                                .lineSpacing(24 - 16)
-                                .fontWeight(.medium)
-                                .multilineTextAlignment(.leading)
-                                .truncationMode(.tail)
-                            
-                                .lineLimit(1)
                                 .foregroundColor(.white)
+                                .lineLimit(1)
                         }
                     }
                 }
-                
-                if filteredEvents.isEmpty {
-                               Text("Aucun événement trouvé pour cette date.")
-                                   .foregroundColor(.white)
-                                   .padding()
-                }else {
-                    Text("Date sélectionnée : \(selectedDate.formatted(date: .abbreviated, time: .omitted))")
-                }
-               
-
             }
-            
         }
+        .onAppear {
+            Task {
+                try? await listViewModel.getAllProducts()  // Charger les événements au lancement
+            }
+        }
+        .padding()
     }
 }
 
