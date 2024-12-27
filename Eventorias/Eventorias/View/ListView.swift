@@ -192,8 +192,10 @@ struct ViewCalendar: View {
                 .datePickerStyle(.graphical)
                 .padding()
                 .foregroundColor(.white) // Couleur du texte
-                .accentColor(Color("Background"))
-            
+                .accentColor(.white)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 12).fill(Color.gray.opacity(0.2)))
+
             // Affichage des événements liés à la date sélectionnée
             if filteredEvents.isEmpty {
                 Text("Aucun événement trouvé pour cette date.")
@@ -206,7 +208,7 @@ struct ViewCalendar: View {
                 
                 List(filteredEvents, id: \.self) { event in
                     Section {
-                        NavigationLink(destination: AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())) {
+                        NavigationLink(destination: UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate())) {
                             VStack(alignment: .leading) {
                                 Text(event.title)
                                     .font(.custom("Inter-Medium", size: 16))
