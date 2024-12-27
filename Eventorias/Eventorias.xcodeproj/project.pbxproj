@@ -15,8 +15,6 @@
 		234794412D1EB68F00A03836 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 234794402D1EB68F00A03836 /* FirebaseAnalytics */; };
 		234794442D1EC31100A03836 /* FirestoreCollectionProtocolToList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234794432D1EC31100A03836 /* FirestoreCollectionProtocolToList.swift */; };
 		234794462D1ED45F00A03836 /* FirebaseAuthenticationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234794452D1ED45F00A03836 /* FirebaseAuthenticationManagerTests.swift */; };
-		2359201D2D1EE0E200699E99 /* FirebaseAuthenticationManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2359201C2D1EE0E200699E99 /* FirebaseAuthenticationManagerMock.swift */; };
-		2359201F2D1EF16100699E99 /* FirebaseCreteNewUSerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2359201E2D1EF16000699E99 /* FirebaseCreteNewUSerTests.swift */; };
 		235920232D1EF62F00699E99 /* FirebaseFirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235920222D1EF62F00699E99 /* FirebaseFirestoreService.swift */; };
 		235920252D1F03BC00699E99 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235920242D1F03BC00699E99 /* AuthService.swift */; };
 		235920272D1F180C00699E99 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235920262D1F180B00699E99 /* FirebaseAuthService.swift */; };
@@ -83,8 +81,6 @@
 		2311CB4E2D11FF8F00518BC5 /* EventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
 		234794432D1EC31100A03836 /* FirestoreCollectionProtocolToList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreCollectionProtocolToList.swift; sourceTree = "<group>"; };
 		234794452D1ED45F00A03836 /* FirebaseAuthenticationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationManagerTests.swift; sourceTree = "<group>"; };
-		2359201C2D1EE0E200699E99 /* FirebaseAuthenticationManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationManagerMock.swift; sourceTree = "<group>"; };
-		2359201E2D1EF16000699E99 /* FirebaseCreteNewUSerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCreteNewUSerTests.swift; sourceTree = "<group>"; };
 		235920222D1EF62F00699E99 /* FirebaseFirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreService.swift; sourceTree = "<group>"; };
 		235920242D1F03BC00699E99 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		235920262D1F180B00699E99 /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
@@ -180,8 +176,6 @@
 		2359201B2D1ED9F100699E99 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				2359201C2D1EE0E200699E99 /* FirebaseAuthenticationManagerMock.swift */,
-				2359201E2D1EF16000699E99 /* FirebaseCreteNewUSerTests.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -549,8 +543,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2359201F2D1EF16100699E99 /* FirebaseCreteNewUSerTests.swift in Sources */,
-				2359201D2D1EE0E200699E99 /* FirebaseAuthenticationManagerMock.swift in Sources */,
 				234794462D1ED45F00A03836 /* FirebaseAuthenticationManagerTests.swift in Sources */,
 				23F0E1B12D1EAEEF00C9A610 /* EventoriasTests.swift in Sources */,
 				2359202B2D1F1B4500699E99 /* MockFirestoreService.swift in Sources */,

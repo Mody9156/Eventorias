@@ -121,44 +121,44 @@ final class FirebaseAuthenticationManagerTests: XCTestCase {
     }
     
     func testCreateUserSuccess() {
-            // Simuler une création réussie
-            mockAuthService.shouldSucceedCreateUser = true
-            mockFirestoreService.shouldSucceedSave = true
-
-            let expectation = self.expectation(description: "createUser should succeed")
-            
-            firebaseAuthManager.createUser(email: "john.doe@example.com", password: "password123", firstName: "John", lastName: "Doe", picture: "mockPictureURL") { result in
-                switch result {
-                case .success(let user):
-                    XCTAssertEqual(user.firstName, "John")
-                    XCTAssertEqual(user.lastName, "Doe")
-                    XCTAssertEqual(user.email, "john.doe@example.com")
-                    expectation.fulfill()
-                case .failure:
-                    XCTFail("Expected createUser to succeed, but it failed")
-                }
+        // Simuler une création réussie
+        mockAuthService.shouldSucceedCreateUser = true
+        mockFirestoreService.shouldSucceedSave = true
+        
+        let expectation = self.expectation(description: "createUser should succeed")
+        
+        firebaseAuthManager.createUser(email: "john.doe@example.com", password: "password123", firstName: "John", lastName: "Doe", picture: "mockPictureURL") { result in
+            switch result {
+            case .success(let user):
+                XCTAssertEqual(user.firstName, "John")
+                XCTAssertEqual(user.lastName, "Doe")
+                XCTAssertEqual(user.email, "john.doe@example.com")
+                expectation.fulfill()
+            case .failure:
+                XCTFail("Expected createUser to succeed, but it failed")
             }
-            
-            waitForExpectations(timeout: 1.0, handler: nil)
         }
-
-        func testCreateUserFailure() {
-            // Simuler une erreur lors de la création
-            mockAuthService.shouldSucceedCreateUser = false
-
-            let expectation = self.expectation(description: "createUser should fail")
-            
-            firebaseAuthManager.createUser(email: "john.doe@example.com", password: "password123", firstName: "John", lastName: "Doe", picture: "mockPictureURL") { result in
-                switch result {
-                case .success:
-                    XCTFail("Expected createUser to fail, but it succeeded")
-                case .failure(let error):
-                    XCTAssertEqual(error.localizedDescription, "User creation failed")
-                    expectation.fulfill()
-                }
+        
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
+    
+    func testCreateUserFailure() {
+        // Simuler une erreur lors de la création
+        mockAuthService.shouldSucceedCreateUser = false
+        
+        let expectation = self.expectation(description: "createUser should fail")
+        
+        firebaseAuthManager.createUser(email: "john.doe@example.com", password: "password123", firstName: "John", lastName: "Doe", picture: "mockPictureURL") { result in
+            switch result {
+            case .success:
+                XCTFail("Expected createUser to fail, but it succeeded")
+            case .failure(let error):
+                XCTAssertEqual(error.localizedDescription, "User creation failed")
+                expectation.fulfill()
             }
-            
-            waitForExpectations(timeout: 1.0, handler: nil)
         }
+        
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
 }
 
