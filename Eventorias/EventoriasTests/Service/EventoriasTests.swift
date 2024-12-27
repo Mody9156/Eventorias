@@ -39,7 +39,7 @@ final class EventoriasTests: XCTestCase {
     func testSaveToFirestoreFailure(){
         let mockDb = MockFirestoreCollection()
         mockDb.shouldSucceed = false
-        let repository = EventRepository(db: mockDb as! FirestoreCollectionProtocol)
+        let repository = EventRepository(db: mockDb)
         let testsEvent = EventEntry(
             picture: "https://example.com/event-picture.jpg",
             title: "Annual Tech Conference",
