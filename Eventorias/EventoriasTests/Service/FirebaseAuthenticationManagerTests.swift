@@ -77,12 +77,19 @@ final class FirebaseAuthenticationManagerTests: XCTestCase {
         
         let expectation = self.expectation(description: "signIn should complete with failure")
         
-        authManagerMock.signIn(email: "wrong.email@example.com", password: "wrongpassword") { result in
+        authManager.signIn(email: "wrong.email@example.com", password: "wrongpassword") { result in
             
+            switch result {
+            case .success(let user):
+                XCTFail("Expected failure but got success: \(user)")
+            case .failure(let error):
+                XCTAssertEqual(error.localizedDescription, "Invalid credentials")
+
+            }
             
-            
-            
+            expectation.fulfill()
     }
+        waitForExpectations(timeout: 1.0,handler: nil)
 }
 
 
