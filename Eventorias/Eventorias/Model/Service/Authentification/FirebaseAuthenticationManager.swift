@@ -9,12 +9,12 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseCore
-
+//La Classe Principale
 class FirebaseAuthenticationManager {
-      let authService: AuthService
-      let firestoreService: FirestoreService
+    private let authService: AuthService
+    private let firestoreService: FirestoreService
 
-    init(authService: AuthService, firestoreService: FirestoreService) {
+    init(authService: AuthService = FirebaseAuthService(), firestoreService: FirestoreService = FirebaseFirestoreService()) {
         self.authService = authService
         self.firestoreService = firestoreService
     }
