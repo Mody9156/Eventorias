@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import Eventorias
-class FirebaseAuthenticationManagerTests {
+class FirebaseCreteNewUSerTests {
 
    
 }
