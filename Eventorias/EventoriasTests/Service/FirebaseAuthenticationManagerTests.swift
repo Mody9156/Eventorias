@@ -72,7 +72,9 @@ final class FirebaseAuthenticationManagerTests: XCTestCase {
            XCTAssertEqual(userDict["picture"] as? String, "http://example.com/picture.jpg")
        }
   
-     
+    func testSignSuccess(){
+        
+    }
 }
 
 
