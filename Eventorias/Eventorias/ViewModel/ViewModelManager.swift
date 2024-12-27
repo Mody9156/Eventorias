@@ -18,9 +18,9 @@ class ViewModelManager:ObservableObject {
     
     
     var loginViewModel : LoginViewModel {
-        return LoginViewModel { [weak self] in
+        return LoginViewModel ({ [weak self] in
             self?.isAuthenticated = true
-        }
+        },firebaseAuthenticationManager:FirebaseAuthenticationManager(authService: AuthService.self as! AuthService, firestoreService: FirestoreService.self as! FirestoreService))
     }
     
     var listViewModel : ListViewModel {

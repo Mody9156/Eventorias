@@ -11,8 +11,8 @@ import FirebaseFirestore
 import FirebaseCore
 
 class FirebaseAuthenticationManager {
-     private let authService: AuthService
-     private let firestoreService: FirestoreService
+      let authService: AuthService
+      let firestoreService: FirestoreService
 
     init(authService: AuthService, firestoreService: FirestoreService) {
         self.authService = authService
