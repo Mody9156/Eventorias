@@ -42,12 +42,12 @@
 		236060BB2D0DE48300E3504F /* ProtocolsFirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060AC2D0DE48200E3504F /* ProtocolsFirebaseData.swift */; };
 		23BD155E2D1B227E00DE16E7 /* ErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BD155D2D1B227E00DE16E7 /* ErrorDialog.swift */; };
 		23C8F6C32D16FF6B003E473C /* LocationCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */; };
+		23F0E1A92D1EAE1E00C9A610 /* EventRepositoryTestss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F0E1A82D1EAE1E00C9A610 /* EventRepositoryTestss.swift */; };
 		23F9E9AD2D12C2430030C221 /* EventManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */; };
 		23FE1F7E2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE1F7D2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift */; };
 		23FE1F802D1E066800BE0624 /* CollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE1F7F2D1E066800BE0624 /* CollectionReference.swift */; };
 		23FE1F822D1E085100BE0624 /* MockFirestoreCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE1F812D1E085100BE0624 /* MockFirestoreCollection.swift */; };
 		23FE1F832D1E085100BE0624 /* MockFirestoreCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE1F812D1E085100BE0624 /* MockFirestoreCollection.swift */; };
-		23FE1F852D1E0E8800BE0624 /* EventRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE1F842D1E0E8800BE0624 /* EventRepositoryTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,12 +94,12 @@
 		236060AC2D0DE48200E3504F /* ProtocolsFirebaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtocolsFirebaseData.swift; sourceTree = "<group>"; };
 		23BD155D2D1B227E00DE16E7 /* ErrorDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDialog.swift; sourceTree = "<group>"; };
 		23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinate.swift; sourceTree = "<group>"; };
+		23F0E1A82D1EAE1E00C9A610 /* EventRepositoryTestss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepositoryTestss.swift; sourceTree = "<group>"; };
 		23F306382D1CBBDD004F5F75 /* EventoriasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventoriasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagerProtocol.swift; sourceTree = "<group>"; };
 		23FE1F7D2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreCollectionProtocol.swift; sourceTree = "<group>"; };
 		23FE1F7F2D1E066800BE0624 /* CollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReference.swift; sourceTree = "<group>"; };
 		23FE1F812D1E085100BE0624 /* MockFirestoreCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFirestoreCollection.swift; sourceTree = "<group>"; };
-		23FE1F842D1E0E8800BE0624 /* EventRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepositoryTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,7 +325,7 @@
 		23F306422D1CBD8F004F5F75 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				23FE1F842D1E0E8800BE0624 /* EventRepositoryTests.swift */,
+				23F0E1A82D1EAE1E00C9A610 /* EventRepositoryTestss.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -504,7 +504,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23FE1F852D1E0E8800BE0624 /* EventRepositoryTests.swift in Sources */,
+				23F0E1A92D1EAE1E00C9A610 /* EventRepositoryTestss.swift in Sources */,
 				23FE1F832D1E085100BE0624 /* MockFirestoreCollection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
