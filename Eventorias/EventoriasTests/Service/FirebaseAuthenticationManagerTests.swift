@@ -8,10 +8,10 @@
 import XCTest
 @testable import Eventorias
 final class FirebaseAuthenticationManagerTests: XCTestCase {
-
-       var firebaseAuthManager: FirebaseAuthenticationManager!
-       var mockAuthService: MockAuthService!
-       var mockFirestoreService: MockFirestoreService!
+    
+    var firebaseAuthManager: FirebaseAuthenticationManager!
+    var mockAuthService: MockAuthService!
+    var mockFirestoreService: MockFirestoreService!
     
     override func setUp() {
         super.setUp()
@@ -24,7 +24,7 @@ final class FirebaseAuthenticationManagerTests: XCTestCase {
         super.tearDown()
         mockAuthService = nil
         mockFirestoreService = nil
-        firebaseAuthManager =  = nil
+        firebaseAuthManager  = nil
     }
     
     func testUserInitialization(){
@@ -78,7 +78,47 @@ final class FirebaseAuthenticationManagerTests: XCTestCase {
         XCTAssertEqual(userDict["picture"] as? String, "http://example.com/picture.jpg")
     }
     
-   
+    func testSignInSuccess(){
+        //simuler un succès
+        mockAuthService.shouldSucceedSign = true
+        mockFirestoreService.shouldSucceedSave = true
+        
+        let expectation = self.expectation(description: "signIn should succeed")
+        
+        firebaseAuthManager.signIn(email: "john.doe@example.com", password: "password123") { result in
+            switch result {
+            case .success(let user):
+                XCTAssertEqual(user.firstName, "John")
+                XCTAssertEqual(user.lastName, "Doe")
+                XCTAssertEqual(user.email, "john.doe@example.com")
+                XCTAssertEqual(user.picture, "mockPictureURL")
+                expectation.fulfill()
+            case .failure:
+                XCTFail("Expected signIn to succeed, but it failed")
+            }
+        }
+        waitForExpectations(timeout: 1.0, handler: nil)
+        
+    }
+    
+    func testSingInFailure(){
+        //simuler une erreur de connexion
+        mockAuthService.shouldSucceedSign = false
+        
+        let expectation = self.expectation(description: "signIn should fail")
+        
+        firebaseAuthManager.signIn(email: "wrong.email@example.com", password: "wrongPassword") { result in
+            switch result {
+            case .success:
+                XCTFail("Expected signIn to fail, but it succeeded")
+            case .failure(let error):
+                XCTAssertEqual(error.localizedDescription, "Sign-in failed")
+                expectation.fulfill()
+            }
+        }
+        
+        waitForExpectations(timeout: 1.0, handler: nil)
+    }
     
 }
 
