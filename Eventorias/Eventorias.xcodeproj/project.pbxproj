@@ -14,6 +14,7 @@
 		2311CB4F2D11FF8F00518BC5 /* EventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2311CB4E2D11FF8F00518BC5 /* EventRepository.swift */; };
 		234794412D1EB68F00A03836 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 234794402D1EB68F00A03836 /* FirebaseAnalytics */; };
 		234794442D1EC31100A03836 /* FirestoreCollectionProtocolToList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234794432D1EC31100A03836 /* FirestoreCollectionProtocolToList.swift */; };
+		234794462D1ED45F00A03836 /* FirebaseAuthenticationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234794452D1ED45F00A03836 /* FirebaseAuthenticationManagerTests.swift */; };
 		236060422D0DC7BC00E3504F /* EventoriasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060412D0DC7BC00E3504F /* EventoriasApp.swift */; };
 		236060462D0DC7C800E3504F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 236060452D0DC7C800E3504F /* Assets.xcassets */; };
 		236060492D0DC7C800E3504F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 236060482D0DC7C800E3504F /* Preview Assets.xcassets */; };
@@ -74,6 +75,7 @@
 		2311CB4A2D1199A700518BC5 /* AddEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewModel.swift; sourceTree = "<group>"; };
 		2311CB4E2D11FF8F00518BC5 /* EventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
 		234794432D1EC31100A03836 /* FirestoreCollectionProtocolToList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreCollectionProtocolToList.swift; sourceTree = "<group>"; };
+		234794452D1ED45F00A03836 /* FirebaseAuthenticationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationManagerTests.swift; sourceTree = "<group>"; };
 		2360603E2D0DC7BC00E3504F /* Eventorias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventorias.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		236060412D0DC7BC00E3504F /* EventoriasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasApp.swift; sourceTree = "<group>"; };
 		236060452D0DC7C800E3504F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				23F0E1B02D1EAEEF00C9A610 /* EventoriasTests.swift */,
+				234794452D1ED45F00A03836 /* FirebaseAuthenticationManagerTests.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -514,6 +517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				234794462D1ED45F00A03836 /* FirebaseAuthenticationManagerTests.swift in Sources */,
 				23F0E1B12D1EAEEF00C9A610 /* EventoriasTests.swift in Sources */,
 				23F0E1B92D1EAFE900C9A610 /* MockFirestoreCollection.swift in Sources */,
 			);

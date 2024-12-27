@@ -10,19 +10,19 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 protocol FirestoreQueryProtocol {
-    func getDocuments() async throws -> [DocumentSnapshot]
-    func order(by field: String, descending: Bool) -> FirestoreQueryProtocol
+   func order(by field: String, descending: Bool)
+
 }
 
 protocol FirestoreCollectionProtocols: FirestoreQueryProtocol {}
 
-extension CollectionReference: FirestoreCollectionProtocol {
-    func getDocumentsToList() async throws -> [DocumentSnapshot] {
-        let snapshot = try await self.getDocuments()
-        return snapshot.documents
-    }
-
-    func order(by field: String, descending: Bool) -> FirestoreQueryProtocol {
-        return self.order(by: field, descending: descending)
-    }
+//CollectionReference est une class de Firestore
+extension CollectionReference: FirestoreCollectionProtocols {
+   
+    func order(by field: String, descending: Bool){
+            return self.order(by: field, descending: descending)
+        }
 }
+
+
+
