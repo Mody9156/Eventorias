@@ -22,8 +22,9 @@ final class FirebaseAuthenticationManagerTests: XCTestCase {
     
     override func tearDown() {
         super.tearDown()
-        authManager = nil
-        firebaseCreteNewUSerTests = nil
+        mockAuthService = nil
+        mockFirestoreService = nil
+        firebaseAuthManager =  = nil
     }
     
     func testUserInitialization(){
