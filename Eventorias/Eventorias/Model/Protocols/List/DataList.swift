@@ -6,13 +6,16 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
-import Foundation
+protocol FirestoreServiceList {
+    func collection(_ path: String) -> FirestoreQuery
+}
 
-protocol DataList {
+protocol FirestoreQuery {
     associatedtype T: Decodable
     func getDocuments() async throws -> [T]
-    func addDocument(data: [String: Any]) async throws
-    func updateDocument(documentID: String, data: [String: Any]) async throws
-    func deleteDocument(documentID: String) async throws
+    func order(by field: String, descending: Bool) -> Self
+    func whereField(_ field: String, isEqualTo value: Any) -> Self
 }

@@ -11,35 +11,32 @@ import FirebaseFirestoreSwift
 
 public class ListRepository : EventListRepresentable {
     var db = Firestore.firestore().collection("eventorias")
+    private let firestoreService: FirestoreServiceEvents
+    private let collectionPath: String
+    
+    init(firestoreService: FirestoreServiceEvents, collectionPath: String = "eventorias") {
+        self.firestoreService = firestoreService
+        self.collectionPath = collectionPath
+    }
     
     // Méthode pour récupérer tous les produits (événements)
     func getAllProducts() async throws -> [EventEntry] {
-        try await db.getDocuments(as: EventEntry.self)
+        let query = firestoreService.collection(collectionPath)
+        return try await firestoreService.getDocuments(from: query) // Utilise la méthode générique
     }
     
     // Méthode pour récupérer tous les produits triés par date
     func getAllProductsSortedByDate() async throws -> [EventEntry] {
-        try await db.order(by: "dateCreationString", descending: true).getDocuments(as: EventEntry.self)
+        let query = firestoreService.collection(collectionPath)
+            .order(by: "dateCreationString", descending: true)
+        return try await firestoreService.getDocuments(from: query) // Utilise la méthode générique
     }
     
     // Méthode pour récupérer tous les produits triés par catégorie
     func getAllProductsSortedByCategory() async throws -> [EventEntry] {
-        try await db.order(by: "category", descending: true).getDocuments(as: EventEntry.self)
+        let query = firestoreService.collection(collectionPath)
+            .order(by: "category", descending: true)
+        return try await firestoreService.getDocuments(from: query) // Utilise la méthode générique
     }
 }
 
-
-extension Query {
-    func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable {
-        let snapshot = try await self.getDocuments() // Appel Firestore pour récupérer le snapshot
-        return try snapshot.documents.map { document in
-            // Décode chaque document en un objet de type T (EventEntry, par exemple)
-            do {
-                let data = try document.data(as: T.self)
-                return data
-            } catch {
-                throw error
-            }
-        }
-    }
-}
