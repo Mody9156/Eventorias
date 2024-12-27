@@ -20,7 +20,6 @@
 		235920292D1F1A8200699E99 /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235920282D1F1A8200699E99 /* MockAuthService.swift */; };
 		2359202B2D1F1B4500699E99 /* MockFirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2359202A2D1F1B4500699E99 /* MockFirestoreService.swift */; };
 		2359202D2D1F280E00699E99 /* MockFirestoreList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2359202C2D1F280E00699E99 /* MockFirestoreList.swift */; };
-		2359202F2D1F2FB600699E99 /* DataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2359202E2D1F2FB600699E99 /* DataList.swift */; };
 		236060422D0DC7BC00E3504F /* EventoriasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060412D0DC7BC00E3504F /* EventoriasApp.swift */; };
 		236060462D0DC7C800E3504F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 236060452D0DC7C800E3504F /* Assets.xcassets */; };
 		236060492D0DC7C800E3504F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 236060482D0DC7C800E3504F /* Preview Assets.xcassets */; };
@@ -87,7 +86,6 @@
 		235920282D1F1A8200699E99 /* MockAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
 		2359202A2D1F1B4500699E99 /* MockFirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFirestoreService.swift; sourceTree = "<group>"; };
 		2359202C2D1F280E00699E99 /* MockFirestoreList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFirestoreList.swift; sourceTree = "<group>"; };
-		2359202E2D1F2FB600699E99 /* DataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataList.swift; sourceTree = "<group>"; };
 		2360603E2D0DC7BC00E3504F /* Eventorias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventorias.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		236060412D0DC7BC00E3504F /* EventoriasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasApp.swift; sourceTree = "<group>"; };
 		236060452D0DC7C800E3504F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -336,7 +334,6 @@
 			isa = PBXGroup;
 			children = (
 				236060AA2D0DE48200E3504F /* EventListRepresentable.swift */,
-				2359202E2D1F2FB600699E99 /* DataList.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -506,7 +503,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2359202F2D1F2FB600699E99 /* DataList.swift in Sources */,
 				236060B22D0DE48200E3504F /* GoogleMapView.swift in Sources */,
 				230474212D1091C80067BB54 /* AddEventView.swift in Sources */,
 				236060812D0DE43B00E3504F /* ProfileView.swift in Sources */,
