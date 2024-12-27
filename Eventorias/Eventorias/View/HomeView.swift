@@ -82,7 +82,7 @@ struct ActionButtonView: View {
                 .foregroundColor(Color("Button"))
             
             NavigationLink {
-                RegistrationView(loginViewModel: LoginViewModel({}, firebaseAuthenticationManager: FirebaseAuthenticationManager(authService: self.AuthService, firestoreService: FirestoreService())))
+                RegistrationView(loginViewModel: LoginViewModel({}, firebaseAuthenticationManager: FirebaseAuthenticationManager(authService: AuthService(), firestoreService: FirestoreService())))
             } label: {
                 HStack {
                     Image("letter")
