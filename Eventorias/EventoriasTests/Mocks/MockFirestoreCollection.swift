@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import Eventorias
 class MockFirestorCollection{
     var shouldSucceed: Bool = true
     var capturedData: [String: Any]?
@@ -29,6 +29,6 @@ protocol MockFirestoreProtocol {
     func addDocument(data: [String: Any], completion: @escaping (Error?) -> Void)
 }
 
-extension MockFirestoreCollection: MockFirestoreProtocol {}
+extension MockFirestorCollection: MockFirestoreProtocol {}
 
 
