@@ -17,7 +17,7 @@ class FirebaseAuthenticationManagerMock: FirebaseAuthenticationManager {
         completion(signResult)
     }
 
-    override func fetchUserData(userID: String, completion: @escaping (Result<User, Error>) -> Void) {
+     func fetchUserData(userID: String, completion: @escaping (Result<User, Error>) -> Void) {
         let userDict: [String: Any] = [
                     "firstName": "John",
                     "lastName": "Doe",

@@ -20,6 +20,7 @@
 		235920232D1EF62F00699E99 /* FirebaseFirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235920222D1EF62F00699E99 /* FirebaseFirestoreService.swift */; };
 		235920252D1F03BC00699E99 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235920242D1F03BC00699E99 /* AuthService.swift */; };
 		235920272D1F180C00699E99 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235920262D1F180B00699E99 /* FirebaseAuthService.swift */; };
+		235920292D1F1A8200699E99 /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235920282D1F1A8200699E99 /* MockAuthService.swift */; };
 		236060422D0DC7BC00E3504F /* EventoriasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060412D0DC7BC00E3504F /* EventoriasApp.swift */; };
 		236060462D0DC7C800E3504F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 236060452D0DC7C800E3504F /* Assets.xcassets */; };
 		236060492D0DC7C800E3504F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 236060482D0DC7C800E3504F /* Preview Assets.xcassets */; };
@@ -86,6 +87,7 @@
 		235920222D1EF62F00699E99 /* FirebaseFirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreService.swift; sourceTree = "<group>"; };
 		235920242D1F03BC00699E99 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		235920262D1F180B00699E99 /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
+		235920282D1F1A8200699E99 /* MockAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
 		2360603E2D0DC7BC00E3504F /* Eventorias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventorias.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		236060412D0DC7BC00E3504F /* EventoriasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasApp.swift; sourceTree = "<group>"; };
 		236060452D0DC7C800E3504F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				23F0E1B82D1EAFE800C9A610 /* MockFirestoreCollection.swift */,
+				235920282D1F1A8200699E99 /* MockAuthService.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				234794462D1ED45F00A03836 /* FirebaseAuthenticationManagerTests.swift in Sources */,
 				23F0E1B12D1EAEEF00C9A610 /* EventoriasTests.swift in Sources */,
 				23F0E1B92D1EAFE900C9A610 /* MockFirestoreCollection.swift in Sources */,
+				235920292D1F1A8200699E99 /* MockAuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
