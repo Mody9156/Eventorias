@@ -15,7 +15,7 @@ struct RegistrationView: View {
     @State var lastName = ""
     @State var picture = ""
     @State var selectedItems : [PhotosPickerItem] = []
-    @StateObject var loginViewModel : LoginViewModel
+    @StateObject  var loginViewModel : LoginViewModel
     @State private var savedFilePath: String?
     @Environment(\.dismiss) var dismiss
     @State private var selectedImage: UIImage? = nil

@@ -63,7 +63,7 @@ struct HomeView: View {
                     
                     Spacer()
                     
-                    ActionButtonView(toggle: $toggleRegistre)
+                    ActionButtonView(toggle: $toggleRegistre, loginViewModel: loginViewModel)
                 }
                 .padding()
             }
@@ -74,7 +74,8 @@ struct HomeView: View {
 
 struct ActionButtonView: View {
     @Binding var toggle : Bool
-
+    @StateObject var loginViewModel : LoginViewModel
+    
     var body: some View {
         ZStack {
             Rectangle()
@@ -82,7 +83,7 @@ struct ActionButtonView: View {
                 .foregroundColor(Color("Button"))
             
             NavigationLink {
-                RegistrationView(loginViewModel: LoginViewModel({}, firebaseAuthenticationManager: FirebaseAuthenticationManager(authService: AuthService(), firestoreService: FirestoreService())))
+                RegistrationView(loginViewModel: loginViewModel)
             } label: {
                 HStack {
                     Image("letter")
