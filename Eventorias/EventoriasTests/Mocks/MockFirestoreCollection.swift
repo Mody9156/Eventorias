@@ -4,10 +4,10 @@
 //
 //  Created by KEITA on 27/12/2024.
 //
-
+import XCTest
 import Foundation
-import Eventorias
-class MockFirestoreCollection{
+@testable import Eventorias
+class MockFirestoreCollection : FirestoreCollectionProtocol {
     var shouldSucceed: Bool = true
     var capturedData: [String: Any]?
     

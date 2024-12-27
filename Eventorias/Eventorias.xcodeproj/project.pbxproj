@@ -150,6 +150,14 @@
 			path = Event;
 			sourceTree = "<group>";
 		};
+		234794422D1EBEE300A03836 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				23F0E1B02D1EAEEF00C9A610 /* EventoriasTests.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		236060352D0DC7BC00E3504F = {
 			isa = PBXGroup;
 			children = (
@@ -317,8 +325,8 @@
 		23F0E1AF2D1EAEEF00C9A610 /* EventoriasTests */ = {
 			isa = PBXGroup;
 			children = (
+				234794422D1EBEE300A03836 /* Service */,
 				23F0E1B72D1EAF8600C9A610 /* Mocks */,
-				23F0E1B02D1EAEEF00C9A610 /* EventoriasTests.swift */,
 			);
 			path = EventoriasTests;
 			sourceTree = "<group>";
