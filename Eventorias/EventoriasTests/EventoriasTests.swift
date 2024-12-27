@@ -27,6 +27,7 @@ final class EventoriasTests: XCTestCase {
         
         repository.saveToFirestore(testsEvent) { succes, error in
             XCTAssertTrue(succes)
+            XCTAssertNil(error)
             XCTAssert(((mockDb.capturedData?["poster"] as? String) != nil), "John Doe")
             XCTAssert(((mockDb.capturedData?["category"] as? String) != nil), "Technology")
             expectation.fulfill()
