@@ -9,11 +9,11 @@ import XCTest
 @testable import Eventorias
 final class FirebaseAuthenticationManagerTests: XCTestCase {
 
-    var authManager : FirebaseAuthenticationManager!
+    var authManager : FirebaseAuthenticationManagerMock!
     
     override func setUp() {
         super.setUp()
-        authManager = FirebaseAuthenticationManager()
+        authManager = FirebaseAuthenticationManagerMock()
     }
     
     override func tearDown() {
@@ -73,6 +73,7 @@ final class FirebaseAuthenticationManagerTests: XCTestCase {
        }
   
     func testSignSuccess(){
+        authManager.signResult = .failure(NSError(domain: "AuthError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid credentials"]))
         
     }
 }
