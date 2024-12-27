@@ -45,11 +45,24 @@ final class FirebaseAuthenticationManagerTests: XCTestCase {
          }
     
     func testUserToDictionary() {
-           // Création d'un objet User
-           let user = User(firstName: "John", lastName: "Doe", email: "john.doe@example.com", uid: "12345", picture: "http://example.com/picture.jpg")
+        let userDict: [String: Any] = [
+                    "firstName": "John",
+                    "lastName": "Doe",
+                    "email": "john.doe@example.com",
+                    "uid": "12345",
+                    "picture": "http://example.com/picture.jpg"
+                ]
+        
+        //initialisation de l'object User
+        guard let user = User(from: userDict) else {
+            XCTFail("User initialization failed")
+            return
+        }
+        
+
            
            // Conversion de l'objet User en dictionnaire
-           let userDict = user.toDictionary()
+           let userDictionary = user.toDictionary()
            
            // Vérification que le dictionnaire est correct
            XCTAssertEqual(userDict["firstName"] as? String, "John")
@@ -59,9 +72,8 @@ final class FirebaseAuthenticationManagerTests: XCTestCase {
            XCTAssertEqual(userDict["picture"] as? String, "http://example.com/picture.jpg")
        }
   
-    
+     
 }
-
 
 
 
