@@ -148,7 +148,7 @@ final class FirebaseAuthenticationManagerTests: XCTestCase {
         
         let expectation = self.expectation(description: "createUser should fail")
         
-        firebaseAuthManager.createUser(email: "john.doe@example.com", password: "password123", firstName: "John", lastName: "Doe", picture: "mockPictureURL") { result in
+        firebaseAuthManager.createUser(email: "", password: "password123", firstName: "John", lastName: "Doe", picture: "") { result in
             switch result {
             case .success:
                 XCTFail("Expected createUser to fail, but it succeeded")
@@ -161,4 +161,3 @@ final class FirebaseAuthenticationManagerTests: XCTestCase {
         waitForExpectations(timeout: 1.0, handler: nil)
     }
 }
-
