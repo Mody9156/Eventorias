@@ -11,7 +11,7 @@ class ViewModelManager:ObservableObject {
     @Published var isAuthenticated : Bool
     private var eventListRepresentable: EventListRepresentable
     
-    init(eventListRepresentable: EventListRepresentable = ListRepository()){
+    init(eventListRepresentable: EventListRepresentable = ListRepository(firestoreService: FirestoreServiceEvents())){
         isAuthenticated = false
         self.eventListRepresentable = eventListRepresentable
     }

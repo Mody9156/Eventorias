@@ -26,7 +26,7 @@ class ListViewModel : ObservableObject {
     
     private var eventListRepresentable : EventListRepresentable
     
-    init(eventListRepresentable : EventListRepresentable = ListRepository()) {
+    init(eventListRepresentable : EventListRepresentable = ListRepository(firestoreService: FirestoreServiceEvents())) {
         self.eventListRepresentable = eventListRepresentable
     }
     
