@@ -7,7 +7,21 @@
 
 import XCTest
 @testable import Eventorias
-class FirebaseCreteNewUSerTests {
-
-   
+class FirebaseCreteNewUSerTests : ProtocolsFirebaseData{
+    
+    
+    var signCalled = false
+    var signResult : Result<User,Error>!
+    
+    
+    func signIn(email: String, password: String, completion: @escaping (Result<Eventorias.User, Error>) -> Void) {
+        signCalled = true
+        completion(signResult)
+    }
+    
+    func createUser(email: String, password: String, firstName: String, lastName: String, picture: String, completion: @escaping (Result<Eventorias.User, Error>) -> Void) {
+        signCalled = true
+        completion(signResult)
+    }
+    
 }
