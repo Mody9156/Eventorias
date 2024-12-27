@@ -127,9 +127,46 @@ final class FirebaseAuthenticationManagerTests: XCTestCase {
         waitForExpectations(timeout: 1.0,handler: nil)
     }
    
+//
+//    func testCreateSuccess(){
+//        let userDict: [String: Any] = [
+//                    "firstName": "John",
+//                    "lastName": "Doe",
+//                    "email": "john.doe@example.com",
+//                    "uid": "12345",
+//                    "picture": "http://example.com/picture.jpg"
+//                ]
+//
+//        //initialisation de l'object User
+//        guard let user = User(from: userDict) else {
+//            XCTFail("User initialization failed")
+//            return
+//        }
+//
+//        let mockUser = user
+//        authManager.signResult = .success(user)
+//
+//        let expectation = self.expectation(description: "signIn should complete successfully")
+//
+//        authManager.createUser(email: "John", password: "Doe", firstName: "ohn.doe@example.com", lastName: "Doe", picture: "http://example.com/picture.jpg") { result in
+//            switch result {
+//            case .success(let user):
+//                XCTAssertEqual(user.firstName, "John")
+//                XCTAssertEqual(user.lastName, "Doe")
+//                XCTAssertEqual(user.email, "john.doe@example.com")
+//                XCTAssertEqual(user.uid, "12345")
+//                XCTAssertEqual(user.picture, "http://example.com/picture.jpg")
+//            case .failure(let error):
+//                XCTFail("Expected success but got failure: \(error.localizedDescription)")
+//            }
+//            expectation.fulfill()
+//        }
+//        waitForExpectations(timeout: 1.0,handler: nil)
+//    }
     
-    func testCreateSuccess(){
-        
-    }
+    
+    
+    
+    
 }
 

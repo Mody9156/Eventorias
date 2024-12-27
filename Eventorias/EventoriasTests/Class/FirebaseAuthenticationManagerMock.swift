@@ -36,10 +36,5 @@ class FirebaseAuthenticationManagerMock: FirebaseAuthenticationManager {
         completion(.success(mockUser))
         
     }
-    
-    
-    override func createUser(email: String, password: String, firstName: String, lastName: String, picture: String, completion: @escaping (Result<User, Error>) -> Void) {
-        signCalled = true
-        completion(signResult)
-    }
+   
 }
