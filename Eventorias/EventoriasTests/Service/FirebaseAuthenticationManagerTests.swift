@@ -21,5 +21,19 @@ final class FirebaseAuthenticationManagerTests: XCTestCase {
         authManager = nil
     }
     
-    
+    func testUserInitialization(){
+        
+        let userDict: [String: Any] = [
+                    "firstName": "John",
+                    "lastName": "Doe",
+                    "email": "john.doe@example.com",
+                    "uid": "12345",
+                    "picture": "http://example.com/picture.jpg"
+                ]
+        
+        //initialisation de l'object User
+        guard let user = User(from: <#T##[String : Any]#>)
+        waitForExpectations(timeout: 10, handler: nil)
+
+    }
 }
