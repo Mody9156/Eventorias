@@ -75,6 +75,13 @@ final class FirebaseAuthenticationManagerTests: XCTestCase {
     func testSignSuccess(){
         authManager.signResult = .failure(NSError(domain: "AuthError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid credentials"]))
         
+        let expectation = self.expectation(description: "signIn should complete with failure")
+        
+        authManagerMock.signIn(email: "wrong.email@example.com", password: "wrongpassword") { result in
+            
+            
+            
+            
     }
 }
 
