@@ -33,9 +33,30 @@ final class EventoriasTests: XCTestCase {
             expectation.fulfill()
         }
         waitForExpectations(timeout:10)
-        
     }
     
     
-    
+    func testSaveToFirestoreFailure(){
+        let mockDb = MockFirestoreCollection()
+        mockDb.shouldSucceed = false
+        let repository = EventRepository(db: mockDb as! FirestoreCollectionProtocol)
+        let testsEvent = EventEntry(
+            picture: "https://example.com/event-picture.jpg",
+            title: "Annual Tech Conference",
+            dateCreation: Date(),
+            poster: "John Doe",
+            description: "An exciting tech conference showcasing the latest innovations in AI, blockchain, and IoT.",
+            hour: "10:00",
+            category: "Technology",
+            place: Address(street: "123 Innovation Drive", city: "Techville", postalCode: "94016", country: "USA" ,localisation: GeoPoint(latitude: 37.3811, longitude: -122.3348))
+        )
+        let expectation = self.expectation(description: "Save should fail")
+        repository.saveToFirestore(testsEvent) { success, error in
+            XCTAssertFalse(success)
+            XCTAssertNotNil(error)
+            XCTAssertEqual(error as? MockFirestoreError, MockFirestoreError.addDocumentFailed)
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 1.0)
+    }
 }
