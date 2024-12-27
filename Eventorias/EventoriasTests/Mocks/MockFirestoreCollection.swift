@@ -7,6 +7,7 @@
 import XCTest
 import Foundation
 @testable import Eventorias
+
 class MockFirestoreCollection : FirestoreCollectionProtocol {
     var shouldSucceed: Bool = true
     var capturedData: [String: Any]?
