@@ -17,9 +17,9 @@ class LoginViewModel : ObservableObject {
     @Published
     var onLoginSucceed : (() -> ())
     
-    let firebaseAuthenticationManager : ProtocolsFirebaseData
+     let firebaseAuthenticationManager : FirebaseAuthenticationManager
     
-    init(_ callback:@escaping (() -> ()),firebaseAuthenticationManager : ProtocolsFirebaseData = FirebaseAuthenticationManager()) {
+    init(_ callback:@escaping (() -> ()),firebaseAuthenticationManager : FirebaseAuthenticationManager ) {
         self.onLoginSucceed = callback
         self.firebaseAuthenticationManager = firebaseAuthenticationManager
     }

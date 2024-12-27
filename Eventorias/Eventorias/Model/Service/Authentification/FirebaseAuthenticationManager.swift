@@ -10,107 +10,70 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseCore
 
-class FirebaseAuthenticationManager :ProtocolsFirebaseData {
-    
-    
+class FirebaseAuthenticationManager {
+     let authService: AuthService
+     let firestoreService: FirestoreService
+
+    init(authService: AuthService, firestoreService: FirestoreService) {
+        self.authService = authService
+        self.firestoreService = firestoreService
+    }
+
     func signIn(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-
-            guard let user = result?.user else {
-                completion(.failure(NSError(
-                    domain: "AuthError",
-                    code: -1,
-                    userInfo: [NSLocalizedDescriptionKey: "User authentication failed."]
-                )))
-                return
-            }
-
-            // Récupérer les informations de l'utilisateur depuis Firestore
-            self.fetchUserData(userID: user.uid) { fetchResult in
-                switch fetchResult {
-                case .success(let data):
-                    // Créer un objet User à partir des données Firestore
-                    let userID = User.toDictionary(data)()
-                    if let userData = User(from: userID) {
-                        completion(.success(userData))
-                    } else {
-                        completion(.failure(NSError(domain: "FirestoreError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid user data."])))
+        authService.signIn(email: email, password: password) { [weak self] result in
+            switch result {
+            case .success(let userID):
+                self?.firestoreService.fetchUserData(userID: userID) { fetchResult in
+                    switch fetchResult {
+                    case .success(let data):
+                        if let user = User(from: data) {
+                            completion(.success(user))
+                        } else {
+                            completion(.failure(NSError(
+                                domain: "UserDataError",
+                                code: -1,
+                                userInfo: [NSLocalizedDescriptionKey: "Invalid user data."]
+                            )))
+                        }
+                    case .failure(let error):
+                        completion(.failure(error))
                     }
-                case .failure(let error):
-                    completion(.failure(error))
                 }
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
 
-    
     func createUser(email: String, password: String, firstName: String, lastName: String, picture: String, completion: @escaping (Result<User, Error>) -> Void) {
-        Auth.auth().createUser(withEmail: email, password: password){ result , error in
-            if let error = error  {
-                completion(.failure(error))
-            }
-            
-            // Retourner une erreur générique si l'utilisateur est nul
-            guard let user = result?.user else {
-                completion(.failure(NSError(domain: "CreateError", code: -1,userInfo: [NSLocalizedDescriptionKey:"Unknown error occurred."])))
-                return
-            }
-            
-            // Mettre à jour le profil Firebase
-            let changeRequest = user.createProfileChangeRequest()
-            changeRequest.displayName = "\(firstName) \(lastName) \(picture)"
-            changeRequest.commitChanges { error in
-                if let error = error {
-                    completion(.failure(error))
-                    return
-                }
-                let db = Firestore.firestore()
-                db.collection("users").document(user.uid).setData([
+        authService.createUser(email: email, password: password) { [weak self] result in
+            switch result {
+            case .success(let userID):
+                let data: [String: Any] = [
                     "firstName": firstName,
                     "lastName": lastName,
                     "email": email,
-                    "uid": user.uid,
+                    "uid": userID,
                     "picture": picture
-                ]) { error in
-                    if let error = error {
-                        completion(.failure(error))
-                    } else {
-                        self.fetchUserData(userID: user.uid){ fetchResult in
-                            switch fetchResult {
-                            case .success(let data):
-                                print("User data fetched: \(data)")
-                                completion(.success(data)) // Retourner les données récupérées
-                            case .failure(let error):
-                                completion(.failure(error))
-                            }
+                ]
+                self?.firestoreService.saveUserData(userID: userID, data: data) { saveResult in
+                    switch saveResult {
+                    case .success:
+                        if let user = User(from: data) {
+                            completion(.success(user))
+                        } else {
+                            completion(.failure(NSError(
+                                domain: "UserDataError",
+                                code: -1,
+                                userInfo: [NSLocalizedDescriptionKey: "Failed to create user object."]
+                            )))
                         }
+                    case .failure(let error):
+                        completion(.failure(error))
                     }
                 }
-            }
-        }
-    }
-    
-    
-    func fetchUserData(userID: String, completion: @escaping (Result<User, Error>) -> Void) {
-        let db = Firestore.firestore()
-        db.collection("users").document(userID).getDocument { document, error in
-            if let error = error {
+            case .failure(let error):
                 completion(.failure(error))
-                return
-            }
-            
-            guard let data = document?.data() else {
-                completion(.failure(NSError(domain: "FirestoreError", code: -1, userInfo: [NSLocalizedDescriptionKey: "No data found."])))
-                return
-            }
-            if let user =  User(from: data){
-                completion(.success(user))
-            }else{
-                completion(.failure(NSError(domain: "FirestoreError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid user data."])))
             }
         }
     }
