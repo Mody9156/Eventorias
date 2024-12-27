@@ -22,15 +22,11 @@ class MockAuthService : AuthService{
     }
     
     func createUser(email: String, password: String, completion: @escaping (Result<String, Error>) -> Void) {
-        if shouldSucceedSign && !email.isEmpty || !password.isEmpty{
+        if shouldSucceedCreateUser {
             completion(.success("mockUserID"))
         }else{
             completion(.failure(NSError(domain: "AuthError", code: -1, userInfo: [NSLocalizedDescriptionKey: "User creation failed"])))
 
         }
     }
-    
-
-    
-
 }

@@ -142,13 +142,13 @@ final class FirebaseAuthenticationManagerTests: XCTestCase {
         waitForExpectations(timeout: 1.0, handler: nil)
     }
     
-    func testCreateUserFailure() {
+    func testCreateUserFailure() async {
         // Simuler une erreur lors de la création
         mockAuthService.shouldSucceedCreateUser = false
         
         let expectation = self.expectation(description: "createUser should fail")
         
-        firebaseAuthManager.createUser(email: "", password: "password123", firstName: "John", lastName: "Doe", picture: "") { result in
+        firebaseAuthManager.createUser(email: "", password: "", firstName: "John", lastName: "Doe", picture: "") { result in
             switch result {
             case .success:
                 XCTFail("Expected createUser to fail, but it succeeded")
@@ -158,6 +158,6 @@ final class FirebaseAuthenticationManagerTests: XCTestCase {
             }
         }
         
-        waitForExpectations(timeout: 1.0, handler: nil)
+        await waitForExpectations(timeout: 1.0, handler: nil)
     }
 }
