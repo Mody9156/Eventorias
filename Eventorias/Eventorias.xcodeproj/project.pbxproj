@@ -42,10 +42,21 @@
 		236060BB2D0DE48300E3504F /* ProtocolsFirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060AC2D0DE48200E3504F /* ProtocolsFirebaseData.swift */; };
 		23BD155E2D1B227E00DE16E7 /* ErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BD155D2D1B227E00DE16E7 /* ErrorDialog.swift */; };
 		23C8F6C32D16FF6B003E473C /* LocationCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */; };
+		23F0E1B12D1EAEEF00C9A610 /* EventoriasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F0E1B02D1EAEEF00C9A610 /* EventoriasTests.swift */; };
 		23F9E9AD2D12C2430030C221 /* EventManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */; };
 		23FE1F7E2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE1F7D2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift */; };
 		23FE1F802D1E066800BE0624 /* CollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE1F7F2D1E066800BE0624 /* CollectionReference.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		23F0E1B22D1EAEEF00C9A610 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 236060362D0DC7BC00E3504F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2360603D2D0DC7BC00E3504F;
+			remoteInfo = Eventorias;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2302CE8F2D198AD6005F6EB4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -81,6 +92,8 @@
 		236060AC2D0DE48200E3504F /* ProtocolsFirebaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtocolsFirebaseData.swift; sourceTree = "<group>"; };
 		23BD155D2D1B227E00DE16E7 /* ErrorDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDialog.swift; sourceTree = "<group>"; };
 		23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinate.swift; sourceTree = "<group>"; };
+		23F0E1AE2D1EAEEF00C9A610 /* EventoriasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventoriasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		23F0E1B02D1EAEEF00C9A610 /* EventoriasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasTests.swift; sourceTree = "<group>"; };
 		23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagerProtocol.swift; sourceTree = "<group>"; };
 		23FE1F7D2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreCollectionProtocol.swift; sourceTree = "<group>"; };
 		23FE1F7F2D1E066800BE0624 /* CollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReference.swift; sourceTree = "<group>"; };
@@ -96,6 +109,13 @@
 				236060732D0DCB0700E3504F /* FirebaseFirestore in Frameworks */,
 				236060712D0DCB0700E3504F /* FirebaseAuth in Frameworks */,
 				2360606D2D0DCB0700E3504F /* FirebaseAnalytics in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23F0E1AB2D1EAEEF00C9A610 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				236060402D0DC7BC00E3504F /* Eventorias */,
+				23F0E1AF2D1EAEEF00C9A610 /* EventoriasTests */,
 				2360603F2D0DC7BC00E3504F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				2360603E2D0DC7BC00E3504F /* Eventorias.app */,
+				23F0E1AE2D1EAEEF00C9A610 /* EventoriasTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -279,6 +301,14 @@
 			path = Authentification;
 			sourceTree = "<group>";
 		};
+		23F0E1AF2D1EAEEF00C9A610 /* EventoriasTests */ = {
+			isa = PBXGroup;
+			children = (
+				23F0E1B02D1EAEEF00C9A610 /* EventoriasTests.swift */,
+			);
+			path = EventoriasTests;
+			sourceTree = "<group>";
+		};
 		23F9E9AB2D12C1C20030C221 /* Event */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +345,24 @@
 			productReference = 2360603E2D0DC7BC00E3504F /* Eventorias.app */;
 			productType = "com.apple.product-type.application";
 		};
+		23F0E1AD2D1EAEEF00C9A610 /* EventoriasTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23F0E1B42D1EAEF000C9A610 /* Build configuration list for PBXNativeTarget "EventoriasTests" */;
+			buildPhases = (
+				23F0E1AA2D1EAEEF00C9A610 /* Sources */,
+				23F0E1AB2D1EAEEF00C9A610 /* Frameworks */,
+				23F0E1AC2D1EAEEF00C9A610 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				23F0E1B32D1EAEEF00C9A610 /* PBXTargetDependency */,
+			);
+			name = EventoriasTests;
+			productName = EventoriasTests;
+			productReference = 23F0E1AE2D1EAEEF00C9A610 /* EventoriasTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -327,6 +375,10 @@
 				TargetAttributes = {
 					2360603D2D0DC7BC00E3504F = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					23F0E1AD2D1EAEEF00C9A610 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 2360603D2D0DC7BC00E3504F;
 					};
 				};
 			};
@@ -347,6 +399,7 @@
 			projectRoot = "";
 			targets = (
 				2360603D2D0DC7BC00E3504F /* Eventorias */,
+				23F0E1AD2D1EAEEF00C9A610 /* EventoriasTests */,
 			);
 		};
 /* End PBXProject section */
@@ -360,6 +413,13 @@
 				236060492D0DC7C800E3504F /* Preview Assets.xcassets in Resources */,
 				236060462D0DC7C800E3504F /* Assets.xcassets in Resources */,
 				236060792D0DDE6E00E3504F /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23F0E1AC2D1EAEEF00C9A610 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,7 +462,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		23F0E1AA2D1EAEEF00C9A610 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23F0E1B12D1EAEEF00C9A610 /* EventoriasTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		23F0E1B32D1EAEEF00C9A610 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2360603D2D0DC7BC00E3504F /* Eventorias */;
+			targetProxy = 23F0E1B22D1EAEEF00C9A610 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		236060602D0DC7CB00E3504F /* Debug */ = {
@@ -591,6 +667,42 @@
 			};
 			name = Release;
 		};
+		23F0E1B52D1EAEF000C9A610 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 99UMC25BBL;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Eventorias.EventoriasTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Eventorias.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Eventorias";
+			};
+			name = Debug;
+		};
+		23F0E1B62D1EAEF000C9A610 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 99UMC25BBL;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Eventorias.EventoriasTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Eventorias.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Eventorias";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -608,6 +720,15 @@
 			buildConfigurations = (
 				236060632D0DC7CB00E3504F /* Debug */,
 				236060642D0DC7CB00E3504F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		23F0E1B42D1EAEF000C9A610 /* Build configuration list for PBXNativeTarget "EventoriasTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23F0E1B52D1EAEF000C9A610 /* Debug */,
+				23F0E1B62D1EAEF000C9A610 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
