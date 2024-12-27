@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class FirebaseAuthenticationManagerMock: XCTestCase {
+class FirebaseAuthenticationManagerMock: FirebaseAuthenticationManager {
 
    
 
