@@ -190,8 +190,9 @@ struct ViewCalendar: View {
             // Affichage du DatePicker
             DatePicker("Sélectionnez une date", selection: $selectedDate, displayedComponents: .date)
                 .datePickerStyle(.graphical)
-                .navigationTitle("Vue Calendar")
                 .padding()
+                .foregroundColor(.white) // Couleur du texte
+                .accentColor(Color("Background"))
             
             // Affichage des événements liés à la date sélectionnée
             if filteredEvents.isEmpty {
@@ -204,25 +205,36 @@ struct ViewCalendar: View {
                     .padding()
                 
                 List(filteredEvents, id: \.self) { event in
-                    NavigationLink(destination: AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())) {
-                        VStack(alignment: .leading) {
-                            Text(event.title)
-                                .font(.custom("Inter-Medium", size: 16))
-                                .lineSpacing(24 - 16)
-                                .fontWeight(.medium)
-                                .foregroundColor(.white)
-                            
-                            Text("\(event.dateCreation.formatted(date: .abbreviated, time: .omitted))")
-                                .font(.custom("Inter-Medium", size: 16))
-                                .foregroundColor(.white)
-                            
-                            Text(event.description)
-                                .font(.custom("Inter-Medium", size: 16))
-                                .foregroundColor(.white)
-                                .lineLimit(1)
+                    Section {
+                        NavigationLink(destination: AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())) {
+                            VStack(alignment: .leading) {
+                                Text(event.title)
+                                    .font(.custom("Inter-Medium", size: 16))
+                                    .lineSpacing(24 - 16)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(.white)
+                                
+                                Text("\(event.dateCreation.formatted(date: .abbreviated, time: .omitted))")
+                                    .font(.custom("Inter-Medium", size: 16))
+                                    .foregroundColor(.white)
+                                
+                                Text(event.description)
+                                    .font(.custom("Inter-Medium", size: 16))
+                                    .foregroundColor(.white)
+                                    .lineLimit(1)
+                            }
                         }
                     }
+                    .listRowBackground(
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(Color("BackgroundDocument"))
+                            .frame(width: 358, height: 80)
+                            .padding(2)
+                    )
                 }
+                .listStyle(GroupedListStyle())
+                .scrollContentBackground(.hidden)
+                .background(Color("Background"))
             }
         }
         .onAppear {
