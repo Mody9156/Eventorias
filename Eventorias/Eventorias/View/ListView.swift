@@ -37,8 +37,10 @@ struct ListView: View {
             VStack(alignment: .leading) {
                 if !listViewModel.isError{
                     HStack {
-                        CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
-                            .padding()
+                        if  !calendar{
+                            CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
+                                .padding()
+                        }
                         Spacer()
                         ToggleViewButton(calendar: $calendar)
                     }
@@ -75,6 +77,7 @@ struct ListView: View {
                         .padding()
                         .transition(.opacity)
                 }
+                
             }.toolbar(content: myTollBarContent)
         }
         
@@ -82,54 +85,56 @@ struct ListView: View {
     
     @ToolbarContentBuilder
     func myTollBarContent()-> some ToolbarContent {
-        ToolbarItem(placement:.navigationBarLeading){
-            HStack {
-                ZStack {
-                    Rectangle()
-                        .frame(width: 358, height: 35)
-                        .foregroundColor(Color("BackgroundDocument"))
-                        .cornerRadius(10)
-                    
-                    HStack{
-                        Image(systemName:"magnifyingglass")
-                            .foregroundColor(.white)
-                            .accessibilityLabel("Search Icon")
+        if  !calendar{
+            ToolbarItem(placement:.navigationBarLeading){
+                HStack {
+                    ZStack {
+                        Rectangle()
+                            .frame(width: 358, height: 35)
+                            .foregroundColor(Color("BackgroundDocument"))
+                            .cornerRadius(10)
                         
-                        TextField("", text: $searchText,onEditingChanged: { changed in
+                        HStack{
+                            Image(systemName:"magnifyingglass")
+                                .foregroundColor(.white)
+                                .accessibilityLabel("Search Icon")
                             
-                            if changed {
-                                isActive = true
+                            TextField("", text: $searchText,onEditingChanged: { changed in
                                 
-                            }else{
-                                isActive = false
-                            }
-                        })
-                        .font(.system(size: 22, weight: .light, design: .default))
-                        .background(Color(""))
-                        .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
-                        .foregroundColor(.white)
-                        .overlay(
-                            HStack{
-                                if searchText.isEmpty {
-                                    Text("Search")
+                                if changed {
+                                    isActive = true
+                                    
+                                }else{
+                                    isActive = false
+                                }
+                            })
+                            .font(.system(size: 22, weight: .light, design: .default))
+                            .background(Color(""))
+                            .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
+                            .foregroundColor(.white)
+                            .overlay(
+                                HStack{
+                                    if searchText.isEmpty {
+                                        Text("Search")
+                                            .foregroundColor(.white)
+                                        Spacer()
+                                    }
+                                }
+                            )
+                            .focused($focused, equals: .searchable)
+                            
+                            if !searchText.isEmpty{
+                                Button(action:{
+                                    searchText = ""
+                                }){
+                                    Image(systemName:"multiply.circle.fill")
                                         .foregroundColor(.white)
-                                    Spacer()
+                                        .accessibilityLabel("Clear search text")
                                 }
                             }
-                        )
-                        .focused($focused, equals: .searchable)
-                        
-                        if !searchText.isEmpty{
-                            Button(action:{
-                                searchText = ""
-                            }){
-                                Image(systemName:"multiply.circle.fill")
-                                    .foregroundColor(.white)
-                                    .accessibilityLabel("Clear search text")
-                            }
                         }
+                        .padding()
                     }
-                    .padding()
                 }
             }
         }
@@ -197,7 +202,7 @@ struct ViewCalendar: View {
                 Text("Date sélectionnée : \(selectedDate.formatted(date: .abbreviated, time: .omitted))")
                     .foregroundColor(.white)
                     .padding()
-
+                
                 List(filteredEvents, id: \.self) { event in
                     NavigationLink(destination: AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())) {
                         VStack(alignment: .leading) {
