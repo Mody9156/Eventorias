@@ -9,6 +9,7 @@ import XCTest
 @testable import Eventorias
 class FirebaseAuthenticationManagerMock: FirebaseAuthenticationManager {
 
-   
+    let signCalled = false
+    var signResult : Result<User,Error>!
 
 }
