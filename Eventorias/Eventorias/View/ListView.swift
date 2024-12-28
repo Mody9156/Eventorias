@@ -192,9 +192,9 @@ struct ViewCalendar: View {
                 .datePickerStyle(.graphical)
                 .padding()
                 .foregroundColor(.white) // Couleur du texte
-                .accentColor(.white)
+                .accentColor(Color("BackgroundDocument"))
                 .padding()
-                .background(RoundedRectangle(cornerRadius: 12).fill(Color.gray.opacity(0.2)))
+                .background(RoundedRectangle(cornerRadius: 12).fill(Color("Button").opacity(0.3)))
 
             // Affichage des événements liés à la date sélectionnée
             if filteredEvents.isEmpty {
@@ -208,22 +208,55 @@ struct ViewCalendar: View {
                 
                 List(filteredEvents, id: \.self) { event in
                     Section {
-                        NavigationLink(destination: UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate())) {
-                            VStack(alignment: .leading) {
-                                Text(event.title)
-                                    .font(.custom("Inter-Medium", size: 16))
-                                    .lineSpacing(24 - 16)
-                                    .fontWeight(.medium)
-                                    .foregroundColor(.white)
+                        NavigationLink(destination: UserDetailView(eventEntry: event, userDetailViewModel: UserDetailViewModel(eventEntry: [event], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate())) {
+                            HStack{
+                                // Encodage de l'URL de l'image
+                                if let encodedPictureURL = event.picture.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                                   let pictureURL = URL(string: encodedPictureURL) {
+                                    AsyncImage(url: pictureURL) { image in
+                                        image
+                                            .resizable()
+                                            .cornerRadius(50)
+                                    } placeholder: {
+                                        ProgressView()
+                                    }
+                                    .frame(width: 40, height: 40)
+                                    .padding()
+                                    
+                                }
                                 
-                                Text("\(event.dateCreation.formatted(date: .abbreviated, time: .omitted))")
-                                    .font(.custom("Inter-Medium", size: 16))
-                                    .foregroundColor(.white)
+                                VStack(alignment: .leading) {
+                                    Text(event.title)
+                                        .font(.custom("Inter-Medium", size: 16))
+                                        .lineSpacing(24 - 16)
+                                        .fontWeight(.medium)
+                                        .multilineTextAlignment(.leading)
+                                        .truncationMode(.tail)
+                                        .lineLimit(1)
+                                        .foregroundColor(.white)
+                                    
+                                    Text("\(listViewModel.formatDateString(entry.dateCreation))")
+                                        .font(.custom("Inter-Regular", size: 14))
+                                        .lineSpacing(20 - 14)
+                                        .fontWeight(.regular)
+                                        .multilineTextAlignment(.leading)
+                                        .foregroundColor(.white)
+                                }
                                 
-                                Text(event.description)
-                                    .font(.custom("Inter-Medium", size: 16))
-                                    .foregroundColor(.white)
-                                    .lineLimit(1)
+                                Spacer()
+                                
+                                // Encodage de l'URL de l'affiche
+                                if let encodedPosterURL = event.poster.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                                   let posterURL = URL(string: encodedPosterURL) {
+                                    AsyncImage(url: posterURL) { image in
+                                        image
+                                            .resizable()
+                                    } placeholder: {
+                                        ProgressView()
+                                    }
+                                    .frame(width: 136, height: 80)
+                                    .cornerRadius(12)
+                                }
                             }
                         }
                     }
