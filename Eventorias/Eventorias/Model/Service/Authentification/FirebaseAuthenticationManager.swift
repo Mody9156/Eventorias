@@ -18,26 +18,25 @@ class FirebaseAuthenticationManager {
         self.authService = authService
         self.firestoreService = firestoreService
     }
-
     func signIn(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
-        // Réinitialiser les données utilisateur précédentes avant de procéder
         self.clearUserData()
 
         authService.signIn(email: email, password: password) { [weak self] result in
+            guard let self = self else { return }
+            
             switch result {
             case .success(let userID):
-                self?.firestoreService.fetchUserData(userID: userID) { fetchResult in
+                self.firestoreService.fetchUserData(userID: userID) { fetchResult in
                     switch fetchResult {
                     case .success(let data):
                         if let user = User(from: data) {
-                            // Sauvegarder les informations utilisateur dans UserDefaults
-                            self?.saveUserData(user)
+                            self.saveUserData(user)
                             completion(.success(user))
                         } else {
                             completion(.failure(NSError(
                                 domain: "UserDataError",
                                 code: -1,
-                                userInfo: [NSLocalizedDescriptionKey: "Invalid user data."]
+                                userInfo: [NSLocalizedDescriptionKey: "Données utilisateur invalides."]
                             )))
                         }
                     case .failure(let error):
@@ -47,21 +46,23 @@ class FirebaseAuthenticationManager {
             case .failure(let error):
                 completion(.failure(error))
             }
+            
         }
+        
     }
-
+    
     func createUser(email: String, password: String, firstName: String, lastName: String, picture: String, completion: @escaping (Result<User, Error>) -> Void) {
-        // Vérifier si l'email est déjà utilisé
         Auth.auth().fetchSignInMethods(forEmail: email) { (methods, error) in
             if let error = error {
                 completion(.failure(error))
                 return
             }
             if methods?.count ?? 0 > 0 {
-                completion(.failure(NSError(domain: "EmailError", code: -1, userInfo: [NSLocalizedDescriptionKey: "This email is already in use."])))
+                completion(.failure(NSError(domain: "EmailError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Cet email est déjà utilisé."])))
                 return
             }
-            // Si l'email est libre, on continue
+
+            // Création de l'utilisateur
             self.authService.createUser(email: email, password: password) { [weak self] result in
                 switch result {
                 case .success(let userID):
@@ -82,7 +83,7 @@ class FirebaseAuthenticationManager {
                                 completion(.failure(NSError(
                                     domain: "UserDataError",
                                     code: -1,
-                                    userInfo: [NSLocalizedDescriptionKey: "Failed to create user object."]
+                                    userInfo: [NSLocalizedDescriptionKey: "Échec de la création de l'objet utilisateur."]
                                 )))
                             }
                         case .failure(let error):

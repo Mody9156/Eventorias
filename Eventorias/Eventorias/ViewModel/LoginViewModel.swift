@@ -39,6 +39,7 @@ class LoginViewModel : ObservableObject {
                 self.errorMessage = nil
                 self.isAuthenticated = true
                 self.onLoginSucceed()
+                print("user: \(user)")
             case .failure(let error):
                 self.errorMessage = error.localizedDescription
                 self.isAuthenticated = false
