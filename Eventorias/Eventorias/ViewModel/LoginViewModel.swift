@@ -34,7 +34,7 @@ class LoginViewModel : ObservableObject {
         
         firebaseAuthenticationManager.signIn(email: email, password: password){ [weak self] result in
             guard let self = self else { return }  // Éviter les fuites de mémoire
-
+            
             switch result {
                 // Connexion réussie
             case .success(let result):
@@ -56,7 +56,7 @@ class LoginViewModel : ObservableObject {
             }
         }
     }
-   
+    
     func registerUser(email:String,password:String,firstName: String,lastName: String, picture: String) {
         
         guard !email.isEmpty, !password.isEmpty else {
@@ -81,21 +81,23 @@ class LoginViewModel : ObservableObject {
     }
     
     func saveImageToTemporaryDirectory(image: UIImage, fileName: String) -> String? {
-            guard let data = image.jpegData(compressionQuality: 1.0) else {
-                return nil
-            }
-            
-            let tempDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            let fileURL = tempDir.appendingPathComponent(fileName)
-            
-            do {
-                try data.write(to: fileURL)
-                print("Image enregistrée avec succès à l'adresse : \(fileURL.path)")
-                return fileURL.path
-            } catch {
-                print("Erreur lors de l'enregistrement de l'image : \(error.localizedDescription)")
-                return nil
-            }
+        guard let data = image.jpegData(compressionQuality: 0.8) else {
+            print("Échec de la conversion de l'image en données JPEG.")
+            return nil
         }
- 
+        
+        // Obtenir le chemin du répertoire temporaire
+        let tempDirectory = FileManager.default.temporaryDirectory
+        let fileURL = tempDirectory.appendingPathComponent(fileName)
+        
+        do {
+            // Sauvegarder les données sur le disque
+            try data.write(to: fileURL)
+            print("Image sauvegardée temporairement à : \(fileURL.path)")
+            return fileURL.path
+        } catch {
+            print("Erreur lors de la sauvegarde de l'image : \(error.localizedDescription)")
+            return nil
+        }
+    }
 }
