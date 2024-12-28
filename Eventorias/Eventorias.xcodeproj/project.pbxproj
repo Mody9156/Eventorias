@@ -44,6 +44,7 @@
 		236060B72D0DE48300E3504F /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060A62D0DE48200E3504F /* HTTPService.swift */; };
 		236060BA2D0DE48300E3504F /* EventListRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060AA2D0DE48200E3504F /* EventListRepresentable.swift */; };
 		236060BB2D0DE48300E3504F /* ProtocolsFirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060AC2D0DE48200E3504F /* ProtocolsFirebaseData.swift */; };
+		23AB66AC2D20B7AD0012B313 /* MockFirebaseAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AB66AB2D20B7AD0012B313 /* MockFirebaseAuthenticationManager.swift */; };
 		23BD155E2D1B227E00DE16E7 /* ErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BD155D2D1B227E00DE16E7 /* ErrorDialog.swift */; };
 		23C8F6C32D16FF6B003E473C /* LocationCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */; };
 		23F41BC92D208F36000D904E /* MockHTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F41BC82D208F36000D904E /* MockHTTPService.swift */; };
@@ -53,7 +54,6 @@
 		23F41BD22D209307000D904E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 23F41BD12D209307000D904E /* FirebaseStorage */; };
 		23F41BD42D2094B2000D904E /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 23F41BD32D2094B2000D904E /* FirebaseAppCheck */; };
 		23F41BD72D20AEC8000D904E /* UserDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F41BD62D20AEC8000D904E /* UserDetailViewModelTests.swift */; };
-		23F41BD92D20AF2A000D904E /* MockListViewModelToEventorias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F41BD82D20AF2A000D904E /* MockListViewModelToEventorias.swift */; };
 		23F41BDB2D20AFF6000D904E /* MockGoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F41BDA2D20AFF6000D904E /* MockGoogleMapView.swift */; };
 		23F9E9AD2D12C2430030C221 /* EventManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */; };
 		23F9F0BA2D2043AD00BB2D35 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 23F9F0B92D2043AD00BB2D35 /* FirebaseStorage */; };
@@ -104,14 +104,14 @@
 		236060A62D0DE48200E3504F /* HTTPService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
 		236060AA2D0DE48200E3504F /* EventListRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListRepresentable.swift; sourceTree = "<group>"; };
 		236060AC2D0DE48200E3504F /* ProtocolsFirebaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtocolsFirebaseData.swift; sourceTree = "<group>"; };
+		23AB66A92D20B0990012B313 /* Eventorias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventorias.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		23AB66AA2D20B0990012B313 /* EventoriasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventoriasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		23AB66AB2D20B7AD0012B313 /* MockFirebaseAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFirebaseAuthenticationManager.swift; sourceTree = "<group>"; };
 		23BD155D2D1B227E00DE16E7 /* ErrorDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDialog.swift; sourceTree = "<group>"; };
 		23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinate.swift; sourceTree = "<group>"; };
-		23F41BC62D208D0F000D904E /* Eventorias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Eventorias.app; path = "/Users/keita/Movies/Eventorias/Eventorias/build/Debug-iphoneos/Eventorias.app"; sourceTree = "<absolute>"; };
-		23F41BC72D208D0F000D904E /* EventoriasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = EventoriasTests.xctest; path = "/Users/keita/Movies/Eventorias/Eventorias/build/Debug-iphoneos/EventoriasTests.xctest"; sourceTree = "<absolute>"; };
 		23F41BC82D208F36000D904E /* MockHTTPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHTTPService.swift; sourceTree = "<group>"; };
 		23F41BCA2D20901C000D904E /* GoogleMapViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapViewTests.swift; sourceTree = "<group>"; };
 		23F41BD62D20AEC8000D904E /* UserDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModelTests.swift; sourceTree = "<group>"; };
-		23F41BD82D20AF2A000D904E /* MockListViewModelToEventorias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockListViewModelToEventorias.swift; sourceTree = "<group>"; };
 		23F41BDA2D20AFF6000D904E /* MockGoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGoogleMapView.swift; sourceTree = "<group>"; };
 		23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagerProtocol.swift; sourceTree = "<group>"; };
 		23F9F0E02D20766E00BB2D35 /* CollectionReferenceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollectionReferenceProtocol.swift; path = ../../Service/Event/CollectionReferenceProtocol.swift; sourceTree = "<group>"; };
@@ -167,6 +167,8 @@
 				236060402D0DC7BC00E3504F /* Eventorias */,
 				23F9F0C22D206E4100BB2D35 /* EventoriasTests */,
 				23F41BCC2D2092EC000D904E /* Frameworks */,
+				23AB66A92D20B0990012B313 /* Eventorias.app */,
+				23AB66AA2D20B0990012B313 /* EventoriasTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -336,18 +338,8 @@
 		23F41BDC2D20B005000D904E /* List */ = {
 			isa = PBXGroup;
 			children = (
-				23F41BD82D20AF2A000D904E /* MockListViewModelToEventorias.swift */,
-				23F41BDA2D20AFF6000D904E /* MockGoogleMapView.swift */,
 			);
 			path = List;
-			sourceTree = "<group>";
-		};
-		23F41BDD2D20B04B000D904E /* GoogleMap */ = {
-			isa = PBXGroup;
-			children = (
-				23F41BC82D208F36000D904E /* MockHTTPService.swift */,
-			);
-			path = GoogleMap;
 			sourceTree = "<group>";
 		};
 		23F9E9AB2D12C1C20030C221 /* Event */ = {
@@ -372,8 +364,10 @@
 		23F9F0CB2D206E6A00BB2D35 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				23F41BDD2D20B04B000D904E /* GoogleMap */,
+				23F41BC82D208F36000D904E /* MockHTTPService.swift */,
+				23F41BDA2D20AFF6000D904E /* MockGoogleMapView.swift */,
 				23F41BDC2D20B005000D904E /* List */,
+				23AB66AB2D20B7AD0012B313 /* MockFirebaseAuthenticationManager.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -411,7 +405,7 @@
 				23F9F0B92D2043AD00BB2D35 /* FirebaseStorage */,
 			);
 			productName = Eventorias;
-			productReference = 23F41BC62D208D0F000D904E /* Eventorias.app */;
+			productReference = 23AB66A92D20B0990012B313 /* Eventorias.app */;
 			productType = "com.apple.product-type.application";
 		};
 		23F9F0C02D206E4100BB2D35 /* EventoriasTests */ = {
@@ -435,7 +429,7 @@
 				23F41BD32D2094B2000D904E /* FirebaseAppCheck */,
 			);
 			productName = EventoriasTests;
-			productReference = 23F41BC72D208D0F000D904E /* EventoriasTests.xctest */;
+			productReference = 23AB66AA2D20B0990012B313 /* EventoriasTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -543,11 +537,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23F41BD92D20AF2A000D904E /* MockListViewModelToEventorias.swift in Sources */,
 				23F41BDB2D20AFF6000D904E /* MockGoogleMapView.swift in Sources */,
 				23F41BD72D20AEC8000D904E /* UserDetailViewModelTests.swift in Sources */,
 				23F41BCB2D20901C000D904E /* GoogleMapViewTests.swift in Sources */,
 				23F41BC92D208F36000D904E /* MockHTTPService.swift in Sources */,
+				23AB66AC2D20B7AD0012B313 /* MockFirebaseAuthenticationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

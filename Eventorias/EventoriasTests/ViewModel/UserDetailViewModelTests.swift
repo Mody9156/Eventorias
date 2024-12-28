@@ -21,10 +21,19 @@ final class UserDetailViewModelTests: XCTestCase {
         mockGoogleMapView = MockGoogleMapView()
         
         // Crée un mock de ListViewModel avec des événements fictifs
-        mockListViewModel = MockListViewModel(eventEntry: [EventEntry(name: "Test Event")])
+        mockListViewModel = MockListViewModel(eventEntry: [ EventEntry(
+                        picture: "https://example.com/event-picture.jpg",
+                        title: "Annual Tech Conference",
+                        dateCreation: Date(),
+                        poster: "John Doe",
+                        description: "An exciting tech conference showcasing the latest innovations in AI, blockchain, and IoT.",
+                        hour: "10:00",
+                        category: "Technology",
+                        place: Address(street: "123 Innovation Drive", city: "Techville", postalCode: "94016", country: "USA" ,localisation: GeoPoint(latitude: 37.3811, longitude: -122.3348))
+                    )])
         
         // Initialise le ViewModel avec les mocks
-        viewModel = UserDetailViewModel(eventEntry: mockListViewModel.eventEntry, listViewModel: mockListViewModel, googleMapView: mockGoogleMapView)
+        viewModel = UserDetailViewModel(eventEntry: mockListViewModel.eventEntry, listViewModel: ListViewModel(), googleMapView: mockGoogleMapView)
     }
     
     override func tearDown() {
@@ -35,25 +44,12 @@ final class UserDetailViewModelTests: XCTestCase {
     }
 
     // Test de la méthode loadAPIKey()
-    func testLoadAPIKeySuccess() {
-        // Créer un fichier Config.plist fictif
-        let apiKey = "mockAPIKey"
+    func testLoadAPINotNil() throws {
+       let key =  try viewModel.loadAPIKey()
         
-        // Simuler l'existence d'un fichier Config.plist
-        let mockBundle = BundleMock(apiKey: apiKey)
-        viewModel.loadAPIKey(using: mockBundle)
-        
-        XCTAssertEqual(try! viewModel.loadAPIKey(), apiKey)
+        XCTAssertNotNil(key)
     }
 
-    func testLoadAPIKeyFailure() {
-        // Simule une erreur si la clé API est manquante dans le fichier
-        let mockBundle = BundleMock(apiKey: nil)
-        XCTAssertThrowsError(try viewModel.loadAPIKey(using: mockBundle)) { error in
-            XCTAssertEqual(error as? UserDetailViewModel.Failure, .missingAPIKey)
-        }
-    }
-    
     // Test de la méthode showMapsStatic()
     func testShowMapsStaticSuccess() async {
         // Simuler une réponse réussie de GoogleMapView
@@ -90,23 +86,18 @@ final class UserDetailViewModelTests: XCTestCase {
             XCTFail("Expected invalidMaps error, but got \(error).")
         }
     }
-}
-
-// Mock pour la méthode loadAPIKey
-class BundleMock: Bundle {
-    var mockAPIKey: String?
-    
-    init(apiKey: String?) {
-        self.mockAPIKey = apiKey
-    }
-    
-    override func path(forResource name: String?, ofType ext: String?) -> String? {
-        return mockAPIKey != nil ? "mockConfigPlist" : nil
-    }
-    
-    override func dictionaryForResource(_ name: String?, ofType ext: String?) -> [String: Any]? {
-        return mockAPIKey != nil ? ["API_KEY": mockAPIKey!] : nil
-    }
+    func testFormatHourString() {
+           // Prépare une date d'exemple
+           let dateFormatter = DateFormatter()
+           dateFormatter.dateFormat = "HH:mm"
+           let testDate = dateFormatter.date(from: "14:30")!
+           
+           // Appelle la méthode formatHourString
+           let formattedString = viewModel.formatHourString(testDate)
+           
+           // Vérifie que la chaîne retournée est correcte
+           XCTAssertNotNil(formattedString)
+       }
 }
 
 

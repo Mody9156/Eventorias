@@ -20,3 +20,11 @@ class MockGoogleMapView: GoogleMapView {
         return mockData ?? Data()
     }
 }
+// Mock pour ListViewModel
+class MockListViewModel {
+    var eventEntry: [EventEntry]
+    
+    init(eventEntry: [EventEntry]) {
+        self.eventEntry = eventEntry
+    }
+}
