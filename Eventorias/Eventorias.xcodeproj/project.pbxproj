@@ -59,7 +59,6 @@
 		23F0E1C22D1EB3B500C9A610 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 23F0E1C12D1EB3B500C9A610 /* FirebaseAnalyticsSwift */; };
 		23F9E9AD2D12C2430030C221 /* EventManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */; };
 		23FE1F7E2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE1F7D2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift */; };
-		23FE1F802D1E066800BE0624 /* CollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE1F7F2D1E066800BE0624 /* CollectionReference.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,7 +118,6 @@
 		23F0E1B82D1EAFE800C9A610 /* MockFirestoreCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFirestoreCollection.swift; sourceTree = "<group>"; };
 		23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagerProtocol.swift; sourceTree = "<group>"; };
 		23FE1F7D2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreCollectionProtocol.swift; sourceTree = "<group>"; };
-		23FE1F7F2D1E066800BE0624 /* CollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReference.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,7 +269,6 @@
 			isa = PBXGroup;
 			children = (
 				236060982D0DE48200E3504F /* DateExtension.swift */,
-				23FE1F7F2D1E066800BE0624 /* CollectionReference.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -532,7 +529,6 @@
 				2302CE902D198AD6005F6EB4 /* User.swift in Sources */,
 				236060832D0DE43B00E3504F /* HomeView.swift in Sources */,
 				23F9E9AD2D12C2430030C221 /* EventManagerProtocol.swift in Sources */,
-				23FE1F802D1E066800BE0624 /* CollectionReference.swift in Sources */,
 				2311CB492D118BEB00518BC5 /* CameraManager.swift in Sources */,
 				236060B62D0DE48300E3504F /* BasicHTTPClient.swift in Sources */,
 				236060842D0DE43B00E3504F /* UserDetailView.swift in Sources */,
