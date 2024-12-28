@@ -8,7 +8,8 @@
 import XCTest
 @testable import Eventorias
 final class GoogleMapViewTests: XCTestCase {
-    var googleMapView: GoogleMapView!
+    
+        var googleMapView: GoogleMapView!
         var mockHTTPService: MockHTTPService!
 
         override func setUp() {
@@ -78,27 +79,28 @@ final class GoogleMapViewTests: XCTestCase {
         }
 
         // Test pour vérifier que showMapsWithURLRequest lance une erreur si le statut HTTP n'est pas 200
-        func testShowMapsWithURLRequest_BadServerResponse() async {
-            let latitude: Double = 37.3811
-            let longitude: Double = -122.3348
-            let apiKey = "mockAPIKey"
-            
-            // Mock une réponse avec un code de statut 500 (erreur serveur)
-            mockHTTPService.mockData = Data([0x01, 0x02, 0x03])
-            mockHTTPService.mockResponse = HTTPURLResponse(url: URL(string: "https://example.com")!,
-                                                            statusCode: 500,
-                                                            httpVersion: nil,
-                                                            headerFields: nil)
-            
-            do {
-                _ = try await googleMapView.showMapsWithURLRequest(latitude, longitude, apiKey)
-                XCTFail("Expected badServerResponse error, but no error was thrown.")
-            } catch URLError(.badServerResponse) {
-                // Expected error
-            } catch {
-                XCTFail("Expected badServerResponse error, but got \(error).")
-            }
+    func testShowMapsWithURLRequest_BadServerResponse() async {
+        let latitude: Double = 37.3811
+        let longitude: Double = -122.3348
+        let apiKey = "mockAPIKey"
+        
+        // Mock une réponse avec un code de statut 500 (erreur serveur)
+        mockHTTPService.mockData = Data([0x01, 0x02, 0x03])
+        mockHTTPService.mockResponse = HTTPURLResponse(url: URL(string: "https://example.com")!,
+                                                        statusCode: 500,
+                                                        httpVersion: nil,
+                                                        headerFields: nil)
+        
+        do {
+            _ = try await googleMapView.showMapsWithURLRequest(latitude, longitude, apiKey)
+            XCTFail("Expected badServerResponse error, but no error was thrown.")
+        } catch let error as URLError {
+            XCTAssertEqual(error.code, .badServerResponse, "Expected badServerResponse error, but got \(error).")
+        } catch {
+            XCTFail("Expected badServerResponse error, but got \(error).")
         }
+    }
+
         
         // Test pour vérifier que showMapsWithURLRequest lance une erreur si les données sont vides
         func testShowMapsWithURLRequest_EmptyData() async {
@@ -123,4 +125,16 @@ final class GoogleMapViewTests: XCTestCase {
             }
         }
 
+    func testWhenUrlThrowError(){
+        let invalidLatitude: Double = 9999 // Utilise une latitude invalide pour générer un mauvais URL
+            let invalidLongitude: Double = 9999
+            let apiKey = "mockAPIKey"
+            
+            let googleMapView = GoogleMapView() // Initialise l'objet pour tester
+            
+            // Tester si l'erreur levée est celle attendue
+            XCTAssertThrowsError(try googleMapView.fetchURLRequest(invalidLatitude, invalidLongitude, apiKey)) { error in
+                XCTAssertEqual(error as? GoogleMapView.AuthenticationError, .invalidUrl, "Expected invalidURL error, but got \(error).")
+            }
+    }
 }
