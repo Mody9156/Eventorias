@@ -20,9 +20,9 @@ class GoogleMapView {
         case invalidUrl
     }
     
-    func fetchURLRequest(_ latitude: Double,_ longitude: Double, _ key: String) -> URLRequest {
+    func fetchURLRequest(_ latitude: Double,_ longitude: Double, _ key: String) throws -> URLRequest {
         guard let url = URL(string: "https://maps.googleapis.com/maps/api/staticmap?center=\(latitude),\(longitude)&zoom=12&size=149x72&maptype=roadmap&key=\(key)") else {
-            AuthenticationError.invalidUrl
+           throw   AuthenticationError.invalidUrl
         }
         
         var request = URLRequest(url: url)
@@ -36,7 +36,7 @@ class GoogleMapView {
             throw AuthenticationError.invalidData
         }
 
-        let request = fetchURLRequest(latitude, longitude, key)
+        let request = try fetchURLRequest(latitude, longitude, key)
         let (data, response) = try await httpService.fetchRequest(request)
 
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {

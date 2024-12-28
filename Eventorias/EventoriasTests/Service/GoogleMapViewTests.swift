@@ -26,12 +26,12 @@ final class GoogleMapViewTests: XCTestCase {
         }
 
         // Test pour vérifier que la URL est correcte
-        func testFetchURLRequest() {
+        func testFetchURLRequest() throws {
             let latitude: Double = 37.3811
             let longitude: Double = -122.3348
             let apiKey = "mockAPIKey"
             
-            let request = googleMapView.fetchURLRequest(latitude, longitude, apiKey)
+            let request = try googleMapView.fetchURLRequest(latitude, longitude, apiKey)
             
             // Vérifie que la requête a été bien formée
             let expectedURLString = "https://maps.googleapis.com/maps/api/staticmap?center=\(latitude),\(longitude)&zoom=12&size=149x72&maptype=roadmap&key=\(apiKey)"
@@ -125,14 +125,13 @@ final class GoogleMapViewTests: XCTestCase {
             }
         }
 
-    func testWhenUrlThrowError(){
-        let invalidLatitude: Double = 9999 // Utilise une latitude invalide pour générer un mauvais URL
-            let invalidLongitude: Double = 9999
-            let apiKey = "mockAPIKey"
+    func testWhenUrlThrowError() throws {
+            let invalidLatitude: Double = -9999
+            let invalidLongitude: Double = -9999
+            let apiKey = ""
             
-            let googleMapView = GoogleMapView() // Initialise l'objet pour tester
+            let googleMapView = GoogleMapView()
             
-            // Tester si l'erreur levée est celle attendue
             XCTAssertThrowsError(try googleMapView.fetchURLRequest(invalidLatitude, invalidLongitude, apiKey)) { error in
                 XCTAssertEqual(error as? GoogleMapView.AuthenticationError, .invalidUrl, "Expected invalidURL error, but got \(error).")
             }
