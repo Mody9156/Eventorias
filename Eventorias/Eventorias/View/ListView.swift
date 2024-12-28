@@ -212,8 +212,8 @@ struct ViewCalendar: View {
                             HStack{
                                 // Encodage de l'URL de l'image
                                
-                                if let picture = entry.picture{
-                                    Image("picture")
+                                if let picture = event.picture{
+                                    Image(picture)
                                         .resizable()
                                         .cornerRadius(50)
                                         .frame(width: 40, height: 40)
@@ -312,7 +312,7 @@ struct ViewModeList: View {
                     HStack {
                         
                         if let picture = entry.picture{
-                            Image("picture")
+                            Image(picture)
                                 .resizable()
                                 .cornerRadius(50)
                                 .frame(width: 40, height: 40)
