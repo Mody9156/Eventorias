@@ -78,7 +78,7 @@ struct RegistrationView: View {
                         Button {
                             if loginViewModel.errorMessage == nil {
                                 
-                                loginViewModel.registerUser(email: email, password: password, firstName: firstName, lastName: lastName, picture: picture)
+                                loginViewModel.registerUser(email: email, password: password, firstName: firstName, lastName: lastName, picture: selectedPicture)
                                 
                                 dismiss()
                             }

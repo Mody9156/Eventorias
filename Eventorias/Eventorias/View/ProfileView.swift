@@ -61,7 +61,7 @@ struct ProfileView: View {
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
                         if let picture {
-                            Image(picture)
+                            Image("\(picture)")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 48, height: 48)
