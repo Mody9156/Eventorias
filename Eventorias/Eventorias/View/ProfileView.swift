@@ -16,19 +16,26 @@ struct ProfileView: View {
     @State private var selectedImage: UIImage? = nil
     
     func loadImageFromFile() -> UIImage? {
-           guard let picturePath = picture else { return nil }
-           var cleanPath = picturePath
-           if cleanPath.hasPrefix("file://") {
-               cleanPath = String(cleanPath.dropFirst(7))  // Enlever "file://"
-           }
-           let fileURL = URL(fileURLWithPath: cleanPath)
-           
-           if let data = try? Data(contentsOf: fileURL) {
-               return UIImage(data: data)
-           }
-           return nil
-       }
-
+        guard let picturePath = picture else { return nil }
+        var cleanPath = picturePath
+        
+        // Vérifiez et nettoyez le préfixe "file://"
+        if cleanPath.hasPrefix("file://") {
+            cleanPath = String(cleanPath.dropFirst(7))
+        }
+        
+        let fileURL = URL(fileURLWithPath: cleanPath)
+        
+        // Charger l'image en vérifiant l'existence du fichier
+        guard let data = try? Data(contentsOf: fileURL) else {
+            print("Fichier introuvable ou non lisible : \(fileURL.path)")
+            return nil
+        }
+        
+        return UIImage(data: data)
+    }
+    
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -63,8 +70,9 @@ struct ProfileView: View {
                                 .padding()
                         } else {
                             Text("Image non trouvée.")
-                        }
-                    }
+                                .foregroundColor(.gray)
+                                .padding()
+                        }                    }
                     Spacer()
                 }
                 .toolbar {
