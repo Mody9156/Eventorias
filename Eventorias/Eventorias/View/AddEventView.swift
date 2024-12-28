@@ -122,7 +122,7 @@ struct AddEventView: View {
                             for item in newValue {
                                 Task{
                                     if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data){
-                                        savedFilePath = addEventViewModel.saveImageToTemporaryDirectory(image: image, fileName: "\(title).jpg")
+                                        savedFilePath = addEventViewModel.saveImageToDocumentsDirectory(image: image, fileName: "\(title).jpg")
                                     }
                                 }
                             }
@@ -165,7 +165,7 @@ struct AddEventView: View {
                                 return
                             }
                             
-                            guard let selected = addEventViewModel.saveImageToTemporaryDirectory(image: selectedImage,fileName: "\(title).jpg") else {
+                            guard let selected = addEventViewModel.saveImageToDocumentsDirectory(image: selectedImage,fileName: "\(title).jpg") else {
                                 return
                             }
                             

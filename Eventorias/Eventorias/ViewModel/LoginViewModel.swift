@@ -80,24 +80,24 @@ class LoginViewModel : ObservableObject {
         }
     }
     
-    func saveImageToTemporaryDirectory(image: UIImage, fileName: String) -> String? {
-        guard let data = image.jpegData(compressionQuality: 0.8) else {
+    func saveImageToDocumentsDirectory(image: UIImage, fileName: String) -> String? {
+        guard let data = image.jpegData(compressionQuality: 1.0) else {
             print("Échec de la conversion de l'image en données JPEG.")
             return nil
         }
-        
-        // Obtenir le chemin du répertoire temporaire
-        let tempDirectory = FileManager.default.temporaryDirectory
-        let fileURL = tempDirectory.appendingPathComponent(fileName)
-        
+
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = documentsURL.appendingPathComponent(fileName)
+
         do {
-            // Sauvegarder les données sur le disque
             try data.write(to: fileURL)
-            print("Image sauvegardée temporairement à : \(fileURL.path)")
+            print("Image sauvegardée à : \(fileURL.path)")
             return fileURL.path
         } catch {
-            print("Erreur lors de la sauvegarde de l'image : \(error.localizedDescription)")
+            print("Erreur lors de la sauvegarde de l'image : \(error)")
             return nil
         }
     }
+
 }

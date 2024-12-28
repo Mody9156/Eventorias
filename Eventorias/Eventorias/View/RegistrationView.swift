@@ -99,7 +99,7 @@ struct RegistrationView: View {
                                 }
                                 
                                 // Sauvegarder l'image temporairement
-                                guard let savedFilePath = loginViewModel.saveImageToTemporaryDirectory(image: unwrappedImage, fileName: "\(UUID().uuidString).jpg") else {
+                                guard let savedFilePath = loginViewModel.saveImageToDocumentsDirectory(image: unwrappedImage, fileName: "\(UUID().uuidString).jpg") else {
                                     errorMessage = "Échec de la sauvegarde de l'image."
                                     return
                                 }

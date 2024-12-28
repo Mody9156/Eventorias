@@ -48,22 +48,26 @@ class AddEventViewModel : ObservableObject {
     
     
     
-    func saveImageToTemporaryDirectory(image:UIImage, fileName:String) -> String? {
+    func saveImageToDocumentsDirectory(image: UIImage, fileName: String) -> String? {
         guard let data = image.jpegData(compressionQuality: 1.0) else {
+            print("Échec de la conversion de l'image en données JPEG.")
             return nil
         }
-        
-        let tempDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let fileURL = tempDir.appendingPathComponent(fileName)
-        
-        do{
+
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = documentsURL.appendingPathComponent(fileName)
+
+        do {
             try data.write(to: fileURL)
+            print("Image sauvegardée à : \(fileURL.path)")
             return fileURL.path
-            
-        }catch{
+        } catch {
+            print("Erreur lors de la sauvegarde de l'image : \(error)")
             return nil
         }
     }
+
     
     func formatHourString(_ hour:Date) -> String{
         let date = Date.stringFromHour(hour)
