@@ -21,7 +21,8 @@ struct RegistrationView: View {
     @State private var selectedImage: UIImage? = nil
     @State private var isLoading = false
     @State private var errorMessage: String? = nil
-  
+    @State private var showCamera = false
+
     
     var body: some View {
         NavigationStack {
@@ -80,6 +81,24 @@ struct RegistrationView: View {
                             }
                         }
                     }
+                    
+//                    Button(action:{
+//                        self.showCamera.toggle()
+//                    }){
+//                        ZStack {
+//                            Rectangle()
+//                                .frame(width: 52, height:52)
+//                                .foregroundColor(.white)
+//                                .cornerRadius(16)
+//
+//                            Image("Camera")
+//                                .foregroundColor(.black)
+//                        }
+//                    }
+//                    .fullScreenCover(isPresented: self.$showCamera) {
+//                        accessCameraView(selectedImage: self.$selectedImage)
+//                            .background(.black)
+//                    }
                     
                     ZStack {
                         Rectangle()
