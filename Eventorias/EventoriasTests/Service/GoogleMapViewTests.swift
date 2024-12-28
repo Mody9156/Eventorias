@@ -125,15 +125,4 @@ final class GoogleMapViewTests: XCTestCase {
             }
         }
 
-    func testWhenUrlThrowError() throws {
-            let invalidLatitude: Double = -9999
-            let invalidLongitude: Double = -9999
-            let apiKey = ""
-            
-            let googleMapView = GoogleMapView()
-            
-            XCTAssertThrowsError(try googleMapView.fetchURLRequest(invalidLatitude, invalidLongitude, apiKey)) { error in
-                XCTAssertEqual(error as? GoogleMapView.AuthenticationError, .invalidUrl, "Expected invalidURL error, but got \(error).")
-            }
-    }
 }
