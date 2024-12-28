@@ -51,35 +51,47 @@ class FirebaseAuthenticationManager {
     }
 
     func createUser(email: String, password: String, firstName: String, lastName: String, picture: String, completion: @escaping (Result<User, Error>) -> Void) {
-        authService.createUser(email: email, password: password) { [weak self] result in
-            switch result {
-            case .success(let userID):
-                let data: [String: Any] = [
-                    "firstName": firstName,
-                    "lastName": lastName,
-                    "email": email,
-                    "uid": userID,
-                    "picture": picture
-                ]
-                self?.firestoreService.saveUserData(userID: userID, data: data) { saveResult in
-                    switch saveResult {
-                    case .success:
-                        if let user = User(from: data) {
-                            self?.saveUserData(user)
-                            completion(.success(user))
-                        } else {
-                            completion(.failure(NSError(
-                                domain: "UserDataError",
-                                code: -1,
-                                userInfo: [NSLocalizedDescriptionKey: "Failed to create user object."]
-                            )))
-                        }
-                    case .failure(let error):
-                        completion(.failure(error))
-                    }
-                }
-            case .failure(let error):
+        // Vérifier si l'email est déjà utilisé
+        Auth.auth().fetchSignInMethods(forEmail: email) { (methods, error) in
+            if let error = error {
                 completion(.failure(error))
+                return
+            }
+            if methods?.count ?? 0 > 0 {
+                completion(.failure(NSError(domain: "EmailError", code: -1, userInfo: [NSLocalizedDescriptionKey: "This email is already in use."])))
+                return
+            }
+            // Si l'email est libre, on continue
+            self.authService.createUser(email: email, password: password) { [weak self] result in
+                switch result {
+                case .success(let userID):
+                    let data: [String: Any] = [
+                        "firstName": firstName,
+                        "lastName": lastName,
+                        "email": email,
+                        "uid": userID,
+                        "picture": picture
+                    ]
+                    self?.firestoreService.saveUserData(userID: userID, data: data) { saveResult in
+                        switch saveResult {
+                        case .success:
+                            if let user = User(from: data) {
+                                self?.saveUserData(user)
+                                completion(.success(user))
+                            } else {
+                                completion(.failure(NSError(
+                                    domain: "UserDataError",
+                                    code: -1,
+                                    userInfo: [NSLocalizedDescriptionKey: "Failed to create user object."]
+                                )))
+                            }
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
         }
     }

@@ -18,6 +18,7 @@ struct AddEventView: View {
     @State private var imageURL: URL? = nil
     @State private var showCamera = false
     @State private var selectedImage: UIImage?
+    @State private var selectedImageToFile: UIImage?
     @State var image : UIImage?
     @State var selectedItems : [PhotosPickerItem] = []
     @State var showAddress : Bool = false
@@ -41,7 +42,7 @@ struct AddEventView: View {
         formatter.dateStyle = .medium
         return formatter
     }()
-    
+    @State var showFile : Bool = false
     var indexCategory = ["Music","Food","Book","Conference","Exhibition","Charity","Film"]
     @State private var selectedCategory = "Music"
     
@@ -105,6 +106,26 @@ struct AddEventView: View {
                             accessCameraView(selectedImage: self.$selectedImage)
                                 .background(.black)
                         }
+//                        Button(action:{
+//                            self.showFile.toggle()
+//                        }){
+//                            ZStack {
+////                               Rectangle()
+//                        .frame(width: 52, height:52)
+//                        .foregroundColor(Color("Button"))
+//                        .cornerRadius(16)
+//
+//                    Image("attach")
+//
+//                                Image("attach")
+//                                    .foregroundColor(.black)
+//                            }
+//                        }
+//                        .fullScreenCover(isPresented: self.$showFile) {
+//                            accessCameraView(selectedImage: self.$selectedImageToFile)
+//                                .background(.black)
+//                        }
+                        
                         
                         PhotosPicker(selection:$selectedItems,
                                      matching:.images) {
@@ -282,6 +303,34 @@ struct accessCameraView: UIViewControllerRepresentable {
         return CameraManager(parent: self)
     }
 }
+
+
+struct accessFilesView: UIViewControllerRepresentable {
+    
+    @Binding var selectedImage: UIImage?
+    @Environment(\.presentationMode) var isPresented
+    
+    func makeUIViewController(context: Context) -> UIImagePickerController {
+        let imagePicker = UIImagePickerController()
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+        } else {
+            imagePicker.sourceType = .photoLibrary
+            context.coordinator.showCameraUnavailableAlert()
+        }
+        
+        imagePicker.delegate = context.coordinator
+        return imagePicker
+    }
+    
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
+    
+    func makeCoordinator() -> CameraManager {
+        return CameraManager(parent: self)
+    }
+}
+
 
 struct AddressCollect: View {
     var text : String
