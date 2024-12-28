@@ -19,9 +19,14 @@ struct RegistrationView: View {
     @State private var isLoading = false
     @State private var errorMessage: String? = nil
     @State private var showCamera = false
-    var pictures = ["ArtExhibition", "BookSigning", "CharityRun", "FilmScreening","FoodFaire","MusicFestival","TechConference"]
-    @State private var selectedColor = "Red"
+    @State private var selectedPicture = "ArtExhibition"
     
+    var pictures = ["ArtExhibition", "BookSigning", "CharityRun", "FilmScreening","FoodFaire","MusicFestival","TechConference"]
+    let columns = [
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10)
+    ]
     var body: some View {
         NavigationStack {
             ZStack {
@@ -36,13 +41,30 @@ struct RegistrationView: View {
                     AuthFieldsView(textField: $lastName, password: $password, text: "lastName", title: "LastName")
                     AuthFieldsView(textField: $firstName, password: $password, text: "firstName", title: "FirstName")
                     AuthFieldsView(textField: $email, password: $password, text: "email", title: "Email")
-                    
-                    Picker("Please choose a color", selection: $selectedColor) {
-                                    ForEach(colors, id: \.self) {
-                                        Text($0)
+                    VStack {
+                        ScrollView {
+                            LazyVGrid(columns: columns, spacing: 20) {
+                                ForEach(pictures, id: \.self) { picture in
+                                    Button(action: {
+                                        selectedPicture = picture
+                                    }) {
+                                        Image(picture)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 80, height: 80)
+                                            .cornerRadius(10)
+                                            .shadow(radius: 5)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 20)
+                                                    .stroke(selectedPicture == picture ? Color.white : Color.clear, lineWidth: 4) )
                                     }
                                 }
-                    
+                            }
+                            .padding()
+                            
+                        }
+                    }
+                    .padding()
                     ZStack {
                         Rectangle()
                             .frame(height: 50)
@@ -50,8 +72,8 @@ struct RegistrationView: View {
                         
                         Button {
                             if loginViewModel.errorMessage == nil {
-                            
-                                loginViewModel.registerUser(email: email, password: password, firstName: firstName, lastName: lastName, picture: "")
+                                
+                                loginViewModel.registerUser(email: email, password: password, firstName: firstName, lastName: lastName, picture: picture)
                                 
                                 dismiss()
                             }
