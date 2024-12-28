@@ -6,30 +6,65 @@
 //
 
 import XCTest
+@testable import Eventorias
 
-final class EventRepositoryTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+class EventRepositoryTests: XCTestCase {
+    
+    var eventRepository: EventRepository!
+    var mockCollection: MockCollectionReference!
+    
+    override func setUp() {
+        super.setUp()
+        
+        // Initialiser le mock
+        mockCollection = MockCollectionReference()
+        eventRepository = EventRepository(db: mockCollection)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    override func tearDown() {
+        eventRepository = nil
+        mockCollection = nil
+        super.tearDown()
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
+    
+    func testSaveToFirestore_Success() {
+        // Préparer un événement
+        let event = EventEntry(id: "1", title: "Event Test", description: "Description", date: Date())
+        
+        // Appeler la méthode saveToFirestore
+        eventRepository.saveToFirestore(event) { success, error in
+            XCTAssertTrue(success)
+            XCTAssertNil(error)
+            XCTAssertTrue(self.mockCollection.addDocumentCalled)
+            XCTAssertNotNil(self.mockCollection.documentData)
         }
     }
-
+    
+    func testSaveToFirestore_EncodingFailure() {
+        // Préparer un événement avec une mauvaise structure (pour tester l'échec d'encodage)
+        struct InvalidEvent: Codable {
+            let invalidField: Any
+        }
+        let invalidEvent = InvalidEvent(invalidField: NSObject())
+        
+        // Appeler la méthode saveToFirestore
+        eventRepository.saveToFirestore(invalidEvent) { success, error in
+            XCTAssertFalse(success)
+            XCTAssertNotNil(error)
+        }
+    }
+    
+    func testSaveToFirestore_FirestoreError() {
+        // Préparer un événement
+        let event = EventEntry(id: "2", title: "Event Test", description: "Description", date: Date())
+        
+        // Simuler une erreur Firestore
+        mockCollection.errorToReturn = NSError(domain: "Firestore", code: -1, userInfo: nil)
+        
+        // Appeler la méthode saveToFirestore
+        eventRepository.saveToFirestore(event) { success, error in
+            XCTAssertFalse(success)
+            XCTAssertNotNil(error)
+        }
+    }
 }
