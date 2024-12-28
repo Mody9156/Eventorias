@@ -19,9 +19,7 @@ class LoginViewModelTests: XCTestCase {
         mockFirebaseAuthenticationManager = MockFirebaseAuthenticationManager()
         
         // Initialisation de LoginViewModel avec un callback vide
-        viewModel = LoginViewModel {
-            // Callback vide pour l'instant
-        }, firebaseAuthenticationManager: mockFirebaseAuthenticationManager)
+        viewModel = LoginViewModel ({}, firebaseAuthenticationManager: mockFirebaseAuthenticationManager)
     }
     
     override func tearDown() {
@@ -43,8 +41,19 @@ class LoginViewModelTests: XCTestCase {
     
     // Test si la méthode login gère une connexion réussie
     func testLoginSuccess() {
+        let data: [String: Any] = [
+            "firstName": "firstName",
+            "lastName": "lastName",
+            "email": "validEmail@example.com",
+            "uid": "123",
+            "picture": "picture"
+        ]
+        guard let success = User(from: data) else{
+            return
+        }
         // Configurer le mock pour réussir la connexion
-        mockFirebaseAuthenticationManager.mockSignInResult = .success(User(id: "123", email: "validEmail@example.com"))
+        mockFirebaseAuthenticationManager.mockSignInResult = .success(success)
+        
         
         let expectation = self.expectation(description: "Login succeed")
         
@@ -88,8 +97,18 @@ class LoginViewModelTests: XCTestCase {
     
     // Test si la méthode registerUser gère une inscription réussie
     func testRegisterUserSuccess() {
+        let data: [String: Any] = [
+            "firstName": "firstName",
+            "lastName": "lastName",
+            "email": "validEmail@example.com",
+            "uid": "123",
+            "picture": "picture"
+        ]
+        guard let success = User(from: data) else{
+            return
+        }
         // Configurer le mock pour réussir l'inscription
-        mockFirebaseAuthenticationManager.mockCreateUserResult = .success(User(id: "123", email: "validEmail@example.com"))
+        mockFirebaseAuthenticationManager.mockCreateUserResult = .success(success)
         
         viewModel.registerUser(email: "validEmail@example.com", password: "validPassword", firstName: "John", lastName: "Doe", picture: "pictureURL")
         
