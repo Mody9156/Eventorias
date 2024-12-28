@@ -91,16 +91,25 @@ struct RegistrationView: View {
                         
                         Button {
                             if loginViewModel.errorMessage == nil {
+                                
+                                // Vérifier que l'image est sélectionnée
                                 guard let savedFilePath = selectedImage else {
+                                    errorMessage = "Veuillez sélectionner une image."
                                     return
                                 }
+                                
+                                // Sauvegarder l'image temporairement
                                 guard let selected = loginViewModel.saveImageToTemporaryDirectory(image: savedFilePath,fileName: "\(picture).jpg") else {
+                                    errorMessage = "Échec de la sauvegarde de l'image."
                                     return
                                 }
-                                print("\(selected)")
+                                
+                                print("Chemin de l'image sauvegardée : \(savedFilePath)")
+                                
+                                // Convertir le chemin en URL String
                                 let fileURL = URL(fileURLWithPath: selected)
                                 let fileURLString = fileURL.absoluteString
-                                print("\(fileURLString)")
+                                print("URL de l'image : \(fileURLString)")
                                 loginViewModel.registerUser(email: email, password: password, firstName: firstName, lastName: lastName, picture: fileURLString)
                                 
                                 dismiss()
