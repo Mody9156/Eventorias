@@ -333,6 +333,23 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		23F41BDC2D20B005000D904E /* List */ = {
+			isa = PBXGroup;
+			children = (
+				23F41BD82D20AF2A000D904E /* MockListViewModelToEventorias.swift */,
+				23F41BDA2D20AFF6000D904E /* MockGoogleMapView.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		23F41BDD2D20B04B000D904E /* GoogleMap */ = {
+			isa = PBXGroup;
+			children = (
+				23F41BC82D208F36000D904E /* MockHTTPService.swift */,
+			);
+			path = GoogleMap;
+			sourceTree = "<group>";
+		};
 		23F9E9AB2D12C1C20030C221 /* Event */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,9 +372,8 @@
 		23F9F0CB2D206E6A00BB2D35 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				23F41BC82D208F36000D904E /* MockHTTPService.swift */,
-				23F41BD82D20AF2A000D904E /* MockListViewModelToEventorias.swift */,
-				23F41BDA2D20AFF6000D904E /* MockGoogleMapView.swift */,
+				23F41BDD2D20B04B000D904E /* GoogleMap */,
+				23F41BDC2D20B005000D904E /* List */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
