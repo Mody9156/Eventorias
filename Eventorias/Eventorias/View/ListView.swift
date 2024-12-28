@@ -194,7 +194,7 @@ struct ViewCalendar: View {
                 .foregroundColor(.white) // Couleur du texte
                 .accentColor(Color("BackgroundDocument"))
                 .padding()
-                .background(RoundedRectangle(cornerRadius: 12).fill(Color("Button").opacity(0.3)))
+                .background(RoundedRectangle(cornerRadius: 12).fill(Color("Button").opacity(0.5)))
 
             // Affichage des événements liés à la date sélectionnée
             if filteredEvents.isEmpty {
@@ -235,7 +235,7 @@ struct ViewCalendar: View {
                                         .lineLimit(1)
                                         .foregroundColor(.white)
                                     
-                                    Text("\(listViewModel.formatDateString(entry.dateCreation))")
+                                    Text("\(listViewModel.formatDateString(event.dateCreation))")
                                         .font(.custom("Inter-Regular", size: 14))
                                         .lineSpacing(20 - 14)
                                         .fontWeight(.regular)
