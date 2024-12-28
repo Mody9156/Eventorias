@@ -58,6 +58,8 @@
 		23F0E1C02D1EB39F00C9A610 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 23F0E1BF2D1EB39F00C9A610 /* FirebaseFirestoreSwift */; };
 		23F0E1C22D1EB3B500C9A610 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 23F0E1C12D1EB3B500C9A610 /* FirebaseAnalyticsSwift */; };
 		23F9E9AD2D12C2430030C221 /* EventManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */; };
+		23F9F0BA2D2043AD00BB2D35 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 23F9F0B92D2043AD00BB2D35 /* FirebaseStorage */; };
+		23F9F0BC2D2043D000BB2D35 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 23F9F0BB2D2043D000BB2D35 /* FirebaseStorageCombine-Community */; };
 		23FE1F7E2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE1F7D2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift */; };
 /* End PBXBuildFile section */
 
@@ -126,10 +128,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				236060752D0DCB0700E3504F /* FirebaseFirestoreSwift in Frameworks */,
+				23F9F0BC2D2043D000BB2D35 /* FirebaseStorageCombine-Community in Frameworks */,
 				2360606F2D0DCB0700E3504F /* FirebaseAnalyticsSwift in Frameworks */,
 				236060732D0DCB0700E3504F /* FirebaseFirestore in Frameworks */,
 				236060712D0DCB0700E3504F /* FirebaseAuth in Frameworks */,
 				2360606D2D0DCB0700E3504F /* FirebaseAnalytics in Frameworks */,
+				23F9F0BA2D2043AD00BB2D35 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +410,8 @@
 				236060702D0DCB0700E3504F /* FirebaseAuth */,
 				236060722D0DCB0700E3504F /* FirebaseFirestore */,
 				236060742D0DCB0700E3504F /* FirebaseFirestoreSwift */,
+				23F9F0B92D2043AD00BB2D35 /* FirebaseStorage */,
+				23F9F0BB2D2043D000BB2D35 /* FirebaseStorageCombine-Community */,
 			);
 			productName = Eventorias;
 			productReference = 2360603E2D0DC7BC00E3504F /* Eventorias.app */;
@@ -877,6 +883,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2360606B2D0DCB0700E3504F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsSwift;
+		};
+		23F9F0B92D2043AD00BB2D35 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2360606B2D0DCB0700E3504F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		23F9F0BB2D2043D000BB2D35 /* FirebaseStorageCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2360606B2D0DCB0700E3504F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseStorageCombine-Community";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

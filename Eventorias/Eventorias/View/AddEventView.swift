@@ -126,48 +126,52 @@ struct AddEventView: View {
                             locationCoordinate.errorMessage = "Tous les champs doivent être remplis."
                             return
                         }
-                        
+
                         address = "\(street), \(city) \(postalCode), \(country)"
-                        
+
                         locationCoordinate.geocodeAddress(address: address) { result in
                             switch result {
                             case .success(let coord):
                                 latitude = coord.0
                                 longitude = coord.1
                                 print("Coordonnées récupérées : \(coord.0), \(coord.1)")
+
+                                // Vérifiez si une image a été sélectionnée
+                                guard let selectedImage = selectedImage else {
+                                    print("Aucune image sélectionnée.")
+                                    return
+                                }
+                                guard let picture = picture else {
+                                    return
+                                }
+                                // Téléchargez l'image dans Firebase Storage
+                                addEventViewModel.uploadImageToFirebase(image: selectedImage, fileName: "\(title).jpg") { result in
+                                    switch result {
+                                    case .success(let imageUrl):
+                                        // Une fois l'URL obtenue, sauvegardez l'événement dans Firestore
+                                        addEventViewModel.saveToFirestore(
+                                            picture: picture,
+                                            title: title,
+                                            dateCreation: date,
+                                            poster: imageUrl,
+                                            description: description,
+                                            hour:addEventViewModel.formatHourString(hours),
+                                            category: selectedCategory,
+                                            street: street,
+                                            city: city,
+                                            postalCode: postalCode,
+                                            country: country,
+                                            latitude: latitude,
+                                            longitude: longitude
+                                        )
+                                    case .failure(let error):
+                                        print("Erreur lors de l'upload de l'image : \(error.localizedDescription)")
+                                    }
+                                }
                             case .failure(let error):
                                 print("Erreur lors du géocodage : \(error.localizedDescription)")
                             }
                         }
-                        
-                        guard let selectedImage = selectedImage else { return }
-                        
-                        let filePath = addEventViewModel.saveImageToDocumentsDirectory(image: selectedImage, fileName: "\(title).jpg")
-                        
-                        guard let savedFilePath = filePath else { return }
-                        
-                        let fileURL = URL(fileURLWithPath: savedFilePath)
-                        let fileURLString = fileURL.absoluteString
-                        
-                        guard let picture else {
-                            print("aucune image")
-                            return
-                        }
-                        addEventViewModel.saveToFirestore(
-                            picture: "\(picture)",
-                            title: title,
-                            dateCreation: date,
-                            poster: fileURLString,
-                            description: description,
-                            hour: addEventViewModel.formatHourString(hours),
-                            category: selectedCategory,
-                            street: street,
-                            city: city,
-                            postalCode: postalCode,
-                            country: country,
-                            latitude: latitude,
-                            longitude: longitude)
-                        
                     }) {
                         ZStack {
                             Rectangle()
