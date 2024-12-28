@@ -8,7 +8,7 @@
 import XCTest
 @testable import Eventorias
 
-class MockListViewModel {
+class MockListViewModelToEventorias {
     var eventEntry: [EventEntry]
     
     init(eventEntry: [EventEntry]) {
