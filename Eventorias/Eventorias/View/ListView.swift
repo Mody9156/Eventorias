@@ -37,8 +37,10 @@ struct ListView: View {
             VStack(alignment: .leading) {
                 if !listViewModel.isError{
                     HStack {
-                        CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
-                            .padding()
+                        if  !calendar{
+                            CustomButton(listViewModel: listViewModel, tryEvent: $tryEvent)
+                                .padding()
+                        }
                         Spacer()
                         ToggleViewButton(calendar: $calendar)
                     }
@@ -75,6 +77,7 @@ struct ListView: View {
                         .padding()
                         .transition(.opacity)
                 }
+                
             }.toolbar(content: myTollBarContent)
         }
         
@@ -82,54 +85,56 @@ struct ListView: View {
     
     @ToolbarContentBuilder
     func myTollBarContent()-> some ToolbarContent {
-        ToolbarItem(placement:.navigationBarLeading){
-            HStack {
-                ZStack {
-                    Rectangle()
-                        .frame(width: 358, height: 35)
-                        .foregroundColor(Color("BackgroundDocument"))
-                        .cornerRadius(10)
-                    
-                    HStack{
-                        Image(systemName:"magnifyingglass")
-                            .foregroundColor(.white)
-                            .accessibilityLabel("Search Icon")
+        if  !calendar{
+            ToolbarItem(placement:.navigationBarLeading){
+                HStack {
+                    ZStack {
+                        Rectangle()
+                            .frame(width: 358, height: 35)
+                            .foregroundColor(Color("BackgroundDocument"))
+                            .cornerRadius(10)
                         
-                        TextField("", text: $searchText,onEditingChanged: { changed in
+                        HStack{
+                            Image(systemName:"magnifyingglass")
+                                .foregroundColor(.white)
+                                .accessibilityLabel("Search Icon")
                             
-                            if changed {
-                                isActive = true
+                            TextField("", text: $searchText,onEditingChanged: { changed in
                                 
-                            }else{
-                                isActive = false
-                            }
-                        })
-                        .font(.system(size: 22, weight: .light, design: .default))
-                        .background(Color(""))
-                        .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
-                        .foregroundColor(.white)
-                        .overlay(
-                            HStack{
-                                if searchText.isEmpty {
-                                    Text("Search")
+                                if changed {
+                                    isActive = true
+                                    
+                                }else{
+                                    isActive = false
+                                }
+                            })
+                            .font(.system(size: 22, weight: .light, design: .default))
+                            .background(Color(""))
+                            .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
+                            .foregroundColor(.white)
+                            .overlay(
+                                HStack{
+                                    if searchText.isEmpty {
+                                        Text("Search")
+                                            .foregroundColor(.white)
+                                        Spacer()
+                                    }
+                                }
+                            )
+                            .focused($focused, equals: .searchable)
+                            
+                            if !searchText.isEmpty{
+                                Button(action:{
+                                    searchText = ""
+                                }){
+                                    Image(systemName:"multiply.circle.fill")
                                         .foregroundColor(.white)
-                                    Spacer()
+                                        .accessibilityLabel("Clear search text")
                                 }
                             }
-                        )
-                        .focused($focused, equals: .searchable)
-                        
-                        if !searchText.isEmpty{
-                            Button(action:{
-                                searchText = ""
-                            }){
-                                Image(systemName:"multiply.circle.fill")
-                                    .foregroundColor(.white)
-                                    .accessibilityLabel("Clear search text")
-                            }
                         }
+                        .padding()
                     }
-                    .padding()
                 }
             }
         }
@@ -163,25 +168,9 @@ struct CustomButton: View {
     }
 }
 
-struct MyPreviewProvider_Previewss: PreviewProvider {
-    static var previews: some View {
-        ListView(listViewModel: ListViewModel.mock())
-    }
-}
-extension ListViewModel {
-    static func mock() -> ListViewModel {
-        let viewModel = ListViewModel()
-        
-        viewModel.eventEntry = [
-            EventEntry( picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Kyrie_Irving_-_51831772061_01_%28cropped%29.jpg/1024px-Kyrie_Irving_-_51831772061_01_%28cropped%29.jpg", title: "NBA", dateCreation: Date.now, poster: "https://img.freepik.com/photos-gratuite/vaisseau-spatial-orbite-autour-planete-dans-superbe-decor-spatial-genere-par-ia_188544-15610.jpg?t=st=1735041951~exp=1735045551~hmac=9a2fa593903e1ecc1fb77937beca379c4f593ad080b7107e495c9cbb4ec72915&w=1800", description: "Une image est une représentation visuelle, voire mentale, de quelque chose (objet, être vivant ou concept).Elle peut être naturelle (ombre, reflet) ou artificielle (sculpture, peinture, photographie), visuelle ou non, tangible ou conceptuelle (métaphore), elle peut entretenir un rapport de ressemblance directe avec son modèle ou au contraire y être liée par un rapport plus symbolique.Pour la sémiologie ou sémiotique, qui a développé tout un secteur de sémiotique visuelle, l'image est conçue comme produite par un langage spécifique.", hour: "12:33", category: "Music", place: Address(street: "112 Av. de la République", city: "Montgeron", postalCode: "91230", country: "FRANCE", localisation: GeoPoint(latitude: 48.862725, longitude: 2.287592)))
-        ]
-        return viewModel
-    }
-}
-
 struct ViewCalendar: View {
-    @Binding var searchText : String
-    @StateObject var listViewModel : ListViewModel
+    @Binding var searchText: String
+    @StateObject var listViewModel: ListViewModel
     @State private var selectedDate = Date()
     
     var availableDates: [Date] {
@@ -190,7 +179,6 @@ struct ViewCalendar: View {
     }
     
     var filteredEvents: [EventEntry] {
-        let selectedDate = selectedDate
         let calendar = Calendar.current
         return listViewModel.eventEntry.filter {
             calendar.isDate($0.dateCreation, inSameDayAs: selectedDate)
@@ -198,61 +186,98 @@ struct ViewCalendar: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack {
+        VStack {
+            // Affichage du DatePicker
+            DatePicker("Sélectionnez une date", selection: $selectedDate, displayedComponents: .date)
+                .datePickerStyle(.graphical)
+                .padding()
+                .foregroundColor(.white) // Couleur du texte
+                .accentColor(Color("BackgroundDocument"))
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 12).fill(Color("Button").opacity(0.5)))
+
+            // Affichage des événements liés à la date sélectionnée
+            if filteredEvents.isEmpty {
+                Text("Aucun événement trouvé pour cette date.")
+                    .foregroundColor(.white)
+                    .padding()
+            } else {
+                Text("Date sélectionnée : \(selectedDate.formatted(date: .abbreviated, time: .omitted))")
+                    .foregroundColor(.white)
+                    .padding()
                 
-//                DatePicker("Sélectionnez une date", selection: $selectedDate)
-//                    .datePickerStyle(.graphical)
-//                    .navigationTitle("Vue calendar")
-//                      .padding()
-                             
                 List(filteredEvents, id: \.self) { event in
-                    
-                    NavigationLink(destination: {
-                        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
-                    }) {
-                        VStack(alignment: .leading) {
-                            Text(event.title)
-                                .font(.custom("Inter-Medium", size: 16))
-                                .lineSpacing(24 - 16)
-                                .fontWeight(.medium)
-                                .multilineTextAlignment(.leading)
-                                .truncationMode(.tail)
-                                .lineLimit(1)
-                                .foregroundColor(.white)
-                            
-                            Text("\(event.dateCreation)")
-                                .font(.custom("Inter-Medium", size: 16))
-                                .lineSpacing(24 - 16)
-                                .fontWeight(.medium)
-                                .multilineTextAlignment(.leading)
-                                .truncationMode(.tail)
-                            
-                            Text(event.description)
-                                .font(.custom("Inter-Medium", size: 16))
-                                .lineSpacing(24 - 16)
-                                .fontWeight(.medium)
-                                .multilineTextAlignment(.leading)
-                                .truncationMode(.tail)
-                            
-                                .lineLimit(1)
-                                .foregroundColor(.white)
+                    Section {
+                        NavigationLink(destination: UserDetailView(eventEntry: event, userDetailViewModel: UserDetailViewModel(eventEntry: [event], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate())) {
+                            HStack{
+                                // Encodage de l'URL de l'image
+                                if let encodedPictureURL = event.picture.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                                   let pictureURL = URL(string: encodedPictureURL) {
+                                    AsyncImage(url: pictureURL) { image in
+                                        image
+                                            .resizable()
+                                            .cornerRadius(50)
+                                    } placeholder: {
+                                        ProgressView()
+                                    }
+                                    .frame(width: 40, height: 40)
+                                    .padding()
+                                    
+                                }
+                                
+                                VStack(alignment: .leading) {
+                                    Text(event.title)
+                                        .font(.custom("Inter-Medium", size: 16))
+                                        .lineSpacing(24 - 16)
+                                        .fontWeight(.medium)
+                                        .multilineTextAlignment(.leading)
+                                        .truncationMode(.tail)
+                                        .lineLimit(1)
+                                        .foregroundColor(.white)
+                                    
+                                    Text("\(listViewModel.formatDateString(event.dateCreation))")
+                                        .font(.custom("Inter-Regular", size: 14))
+                                        .lineSpacing(20 - 14)
+                                        .fontWeight(.regular)
+                                        .multilineTextAlignment(.leading)
+                                        .foregroundColor(.white)
+                                }
+                                
+                                Spacer()
+                                
+                                // Encodage de l'URL de l'affiche
+                                if let encodedPosterURL = event.poster.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                                   let posterURL = URL(string: encodedPosterURL) {
+                                    AsyncImage(url: posterURL) { image in
+                                        image
+                                            .resizable()
+                                    } placeholder: {
+                                        ProgressView()
+                                    }
+                                    .frame(width: 136, height: 80)
+                                    .cornerRadius(12)
+                                }
+                            }
                         }
                     }
+                    .listRowBackground(
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(Color("BackgroundDocument"))
+                            .frame(width: 358, height: 80)
+                            .padding(2)
+                    )
                 }
-                
-                if filteredEvents.isEmpty {
-                               Text("Aucun événement trouvé pour cette date.")
-                                   .foregroundColor(.white)
-                                   .padding()
-                }else {
-                    Text("Date sélectionnée : \(selectedDate.formatted(date: .abbreviated, time: .omitted))")
-                }
-               
-
+                .listStyle(GroupedListStyle())
+                .scrollContentBackground(.hidden)
+                .background(Color("Background"))
             }
-            
         }
+        .onAppear {
+            Task {
+                try? await listViewModel.getAllProducts()  // Charger les événements au lancement
+            }
+        }
+        .padding()
     }
 }
 

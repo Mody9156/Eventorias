@@ -1,12 +1,14 @@
 //
 //  MockFirestoreCollection.swift
-//  Eventorias
+//  EventoriasTests
 //
-//  Created by KEITA on 26/12/2024.
+//  Created by KEITA on 27/12/2024.
 //
 import XCTest
+import Foundation
+@testable import Eventorias
 
-class MockFirestoreCollection {
+class MockFirestoreCollection : FirestoreCollectionProtocol {
     var shouldSucceed: Bool = true
     var capturedData: [String: Any]?
     
@@ -29,3 +31,5 @@ protocol MockFirestoreProtocol {
 }
 
 extension MockFirestoreCollection: MockFirestoreProtocol {}
+
+

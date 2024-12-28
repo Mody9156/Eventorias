@@ -86,19 +86,19 @@ struct ProfileView: View {
     }
 }
 
-struct MyPreviewProvider_Previews: PreviewProvider {
-    @State static var name = "Modibo"
-    
-    static var previews: some View {
-        ProfileView(
-            loginViewModel: LoginViewModel({}),
-            email: "john.doe@example.com",
-            firstName: "John",
-            lastName: "Doe",
-            picture: "file:///Users/keita/Library/Developer/CoreSimulator/Devices/1714EFF0-B305-4F7A-B14D-5B56802C289A/data/Containers/Data/Application/D108069C-5BEA-4A76-B4FB-1E17C4930BE8/Documents/Harden.jpg"
-        )
-    }
-}
+//struct MyPreviewProvider_Previews: PreviewProvider {
+//    @State static var name = "Modibo"
+//    
+//    static var previews: some View {
+//        ProfileView(
+//            loginViewModel: ,
+//            email: "john.doe@example.com",
+//            firstName: "John",
+//            lastName: "Doe",
+//            picture: "file:///Users/keita/Library/Developer/CoreSimulator/Devices/1714EFF0-B305-4F7A-B14D-5B56802C289A/data/Containers/Data/Application/D108069C-5BEA-4A76-B4FB-1E17C4930BE8/Documents/Harden.jpg"
+//        )
+//    }
+//}
 
 struct InfoSecure: View {
     var name: String

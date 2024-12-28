@@ -26,14 +26,15 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO"
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "23F306372D1CBBDD004F5F75"
+               BlueprintIdentifier = "23F0E1AD2D1EAEEF00C9A610"
                BuildableName = "EventoriasTests.xctest"
                BlueprintName = "EventoriasTests"
                ReferencedContainer = "container:Eventorias.xcodeproj">
