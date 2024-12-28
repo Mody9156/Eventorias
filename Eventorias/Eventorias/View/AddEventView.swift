@@ -265,18 +265,13 @@ struct accessCameraView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
         
-        // Vérifie si la caméra est disponible avant de l'utiliser
-        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
-            // Si la caméra n'est pas disponible, utilise la bibliothèque photo
-            imagePicker.sourceType = .photoLibrary
-            // On peut aussi montrer une alerte ici dans le Coordinator
-            context.coordinator.showCameraUnavailableAlert()
-        } else {
-            // Si la caméra est disponible, utilise la caméra
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
             imagePicker.sourceType = .camera
+        } else {
+            imagePicker.sourceType = .photoLibrary
+            context.coordinator.showCameraUnavailableAlert()
         }
         
-        imagePicker.allowsEditing = true
         imagePicker.delegate = context.coordinator
         return imagePicker
     }
@@ -284,7 +279,7 @@ struct accessCameraView: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
     
     func makeCoordinator() -> CameraManager {
-        return CameraManager(picker: self)
+        return CameraManager(parent: self)
     }
 }
 

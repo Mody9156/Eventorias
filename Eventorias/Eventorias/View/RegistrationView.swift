@@ -22,7 +22,7 @@ struct RegistrationView: View {
     @State private var isLoading = false
     @State private var errorMessage: String? = nil
     @State private var showCamera = false
-
+    
     
     var body: some View {
         NavigationStack {
@@ -40,12 +40,12 @@ struct RegistrationView: View {
                     AuthFieldsView(textField: $email, password: $password, text: "email", title: "Email")
                     
                     // Section ajoutée
-                    if let selectedImage = selectedImage {
-                        Image(uiImage: selectedImage)
+                    if let image = selectedImage {
+                        Image(uiImage: image)
                             .resizable()
                             .scaledToFit()
                             .frame(width: 200, height: 200)
-                            .cornerRadius(10)
+                            .cornerRadius(16)
                     } else {
                         Text("Aucune image sélectionnée.")
                             .foregroundColor(.gray)
@@ -61,44 +61,28 @@ struct RegistrationView: View {
                             .multilineTextAlignment(.center)
                     }
                     
-                    PhotosPicker(selection: $selectedItems, matching: .images) {
+                    
+                    
+                    Button(action:{
+                        self.showCamera.toggle()
+                    }){
                         ZStack {
                             Rectangle()
-                                .frame(width: 52, height: 52)
-                                .foregroundColor(Color("Button"))
+                                .frame(width: 52, height:52)
+                                .foregroundColor(.white)
                                 .cornerRadius(16)
                             
-                            Image("attach")
+                            Image("Camera")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 24, height: 24)
+                                .foregroundColor(.black)
                         }
                     }
-                    .onChange(of: selectedItems) { newValue in
-                        for item in newValue {
-                            Task {
-                                if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data) {
-                                    savedFilePath = loginViewModel.saveImageToTemporaryDirectory(image: image, fileName: "\(firstName).jpg")
-                                    selectedImage = image
-                                }
-                            }
-                        }
+                    .fullScreenCover(isPresented: self.$showCamera) {
+                        accessCameraView(selectedImage: self.$selectedImage)
+                            .background(.black)
                     }
-                    
-//                    Button(action:{
-//                        self.showCamera.toggle()
-//                    }){
-//                        ZStack {
-//                            Rectangle()
-//                                .frame(width: 52, height:52)
-//                                .foregroundColor(.white)
-//                                .cornerRadius(16)
-//
-//                            Image("Camera")
-//                                .foregroundColor(.black)
-//                        }
-//                    }
-//                    .fullScreenCover(isPresented: self.$showCamera) {
-//                        accessCameraView(selectedImage: self.$selectedImage)
-//                            .background(.black)
-//                    }
                     
                     ZStack {
                         Rectangle()
@@ -107,14 +91,17 @@ struct RegistrationView: View {
                         
                         Button {
                             if loginViewModel.errorMessage == nil {
-                                guard let savedFilePath = savedFilePath else {
+                                guard let savedFilePath = selectedImage else {
                                     return
                                 }
-                                print("\(savedFilePath)")
-                                let fileURL = URL(fileURLWithPath: savedFilePath)
+                                guard let selected = loginViewModel.saveImageToTemporaryDirectory(image: savedFilePath,fileName: "\(picture).jpg") else {
+                                    return
+                                }
+                                print("\(selected)")
+                                let fileURL = URL(fileURLWithPath: selected)
                                 let fileURLString = fileURL.absoluteString
                                 print("\(fileURLString)")
-                                loginViewModel.registerUser(email: email, password: password, firstName: firstName, lastName: lastName, picture: savedFilePath)
+                                loginViewModel.registerUser(email: email, password: password, firstName: firstName, lastName: lastName, picture: fileURLString)
                                 
                                 dismiss()
                             }
