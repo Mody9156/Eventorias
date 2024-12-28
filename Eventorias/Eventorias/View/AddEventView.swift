@@ -106,30 +106,10 @@ struct AddEventView: View {
                             accessCameraView(selectedImage: self.$selectedImage)
                                 .background(.black)
                         }
-//                        Button(action:{
-//                            self.showFile.toggle()
-//                        }){
-//                            ZStack {
-////                               Rectangle()
-//                        .frame(width: 52, height:52)
-//                        .foregroundColor(Color("Button"))
-//                        .cornerRadius(16)
-//
-//                    Image("attach")
-//
-//                                Image("attach")
-//                                    .foregroundColor(.black)
-//                            }
-//                        }
-//                        .fullScreenCover(isPresented: self.$showFile) {
-//                            accessCameraView(selectedImage: self.$selectedImageToFile)
-//                                .background(.black)
-//                        }
                         
-                        
-                        PhotosPicker(selection:$selectedItems,
-                                     matching:.images) {
-                            
+                        Button(action:{
+                            self.showFile.toggle()
+                        }){
                             ZStack {
                                 Rectangle()
                                     .frame(width: 52, height:52)
@@ -137,19 +117,20 @@ struct AddEventView: View {
                                     .cornerRadius(16)
                                 
                                 Image("attach")
-                            }
-                            
-                        }.onChange(of: selectedItems) { newValue in
-                            for item in newValue {
-                                Task{
-                                    if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data){
-                                        savedFilePath = addEventViewModel.saveImageToDocumentsDirectory(image: image, fileName: "\(title).jpg")
-                                    }
-                                }
+                                
+                                Image("attach")
+                                    .foregroundColor(.black)
                             }
                         }
+                        .fullScreenCover(isPresented: self.$showFile) {
+                            accessCameraView(selectedImage: self.$selectedImageToFile)
+                                .background(.black)
+                        }
+                        
                     }
-                    .padding()
+                    
+                    
+                    
                     
                     if let errorMessage = locationCoordinate.errorMessage {
                         Text(errorMessage)
@@ -313,10 +294,7 @@ struct accessFilesView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
         
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            imagePicker.sourceType = .camera
-        } else {
-            imagePicker.sourceType = .photoLibrary
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             context.coordinator.showCameraUnavailableAlert()
         }
         
@@ -327,7 +305,7 @@ struct accessFilesView: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
     
     func makeCoordinator() -> CameraManager {
-        return CameraManager(parent: self)
+        return CameraManager(file: self)
     }
 }
 
