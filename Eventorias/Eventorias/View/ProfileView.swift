@@ -15,40 +15,6 @@ struct ProfileView: View {
     @State var toggle: Bool = false
     @State private var selectedImage: UIImage? = nil
     
-    func loadImageFromFile() -> UIImage? {
-        guard let picturePath = picture else {
-            print("Aucun chemin d'image trouvé dans UserDefaults.")
-            return nil
-        }
-        
-        var cleanPath = picturePath
-        if cleanPath.hasPrefix("file://") {
-            cleanPath = String(cleanPath.dropFirst(7)) // Enlever "file://"
-        }
-        
-        let fileURL = URL(fileURLWithPath: cleanPath)
-        print("Chemin nettoyé : \(fileURL.path)")
-        
-        let fileManager = FileManager.default
-        if !fileManager.fileExists(atPath: fileURL.path) {
-            print("Le fichier n'existe pas à ce chemin : \(fileURL.path)")
-            return nil
-        }
-        
-        guard let data = try? Data(contentsOf: fileURL) else {
-            print("Impossible de lire les données de l'image.")
-            return nil
-        }
-        
-        guard let image = UIImage(data: data) else {
-            print("Impossible de convertir les données en UIImage.")
-            return nil
-        }
-        
-        return image
-    }
-
-    
     
     var body: some View {
         NavigationStack {
@@ -76,27 +42,9 @@ struct ProfileView: View {
                             .foregroundColor(.white)
                         
                         Spacer()
-                        
-                        // Chargement de l'image
-                        if let image = loadImageFromFile() {
-                            Image(uiImage: image)
-                                .resizable()
-                                .cornerRadius(50)
-                                .frame(width: 40, height: 40)
-                                .padding()
-                        } else {
-                            Text("Image non trouvée.")
-                                .foregroundColor(.gray)
-                                .padding()
-                        }
-                        Image(uiImage: UIImage(named: "ArtExhibition")!) // Remplacez "placeholder" par le nom d'une image existante dans vos assets.
-                            .resizable()
-                            .cornerRadius(50)
-                            .frame(width: 40, height: 40)
-                            .padding()
-                        
+                  
+                      
                        
-
                     }
                     
                     Spacer()
@@ -109,8 +57,7 @@ struct ProfileView: View {
                             .foregroundColor(.white)
                             .lineSpacing(24.2 - 20)
                             .kerning(0.02)
-                        Spacer()
-                        
+                    
                     }
                 }
             }
