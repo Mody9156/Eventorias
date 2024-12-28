@@ -42,6 +42,11 @@ struct RegistrationView: View {
                     AuthFieldsView(textField: $firstName, password: $password, text: "firstName", title: "FirstName")
                     AuthFieldsView(textField: $email, password: $password, text: "email", title: "Email")
                     VStack {
+                        Text("Choose your Avatar")
+                                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                                        .foregroundColor(.white)
+                                        .padding()
+
                         ScrollView {
                             LazyVGrid(columns: columns, spacing: 20) {
                                 ForEach(pictures, id: \.self) { picture in
@@ -55,7 +60,7 @@ struct RegistrationView: View {
                                             .cornerRadius(10)
                                             .shadow(radius: 5)
                                             .overlay(
-                                                RoundedRectangle(cornerRadius: 20)
+                                                RoundedRectangle(cornerRadius: 50)
                                                     .stroke(selectedPicture == picture ? Color.white : Color.clear, lineWidth: 4) )
                                     }
                                 }

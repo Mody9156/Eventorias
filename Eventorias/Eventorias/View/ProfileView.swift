@@ -42,9 +42,9 @@ struct ProfileView: View {
                             .foregroundColor(.white)
                         
                         Spacer()
-                  
-                      
-                       
+                        
+                        
+                        
                     }
                     
                     Spacer()
@@ -57,53 +57,62 @@ struct ProfileView: View {
                             .foregroundColor(.white)
                             .lineSpacing(24.2 - 20)
                             .kerning(0.02)
-                    
+                        
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        if let picture {
+                            Image(picture)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 48, height: 48)
+                        }
+                        
                     }
                 }
             }
         }
     }
 }
+
+//struct MyPreviewProvider_Previews: PreviewProvider {
+//    @State static var name = "Modibo"
+//
+//    static var previews: some View {
+//        ProfileView(
+//            loginViewModel: ,
+//            email: "john.doe@example.com",
+//            firstName: "John",
+//            lastName: "Doe",
+//            picture: "file:///Users/keita/Library/Developer/CoreSimulator/Devices/1714EFF0-B305-4F7A-B14D-5B56802C289A/data/Containers/Data/Application/D108069C-5BEA-4A76-B4FB-1E17C4930BE8/Documents/Harden.jpg"
+//        )
+//    }
+//}
+
+struct InfoSecure: View {
+    var name: String
+    var text: String
     
-    //struct MyPreviewProvider_Previews: PreviewProvider {
-    //    @State static var name = "Modibo"
-    //
-    //    static var previews: some View {
-    //        ProfileView(
-    //            loginViewModel: ,
-    //            email: "john.doe@example.com",
-    //            firstName: "John",
-    //            lastName: "Doe",
-    //            picture: "file:///Users/keita/Library/Developer/CoreSimulator/Devices/1714EFF0-B305-4F7A-B14D-5B56802C289A/data/Containers/Data/Application/D108069C-5BEA-4A76-B4FB-1E17C4930BE8/Documents/Harden.jpg"
-    //        )
-    //    }
-    //}
-    
-    struct InfoSecure: View {
-        var name: String
-        var text: String
-        
-        var body: some View {
-            ZStack(alignment: .leading) {
-                Rectangle()
-                    .frame(height: 56)
-                    .foregroundColor(Color("BackgroundDocument"))
-                    .cornerRadius(5)
-                    .padding()
+    var body: some View {
+        ZStack(alignment: .leading) {
+            Rectangle()
+                .frame(height: 56)
+                .foregroundColor(Color("BackgroundDocument"))
+                .cornerRadius(5)
+                .padding()
+            
+            VStack(alignment: .leading) {
+                Text(name)
+                    .font(.custom("Inter", size: 12))
+                    .fontWeight(.regular)
+                    .lineSpacing(4)
+                    .multilineTextAlignment(.leading)
+                    .textCase(.none)
+                    .foregroundColor(.gray)
                 
-                VStack(alignment: .leading) {
-                    Text(name)
-                        .font(.custom("Inter", size: 12))
-                        .fontWeight(.regular)
-                        .lineSpacing(4)
-                        .multilineTextAlignment(.leading)
-                        .textCase(.none)
-                        .foregroundColor(.gray)
-                    
-                    Text(text)
-                        .foregroundColor(.white)
-                }
-                .padding(.leading, 34)
+                Text(text)
+                    .foregroundColor(.white)
             }
+            .padding(.leading, 34)
         }
     }
+}

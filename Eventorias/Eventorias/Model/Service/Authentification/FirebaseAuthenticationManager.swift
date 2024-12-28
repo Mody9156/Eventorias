@@ -20,6 +20,9 @@ class FirebaseAuthenticationManager {
     }
 
     func signIn(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
+        // Réinitialiser les données utilisateur précédentes avant de procéder
+        self.clearUserData()
+
         authService.signIn(email: email, password: password) { [weak self] result in
             switch result {
             case .success(let userID):
@@ -27,6 +30,8 @@ class FirebaseAuthenticationManager {
                     switch fetchResult {
                     case .success(let data):
                         if let user = User(from: data) {
+                            // Sauvegarder les informations utilisateur dans UserDefaults
+                            self?.saveUserData(user)
                             completion(.success(user))
                         } else {
                             completion(.failure(NSError(
@@ -60,6 +65,7 @@ class FirebaseAuthenticationManager {
                     switch saveResult {
                     case .success:
                         if let user = User(from: data) {
+                            self?.saveUserData(user)
                             completion(.success(user))
                         } else {
                             completion(.failure(NSError(
@@ -76,5 +82,21 @@ class FirebaseAuthenticationManager {
                 completion(.failure(error))
             }
         }
+    }
+
+    private func saveUserData(_ user: User) {
+        // Sauvegarder les informations de l'utilisateur dans UserDefaults
+        UserDefaults.standard.set(user.email, forKey: "userEmail")
+        UserDefaults.standard.set(user.firstName, forKey: "userFirstName")
+        UserDefaults.standard.set(user.lastName, forKey: "userLastName")
+        UserDefaults.standard.set(user.picture, forKey: "userPicture")
+    }
+
+    private func clearUserData() {
+        // Réinitialiser les données utilisateur précédentes dans UserDefaults
+        UserDefaults.standard.removeObject(forKey: "userEmail")
+        UserDefaults.standard.removeObject(forKey: "userFirstName")
+        UserDefaults.standard.removeObject(forKey: "userLastName")
+        UserDefaults.standard.removeObject(forKey: "userPicture")
     }
 }
