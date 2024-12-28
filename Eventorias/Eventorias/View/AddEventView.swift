@@ -150,10 +150,11 @@ struct AddEventView: View {
                         let fileURLString = fileURL.absoluteString
                         
                         guard let picture else {
+                            print("aucune image")
                             return
                         }
                         addEventViewModel.saveToFirestore(
-                            picture: picture,
+                            picture: "\(picture)",
                             title: title,
                             dateCreation: date,
                             poster: fileURLString,
