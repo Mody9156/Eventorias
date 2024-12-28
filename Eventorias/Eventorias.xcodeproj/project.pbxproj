@@ -346,13 +346,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		23F41BDC2D20B005000D904E /* List */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = List;
-			sourceTree = "<group>";
-		};
 		23F9E9AB2D12C1C20030C221 /* Event */ = {
 			isa = PBXGroup;
 			children = (
@@ -377,7 +370,6 @@
 			children = (
 				23F41BC82D208F36000D904E /* MockHTTPService.swift */,
 				23F41BDA2D20AFF6000D904E /* MockGoogleMapView.swift */,
-				23F41BDC2D20B005000D904E /* List */,
 				23AB66AB2D20B7AD0012B313 /* MockFirebaseAuthenticationManager.swift */,
 				23AB66AF2D20BBA30012B313 /* MockEventListRepresentable.swift */,
 			);
