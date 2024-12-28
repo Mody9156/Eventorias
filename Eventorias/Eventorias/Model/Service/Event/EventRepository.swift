@@ -10,13 +10,9 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 public class EventRepository: ObservableObject, EventManagerProtocol {
     // Remplacer FirestoreCollectionProtocol par CollectionReference directement
-    var db: CollectionReference
-
-    // Initialisation avec une référence à la collection "eventorias"
-    init(db: CollectionReference = Firestore.firestore().collection("eventorias")) {
-        self.db = db
-    }
-
+    var db = Firestore.firestore().collection("eventorias")
+    
+   
     func saveToFirestore(_ event: EventEntry, completion: @escaping (Bool, Error?) -> Void) {
         do {
             let encodedEvent = try Firestore.Encoder().encode(event)

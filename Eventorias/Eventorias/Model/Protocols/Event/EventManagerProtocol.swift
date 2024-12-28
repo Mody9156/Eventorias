@@ -11,3 +11,7 @@ protocol EventManagerProtocol {
     func saveToFirestore(_ event: EventEntry,completion:@escaping(Bool,Error?)-> Void )
 }
 
+//protocol CollectionReferenceProtocol {
+//    func addDocumentWithData(data: [String: Any], completion: @escaping (Error?) -> Void)
+//
+//}

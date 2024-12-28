@@ -1,27 +1,27 @@
+////
+////  MockCollectionReference.swift
+////  EventoriasTests
+////
+////  Created by KEITA on 28/12/2024.
+////
+//import XCTest
+//import FirebaseFirestore
+//@testable import Eventorias
 //
-//  MockCollectionReference.swift
-//  EventoriasTests
+//class MockCollectionReference :CollectionReferenceProtocol{
+//    var addDocumentCalled = false
+//    var documentData: [String: Any]?
+//    var errorToReturn: Error?
 //
-//  Created by KEITA on 28/12/2024.
+//    func addDocumentWithData(data: [String: Any], completion: @escaping (Error?) -> Void) {
+//        addDocumentCalled = true
+//        documentData = data
 //
-import FirebaseFirestore
-import XCTest
-
-// Mock de CollectionReference
-class MockCollectionReference: CollectionReference {
-    var addDocumentCalled = false
-    var documentData: [String: Any]?
-    var errorToReturn: Error?
-    
-     func addDocument(data: [String: Any], completion: @escaping (Error?) -> Void) {
-        addDocumentCalled = true
-        documentData = data
-        
-        // Simuler l'erreur si spécifiée
-        if let error = errorToReturn {
-            completion(error)
-        } else {
-            completion(nil) // Simuler un succès
-        }
-    }
-}
+//        // Simuler l'erreur si spécifiée
+//        if let error = errorToReturn {
+//            completion(error)
+//        } else {
+//            completion(nil) // Simuler un succès
+//        }
+//    }
+//}

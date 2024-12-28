@@ -46,12 +46,11 @@
 		236060BB2D0DE48300E3504F /* ProtocolsFirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236060AC2D0DE48200E3504F /* ProtocolsFirebaseData.swift */; };
 		23BD155E2D1B227E00DE16E7 /* ErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BD155D2D1B227E00DE16E7 /* ErrorDialog.swift */; };
 		23C8F6C32D16FF6B003E473C /* LocationCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */; };
+		23F41BC92D208F36000D904E /* MockHTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F41BC82D208F36000D904E /* MockHTTPService.swift */; };
 		23F9E9AD2D12C2430030C221 /* EventManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */; };
 		23F9F0BA2D2043AD00BB2D35 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 23F9F0B92D2043AD00BB2D35 /* FirebaseStorage */; };
-		23F9F0BC2D2043D000BB2D35 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 23F9F0BB2D2043D000BB2D35 /* FirebaseStorageCombine-Community */; };
 		23F9F0C42D206E4100BB2D35 /* EventRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9F0C32D206E4100BB2D35 /* EventRepositoryTests.swift */; };
 		23F9F0CE2D206EC500BB2D35 /* MockCollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9F0CD2D206EC500BB2D35 /* MockCollectionReference.swift */; };
-		23FE1F7E2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE1F7D2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +75,6 @@
 		235920222D1EF62F00699E99 /* FirebaseFirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreService.swift; sourceTree = "<group>"; };
 		235920242D1F03BC00699E99 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		235920262D1F180B00699E99 /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
-		2360603E2D0DC7BC00E3504F /* Eventorias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Eventorias.app; path = "/Users/keita/Movies/Eventorias/Eventorias/build/Debug-iphoneos/Eventorias.app"; sourceTree = "<absolute>"; };
 		236060412D0DC7BC00E3504F /* EventoriasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasApp.swift; sourceTree = "<group>"; };
 		236060452D0DC7C800E3504F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		236060482D0DC7C800E3504F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -102,11 +100,13 @@
 		236060AC2D0DE48200E3504F /* ProtocolsFirebaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtocolsFirebaseData.swift; sourceTree = "<group>"; };
 		23BD155D2D1B227E00DE16E7 /* ErrorDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDialog.swift; sourceTree = "<group>"; };
 		23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinate.swift; sourceTree = "<group>"; };
+		23F41BC62D208D0F000D904E /* Eventorias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Eventorias.app; path = "/Users/keita/Movies/Eventorias/Eventorias/build/Debug-iphoneos/Eventorias.app"; sourceTree = "<absolute>"; };
+		23F41BC72D208D0F000D904E /* EventoriasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = EventoriasTests.xctest; path = "/Users/keita/Movies/Eventorias/Eventorias/build/Debug-iphoneos/EventoriasTests.xctest"; sourceTree = "<absolute>"; };
+		23F41BC82D208F36000D904E /* MockHTTPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHTTPService.swift; sourceTree = "<group>"; };
 		23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagerProtocol.swift; sourceTree = "<group>"; };
-		23F9F0C12D206E4100BB2D35 /* EventoriasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = EventoriasTests.xctest; path = "/Users/keita/Movies/Eventorias/Eventorias/build/Debug-iphoneos/EventoriasTests.xctest"; sourceTree = "<absolute>"; };
 		23F9F0C32D206E4100BB2D35 /* EventRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepositoryTests.swift; sourceTree = "<group>"; };
 		23F9F0CD2D206EC500BB2D35 /* MockCollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCollectionReference.swift; sourceTree = "<group>"; };
-		23FE1F7D2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreCollectionProtocol.swift; sourceTree = "<group>"; };
+		23F9F0E02D20766E00BB2D35 /* CollectionReferenceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollectionReferenceProtocol.swift; path = ../../Service/Event/CollectionReferenceProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +115,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				236060752D0DCB0700E3504F /* FirebaseFirestoreSwift in Frameworks */,
-				23F9F0BC2D2043D000BB2D35 /* FirebaseStorageCombine-Community in Frameworks */,
 				2360606F2D0DCB0700E3504F /* FirebaseAnalyticsSwift in Frameworks */,
 				236060732D0DCB0700E3504F /* FirebaseFirestore in Frameworks */,
 				236060712D0DCB0700E3504F /* FirebaseAuth in Frameworks */,
@@ -309,8 +308,8 @@
 		23F9E9AB2D12C1C20030C221 /* Event */ = {
 			isa = PBXGroup;
 			children = (
+				23F9F0E02D20766E00BB2D35 /* CollectionReferenceProtocol.swift */,
 				23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */,
-				23FE1F7D2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -329,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				23F9F0CD2D206EC500BB2D35 /* MockCollectionReference.swift */,
+				23F41BC82D208F36000D904E /* MockHTTPService.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -363,10 +363,9 @@
 				236060722D0DCB0700E3504F /* FirebaseFirestore */,
 				236060742D0DCB0700E3504F /* FirebaseFirestoreSwift */,
 				23F9F0B92D2043AD00BB2D35 /* FirebaseStorage */,
-				23F9F0BB2D2043D000BB2D35 /* FirebaseStorageCombine-Community */,
 			);
 			productName = Eventorias;
-			productReference = 2360603E2D0DC7BC00E3504F /* Eventorias.app */;
+			productReference = 23F41BC62D208D0F000D904E /* Eventorias.app */;
 			productType = "com.apple.product-type.application";
 		};
 		23F9F0C02D206E4100BB2D35 /* EventoriasTests */ = {
@@ -383,8 +382,10 @@
 				23F9F0C62D206E4100BB2D35 /* PBXTargetDependency */,
 			);
 			name = EventoriasTests;
+			packageProductDependencies = (
+			);
 			productName = EventoriasTests;
-			productReference = 23F9F0C12D206E4100BB2D35 /* EventoriasTests.xctest */;
+			productReference = 23F41BC72D208D0F000D904E /* EventoriasTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -461,7 +462,6 @@
 				235920272D1F180C00699E99 /* FirebaseAuthService.swift in Sources */,
 				23C8F6C32D16FF6B003E473C /* LocationCoordinate.swift in Sources */,
 				236060BA2D0DE48300E3504F /* EventListRepresentable.swift in Sources */,
-				23FE1F7E2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift in Sources */,
 				236060932D0DE47200E3504F /* ListViewModel.swift in Sources */,
 				23BD155E2D1B227E00DE16E7 /* ErrorDialog.swift in Sources */,
 				232430642D1F388300AE1ED2 /* FirestoreCollection.swift in Sources */,
@@ -493,6 +493,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23F41BC92D208F36000D904E /* MockHTTPService.swift in Sources */,
 				23F9F0C42D206E4100BB2D35 /* EventRepositoryTests.swift in Sources */,
 				23F9F0CE2D206EC500BB2D35 /* MockCollectionReference.swift in Sources */,
 			);
@@ -804,11 +805,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2360606B2D0DCB0700E3504F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
-		};
-		23F9F0BB2D2043D000BB2D35 /* FirebaseStorageCombine-Community */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2360606B2D0DCB0700E3504F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseStorageCombine-Community";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
