@@ -49,7 +49,8 @@
 		23F9E9AD2D12C2430030C221 /* EventManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */; };
 		23F9F0BA2D2043AD00BB2D35 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 23F9F0B92D2043AD00BB2D35 /* FirebaseStorage */; };
 		23F9F0BC2D2043D000BB2D35 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 23F9F0BB2D2043D000BB2D35 /* FirebaseStorageCombine-Community */; };
-		23F9F0C42D206E4100BB2D35 /* EventoriasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9F0C32D206E4100BB2D35 /* EventoriasTests.swift */; };
+		23F9F0C42D206E4100BB2D35 /* EventRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9F0C32D206E4100BB2D35 /* EventRepositoryTests.swift */; };
+		23F9F0CE2D206EC500BB2D35 /* MockCollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F9F0CD2D206EC500BB2D35 /* MockCollectionReference.swift */; };
 		23FE1F7E2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23FE1F7D2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift */; };
 /* End PBXBuildFile section */
 
@@ -103,7 +104,8 @@
 		23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinate.swift; sourceTree = "<group>"; };
 		23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagerProtocol.swift; sourceTree = "<group>"; };
 		23F9F0C12D206E4100BB2D35 /* EventoriasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = EventoriasTests.xctest; path = "/Users/keita/Movies/Eventorias/Eventorias/build/Debug-iphoneos/EventoriasTests.xctest"; sourceTree = "<absolute>"; };
-		23F9F0C32D206E4100BB2D35 /* EventoriasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasTests.swift; sourceTree = "<group>"; };
+		23F9F0C32D206E4100BB2D35 /* EventRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepositoryTests.swift; sourceTree = "<group>"; };
+		23F9F0CD2D206EC500BB2D35 /* MockCollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCollectionReference.swift; sourceTree = "<group>"; };
 		23FE1F7D2D1E04D800BE0624 /* FirestoreCollectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreCollectionProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -318,7 +320,7 @@
 			children = (
 				23F9F0CC2D206E7000BB2D35 /* Service */,
 				23F9F0CB2D206E6A00BB2D35 /* Mocks */,
-				23F9F0C32D206E4100BB2D35 /* EventoriasTests.swift */,
+				23F9F0C32D206E4100BB2D35 /* EventRepositoryTests.swift */,
 			);
 			path = EventoriasTests;
 			sourceTree = "<group>";
@@ -326,6 +328,7 @@
 		23F9F0CB2D206E6A00BB2D35 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				23F9F0CD2D206EC500BB2D35 /* MockCollectionReference.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -490,7 +493,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23F9F0C42D206E4100BB2D35 /* EventoriasTests.swift in Sources */,
+				23F9F0C42D206E4100BB2D35 /* EventRepositoryTests.swift in Sources */,
+				23F9F0CE2D206EC500BB2D35 /* MockCollectionReference.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
