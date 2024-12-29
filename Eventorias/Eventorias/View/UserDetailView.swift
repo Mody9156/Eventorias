@@ -42,12 +42,12 @@ struct UserDetailView: View {
                             
                             HStack {
                                 VStack(alignment: .leading) {
-                                    Label("\(eventEntry.hour)",image:"event")
+                                    Label("\(FormatTime.formatHourString(eventEntry.dateCreation))",image:"event")
                                         .foregroundColor(.white)
                                         .frame(width: 141, height: 24)
                                     
                                     
-                                    Label("\(userDetailViewModel.formatHourString(eventEntry.hourCreation))",image: "Time")
+                                    Label("\(FormatTime.formatHourString(eventEntry.hourCreation))",image: "Time")
                                         .foregroundColor(.white)
                                         .frame(width: 109, height:24)
                                     

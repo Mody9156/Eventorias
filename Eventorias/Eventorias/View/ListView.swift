@@ -230,7 +230,7 @@ struct ViewCalendar: View {
                                         .lineLimit(1)
                                         .foregroundColor(.white)
                                     
-                                    Text("\(event.dateCreation)")
+                                    Text("\(FormatTime.formatDateString(event.dateCreation))")
                                         .font(.custom("Inter-Regular", size: 14))
                                         .lineSpacing(20 - 14)
                                         .fontWeight(.regular)
@@ -337,7 +337,7 @@ struct ViewModeList: View {
                                 .lineLimit(1)
                                 .foregroundColor(.white)
                             
-                            Text("\(listViewModel.formatDateString(entry.dateCreation))")
+                            Text("\(FormatTime.formatDateString(entry.dateCreation))")
                                 .font(.custom("Inter-Regular", size: 14))
                                 .lineSpacing(20 - 14)
                                 .fontWeight(.regular)
