@@ -77,40 +77,5 @@ class AddEventViewModel : ObservableObject {
         let date = Date.stringFromHour(hour)
         return date
     }
-    func sanitizeFileName(_ fileName: String) -> String {
-        return fileName
-            .replacingOccurrences(of: " ", with: "_") // Remplace les espaces par des underscores
-            .replacingOccurrences(of: "[^a-zA-Z0-9_]", with: "", options: .regularExpression) // Supprime tous les caractères non-alphanumériques sauf "_"
-    }
-
-    func uploadImageToFirebase(image: UIImage, fileName: String, completion: @escaping (Result<String, Error>) -> Void) {
-        // Utilisation de la fonction sanitizeFileName pour nettoyer le nom du fichier
-        let sanitizedFileName = sanitizeFileName(fileName)
-
-        // Conversion de l'image en données JPEG
-        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
-            completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Erreur lors de la conversion de l'image."])))
-            return
-        }
-        
-        // Référence Firebase Storage avec le nom de fichier "sanitisé"
-        let storageRef = Storage.storage().reference().child("eventorias/\(sanitizedFileName)")
-        
-        // Téléchargement des données sur Firebase
-        storageRef.putData(imageData, metadata: nil) { _, error in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                // Une fois l'image téléchargée, récupérer l'URL de téléchargement
-                storageRef.downloadURL { url, error in
-                    if let error = error {
-                        completion(.failure(error))
-                    } else if let url = url {
-                        completion(.success(url.absoluteString))
-                    }
-                }
-            }
-        }
-    }
-
+ 
 }
