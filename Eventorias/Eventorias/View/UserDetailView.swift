@@ -38,11 +38,11 @@ struct UserDetailView: View {
                             } placeholder: {
                                 ProgressView()
                             }
-
+//                        format: .dateTime.day().month().year())
                             
                             HStack {
                                 VStack(alignment: .leading) {
-                                    Label("\(eventEntry.dateCreation, format: .dateTime.day().month().year())",image:"event")
+                                    Label("\(userDetailViewModel.formatHourString(eventEntry.hourCreation))",image:"event")
                                         .foregroundColor(.white)
                                         .frame(width: 141, height: 24)
                                     
