@@ -230,12 +230,19 @@ struct ViewCalendar: View {
                                         .lineLimit(1)
                                         .foregroundColor(.white)
                                     
-                                    Text("\(listViewModel.formatDateString(event.dateCreation))")
+                                    Text("\(event.dateCreation)")
                                         .font(.custom("Inter-Regular", size: 14))
                                         .lineSpacing(20 - 14)
                                         .fontWeight(.regular)
                                         .multilineTextAlignment(.leading)
                                         .foregroundColor(.white)
+                                    
+                                    Image(event.poster)
+                                           .resizable()
+                                           .scaledToFit()
+                                           .frame(width: 200, height: 200)
+                                           .clipped()
+                                    
                                 }
                                 
                                 Spacer()

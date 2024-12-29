@@ -13,6 +13,7 @@ import FirebaseAppCheckInterop
 import FirebaseAuthInterop
 import FirebaseCoreExtension
 import FirebaseStorageInternal
+
 class AddEventViewModel : ObservableObject {
     let eventRepository: EventManagerProtocol
     
@@ -49,19 +50,17 @@ class AddEventViewModel : ObservableObject {
             }
         }
     }
-    
-    
-    
+        
     func saveImageToDocumentsDirectory(image: UIImage, fileName: String) -> String? {
         guard let data = image.jpegData(compressionQuality: 1.0) else {
             print("Échec de la conversion de l'image en données JPEG.")
             return nil
         }
-
+        
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileURL = documentsURL.appendingPathComponent(fileName)
-
+        
         do {
             try data.write(to: fileURL)
             print("Image sauvegardée à : \(fileURL.path)")
@@ -71,11 +70,13 @@ class AddEventViewModel : ObservableObject {
             return nil
         }
     }
-
+    
     
     func formatHourString(_ hour:Date) -> String{
         let date = Date.stringFromHour(hour)
         return date
     }
- 
+    
+
+    
 }

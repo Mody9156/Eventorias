@@ -144,10 +144,16 @@ struct AddEventView: View {
                                 guard let picture = picture else {
                                     return
                                 }
-                                let sanitizedFileName = addEventViewModel.sanitizeFileName("\(title).jpeg")
-                                guard let filePath = addEventViewModel.saveImageToDocumentsDirectory(image: selectedImage, fileName: sanitizedFileName) else {
+                               
+                                guard let filePath = addEventViewModel.saveImageToDocumentsDirectory(image: selectedImage, fileName: "\(title).jpeg") else {
+                                    print("Erreur lors de la sauvegarde de l'image.")
+
                                     return
                                 }
+                                print("Image sauvegardée à : \(filePath)")
+
+                                let formattedHour = addEventViewModel.formatHourString(hours)
+                                print("Heure formatée: \(formattedHour)")
                                 
                                 addEventViewModel.saveToFirestore(
                                     picture: picture,
@@ -155,7 +161,7 @@ struct AddEventView: View {
                                     dateCreation: date,
                                     poster: filePath,
                                     description: description,
-                                    hour:addEventViewModel.formatHourString(hours),
+                                    hour:formattedHour,
                                     category: selectedCategory,
                                     street: street,
                                     city: city,

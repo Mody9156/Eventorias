@@ -81,6 +81,6 @@ class AddEventViewModelTests: XCTestCase {
         let expectedString = Date.stringFromHour(date)
         XCTAssertNotNil(expectedString)
     }
-   
+
     
 }

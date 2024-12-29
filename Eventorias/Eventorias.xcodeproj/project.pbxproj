@@ -49,6 +49,7 @@
 		23AB66B02D20BBA30012B313 /* MockEventListRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AB66AF2D20BBA30012B313 /* MockEventListRepresentable.swift */; };
 		23AB66B22D20BDD10012B313 /* ListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AB66B12D20BDD10012B313 /* ListViewModelTests.swift */; };
 		23AB66B42D20C2C30012B313 /* AddEventViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AB66B32D20C2C30012B313 /* AddEventViewModelTests.swift */; };
+		23AB66B82D20D6D40012B313 /* LocationCoordinateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AB66B72D20D6D30012B313 /* LocationCoordinateTests.swift */; };
 		23BD155E2D1B227E00DE16E7 /* ErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BD155D2D1B227E00DE16E7 /* ErrorDialog.swift */; };
 		23C8F6C32D16FF6B003E473C /* LocationCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */; };
 		23F41BC92D208F36000D904E /* MockHTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F41BC82D208F36000D904E /* MockHTTPService.swift */; };
@@ -115,6 +116,7 @@
 		23AB66AF2D20BBA30012B313 /* MockEventListRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventListRepresentable.swift; sourceTree = "<group>"; };
 		23AB66B12D20BDD10012B313 /* ListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelTests.swift; sourceTree = "<group>"; };
 		23AB66B32D20C2C30012B313 /* AddEventViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewModelTests.swift; sourceTree = "<group>"; };
+		23AB66B72D20D6D30012B313 /* LocationCoordinateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinateTests.swift; sourceTree = "<group>"; };
 		23BD155D2D1B227E00DE16E7 /* ErrorDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDialog.swift; sourceTree = "<group>"; };
 		23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinate.swift; sourceTree = "<group>"; };
 		23F41BC82D208F36000D904E /* MockHTTPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHTTPService.swift; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 				23AB66AD2D20B8330012B313 /* LoginViewModelTests.swift */,
 				23AB66B12D20BDD10012B313 /* ListViewModelTests.swift */,
 				23AB66B32D20C2C30012B313 /* AddEventViewModelTests.swift */,
+				23AB66B72D20D6D30012B313 /* LocationCoordinateTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				23F41BCB2D20901C000D904E /* GoogleMapViewTests.swift in Sources */,
 				23AB66B02D20BBA30012B313 /* MockEventListRepresentable.swift in Sources */,
 				23F41BC92D208F36000D904E /* MockHTTPService.swift in Sources */,
+				23AB66B82D20D6D40012B313 /* LocationCoordinateTests.swift in Sources */,
 				23AB66B22D20BDD10012B313 /* ListViewModelTests.swift in Sources */,
 				23AB66B42D20C2C30012B313 /* AddEventViewModelTests.swift in Sources */,
 				23AB66AC2D20B7AD0012B313 /* MockFirebaseAuthenticationManager.swift in Sources */,
