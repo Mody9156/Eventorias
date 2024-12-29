@@ -42,6 +42,7 @@ class ListViewModel : ObservableObject {
             self.isError = false
         }catch{
             self.isError = true
+            throw error
         }
     }
     

@@ -15,7 +15,6 @@ struct ProfileView: View {
     @State var toggle: Bool = false
     @State private var selectedImage: UIImage? = nil
     
-    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -25,7 +24,12 @@ struct ProfileView: View {
                 VStack {
                     if let lastName, let firstName, let email {
                         InfoSecure(name: "Name", text: "\(firstName) \(lastName)")
+                            .accessibilityLabel("Name: \(firstName) \(lastName)")
+                            .accessibilityHint("User's full name displayed.")
+                        
                         InfoSecure(name: "E-mail", text: email)
+                            .accessibilityLabel("E-mail: \(email)")
+                            .accessibilityHint("User's email address displayed.")
                     }
                     
                     HStack {
@@ -33,6 +37,8 @@ struct ProfileView: View {
                             .labelsHidden()
                             .tint(Color("Button"))
                             .padding()
+                            .accessibilityLabel("Notifications")
+                            .accessibilityHint("Toggle notifications on or off.")
                         
                         Text("Notifications")
                             .font(.custom("Inter-Regular", size: 20))
@@ -40,11 +46,9 @@ struct ProfileView: View {
                             .lineSpacing(6)
                             .multilineTextAlignment(.leading)
                             .foregroundColor(.white)
+                            .accessibilityHidden(true)
                         
                         Spacer()
-                        
-                        
-                        
                     }
                     
                     Spacer()
@@ -57,7 +61,7 @@ struct ProfileView: View {
                             .foregroundColor(.white)
                             .lineSpacing(24.2 - 20)
                             .kerning(0.02)
-                        
+                            .accessibilityLabel("User profile screen")
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
                         if let picture {
@@ -65,28 +69,15 @@ struct ProfileView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 48, height: 48)
+                                .accessibilityLabel("Profile picture")
+                                .accessibilityHint("User's profile picture.")
                         }
-                        
                     }
                 }
             }
         }
     }
 }
-
-//struct MyPreviewProvider_Previews: PreviewProvider {
-//    @State static var name = "Modibo"
-//
-//    static var previews: some View {
-//        ProfileView(
-//            loginViewModel: ,
-//            email: "john.doe@example.com",
-//            firstName: "John",
-//            lastName: "Doe",
-//            picture: "file:///Users/keita/Library/Developer/CoreSimulator/Devices/1714EFF0-B305-4F7A-B14D-5B56802C289A/data/Containers/Data/Application/D108069C-5BEA-4A76-B4FB-1E17C4930BE8/Documents/Harden.jpg"
-//        )
-//    }
-//}
 
 struct InfoSecure: View {
     var name: String
@@ -99,6 +90,7 @@ struct InfoSecure: View {
                 .foregroundColor(Color("BackgroundDocument"))
                 .cornerRadius(5)
                 .padding()
+                .accessibilityHidden(true)
             
             VStack(alignment: .leading) {
                 Text(name)
@@ -108,9 +100,11 @@ struct InfoSecure: View {
                     .multilineTextAlignment(.leading)
                     .textCase(.none)
                     .foregroundColor(.gray)
+                    .accessibilityLabel("\(name) label")
                 
                 Text(text)
                     .foregroundColor(.white)
+                    .accessibilityLabel("\(name): \(text)")
             }
             .padding(.leading, 34)
         }

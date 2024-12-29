@@ -83,10 +83,48 @@ struct AddEventView: View {
                             ZStack {
                                 Rectangle()
                                     .frame(width: 72, height: 72)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(16)
+                                Image("Camera")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: 36))
+                            }
+                        }
+                        .onChange(of: selectedItem) { newItem in
+                            Task {
+                                if let selectedItem = selectedItem {
+                                    do {
+                                        // Utilisation de loadTransferable pour récupérer les données
+                                        if let data = try await selectedItem.loadTransferable(type: Data.self) {
+                                            print("Data de l'image : \(data)") // Affiche les données de l'image
+                                            
+                                            selectedImageData = data
+                                            
+                                            // Upload de l'image vers Firebase Storage
+                                            await addEventViewModel.uploadImageToFirebaseStorage(imageData: data)
+                                            
+                                            // Vérifier si l'URL de l'image est bien obtenue
+                                            if let imageUrl = addEventViewModel.imageUrl {
+                                                print("URL de l'image téléchargée : \(imageUrl)")
+                                                self.imageUrl = imageUrl
+                                            } else {
+                                                print("Erreur : L'URL de l'image n'a pas été récupérée.")
+                                            }
+                                        }
+                                    } catch {
+                                        print("Erreur lors de la récupération des données de l'image : \(error.localizedDescription)")
+                                    }
+                                }
+                            }
+                        }
+                        PhotosPicker(selection: $selectedItem, matching: .images, photoLibrary: .shared()) {
+                            ZStack {
+                                Rectangle()
+                                    .frame(width: 72, height: 72)
                                     .foregroundColor(Color("Button"))
                                     .cornerRadius(16)
                                 Image(systemName: "paperclip")
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.white)
                                     .font(.system(size: 36))
                             }
                         }
@@ -150,17 +188,17 @@ struct AddEventView: View {
                 .padding()
             }
         }
-        .navigationBarTitle("", displayMode: .inline) // Supprime le titre par défaut
-        .navigationBarItems(leading: Text("Creation of an event")
-            .font(.custom("Inter-SemiBold", size: 20)) // Utilise la police spécifiée
-            .fontWeight(.semibold) // Utilise font-weight: 600
+        .navigationBarTitle(Text("Creation of an event"), displayMode: .inline) // Titre personnalisé
+        .navigationBarItems(leading: Text("") // Titre avec une police spécifique
+            .font(.custom("Inter-SemiBold", size: 20)) // Applique la police Inter Semi Bold
+            .fontWeight(.semibold) // Applique fontWeight: 600
             .foregroundColor(.white) // Couleur du texte
             .lineSpacing(24.2 - 20) // Line height
             .tracking(0.02) // Letter spacing
             .padding(.leading, 10)
             .frame(maxWidth: .infinity, alignment: .leading)
         )
-        .navigationBarBackButtonHidden(true) // Cache le bouton de retour
+        .navigationBarBackButtonHidden(false)
     }
     
     // Validation des champs et enregistrement

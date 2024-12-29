@@ -119,17 +119,17 @@ struct UserDetailView: View {
                 }
             }
         }
-        .navigationBarTitle("", displayMode: .inline) // Supprime le titre par défaut
-        .navigationBarItems(leading: Text(eventEntry.title)
-            .font(.custom("Inter-SemiBold", size: 20)) // Utilise la police spécifiée
-            .fontWeight(.semibold) // Utilise font-weight: 600
-            .foregroundColor(.white) // Couleur du texte
-            .lineSpacing(24.2 - 20) // Line height
-            .tracking(0.02) // Letter spacing
-            .padding(.leading, 10)
-            .frame(maxWidth: .infinity, alignment: .leading)
-        )
-        .navigationBarBackButtonHidden(true) // Cache le bouton de retour
+        .navigationBarTitle(Text(eventEntry.title), displayMode: .inline) // Titre personnalisé
+                .navigationBarItems(leading: Text("") // Titre avec une police spécifique
+                    .font(.custom("Inter-SemiBold", size: 20)) // Applique la police Inter Semi Bold
+                    .fontWeight(.semibold) // Applique fontWeight: 600
+                    .foregroundColor(.white) // Couleur du texte
+                    .lineSpacing(24.2 - 20) // Line height
+                    .tracking(0.02) // Letter spacing
+                    .padding(.leading, 10)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                )
+                .navigationBarBackButtonHidden(false) 
     }
     
     private func fetchMapData() {

@@ -4,26 +4,23 @@
 //
 //  Created by KEITA on 29/12/2024.
 //
+//
+//  AddEventViewModelTests.swift
+//  EventoriasTests
+//
+//  Created by KEITA on 29/12/2024.
+//
+
 import XCTest
-@testable import Eventorias // Assurez-vous que votre module cible est bien importé
-import UIKit
+@testable import Eventorias
 
 class AddEventViewModelTests: XCTestCase {
+
     func testSaveToFirestore() {
-        class MockEventManager: EventManagerProtocol {
-            var isSaveCalled = false
-            var savedEvent: EventEntry?
-            
-            func saveToFirestore(_ event: EventEntry, completion: @escaping (Bool, Error?) -> Void) {
-                isSaveCalled = true
-                savedEvent = event
-                completion(true, nil)
-            }
-        }
-        
         let mockRepository = MockEventManager()
         let viewModel = AddEventViewModel(eventRepository: mockRepository)
         
+        // Données d'exemple
         let eventData = (
             picture: "mock_picture.jpg",
             title: "Mock Event",
@@ -40,6 +37,7 @@ class AddEventViewModelTests: XCTestCase {
             longitude: -122.4194
         )
         
+        // Appel de la méthode
         viewModel.saveToFirestore(
             picture: eventData.picture,
             title: eventData.title,
@@ -56,31 +54,51 @@ class AddEventViewModelTests: XCTestCase {
             longitude: eventData.longitude
         )
         
-        XCTAssertTrue(mockRepository.isSaveCalled, "La méthode saveToFirestore n'a pas été appelée.")
+        // Vérifications
         XCTAssertNotNil(mockRepository.savedEvent, "L'événement n'a pas été sauvegardé correctement.")
+        XCTAssertEqual(mockRepository.savedEvent?.title, eventData.title, "Le titre de l'événement sauvegardé est incorrect.")
+        XCTAssertEqual(mockRepository.savedEvent?.picture, eventData.picture, "L'image de l'événement sauvegardé est incorrecte.")
+        XCTAssertEqual(mockRepository.savedEvent?.poster, eventData.poster, "Le poster de l'événement sauvegardé est incorrect.")
+        XCTAssertEqual(mockRepository.savedEvent?.place.city, eventData.city, "La ville de l'événement sauvegardé est incorrecte.")
+        XCTAssertEqual(mockRepository.savedEvent?.place.country, eventData.country, "Le pays de l'événement sauvegardé est incorrect.")
+        XCTAssertEqual(mockRepository.savedEvent?.place.localisation.latitude, eventData.latitude, "La latitude de l'événement sauvegardé est incorrecte.")
+        XCTAssertEqual(mockRepository.savedEvent?.place.localisation.longitude, eventData.longitude, "La longitude de l'événement sauvegardé est incorrecte.")
+    }
+
+    func testUploadImageToFirebaseStorage() async {
+        let mockRepository = MockEventManager()
+        let viewModel = AddEventViewModel(eventRepository: mockRepository)
+        
+        let imageData = Data("mock_image_data".utf8) // Données fictives pour l'image
+        
+        await viewModel.uploadImageToFirebaseStorage(imageData: imageData)
+        
+        // Vérifications
+        XCTAssertEqual(viewModel.imageUrl, "https://mock.url/image.jpg", "L'URL de l'image téléchargée est incorrecte.")
+        XCTAssertTrue(mockRepository.isImageUrlSaved, "L'URL de l'image n'a pas été sauvegardée.")
+        XCTAssertEqual(mockRepository.savedImageUrl, "https://mock.url/image.jpg", "L'URL sauvegardée dans Firestore est incorrecte.")
     }
     
-    func testSaveImageToDocumentsDirectory() {
-        let viewModel = AddEventViewModel()
-        let mockImage = UIImage(systemName: "photo")!
-        let fileName = "mock_image.jpg"
+    func testSaveImageUrlToFirestore() {
+        let mockRepository = MockEventManager()
+        let viewModel = AddEventViewModel(eventRepository: mockRepository)
         
-        let savedPath = viewModel.saveImageToDocumentsDirectory(image: mockImage, fileName: fileName)
+        let imageUrl = "https://mock.url/image.jpg"
+        viewModel.saveImageUrlToFirestore(url: imageUrl)
         
-        XCTAssertNotNil(savedPath, "Le chemin de l'image sauvegardée ne doit pas être nul.")
-        XCTAssertTrue(FileManager.default.fileExists(atPath: savedPath!), "L'image n'a pas été sauvegardée dans le répertoire.")
+        // Vérifications
+        XCTAssertTrue(mockRepository.isImageUrlSaved, "L'URL de l'image n'a pas été sauvegardée.")
+        XCTAssertEqual(mockRepository.savedImageUrl, imageUrl, "L'URL sauvegardée dans Firestore est incorrecte.")
+        XCTAssertEqual(mockRepository.savedEventID, "ID de l'événement à mettre ici", "L'ID de l'événement sauvegardé est incorrect.")
     }
     
     func testFormatHourString() {
         let viewModel = AddEventViewModel()
-        let date = Date() // Utilisez un mock de Date pour un contrôle précis, si nécessaire.
+        let date = Date() // Date actuelle pour le test
         
         let formattedHour = viewModel.formatHourString(date)
+        let expectedHour = Date.stringFromHour(date) // Utilise la méthode utilitaire pour vérifier
         
-        // Remplacez "expectedString" par l'heure formatée attendue.
-        let expectedString = Date.stringFromHour(date)
-        XCTAssertNotNil(expectedString)
+        XCTAssertEqual(formattedHour, expectedHour, "Le formatage de l'heure est incorrect.")
     }
-
-    
 }

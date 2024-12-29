@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2302CE902D198AD6005F6EB4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2302CE8F2D198AD6005F6EB4 /* User.swift */; };
+		23030C6C2D21CECF0073A454 /* MockEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23030C6B2D21CECF0073A454 /* MockEventManager.swift */; };
 		230474212D1091C80067BB54 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230474202D1091C80067BB54 /* AddEventView.swift */; };
 		2311CB4B2D1199A700518BC5 /* AddEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2311CB4A2D1199A700518BC5 /* AddEventViewModel.swift */; };
 		2311CB4F2D11FF8F00518BC5 /* EventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2311CB4E2D11FF8F00518BC5 /* EventRepository.swift */; };
@@ -75,6 +76,7 @@
 
 /* Begin PBXFileReference section */
 		2302CE8F2D198AD6005F6EB4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		23030C6B2D21CECF0073A454 /* MockEventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventManager.swift; sourceTree = "<group>"; };
 		230474202D1091C80067BB54 /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
 		2311CB452D11839800518BC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2311CB462D11849000518BC5 /* Eventorias.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Eventorias.entitlements; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 				23F41BDA2D20AFF6000D904E /* MockGoogleMapView.swift */,
 				23AB66AB2D20B7AD0012B313 /* MockFirebaseAuthenticationManager.swift */,
 				23AB66AF2D20BBA30012B313 /* MockEventListRepresentable.swift */,
+				23030C6B2D21CECF0073A454 /* MockEventManager.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 			files = (
 				23AB66AE2D20B8330012B313 /* LoginViewModelTests.swift in Sources */,
 				23F41BDB2D20AFF6000D904E /* MockGoogleMapView.swift in Sources */,
+				23030C6C2D21CECF0073A454 /* MockEventManager.swift in Sources */,
 				23F41BD72D20AEC8000D904E /* UserDetailViewModelTests.swift in Sources */,
 				23F41BCB2D20901C000D904E /* GoogleMapViewTests.swift in Sources */,
 				23AB66B02D20BBA30012B313 /* MockEventListRepresentable.swift in Sources */,

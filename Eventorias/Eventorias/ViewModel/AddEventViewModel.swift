@@ -43,35 +43,7 @@ class AddEventViewModel: ObservableObject {
         }
     }
     
-    // Sauvegarder une image dans le répertoire Documents de l'appareil
-    func saveImageToDocumentsDirectory(image: UIImage, fileName: String) -> String? {
-        guard let data = image.jpegData(compressionQuality: 0.8) else {
-            print("Erreur : Impossible de convertir l'image en données JPEG.")
-            return nil
-        }
-
-        let fileManager = FileManager.default
-        guard let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            print("Erreur : Impossible de trouver le répertoire Documents.")
-            return nil
-        }
-
-        let fileURL = documentsURL.appendingPathComponent(fileName)
-
-        do {
-            try data.write(to: fileURL)
-            print("Image sauvegardée à : \(fileURL.path)")
-            
-            // Encoder le chemin du fichier pour le convertir en URL valide
-            let encodedURL = fileURL.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? fileURL.absoluteString
-            print("URL encodée : \(encodedURL)")
-
-            return fileURL.path
-        } catch {
-            print("Erreur lors de la sauvegarde de l'image : \(error)")
-            return nil
-        }
-    }
+    
 
     // Formatter une heure (Date) en chaîne lisible
     func formatHourString(_ hour: Date) -> String {
