@@ -22,7 +22,7 @@ class LocationCoordinateTests: XCTestCase {
         super.tearDown()
     }
     
-    func testGeocodeAddress_ValidAddress() {
+    @MainActor func testGeocodeAddress_ValidAddress() {
         // Créer une attente pour que la géocodification soit terminée
         let expectation = self.expectation(description: "Géocodage réussi")
         
@@ -46,7 +46,7 @@ class LocationCoordinateTests: XCTestCase {
         waitForExpectations(timeout: 10.0, handler: nil)
     }
     
-    func testGeocodeAddress_InvalidAddress() {
+    @MainActor func testGeocodeAddress_InvalidAddress() {
         // Créer une attente pour que la géocodification soit terminée
         let expectation = self.expectation(description: "Géocodage échoué")
         
