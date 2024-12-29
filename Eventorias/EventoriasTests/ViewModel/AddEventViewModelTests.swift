@@ -20,7 +20,6 @@ class AddEventViewModelTests: XCTestCase {
         let mockRepository = MockEventManager()
         let viewModel = AddEventViewModel(eventRepository: mockRepository)
         
-        // Données d'exemple
         let eventData = (
             picture: "mock_picture.jpg",
             title: "Mock Event",
@@ -37,7 +36,6 @@ class AddEventViewModelTests: XCTestCase {
             longitude: -122.4194
         )
         
-        // Appel de la méthode
         viewModel.saveToFirestore(
             picture: eventData.picture,
             title: eventData.title,
@@ -54,7 +52,6 @@ class AddEventViewModelTests: XCTestCase {
             longitude: eventData.longitude
         )
         
-        // Vérifications
         XCTAssertNotNil(mockRepository.savedEvent, "L'événement n'a pas été sauvegardé correctement.")
         XCTAssertEqual(mockRepository.savedEvent?.title, eventData.title, "Le titre de l'événement sauvegardé est incorrect.")
         XCTAssertEqual(mockRepository.savedEvent?.picture, eventData.picture, "L'image de l'événement sauvegardé est incorrecte.")
@@ -69,7 +66,7 @@ class AddEventViewModelTests: XCTestCase {
         let mockRepository = MockEventManager()
         let viewModel = AddEventViewModel(eventRepository: mockRepository)
         
-        let imageData = Data("mock_image_data".utf8) // Données fictives pour l'image
+        let imageData = Data("mock_image_data".utf8)
         
         await viewModel.uploadImageToFirebaseStorage(imageData: imageData)
         
@@ -94,10 +91,10 @@ class AddEventViewModelTests: XCTestCase {
     
     func testFormatHourString() {
         let viewModel = AddEventViewModel()
-        let date = Date() // Date actuelle pour le test
+        let date = Date()
         
         let formattedHour = viewModel.formatHourString(date)
-        let expectedHour = Date.stringFromHour(date) // Utilise la méthode utilitaire pour vérifier
+        let expectedHour = Date.stringFromHour(date)
         
         XCTAssertEqual(formattedHour, expectedHour, "Le formatage de l'heure est incorrect.")
     }

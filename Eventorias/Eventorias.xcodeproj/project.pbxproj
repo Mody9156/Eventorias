@@ -124,7 +124,6 @@
 		23F41BD62D20AEC8000D904E /* UserDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModelTests.swift; sourceTree = "<group>"; };
 		23F41BDA2D20AFF6000D904E /* MockGoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGoogleMapView.swift; sourceTree = "<group>"; };
 		23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagerProtocol.swift; sourceTree = "<group>"; };
-		23F9F0E02D20766E00BB2D35 /* CollectionReferenceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CollectionReferenceProtocol.swift; path = ../../Service/Event/CollectionReferenceProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,7 +342,6 @@
 		23F9E9AB2D12C1C20030C221 /* Event */ = {
 			isa = PBXGroup;
 			children = (
-				23F9F0E02D20766E00BB2D35 /* CollectionReferenceProtocol.swift */,
 				23F9E9AC2D12C2430030C221 /* EventManagerProtocol.swift */,
 			);
 			path = Event;

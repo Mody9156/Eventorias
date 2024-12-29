@@ -7,7 +7,6 @@
 
 import XCTest
 @testable import Eventorias
-// Mock pour GoogleMapView
 class MockGoogleMapView: GoogleMapView {
     var mockData: Data?
     var mockResponse: HTTPURLResponse?
@@ -20,7 +19,6 @@ class MockGoogleMapView: GoogleMapView {
         return mockData ?? Data()
     }
 }
-// Mock pour ListViewModel
 class MockListViewModel {
     var eventEntry: [EventEntry]
     

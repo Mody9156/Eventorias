@@ -74,7 +74,6 @@ struct AddEventView: View {
                     .pickerStyle(.segmented)
                     .accessibilityLabel("Select Event Category")
                     
-                    // Image Selection Button
                     HStack {
                         PhotosPicker(selection: $selectedItem, matching: .images, photoLibrary: .shared()) {
                             ZStack {
@@ -92,14 +91,11 @@ struct AddEventView: View {
                             Task {
                                 if let selectedItem = selectedItem {
                                     do {
-                                        // Utilisation de loadTransferable pour récupérer les données
                                         if let data = try await selectedItem.loadTransferable(type: Data.self) {
                                             selectedImageData = data
                                             
-                                            // Upload de l'image vers Firebase Storage
                                             await addEventViewModel.uploadImageToFirebaseStorage(imageData: data)
                                             
-                                            // Vérifier si l'URL de l'image est bien obtenue
                                             if let imageUrl = addEventViewModel.imageUrl {
                                                 self.imageUrl = imageUrl
                                             }
@@ -127,14 +123,11 @@ struct AddEventView: View {
                             Task {
                                 if let selectedItem = selectedItem {
                                     do {
-                                        // Utilisation de loadTransferable pour récupérer les données
                                         if let data = try await selectedItem.loadTransferable(type: Data.self) {
                                             selectedImageData = data
                                             
-                                            // Upload de l'image vers Firebase Storage
                                             await addEventViewModel.uploadImageToFirebaseStorage(imageData: data)
                                             
-                                            // Vérifier si l'URL de l'image est bien obtenue
                                             if let imageUrl = addEventViewModel.imageUrl {
                                                 self.imageUrl = imageUrl
                                             }
@@ -147,7 +140,6 @@ struct AddEventView: View {
                         }
                     }
                     
-                    // Affichage de l'image sélectionnée
                     if let selectedImage = selectedImage {
                         Image(uiImage: selectedImage)
                             .resizable()
@@ -164,7 +156,6 @@ struct AddEventView: View {
                     
                     Spacer()
                     
-                    // Validation du formulaire
                     Button(action: {
                         validateAndSave()
                     }) {
@@ -182,13 +173,13 @@ struct AddEventView: View {
                 .padding()
             }
         }
-        .navigationBarTitle(Text("Creation of an event"), displayMode: .inline) // Titre personnalisé
-        .navigationBarItems(leading: Text("") // Titre avec une police spécifique
-            .font(.custom("Inter-SemiBold", size: 20)) // Applique la police Inter Semi Bold
-            .fontWeight(.semibold) // Applique fontWeight: 600
-            .foregroundColor(.white) // Couleur du texte
-            .lineSpacing(24.2 - 20) // Line height
-            .tracking(0.02) // Letter spacing
+        .navigationBarTitle(Text("Creation of an event"), displayMode: .inline)
+        .navigationBarItems(leading: Text("")
+            .font(.custom("Inter-SemiBold", size: 20))
+            .fontWeight(.semibold)
+            .foregroundColor(.white)
+            .lineSpacing(24.2 - 20)
+            .tracking(0.02)
             .padding(.leading, 10)
             .frame(maxWidth: .infinity, alignment: .leading)
             .accessibilityLabel("Back Button")
@@ -196,7 +187,6 @@ struct AddEventView: View {
         .navigationBarBackButtonHidden(false)
     }
     
-    // Validation des champs et enregistrement
     private func validateAndSave() {
         if title.isEmpty || description.isEmpty || street.isEmpty || city.isEmpty || postalCode.isEmpty || country.isEmpty {
             locationCoordinate.errorMessage = "Tous les champs doivent être remplis."

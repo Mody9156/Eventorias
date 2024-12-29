@@ -10,7 +10,6 @@ import Foundation
 class MockEventListRepresentable: EventListRepresentable {
     var shouldReturnError = false
           
-          // Simuler l'obtention de tous les produits
           func getAllProducts() async throws -> [EventEntry] {
               if shouldReturnError {
                   throw NSError(domain: "TestError", code: 1, userInfo: nil)
@@ -36,7 +35,6 @@ class MockEventListRepresentable: EventListRepresentable {
               ]
           }
           
-          // Simuler le filtrage par catégorie
           func getAllProductsSortedByCategory() async throws -> [EventEntry] {
               return [
                   EventEntry(
@@ -58,7 +56,6 @@ class MockEventListRepresentable: EventListRepresentable {
               ]
           }
           
-          // Simuler le filtrage par date
           func getAllProductsSortedByDate() async throws -> [EventEntry] {
               return [
                   EventEntry(

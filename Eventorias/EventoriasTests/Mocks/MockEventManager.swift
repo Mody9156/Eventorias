@@ -20,7 +20,7 @@ class MockEventManager: EventManagerProtocol {
         isImageUrlSaved = true
         savedImageUrl = url
         savedEventID = eventID
-        completion(true, nil) // Simuler un succès de sauvegarde
+        completion(true, nil)
     }
     
     func uploadImageToFirebaseStorage(imageData: Data, completion: @escaping (String?, Error?) -> Void) async {
@@ -30,6 +30,6 @@ class MockEventManager: EventManagerProtocol {
     func saveToFirestore(_ event: EventEntry, completion: @escaping (Bool, Error?) -> Void) {
         isSaveToFirestoreCalled = true
         savedEvent = event
-        completion(true, nil) // Simuler un succès de sauvegarde
+        completion(true, nil) 
     }
 }

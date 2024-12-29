@@ -9,12 +9,11 @@ import Foundation
 import FirebaseAuth
 import PhotosUI
 
-// LoginViewModel.swift
 class LoginViewModel : ObservableObject {
     @Published var errorMessage: String? = nil
     @Published var isAuthenticated: Bool = false
     @Published var onLoginSucceed: (() -> ())
-
+    
     let firebaseAuthenticationManager: FirebaseAuthenticationManager
     
     init(_ callback:@escaping (() -> ()), firebaseAuthenticationManager: FirebaseAuthenticationManager) {
@@ -23,17 +22,16 @@ class LoginViewModel : ObservableObject {
     }
     
     func login(email: String, password: String) {
-        // Validation du mail et du mot de passe
         guard !email.isEmpty, !password.isEmpty else {
             self.errorMessage = "Veuillez remplir tous les champs."
             print(String(describing: errorMessage))
             return
         }
-
+        
         // Connexion via Firebase
         firebaseAuthenticationManager.signIn(email: email, password: password) { [weak self] result in
             guard let self = self else { return }  // Éviter les fuites de mémoire
-
+            
             switch result {
             case .success(let user):
                 self.errorMessage = nil
@@ -52,7 +50,7 @@ class LoginViewModel : ObservableObject {
             self.errorMessage = "L'email ou le mot de passe ne peuvent pas être vides."
             return
         }
-
+        
         firebaseAuthenticationManager.createUser(email: email, password: password, firstName: firstName, lastName: lastName, picture: picture) { result in
             switch result {
             case .success(let user):

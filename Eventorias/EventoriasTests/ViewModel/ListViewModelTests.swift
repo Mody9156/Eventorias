@@ -54,9 +54,8 @@ class ListViewModelTests: XCTestCase {
 
 
     
-    // Test du filtrage sans option de filtre
     func testFilterSelectedNoFilter() async {
-        // Création de l'attente (expectation)
+
         let expectation = self.expectation(description: "filterSelectedNoFilter")
         
         do {
@@ -70,9 +69,7 @@ class ListViewModelTests: XCTestCase {
         await waitForExpectations(timeout: 5, handler: nil)
     }
     
-    // Test du filtrage par catégorie
     func testFilterSelectedCategory() async {
-        // Création de l'attente (expectation)
         let expectation = self.expectation(description: "filterSelectedCategory")
         
         do {

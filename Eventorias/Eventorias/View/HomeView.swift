@@ -26,13 +26,13 @@ struct HomeView: View {
                     Image("Logo")
                         .imageScale(.large)
                         .foregroundColor(.accentColor)
-                        .accessibilityLabel("Eventorias logo") // Label pour l'image du logo
+                        .accessibilityLabel("Eventorias logo") 
                     
                     Text("EVENTORIAS")
                         .font(.title)
                         .bold()
                         .foregroundColor(.white)
-                        .accessibilityLabel("Eventorias title") // Label pour le texte du titre
+                        .accessibilityLabel("Eventorias title")
                     
                     VStack {
                         fetchCredentials(email: $email, password: $password)
@@ -41,7 +41,7 @@ struct HomeView: View {
                             Rectangle()
                                 .frame(height: 50)
                                 .foregroundColor(Color("Button"))
-                                .accessibilityHidden(true) // Masquer le rectangle décoratif pour VoiceOver
+                                .accessibilityHidden(true)
                             
                             Button {
                                 loginViewModel.login(email: email, password: password)
@@ -53,16 +53,16 @@ struct HomeView: View {
                                         .foregroundColor(.white)
                                 }
                             }
-                            .accessibilityLabel("Sign in with email") // Label pour le bouton de connexion
-                            .accessibilityHint("Tap to sign in with email") // Indication de l'action
+                            .accessibilityLabel("Sign in with email")
+                            .accessibilityHint("Tap to sign in with email")
                         }
                         .padding(.top)
                         
                         if let error = loginViewModel.errorMessage {
                             Text(error)
                                 .foregroundColor(.red)
-                                .accessibilityLabel("Error message") // Label pour le message d'erreur
-                                .accessibilityHint("Displays the login error message") // Indication du message d'erreur
+                                .accessibilityLabel("Error message")
+                                .accessibilityHint("Displays the login error message")
                         }
                     }.padding()
                     
@@ -86,7 +86,7 @@ struct ActionButtonView: View {
             Rectangle()
                 .frame(height: 50)
                 .foregroundColor(Color("Button"))
-                .accessibilityHidden(true) // Masquer le rectangle décoratif pour VoiceOver
+                .accessibilityHidden(true)
             
             NavigationLink {
                 RegistrationView(loginViewModel: loginViewModel)
@@ -97,8 +97,8 @@ struct ActionButtonView: View {
                         .foregroundColor(.white)
                 }
             }
-            .accessibilityLabel("Go to registration page") // Label pour le lien de navigation
-            .accessibilityHint("Tap to go to the registration page") // Indication de l'action
+            .accessibilityLabel("Go to registration page")
+            .accessibilityHint("Tap to go to the registration page")
         }
         .padding()
     }
@@ -116,24 +116,24 @@ struct fetchCredentials: View {
         VStack (alignment: .leading) {
             Text("Email")
                 .foregroundColor(.white)
-                .accessibilityLabel("Email label") // Label pour le champ Email
+                .accessibilityLabel("Email label")
             
             TextField("name", text:$email)
                 .focused($focusedField, equals: .email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .accessibilityLabel("Enter your email address") // Label pour le champ de texte Email
-                .accessibilityHint("Enter a valid email address") // Indication pour l'utilisateur
-                .keyboardType(.emailAddress) // Spécification du type de clavier pour l'email
+                .accessibilityLabel("Enter your email address")
+                .accessibilityHint("Enter a valid email address")
+                .keyboardType(.emailAddress)
             
             Text("Password")
                 .foregroundColor(.white)
-                .accessibilityLabel("Password label") // Label pour le champ Password
+                .accessibilityLabel("Password label")
             
             SecureField("password", text: $password)
                 .focused($focusedField, equals: .password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .accessibilityLabel("Enter your password") // Label pour le champ de texte Mot de passe
-                .accessibilityHint("Enter a secure password") // Indication pour l'utilisateur
+                .accessibilityLabel("Enter your password")
+                .accessibilityHint("Enter a secure password")
         }
     }
 }

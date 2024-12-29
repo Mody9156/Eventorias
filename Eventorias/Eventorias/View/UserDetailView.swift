@@ -21,19 +21,17 @@ struct UserDetailView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         VStack {
-                            // Image de l'événement
                             AsyncImage(url: URL(string: eventEntry.poster)) { image in
                                 image
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 358, height: 364)
                                     .cornerRadius(12)
-                                    .accessibilityLabel("Poster of \(eventEntry.title)") // Ajout de l'accessibilité
+                                    .accessibilityLabel("Poster of \(eventEntry.title)")
                             } placeholder: {
                                 ProgressView()
                             }
                             
-                            // Labels avec date et heure
                             HStack {
                                 VStack(alignment: .leading) {
                                     Label("\(userDetailViewModel.formatDateString(eventEntry.dateCreation))", image: "event")
@@ -44,13 +42,12 @@ struct UserDetailView: View {
                                     Label("\(eventEntry.hour)", image: "Time")
                                         .foregroundColor(.white)
                                         .frame(width: 109, height:24)
-                                        .accessibilityLabel("Event time: \(eventEntry.hour)") // Label avec heure
+                                        .accessibilityLabel("Event time: \(eventEntry.hour)")  heure
                                 }
                                 .padding()
                                 Spacer()
                                     .padding(.trailing, 40)
                                 
-                                // Image de l'organisateur de l'événement (si présente)
                                 if let picture = eventEntry.picture {
                                     Image(picture)
                                         .resizable()
@@ -58,11 +55,10 @@ struct UserDetailView: View {
                                         .frame(width: 60, height: 60)
                                         .cornerRadius(50)
                                         .padding(.trailing, 40)
-                                        .accessibilityLabel("Organizer picture") // Label pour l'image
+                                        .accessibilityLabel("Organizer picture")
                                 }
                             }
                             
-                            // Description de l'événement
                             ScrollView {
                                 Text(eventEntry.description)
                                     .font(.custom("Inter", size: 14))
@@ -71,11 +67,10 @@ struct UserDetailView: View {
                                     .multilineTextAlignment(.leading)
                                     .foregroundColor(.white)
                                     .padding()
-                                    .accessibilityLabel("Event description: \(eventEntry.description)") // Label pour la description
+                                    .accessibilityLabel("Event description: \(eventEntry.description)")
                             }
                         }
                         
-                        // Adresse de l'événement
                         VStack(alignment: .leading) {
                             HStack {
                                 VStack(alignment: .leading) {
@@ -86,7 +81,7 @@ struct UserDetailView: View {
                                         .multilineTextAlignment(.leading)
                                         .lineLimit(2)
                                         .truncationMode(.tail)
-                                        .accessibilityLabel("Street: \(eventEntry.place.street)") // Label pour la rue
+                                        .accessibilityLabel("Street: \(eventEntry.place.street)")
                                     
                                     HStack {
                                         Text("\(eventEntry.place.city),")
@@ -94,13 +89,14 @@ struct UserDetailView: View {
                                             .font(.custom("Inter-Medium", size: 16))
                                             .fontWeight(.medium)
                                             .lineLimit(1)
-                                            .accessibilityLabel("City: \(eventEntry.place.city)") // Label pour la ville
+                                            .accessibilityLabel("City: \(eventEntry.place.city)")
+                                        
                                         Text("\(eventEntry.place.postalCode),")
                                             .foregroundColor(.white)
                                             .font(.custom("Inter-Medium", size: 16))
                                             .fontWeight(.medium)
                                             .lineLimit(1)
-                                            .accessibilityLabel("Postal code: \(eventEntry.place.postalCode)") // Label pour le code postal
+                                            .accessibilityLabel("Postal code: \(eventEntry.place.postalCode)") 
                                     }
                                     
                                     HStack {
@@ -109,13 +105,12 @@ struct UserDetailView: View {
                                             .font(.custom("Inter-Medium", size: 16))
                                             .fontWeight(.medium)
                                             .lineLimit(1)
-                                            .accessibilityLabel("Country: \(eventEntry.place.country)") // Label pour le pays
+                                            .accessibilityLabel("Country: \(eventEntry.place.country)")
                                     }
                                 }
                                 
                                 Spacer()
                                 
-                                // Affichage de la carte si disponible
                                 if let picture = maps {
                                     Image(uiImage: picture)
                                         .cornerRadius(20)
@@ -140,7 +135,7 @@ struct UserDetailView: View {
             .tracking(0.02)
             .padding(.leading, 10)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .accessibilityLabel("Event title: \(eventEntry.title)") // Label pour le titre de la barre de navigation
+            .accessibilityLabel("Event title: \(eventEntry.title)")
         )
         .navigationBarBackButtonHidden(false)
     }
