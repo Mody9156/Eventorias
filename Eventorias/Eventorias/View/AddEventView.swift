@@ -1,9 +1,3 @@
-//
-//  AddEventView.swift
-//  Eventorias
-//
-//  Created by KEITA on 16/12/2024.
-//
 import SwiftUI
 import PhotosUI
 import CoreLocation
@@ -52,12 +46,14 @@ struct AddEventView: View {
                                 .foregroundColor(.white)
                                 .padding(.leading, 5)
                                 .labelsHidden()
+                                .accessibilityLabel("Event Date")
                             
                             DatePicker("", selection: $hours, displayedComponents: .hourAndMinute)
                                 .datePickerStyle(.automatic)
                                 .foregroundColor(.white)
                                 .padding(.leading, 5)
                                 .labelsHidden()
+                                .accessibilityLabel("Event Time")
                         }
                     }
                     
@@ -76,8 +72,9 @@ struct AddEventView: View {
                         }
                     }
                     .pickerStyle(.segmented)
+                    .accessibilityLabel("Select Event Category")
                     
-                    //                     Image Selection Button
+                    // Image Selection Button
                     HStack {
                         PhotosPicker(selection: $selectedItem, matching: .images, photoLibrary: .shared()) {
                             ZStack {
@@ -88,6 +85,7 @@ struct AddEventView: View {
                                 Image("Camera")
                                     .foregroundColor(.black)
                                     .font(.system(size: 36))
+                                    .accessibilityLabel("Select Image from Camera")
                             }
                         }
                         .onChange(of: selectedItem) { newItem in
@@ -96,8 +94,6 @@ struct AddEventView: View {
                                     do {
                                         // Utilisation de loadTransferable pour récupérer les données
                                         if let data = try await selectedItem.loadTransferable(type: Data.self) {
-                                            print("Data de l'image : \(data)") // Affiche les données de l'image
-                                            
                                             selectedImageData = data
                                             
                                             // Upload de l'image vers Firebase Storage
@@ -105,10 +101,7 @@ struct AddEventView: View {
                                             
                                             // Vérifier si l'URL de l'image est bien obtenue
                                             if let imageUrl = addEventViewModel.imageUrl {
-                                                print("URL de l'image téléchargée : \(imageUrl)")
                                                 self.imageUrl = imageUrl
-                                            } else {
-                                                print("Erreur : L'URL de l'image n'a pas été récupérée.")
                                             }
                                         }
                                     } catch {
@@ -117,6 +110,7 @@ struct AddEventView: View {
                                 }
                             }
                         }
+                        
                         PhotosPicker(selection: $selectedItem, matching: .images, photoLibrary: .shared()) {
                             ZStack {
                                 Rectangle()
@@ -126,6 +120,7 @@ struct AddEventView: View {
                                 Image(systemName: "paperclip")
                                     .foregroundColor(.white)
                                     .font(.system(size: 36))
+                                    .accessibilityLabel("Select Image from Gallery")
                             }
                         }
                         .onChange(of: selectedItem) { newItem in
@@ -134,8 +129,6 @@ struct AddEventView: View {
                                     do {
                                         // Utilisation de loadTransferable pour récupérer les données
                                         if let data = try await selectedItem.loadTransferable(type: Data.self) {
-                                            print("Data de l'image : \(data)") // Affiche les données de l'image
-                                            
                                             selectedImageData = data
                                             
                                             // Upload de l'image vers Firebase Storage
@@ -143,10 +136,7 @@ struct AddEventView: View {
                                             
                                             // Vérifier si l'URL de l'image est bien obtenue
                                             if let imageUrl = addEventViewModel.imageUrl {
-                                                print("URL de l'image téléchargée : \(imageUrl)")
                                                 self.imageUrl = imageUrl
-                                            } else {
-                                                print("Erreur : L'URL de l'image n'a pas été récupérée.")
                                             }
                                         }
                                     } catch {
@@ -163,11 +153,13 @@ struct AddEventView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 150, height: 150)
+                            .accessibilityLabel("Selected Image")
                     }
                     
                     if let errorMessage = locationCoordinate.errorMessage {
                         Text(errorMessage)
                             .foregroundColor(.red)
+                            .accessibilityLabel("Error Message")
                     }
                     
                     Spacer()
@@ -184,6 +176,8 @@ struct AddEventView: View {
                                 .foregroundColor(.white)
                         }
                     }
+                    .accessibilityLabel("Submit Event")
+                    .accessibilityHint("Submits the event after validation.")
                 }
                 .padding()
             }
@@ -197,6 +191,7 @@ struct AddEventView: View {
             .tracking(0.02) // Letter spacing
             .padding(.leading, 10)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .accessibilityLabel("Back Button")
         )
         .navigationBarBackButtonHidden(false)
     }
@@ -263,6 +258,8 @@ struct CustomTexField: View {
                     .foregroundColor(.gray)
                 TextField(placeholder, text: $text)
                     .foregroundColor(.white)
+                    .accessibilityLabel(infos)
+                    .accessibilityHint("Enter your \(infos.lowercased()) here.")
             }
             .padding()
         }
@@ -288,6 +285,8 @@ struct AddressCollect: View {
                     .foregroundColor(.gray)
                 TextField(placeholder, text: $textField)
                     .foregroundColor(.white)
+                    .accessibilityLabel(text)
+                    .accessibilityHint("Enter your \(text.lowercased()) here.")
             }
             .padding()
         }

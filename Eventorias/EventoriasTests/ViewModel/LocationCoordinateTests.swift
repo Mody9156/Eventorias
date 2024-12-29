@@ -46,26 +46,26 @@ class LocationCoordinateTests: XCTestCase {
         waitForExpectations(timeout: 10.0, handler: nil)
     }
     
-//    @MainActor func testGeocodeAddress_InvalidAddress() {
-//        // Créer une attente pour que la géocodification soit terminée
-//        let expectation = self.expectation(description: "Géocodage échoué")
-//
-//        // Adresse invalide à tester
-//        let address = "Invalid Address, XYZ"
-//
-//        locationCoordinate.geocodeAddress(address: address) { result in
-//            switch result {
-//            case .success(_):
-//                XCTFail("Le géocodage a réussi alors que l'adresse était invalide")
-//            case .failure(let error):
-//                // Vérifiez que l'erreur contient le domaine "GeocodeError"
-//                XCTAssertEqual((error as NSError).domain, kCLErrorDomain, "Le domaine de l'erreur n'est pas celui attendu")
-//            }
-//
-//            expectation.fulfill()
-//        }
-//
-//        // Attendre que l'attente soit remplie
-//        waitForExpectations(timeout: 10.0, handler: nil)
-//    }
+    @MainActor func testGeocodeAddress_InvalidAddress() {
+        // Créer une attente pour que la géocodification soit terminée
+        let expectation = self.expectation(description: "Géocodage échoué")
+
+        // Adresse invalide à tester
+        let address = "Invalid Address, XYZ"
+
+        locationCoordinate.geocodeAddress(address: address) { result in
+            switch result {
+            case .success(_):
+                XCTFail("Le géocodage a réussi alors que l'adresse était invalide")
+            case .failure(let error):
+                // Vérifiez que l'erreur contient le domaine "GeocodeError"
+                XCTAssertEqual((error as NSError).domain, kCLErrorDomain, "Le domaine de l'erreur n'est pas celui attendu")
+            }
+
+            expectation.fulfill()
+        }
+
+        // Attendre que l'attente soit remplie
+        waitForExpectations(timeout: 10.0, handler: nil)
+    }
 }
