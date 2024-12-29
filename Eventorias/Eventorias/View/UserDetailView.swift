@@ -42,12 +42,12 @@ struct UserDetailView: View {
                             
                             HStack {
                                 VStack(alignment: .leading) {
-                                    Label("\(FormatTime.formatHourString(eventEntry.dateCreation))",image:"event")
+                                    Label("\(userDetailViewModel.formatDateString(eventEntry.dateCreation))",image:"event")
                                         .foregroundColor(.white)
                                         .frame(width: 141, height: 24)
                                     
                                     
-                                    Label("\(FormatTime.formatHourString(eventEntry.hourCreation))",image: "Time")
+                                    Label("\(eventEntry.hour)",image: "Time")
                                         .foregroundColor(.white)
                                         .frame(width: 109, height:24)
                                     
@@ -148,11 +148,5 @@ struct UserDetailView: View {
                    print("Erreur lors du géocodage : \(error.localizedDescription)")
                }
            }
-    }
-}
-
-struct MyPreviewProvider_PreviewDetails: PreviewProvider {
-    static var previews: some View {
-        UserDetailView(eventEntry: EventEntry(picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Kyrie_Irving_-_51831772061_01_%28cropped%29.jpg/1024px-Kyrie_Irving_-_51831772061_01_%28cropped%29.jpg", title: "NBA", dateCreation: Date.now, poster: "https://img.freepik.com/photos-gratuite/vaisseau-spatial-orbite-autour-planete-dans-superbe-decor-spatial-genere-par-ia_188544-15610.jpg?t=st=1735041951~exp=1735045551~hmac=9a2fa593903e1ecc1fb77937beca379c4f593ad080b7107e495c9cbb4ec72915&w=1800", description: "Une image est une représentation visuelle, voire mentale, de quelque chose (objet, être vivant ou concept).Elle peut être naturelle (ombre, reflet) ou artificielle (sculpture, peinture, photographie), visuelle ou non, tangible ou conceptuelle (métaphore), elle peut entretenir un rapport de ressemblance directe avec son modèle ou au contraire y être liée par un rapport plus symbolique.Pour la sémiologie ou sémiotique, qui a développé tout un secteur de sémiotique visuelle, l'image est conçue comme produite par un langage spécifique.", hour: "12:33", category: "Music", place: Address(street: "112 Av. de la République", city: "Montgeron", postalCode: "91230", country: "FRANCE", localisation: GeoPoint(latitude: 48.862725, longitude: 2.287592))), userDetailViewModel: UserDetailViewModel(eventEntry: [EventEntry(picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Kyrie_Irving_-_51831772061_01_%28cropped%29.jpg/1024px-Kyrie_Irving_-_51831772061_01_%28cropped%29.jpg", title: "NBA", dateCreation: Date.now, poster: "https://img.freepik.com/photos-gratuite/vaisseau-spatial-orbite-autour-planete-dans-superbe-decor-spatial-genere-par-ia_188544-15610.jpg?t=st=1735041951~exp=1735045551~hmac=9a2fa593903e1ecc1fb77937beca379c4f593ad080b7107e495c9cbb4ec72915&w=1800", description: "Une image est une représentation visuelle, voire mentale, de quelque chose (objet, être vivant ou concept).Elle peut être naturelle (ombre, reflet) ou artificielle (sculpture, peinture, photographie), visuelle ou non, tangible ou conceptuelle (métaphore), elle peut entretenir un rapport de ressemblance directe avec son modèle ou au contraire y être liée par un rapport plus symbolique.Pour la sémiologie ou sémiotique, qui a développé tout un secteur de sémiotique visuelle, l'image est conçue comme produite par un langage spécifique.", hour: "12:33", category: "Music", place: Address(street: "112 Av. de la République", city: "Montgeron", postalCode: "91230", country: "FRANCE", localisation: GeoPoint(latitude: 48.862725, longitude: 2.287592)))], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate())
     }
 }

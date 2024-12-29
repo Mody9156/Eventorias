@@ -172,26 +172,26 @@ struct ViewCalendar: View {
     @Binding var searchText: String
     @StateObject var listViewModel: ListViewModel
     @State private var selectedDate = Date()
-    
+
     var availableDates: [Date] {
         let allDates = listViewModel.eventEntry.map { $0.dateCreation }
         return Array(Set(allDates)).sorted()
     }
-    
+
     var filteredEvents: [EventEntry] {
         let calendar = Calendar.current
         return listViewModel.eventEntry.filter {
             calendar.isDate($0.dateCreation, inSameDayAs: selectedDate)
         }
     }
-    
+
     var body: some View {
         VStack {
             // Affichage du DatePicker
             DatePicker("Sélectionnez une date", selection: $selectedDate, displayedComponents: .date)
                 .datePickerStyle(.graphical)
                 .padding()
-                .foregroundColor(.white) // Couleur du texte
+                .foregroundColor(.white)
                 .accentColor(Color("BackgroundDocument"))
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 12).fill(Color("Button").opacity(0.5)))
@@ -205,67 +205,52 @@ struct ViewCalendar: View {
                 Text("Date sélectionnée : \(selectedDate.formatted(date: .abbreviated, time: .omitted))")
                     .foregroundColor(.white)
                     .padding()
-                
+
                 List(filteredEvents, id: \.self) { event in
                     Section {
                         NavigationLink(destination: UserDetailView(eventEntry: event, userDetailViewModel: UserDetailViewModel(eventEntry: [event], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate())) {
-                            HStack{
-                                // Encodage de l'URL de l'image
-                               
-                                if let picture = event.picture{
+                            HStack(alignment: .top, spacing: 12) {
+                                // Affichage de l'image avec coins arrondis
+                                if let picture = event.picture {
                                     Image(picture)
                                         .resizable()
-                                        .cornerRadius(50)
-                                        .frame(width: 40, height: 40)
-                                        .padding()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 50, height: 50)
+                                        .clipShape(Circle())
                                 }
+
                              
-                                VStack(alignment: .leading) {
                                     Text(event.title)
                                         .font(.custom("Inter-Medium", size: 16))
-                                        .lineSpacing(24 - 16)
                                         .fontWeight(.medium)
-                                        .multilineTextAlignment(.leading)
-                                        .truncationMode(.tail)
                                         .lineLimit(1)
                                         .foregroundColor(.white)
-                                    
-                                    Text("\(FormatTime.formatDateString(event.dateCreation))")
+
+                                    Text(listViewModel.formatDateString(event.dateCreation))
                                         .font(.custom("Inter-Regular", size: 14))
-                                        .lineSpacing(20 - 14)
-                                        .fontWeight(.regular)
-                                        .multilineTextAlignment(.leading)
                                         .foregroundColor(.white)
-                                    
-                                    Image(event.poster)
-                                           .resizable()
-                                           .scaledToFit()
-                                           .frame(width: 200, height: 200)
-                                           .clipped()
-                                    
-                                }
-                                
-                                Spacer()
-                                
-                                // Encodage de l'URL de l'affiche
-                                if let encodedPosterURL = event.poster.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-                                   let posterURL = URL(string: encodedPosterURL) {
-                                    AsyncImage(url: posterURL) { image in
-                                        image
-                                            .resizable()
-                                    } placeholder: {
-                                        ProgressView()
+
+                                    if let poster = event.poster.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                                       let posterURL = URL(string: poster) {
+                                        AsyncImage(url: posterURL) { image in
+                                            image
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                        } placeholder: {
+                                            ProgressView()
+                                        }
+                                        .frame(width: 120, height: 80)
+                                        .cornerRadius(8)
                                     }
-                                    .frame(width: 136, height: 80)
-                                    .cornerRadius(12)
-                                }
+                               
+                                Spacer()
                             }
+                            .padding(.vertical, 8)
                         }
                     }
                     .listRowBackground(
                         RoundedRectangle(cornerRadius: 16)
                             .fill(Color("BackgroundDocument"))
-                            .frame(width: 358, height: 80)
                             .padding(2)
                     )
                 }
@@ -282,7 +267,6 @@ struct ViewCalendar: View {
         .padding()
     }
 }
-
 
 struct ToggleViewButton: View {
     @Binding var calendar : Bool
@@ -337,7 +321,7 @@ struct ViewModeList: View {
                                 .lineLimit(1)
                                 .foregroundColor(.white)
                             
-                            Text("\(FormatTime.formatDateString(entry.dateCreation))")
+                            Text("\(listViewModel.formatDateString(entry.dateCreation))")
                                 .font(.custom("Inter-Regular", size: 14))
                                 .lineSpacing(20 - 14)
                                 .fontWeight(.regular)

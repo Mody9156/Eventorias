@@ -28,7 +28,10 @@ class UserDetailViewModel: ObservableObject{
         let date = Date.stringFromHour(hour)
         return date
     }
-    
+    func formatDateString(_ date:Date) -> String {
+        let date = Date.stringFromDate(date)
+        return date
+    }
     //Config Key
     func loadAPIKey() throws -> String {
         if let path = Bundle.main.path(forResource: "Config", ofType: "plist"),
