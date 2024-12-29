@@ -77,55 +77,55 @@ struct AddEventView: View {
                     }
                     .pickerStyle(.segmented)
                     
-//                     Image Selection Button
+                    //                     Image Selection Button
                     HStack {
                         PhotosPicker(selection: $selectedItem, matching: .images, photoLibrary: .shared()) {
-                                        ZStack {
-                                            Rectangle()
-                                                .frame(width: 72, height: 72)
-                                                .foregroundColor(Color("Button"))
-                                                .cornerRadius(16)
-                                            Image(systemName: "paperclip")
-                                                .foregroundColor(.black)
-                                                .font(.system(size: 36))
-                                        }
-                                    }
-                                    .onChange(of: selectedItem) { newItem in
-                                        Task {
-                                            if let selectedItem = selectedItem {
-                                                do {
-                                                    // Utilisation de loadTransferable pour récupérer les données
-                                                    if let data = try await selectedItem.loadTransferable(type: Data.self) {
-                                                        print("Data de l'image : \(data)") // Affiche les données de l'image
-
-                                                        selectedImageData = data
-
-                                                        // Upload de l'image vers Firebase Storage
-                                                        await addEventViewModel.uploadImageToFirebaseStorage(imageData: data)
-
-                                                        // Vérifier si l'URL de l'image est bien obtenue
-                                                        if let imageUrl = addEventViewModel.imageUrl {
-                                                            print("URL de l'image téléchargée : \(imageUrl)")
-                                                            self.imageUrl = imageUrl
-                                                        } else {
-                                                            print("Erreur : L'URL de l'image n'a pas été récupérée.")
-                                                        }
-                                                    }
-                                                } catch {
-                                                    print("Erreur lors de la récupération des données de l'image : \(error.localizedDescription)")
-                                                }
+                            ZStack {
+                                Rectangle()
+                                    .frame(width: 72, height: 72)
+                                    .foregroundColor(Color("Button"))
+                                    .cornerRadius(16)
+                                Image(systemName: "paperclip")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: 36))
+                            }
+                        }
+                        .onChange(of: selectedItem) { newItem in
+                            Task {
+                                if let selectedItem = selectedItem {
+                                    do {
+                                        // Utilisation de loadTransferable pour récupérer les données
+                                        if let data = try await selectedItem.loadTransferable(type: Data.self) {
+                                            print("Data de l'image : \(data)") // Affiche les données de l'image
+                                            
+                                            selectedImageData = data
+                                            
+                                            // Upload de l'image vers Firebase Storage
+                                            await addEventViewModel.uploadImageToFirebaseStorage(imageData: data)
+                                            
+                                            // Vérifier si l'URL de l'image est bien obtenue
+                                            if let imageUrl = addEventViewModel.imageUrl {
+                                                print("URL de l'image téléchargée : \(imageUrl)")
+                                                self.imageUrl = imageUrl
+                                            } else {
+                                                print("Erreur : L'URL de l'image n'a pas été récupérée.")
                                             }
                                         }
+                                    } catch {
+                                        print("Erreur lors de la récupération des données de l'image : \(error.localizedDescription)")
                                     }
+                                }
+                            }
+                        }
                     }
-
+                    
                     // Affichage de l'image sélectionnée
                     if let selectedImage = selectedImage {
-                                   Image(uiImage: selectedImage)
-                                       .resizable()
-                                       .scaledToFit()
-                                       .frame(width: 150, height: 150)
-                               }
+                        Image(uiImage: selectedImage)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 150, height: 150)
+                    }
                     
                     if let errorMessage = locationCoordinate.errorMessage {
                         Text(errorMessage)
@@ -150,6 +150,17 @@ struct AddEventView: View {
                 .padding()
             }
         }
+        .navigationBarTitle("", displayMode: .inline) // Supprime le titre par défaut
+        .navigationBarItems(leading: Text("Creation of an event")
+            .font(.custom("Inter-SemiBold", size: 20)) // Utilise la police spécifiée
+            .fontWeight(.semibold) // Utilise font-weight: 600
+            .foregroundColor(.white) // Couleur du texte
+            .lineSpacing(24.2 - 20) // Line height
+            .tracking(0.02) // Letter spacing
+            .padding(.leading, 10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        )
+        .navigationBarBackButtonHidden(true) // Cache le bouton de retour
     }
     
     // Validation des champs et enregistrement
@@ -195,24 +206,6 @@ struct AddEventView: View {
     }
 }
 
-//// Structure pour la vue de sélection des fichiers
-//struct accessFilesView: UIViewControllerRepresentable {
-//    @Binding var selectedImage: UIImage?
-//    @Environment(\.presentationMode) var isPresented
-//
-//    func makeUIViewController(context: Context) -> UIImagePickerController {
-//        let imagePicker = UIImagePickerController()
-//        imagePicker.sourceType = .photoLibrary
-//        imagePicker.delegate = context.coordinator
-//        return imagePicker
-//    }
-//
-//    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
-//
-//    func makeCoordinator() -> CameraManager {
-//        return CameraManager(file: self)
-//    }
-//}
 
 struct CustomTexField: View {
     @Binding var text: String

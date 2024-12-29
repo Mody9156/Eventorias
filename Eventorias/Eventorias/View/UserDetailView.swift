@@ -1,10 +1,3 @@
-//
-//  UserDetailView.swift
-//  Eventorias
-//
-//  Created by KEITA on 01/12/2024.
-//
-
 import SwiftUI
 
 struct UserDetailView: View {
@@ -38,7 +31,6 @@ struct UserDetailView: View {
                             } placeholder: {
                                 ProgressView()
                             }
-//                        format: .dateTime.day().month().year())
                             
                             HStack {
                                 VStack(alignment: .leading) {
@@ -54,8 +46,7 @@ struct UserDetailView: View {
                                 }
                                 .padding()
                                 Spacer()
-                             
-                                .padding(.trailing,40)
+                                    .padding(.trailing,40)
                                 if let picture = eventEntry.picture{
                                     Image(picture)
                                         .resizable()
@@ -64,7 +55,6 @@ struct UserDetailView: View {
                                         .cornerRadius(50)
                                         .padding(.trailing,40)
                                 }
-
                             }
                             
                             ScrollView {
@@ -88,7 +78,7 @@ struct UserDetailView: View {
                                         .multilineTextAlignment(.leading)
                                         .lineLimit(2)
                                         .truncationMode(.tail)
-
+                                    
                                     HStack {
                                         Text("\(eventEntry.place.city),")
                                             .foregroundColor(.white)
@@ -110,8 +100,6 @@ struct UserDetailView: View {
                                             .lineLimit(1)
                                     }
                                 }
-                          
-
                                 
                                 Spacer()
                                 
@@ -131,22 +119,34 @@ struct UserDetailView: View {
                 }
             }
         }
+        .navigationBarTitle("", displayMode: .inline) // Supprime le titre par défaut
+        .navigationBarItems(leading: Text(eventEntry.title)
+            .font(.custom("Inter-SemiBold", size: 20)) // Utilise la police spécifiée
+            .fontWeight(.semibold) // Utilise font-weight: 600
+            .foregroundColor(.white) // Couleur du texte
+            .lineSpacing(24.2 - 20) // Line height
+            .tracking(0.02) // Letter spacing
+            .padding(.leading, 10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        )
+        .navigationBarBackButtonHidden(true) // Cache le bouton de retour
     }
-    private func fetchMapData(){
+    
+    private func fetchMapData() {
         let address = "\(eventEntry.place.street), \(eventEntry.place.postalCode) \(eventEntry.place.city), \(eventEntry.place.country)"
         locationCoordinate.geocodeAddress(address: address) { result in
-               switch result {
-               case .success(let coords):
-                   print("Coordonnées récupérées : \(coords.0), \(coords.1)")
-                   Task {
-                       let imageData = try await userDetailViewModel.showMapsStatic(Latitude: coords.0, Longitude: coords.1)
-                       if let image = UIImage(data: imageData) {
-                           maps = image
-                       }
-                   }
-               case .failure(let error):
-                   print("Erreur lors du géocodage : \(error.localizedDescription)")
-               }
-           }
+            switch result {
+            case .success(let coords):
+                print("Coordonnées récupérées : \(coords.0), \(coords.1)")
+                Task {
+                    let imageData = try await userDetailViewModel.showMapsStatic(Latitude: coords.0, Longitude: coords.1)
+                    if let image = UIImage(data: imageData) {
+                        maps = image
+                    }
+                }
+            case .failure(let error):
+                print("Erreur lors du géocodage : \(error.localizedDescription)")
+            }
+        }
     }
 }
