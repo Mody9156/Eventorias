@@ -11,7 +11,8 @@ struct UserDetailView: View {
     @State var longitude: Double = 0.0
     @State private var showError = false
     @State private var errorMessage = ""
-    
+    @Environment(\.dismiss) var dismiss
+
     var body: some View {
         VStack {
             ZStack {
@@ -126,18 +127,35 @@ struct UserDetailView: View {
                 }
             }
         }
-        .navigationBarTitle(Text(eventEntry.title), displayMode: .inline)
-        .navigationBarItems(leading: Text("")
-            .font(.custom("Inter-SemiBold", size: 20))
-            .fontWeight(.semibold)
-            .foregroundColor(.white)
-            .lineSpacing(24.2 - 20)
-            .tracking(0.02)
-            .padding(.leading, 10)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .accessibilityLabel("Event title: \(eventEntry.title)")
-        )
-        .navigationBarBackButtonHidden(false)
+//        .navigationBarTitle(Text("eventEntry.title"), displayMode: .inline)
+//        .navigationBarItems(leading: Text(eventEntry.title)
+//            .font(.custom("Inter-SemiBold", size: 20))
+//            .fontWeight(.semibold)
+//            .foregroundColor(.white)
+//            .lineSpacing(24.2 - 20)
+//            .tracking(0.02)
+//            .padding()
+//            .frame(maxWidth: .infinity, alignment: .leading)
+//            .accessibilityLabel("Event title: \(eventEntry.title)")
+//        )
+        .navigationTitle(eventEntry.title)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                                   dismiss()
+                               }) {
+                HStack {
+                    Image(systemName: "arrow.left.circle.fill")
+                        .foregroundColor(.white)
+                    Text(eventEntry.title)
+                        .font(.custom("Inter-SemiBold", size: 20))
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                }
+            }
+            }
+        }
     }
     
     private func fetchMapData() {
