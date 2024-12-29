@@ -42,7 +42,7 @@ struct UserDetailView: View {
                                     Label("\(eventEntry.hour)", image: "Time")
                                         .foregroundColor(.white)
                                         .frame(width: 109, height:24)
-                                        .accessibilityLabel("Event time: \(eventEntry.hour)")  heure
+                                        .accessibilityLabel("Event time: \(eventEntry.hour)")
                                 }
                                 .padding()
                                 Spacer()
