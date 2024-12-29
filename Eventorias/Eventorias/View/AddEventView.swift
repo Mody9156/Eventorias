@@ -6,40 +6,42 @@
 //
 import SwiftUI
 import PhotosUI
-import UIKit
 import CoreLocation
-import AVFoundation
+import FirebaseStorage
+import FirebaseFirestore
 
 struct AddEventView: View {
     @State var title = ""
     @State var description = ""
     @State private var date = Date()
-    @State private var imageURL: URL? = nil
     @State private var showCamera = false
     @State private var selectedImage: UIImage?
-    @State private var address : String = ""
-    @State var street : String = ""
-    @State var city : String = ""
-    @State var postalCode : String = ""
-    @State var country : String = ""
+    @State private var address: String = ""
+    @State var street: String = ""
+    @State var city: String = ""
+    @State var postalCode: String = ""
+    @State var country: String = ""
     @State var hours = Date()
-    @StateObject var addEventViewModel : AddEventViewModel
+    @StateObject var addEventViewModel: AddEventViewModel
     @Environment(\.dismiss) var dismiss
-    @StateObject var locationCoordinate : LocationCoordinate
-    @State private var latitude : Double = 0.0
-    @State private var longitude : Double = 0.0
+    @StateObject var locationCoordinate: LocationCoordinate
+    @State private var latitude: Double = 0.0
+    @State private var longitude: Double = 0.0
     @State var picture = UserDefaults.standard.string(forKey: "userPicture")
-    @State var file : String = ""
-    @State var showFile : Bool = false
-    var indexCategory = ["Music","Food","Book","Conference","Exhibition","Charity","Film"]
+    @State var file: String = ""
+    @State var showFile: Bool = false
+    var indexCategory = ["Music", "Food", "Book", "Conference", "Exhibition", "Charity", "Film"]
     @State private var selectedCategory = "Music"
+    @State private var selectedItem: PhotosPickerItem? = nil
+    @State private var selectedImageData: Data? = nil
+    @State private var imageUrl: String? = nil
     
     var body: some View {
         ZStack {
             Color("Background")
                 .ignoresSafeArea()
             ScrollView {
-                VStack{
+                VStack {
                     CustomTexField(text: $title, infos: "Title", placeholder: "New event")
                     CustomTexField(text: $description, infos: "Description", placeholder: "Tap here to enter your description")
                     
@@ -59,7 +61,7 @@ struct AddEventView: View {
                         }
                     }
                     
-                    VStack {
+                    VStack{
                         AddressCollect(text: "Street", textField: $street, placeholder: "Street")
                         AddressCollect(text: "City", textField: $city, placeholder: "City")
                         AddressCollect(text: "PostalCode", textField: $postalCode, placeholder: "PostalCode")
@@ -75,42 +77,35 @@ struct AddEventView: View {
                     }
                     .pickerStyle(.segmented)
                     
-                    HStack(alignment: .center){
-                        Button(action: {
-                            self.showCamera.toggle()
-                        }) {
-                            ZStack {
-                                Rectangle()
-                                    .frame(width: 72, height: 72)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(16)
-                                Image(systemName: "camera")
-                                    .foregroundColor(.black)
-                                    .font(.system(size: 36))
+                    
+                    HStack{
+                        PhotosPicker(
+                            selection: $selectedItem,
+                            matching: .images,
+                            photoLibrary: .shared()) {
+                                Text("Select a photo")
                             }
-                        }
-                        .fullScreenCover(isPresented: $showCamera) {
-                            accessCameraView(selectedImage: $selectedImage)
-                                .background(.black)
-                        }
-                        
-                        Button(action: {
-                            self.showFile.toggle()
-                        }) {
-                            ZStack {
-                                Rectangle()
-                                    .frame(width: 72, height: 72)
-                                    .foregroundColor(Color("Button"))
-                                    .cornerRadius(16)
-                                Image(systemName: "paperclip")
-                                    .foregroundColor(.black)
-                                    .font(.system(size: 36))
+                            .onChange(of: selectedItem) { newItem in
+                                Task {
+                                    // Récupérer les données de l'image sélectionnée
+                                    if let selectedItem, let data = try? await selectedItem.loadTransferable(type: Data.self) {
+                                        selectedImageData = data
+                                        
+                                        // Upload de l'image vers Firebase Storage
+                                        await addEventViewModel.uploadImageToFirebaseStorage(imageData: data)
+                                        
+                                        // Mettre à jour l'URL de l'image
+                                        imageUrl = addEventViewModel.imageUrl
+                                    }
+                                }
                             }
-                        }
-                        .fullScreenCover(isPresented: $showFile) {
-                            accessFilesView(selectedImage: $selectedImage)
-                                .background(.black)
-                        }
+                    }
+                    
+                    if let selectedImageData, let uiImage = UIImage(data: selectedImageData) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 200, height: 200)
                     }
                     
                     if let errorMessage = locationCoordinate.errorMessage {
@@ -119,62 +114,9 @@ struct AddEventView: View {
                     }
                     
                     Spacer()
-                    
+
                     Button(action: {
-                        // Validation des champs
-                        if title.isEmpty || description.isEmpty || street.isEmpty || city.isEmpty || postalCode.isEmpty || country.isEmpty {
-                            locationCoordinate.errorMessage = "Tous les champs doivent être remplis."
-                            return
-                        }
-                        
-                        address = "\(street), \(city) \(postalCode), \(country)"
-                        
-                        locationCoordinate.geocodeAddress(address: address) { result in
-                            switch result {
-                            case .success(let coord):
-                                latitude = coord.0
-                                longitude = coord.1
-                                print("Coordonnées récupérées : \(coord.0), \(coord.1)")
-                                
-                                // Vérifiez si une image a été sélectionnée
-                                guard let selectedImage = selectedImage else {
-                                    print("Aucune image sélectionnée.")
-                                    return
-                                }
-                                guard let picture = picture else {
-                                    return
-                                }
-                               
-                                guard let filePath = addEventViewModel.saveImageToDocumentsDirectory(image: selectedImage, fileName: "\(title).jpeg") else {
-                                    print("Erreur lors de la sauvegarde de l'image.")
-
-                                    return
-                                }
-                                print("Image sauvegardée à : \(filePath)")
-
-                                let formattedHour = addEventViewModel.formatHourString(hours)
-                                print("Heure formatée: \(formattedHour)")
-                                
-                                addEventViewModel.saveToFirestore(
-                                    picture: picture,
-                                    title: title,
-                                    dateCreation: date,
-                                    poster: filePath,
-                                    description: description,
-                                    hour:formattedHour,
-                                    category: selectedCategory,
-                                    street: street,
-                                    city: city,
-                                    postalCode: postalCode,
-                                    country: country,
-                                    latitude: latitude,
-                                    longitude: longitude
-                                )
-                                
-                            case .failure(let error):
-                                print("Erreur lors du géocodage : \(error.localizedDescription)")
-                            }
-                        }
+                        validateAndSave()
                     }) {
                         ZStack {
                             Rectangle()
@@ -189,7 +131,44 @@ struct AddEventView: View {
             }
         }
     }
+    
+    private func validateAndSave() {
+        if title.isEmpty || description.isEmpty || street.isEmpty || city.isEmpty || postalCode.isEmpty || country.isEmpty {
+            locationCoordinate.errorMessage = "Tous les champs doivent être remplis."
+            return
+        }
+        
+        address = "\(street), \(city) \(postalCode), \(country)"
+        locationCoordinate.geocodeAddress(address: address) { result in
+            switch result {
+            case .success(let coord):
+                latitude = coord.0
+                longitude = coord.1
+                guard let imageUrl = imageUrl else { return }
+                let formattedHour = addEventViewModel.formatHourString(hours)
+                addEventViewModel.saveToFirestore(
+                    picture: picture ?? "",
+                    title: title,
+                    dateCreation: date,
+                    poster: imageUrl,
+                    description: description,
+                    hour: formattedHour,
+                    category: selectedCategory,
+                    street: street,
+                    city: city,
+                    postalCode: postalCode,
+                    country: country,
+                    latitude: latitude,
+                    longitude: longitude
+                )
+            case .failure(let error):
+                print("Erreur lors du géocodage : \(error.localizedDescription)")
+            }
+        }
+    }
+
 }
+
 
 struct CustomTexField: View {
     @Binding var text: String
@@ -212,46 +191,6 @@ struct CustomTexField: View {
             }
             .padding()
         }
-    }
-}
-
-struct accessCameraView: UIViewControllerRepresentable {
-    @Binding var selectedImage: UIImage?
-    @Environment(\.presentationMode) var isPresented
-    
-    func makeUIViewController(context: Context) -> UIImagePickerController {
-        let imagePicker = UIImagePickerController()
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            imagePicker.sourceType = .camera
-        } else {
-            imagePicker.sourceType = .photoLibrary
-        }
-        imagePicker.delegate = context.coordinator
-        return imagePicker
-    }
-    
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
-    
-    func makeCoordinator() -> CameraManager {
-        return CameraManager(parent: self)
-    }
-}
-
-struct accessFilesView: UIViewControllerRepresentable {
-    @Binding var selectedImage: UIImage?
-    @Environment(\.presentationMode) var isPresented
-    
-    func makeUIViewController(context: Context) -> UIImagePickerController {
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.delegate = context.coordinator
-        return imagePicker
-    }
-    
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
-    
-    func makeCoordinator() -> CameraManager {
-        return CameraManager(file: self)
     }
 }
 
@@ -280,8 +219,3 @@ struct AddressCollect: View {
     }
 }
 
-struct AddEventView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddEventView(addEventViewModel: AddEventViewModel(), locationCoordinate: LocationCoordinate())
-    }
-}

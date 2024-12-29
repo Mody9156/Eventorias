@@ -172,19 +172,19 @@ struct ViewCalendar: View {
     @Binding var searchText: String
     @StateObject var listViewModel: ListViewModel
     @State private var selectedDate = Date()
-
+    
     var availableDates: [Date] {
         let allDates = listViewModel.eventEntry.map { $0.dateCreation }
         return Array(Set(allDates)).sorted()
     }
-
+    
     var filteredEvents: [EventEntry] {
         let calendar = Calendar.current
         return listViewModel.eventEntry.filter {
             calendar.isDate($0.dateCreation, inSameDayAs: selectedDate)
         }
     }
-
+    
     var body: some View {
         VStack {
             // Affichage du DatePicker
@@ -195,7 +195,7 @@ struct ViewCalendar: View {
                 .accentColor(Color("BackgroundDocument"))
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 12).fill(Color("Button").opacity(0.5)))
-
+            
             // Affichage des événements liés à la date sélectionnée
             if filteredEvents.isEmpty {
                 Text("Aucun événement trouvé pour cette date.")
@@ -205,7 +205,7 @@ struct ViewCalendar: View {
                 Text("Date sélectionnée : \(selectedDate.formatted(date: .abbreviated, time: .omitted))")
                     .foregroundColor(.white)
                     .padding()
-
+                
                 List(filteredEvents, id: \.self) { event in
                     Section {
                         NavigationLink(destination: UserDetailView(eventEntry: event, userDetailViewModel: UserDetailViewModel(eventEntry: [event], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate())) {
@@ -218,7 +218,7 @@ struct ViewCalendar: View {
                                         .frame(width: 50, height: 50)
                                         .clipShape(Circle())
                                 }
-
+                                
                                 VStack{
                                     Text(event.title)
                                         .font(.custom("Inter-Medium", size: 16))
@@ -230,19 +230,19 @@ struct ViewCalendar: View {
                                         .font(.custom("Inter-Regular", size: 14))
                                         .foregroundColor(.white)
                                 }
-                                    if let poster = event.poster.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-                                       let posterURL = URL(string: poster) {
-                                        AsyncImage(url: posterURL) { image in
-                                            image
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fit)
-                                        } placeholder: {
-                                            ProgressView()
-                                        }
-                                        .frame(width: 120, height: 80)
-                                        .cornerRadius(8)
+                                if let poster = event.poster.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                                   let posterURL = URL(string: poster) {
+                                    AsyncImage(url: posterURL) { image in
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                    } placeholder: {
+                                        ProgressView()
                                     }
-                               
+                                    .frame(width: 120, height: 80)
+                                    .cornerRadius(8)
+                                }
+                                
                                 Spacer()
                             }
                             .navigationBarTitle(event.title)
@@ -295,9 +295,9 @@ struct ToggleViewButton: View {
 struct ViewModeList: View {
     @Binding var searchText: String
     @StateObject var listViewModel: ListViewModel
-
+    
     var body: some View {
-        NavigationView { // Ajout d'une navigation pour la barre de titre
+        NavigationView {
             List {
                 Section {
                     ForEach(listViewModel.filterTitle(searchText), id: \.self) { entry in
@@ -309,7 +309,7 @@ struct ViewModeList: View {
                                     .frame(width: 40, height: 40)
                                     .padding()
                             }
-
+                            
                             VStack(alignment: .leading) {
                                 Text(entry.title)
                                     .font(.custom("Inter-Medium", size: 16))
@@ -319,7 +319,7 @@ struct ViewModeList: View {
                                     .truncationMode(.tail)
                                     .lineLimit(1)
                                     .foregroundColor(.white)
-
+                                
                                 Text("\(listViewModel.formatDateString(entry.dateCreation))")
                                     .font(.custom("Inter-Regular", size: 14))
                                     .lineSpacing(20 - 14)
@@ -327,28 +327,25 @@ struct ViewModeList: View {
                                     .multilineTextAlignment(.leading)
                                     .foregroundColor(.white)
                             }
-
+                            
                             Spacer()
-
-                            // Encodage de l'URL de l'affiche
-                            if let encodedPosterURL = entry.poster.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-                               let posterURL = URL(string: encodedPosterURL) {
-                                AsyncImage(url: posterURL) { image in
+                           
+                            AsyncImage(url: URL(string:entry.poster)) { image in
                                     image
                                         .resizable()
+                                        .aspectRatio(contentMode: .fit)
                                 } placeholder: {
                                     ProgressView()
                                 }
-                                .frame(width: 136, height: 80)
-                                .cornerRadius(12)
+                                .frame(width: 120, height: 80)
+                                .cornerRadius(8)
                             }
-                        }
+                            
                         .overlay(NavigationLink(destination: {
                             UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate())
                         }, label: {
                             EmptyView()
                         }))
-                        .navigationBarTitle(entry.title)
                     }
                 }
                 .listRowBackground(

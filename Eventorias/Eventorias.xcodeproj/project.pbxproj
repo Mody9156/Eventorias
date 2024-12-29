@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2302CE902D198AD6005F6EB4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2302CE8F2D198AD6005F6EB4 /* User.swift */; };
-		23030C6A2D214DF60073A454 /* FormatTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23030C692D214DF60073A454 /* FormatTime.swift */; };
 		230474212D1091C80067BB54 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230474202D1091C80067BB54 /* AddEventView.swift */; };
 		2311CB492D118BEB00518BC5 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2311CB482D118BEB00518BC5 /* CameraManager.swift */; };
 		2311CB4B2D1199A700518BC5 /* AddEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2311CB4A2D1199A700518BC5 /* AddEventViewModel.swift */; };
@@ -77,7 +76,6 @@
 
 /* Begin PBXFileReference section */
 		2302CE8F2D198AD6005F6EB4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		23030C692D214DF60073A454 /* FormatTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatTime.swift; sourceTree = "<group>"; };
 		230474202D1091C80067BB54 /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
 		2311CB452D11839800518BC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2311CB462D11849000518BC5 /* Eventorias.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Eventorias.entitlements; sourceTree = "<group>"; };
@@ -232,7 +230,6 @@
 				2360608C2D0DE47200E3504F /* ListViewModel.swift */,
 				2311CB4A2D1199A700518BC5 /* AddEventViewModel.swift */,
 				23C8F6C22D16FF6B003E473C /* LocationCoordinate.swift */,
-				23030C692D214DF60073A454 /* FormatTime.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -512,7 +509,6 @@
 				236060B22D0DE48200E3504F /* GoogleMapView.swift in Sources */,
 				230474212D1091C80067BB54 /* AddEventView.swift in Sources */,
 				236060812D0DE43B00E3504F /* ProfileView.swift in Sources */,
-				23030C6A2D214DF60073A454 /* FormatTime.swift in Sources */,
 				236060802D0DE43B00E3504F /* RegistrationView.swift in Sources */,
 				235920272D1F180C00699E99 /* FirebaseAuthService.swift in Sources */,
 				23C8F6C32D16FF6B003E473C /* LocationCoordinate.swift in Sources */,
