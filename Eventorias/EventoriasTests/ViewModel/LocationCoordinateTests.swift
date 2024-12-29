@@ -49,7 +49,7 @@ class LocationCoordinateTests: XCTestCase {
     @MainActor func testGeocodeAddress_InvalidAddress() {
         // Créer une attente pour que la géocodification soit terminée
         let expectation = self.expectation(description: "Géocodage échoué")
-        
+
         // Adresse invalide à tester
         let address = "Invalid Address, XYZ"
         
@@ -59,7 +59,7 @@ class LocationCoordinateTests: XCTestCase {
                 XCTFail("Le géocodage a réussi alors que l'adresse était invalide")
             case .failure(let error):
                 // Vérifiez que l'erreur contient le domaine "GeocodeError"
-                XCTAssertEqual((error as NSError).domain, "GeocodeError", "Le domaine de l'erreur n'est pas celui attendu")
+                XCTFail("Le géocodage a réussi alors que l'adresse était invalide")
             }
             
             expectation.fulfill()
