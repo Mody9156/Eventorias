@@ -1,25 +1,17 @@
-//
-//  RegistrationViewModel.swift
-//  Eventorias
-//
-//  Created by KEITA on 17/12/2024.
-//
-
 import Foundation
 import PhotosUI
 import CoreLocation
 import FirebaseStorage
-import FirebaseAppCheckInterop
-import FirebaseAuthInterop
-import FirebaseCoreExtension
-import FirebaseStorageInternal
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseAuth
 
 class AddEventViewModel: ObservableObject {
     let eventRepository: EventManagerProtocol
     
     // Pour stocker l'URL de l'image téléchargée
     @Published var imageUrl: String?
-    
+
     init(eventRepository: EventManagerProtocol = EventRepository()) {
         self.eventRepository = eventRepository
     }
@@ -88,15 +80,20 @@ class AddEventViewModel: ObservableObject {
     
     // Téléchargement d'une image dans Firebase Storage
     func uploadImageToFirebaseStorage(imageData: Data) async {
+        // Téléchargement de l'image
         await eventRepository.uploadImageToFirebaseStorage(imageData: imageData) { [weak self] imageUrl, error in
             if let error = error {
+                // Gestion des erreurs de téléchargement
                 print("Erreur lors du téléchargement de l'image : \(error.localizedDescription)")
                 return
             }
             
             if let imageUrl = imageUrl {
+                // Mise à jour de l'URL dans le ViewModel
                 print("Image téléchargée avec succès. URL : \(imageUrl)")
-                self?.imageUrl = imageUrl // Mise à jour de l'URL dans le ViewModel
+                self?.imageUrl = imageUrl
+                
+                // Sauvegarder l'URL dans Firestore après téléchargement
                 self?.saveImageUrlToFirestore(url: imageUrl)
             }
         }
@@ -104,10 +101,15 @@ class AddEventViewModel: ObservableObject {
     
     // Sauvegarde de l'URL de l'image dans Firestore
     func saveImageUrlToFirestore(url: String) {
-        eventRepository.saveImageUrlToFirestore(url: url) { success, error in
+        // Assurez-vous d'avoir l'ID de l'événement avant de sauvegarder l'URL
+        // Par exemple, si l'événement est déjà sauvegardé, récupérez l'ID du document
+        let eventID = "ID de l'événement à mettre ici" // Vous devez obtenir l'ID réel du document Firestore de l'événement
+        
+        eventRepository.saveImageUrlToFirestore(url: url, eventID: eventID) { success, error in
             if success {
                 print("URL de l'image sauvegardée avec succès dans Firestore.")
             } else if let error = error {
+                // Gestion des erreurs lors de la sauvegarde de l'URL
                 print("Erreur lors de la sauvegarde de l'URL dans Firestore : \(error.localizedDescription)")
             }
         }

@@ -302,81 +302,59 @@ struct ViewModeList: View {
                 Section {
                     ForEach(listViewModel.filterTitle(searchText), id: \.self) { entry in
                         HStack {
-                            // Afficher une image de profil si disponible
-                            if let picture = entry.picture, let pictureURL = URL(string: picture) {
-                                AsyncImage(url: pictureURL) { image in
-                                    image
-                                        .resizable()
-                                        .scaledToFill()
-                                } placeholder: {
-                                    ProgressView()
-                                }
-                                .frame(width: 40, height: 40)
-                                .cornerRadius(20)
-                                .padding()
-                            } else {
-                                Circle()
-                                    .fill(Color.gray)
+                            if let picture = entry.picture {
+                                Image(picture)
+                                    .resizable()
+                                    .cornerRadius(50)
                                     .frame(width: 40, height: 40)
                                     .padding()
                             }
                             
                             VStack(alignment: .leading) {
-                                // Afficher le titre de l'événement
                                 Text(entry.title)
                                     .font(.custom("Inter-Medium", size: 16))
+                                    .lineSpacing(24 - 16)
                                     .fontWeight(.medium)
+                                    .multilineTextAlignment(.leading)
+                                    .truncationMode(.tail)
                                     .lineLimit(1)
                                     .foregroundColor(.white)
                                 
-                                // Afficher la date de création formatée
                                 Text("\(listViewModel.formatDateString(entry.dateCreation))")
                                     .font(.custom("Inter-Regular", size: 14))
+                                    .lineSpacing(20 - 14)
                                     .fontWeight(.regular)
+                                    .multilineTextAlignment(.leading)
                                     .foregroundColor(.white)
                             }
                             
                             Spacer()
-                            
-                            // Afficher l'affiche de l'événement si disponible
                             if let poster = entry.poster, let posterURL = URL(string: poster) {
                                 AsyncImage(url: posterURL) { image in
                                     image
-                                        .resizable()
-                                        .scaledToFit()
+                                        .resizable()                   // Redimensionner l'image
+                                        .scaledToFit()                 // Maintenir l'aspect de l'image
+                                        .cornerRadius(8)               // Bords arrondis
+                                        .frame(width: 120, height: 80) // Dimensions fixées
                                 } placeholder: {
+                                    // Placeholder pour afficher pendant le téléchargement
                                     ProgressView()
+                                        .progressViewStyle(CircularProgressViewStyle(tint: .white)) // Style de la barre de progression
                                 }
-                                .frame(width: 120, height: 80)
-                                .cornerRadius(8)
-                            } else {
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(Color.gray.opacity(0.3))
-                                    .frame(width: 120, height: 80)
                             }
+
                         }
-                        .padding(.vertical, 4)
-                        .background(
-                            NavigationLink(destination: {
-                                UserDetailView(
-                                    eventEntry: entry,
-                                    userDetailViewModel: UserDetailViewModel(
-                                        eventEntry: [entry],
-                                        listViewModel: listViewModel,
-                                        googleMapView: GoogleMapView()
-                                    ),
-                                    locationCoordinate: LocationCoordinate()
-                                )
-                            }) {
-                                EmptyView()
-                            }
-                            .opacity(0) // Rendre le lien invisible
-                        )
+                        .overlay(NavigationLink(destination: {
+                            UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate())
+                        }, label: {
+                            EmptyView()
+                        }))
                     }
                 }
                 .listRowBackground(
                     RoundedRectangle(cornerRadius: 16)
                         .fill(Color("BackgroundDocument"))
+                        .frame(width: 358, height: 80)
                         .padding(2)
                 )
             }
@@ -388,7 +366,6 @@ struct ViewModeList: View {
                     try? await listViewModel.getAllProducts()
                 }
             }
-            .navigationTitle("Event List")
         }
     }
 }

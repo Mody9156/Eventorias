@@ -61,7 +61,7 @@ struct AddEventView: View {
                         }
                     }
                     
-                    VStack{
+                    VStack {
                         AddressCollect(text: "Street", textField: $street, placeholder: "Street")
                         AddressCollect(text: "City", textField: $city, placeholder: "City")
                         AddressCollect(text: "PostalCode", textField: $postalCode, placeholder: "PostalCode")
@@ -77,36 +77,55 @@ struct AddEventView: View {
                     }
                     .pickerStyle(.segmented)
                     
-                    
-                    HStack{
-                        PhotosPicker(
-                            selection: $selectedItem,
-                            matching: .images,
-                            photoLibrary: .shared()) {
-                                Text("Select a photo")
-                            }
-                            .onChange(of: selectedItem) { newItem in
-                                Task {
-                                    // Récupérer les données de l'image sélectionnée
-                                    if let selectedItem, let data = try? await selectedItem.loadTransferable(type: Data.self) {
-                                        selectedImageData = data
-                                        
-                                        // Upload de l'image vers Firebase Storage
-                                        await addEventViewModel.uploadImageToFirebaseStorage(imageData: data)
-                                        
-                                        // Mettre à jour l'URL de l'image
-                                        imageUrl = addEventViewModel.imageUrl
+//                     Image Selection Button
+                    HStack {
+                        PhotosPicker(selection: $selectedItem, matching: .images, photoLibrary: .shared()) {
+                                        ZStack {
+                                            Rectangle()
+                                                .frame(width: 72, height: 72)
+                                                .foregroundColor(Color("Button"))
+                                                .cornerRadius(16)
+                                            Image(systemName: "paperclip")
+                                                .foregroundColor(.black)
+                                                .font(.system(size: 36))
+                                        }
                                     }
-                                }
-                            }
+                                    .onChange(of: selectedItem) { newItem in
+                                        Task {
+                                            if let selectedItem = selectedItem {
+                                                do {
+                                                    // Utilisation de loadTransferable pour récupérer les données
+                                                    if let data = try await selectedItem.loadTransferable(type: Data.self) {
+                                                        print("Data de l'image : \(data)") // Affiche les données de l'image
+
+                                                        selectedImageData = data
+
+                                                        // Upload de l'image vers Firebase Storage
+                                                        await addEventViewModel.uploadImageToFirebaseStorage(imageData: data)
+
+                                                        // Vérifier si l'URL de l'image est bien obtenue
+                                                        if let imageUrl = addEventViewModel.imageUrl {
+                                                            print("URL de l'image téléchargée : \(imageUrl)")
+                                                            self.imageUrl = imageUrl
+                                                        } else {
+                                                            print("Erreur : L'URL de l'image n'a pas été récupérée.")
+                                                        }
+                                                    }
+                                                } catch {
+                                                    print("Erreur lors de la récupération des données de l'image : \(error.localizedDescription)")
+                                                }
+                                            }
+                                        }
+                                    }
                     }
-                    
-                    if let selectedImageData, let uiImage = UIImage(data: selectedImageData) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 200, height: 200)
-                    }
+
+                    // Affichage de l'image sélectionnée
+                    if let selectedImage = selectedImage {
+                                   Image(uiImage: selectedImage)
+                                       .resizable()
+                                       .scaledToFit()
+                                       .frame(width: 150, height: 150)
+                               }
                     
                     if let errorMessage = locationCoordinate.errorMessage {
                         Text(errorMessage)
@@ -114,7 +133,8 @@ struct AddEventView: View {
                     }
                     
                     Spacer()
-
+                    
+                    // Validation du formulaire
                     Button(action: {
                         validateAndSave()
                     }) {
@@ -132,6 +152,7 @@ struct AddEventView: View {
         }
     }
     
+    // Validation des champs et enregistrement
     private func validateAndSave() {
         if title.isEmpty || description.isEmpty || street.isEmpty || city.isEmpty || postalCode.isEmpty || country.isEmpty {
             locationCoordinate.errorMessage = "Tous les champs doivent être remplis."
@@ -144,7 +165,13 @@ struct AddEventView: View {
             case .success(let coord):
                 latitude = coord.0
                 longitude = coord.1
-                guard let imageUrl = imageUrl else { return }
+                
+                // Vérification de l'URL de l'image avant de sauvegarder
+                guard let imageUrl = imageUrl else {
+                    print("Erreur : Impossible de créer une image à partir des données.")
+                    return
+                }
+                
                 let formattedHour = addEventViewModel.formatHourString(hours)
                 addEventViewModel.saveToFirestore(
                     picture: picture ?? "",
@@ -166,9 +193,26 @@ struct AddEventView: View {
             }
         }
     }
-
 }
 
+//// Structure pour la vue de sélection des fichiers
+//struct accessFilesView: UIViewControllerRepresentable {
+//    @Binding var selectedImage: UIImage?
+//    @Environment(\.presentationMode) var isPresented
+//
+//    func makeUIViewController(context: Context) -> UIImagePickerController {
+//        let imagePicker = UIImagePickerController()
+//        imagePicker.sourceType = .photoLibrary
+//        imagePicker.delegate = context.coordinator
+//        return imagePicker
+//    }
+//
+//    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
+//
+//    func makeCoordinator() -> CameraManager {
+//        return CameraManager(file: self)
+//    }
+//}
 
 struct CustomTexField: View {
     @Binding var text: String
@@ -218,4 +262,3 @@ struct AddressCollect: View {
         }
     }
 }
-
