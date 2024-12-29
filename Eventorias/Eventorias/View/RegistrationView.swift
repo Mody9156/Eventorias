@@ -14,15 +14,19 @@ struct RegistrationView: View {
     @State var firstName = ""
     @State var lastName = ""
     @State var picture = ""
-    @State var selectedItems : [PhotosPickerItem] = []
     @StateObject  var loginViewModel : LoginViewModel
-    @State private var savedFilePath: String?
     @Environment(\.dismiss) var dismiss
-    @State private var selectedImage: UIImage? = nil
     @State private var isLoading = false
     @State private var errorMessage: String? = nil
-  
+    @State private var showCamera = false
+    @State private var selectedPicture = "ArtExhibition"
     
+    var pictures = ["ArtExhibition", "BookSigning", "CharityRun", "FilmScreening","FoodFaire","MusicFestival","TechConference"]
+    let columns = [
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10)
+    ]
     var body: some View {
         NavigationStack {
             ZStack {
@@ -37,50 +41,35 @@ struct RegistrationView: View {
                     AuthFieldsView(textField: $lastName, password: $password, text: "lastName", title: "LastName")
                     AuthFieldsView(textField: $firstName, password: $password, text: "firstName", title: "FirstName")
                     AuthFieldsView(textField: $email, password: $password, text: "email", title: "Email")
-                    
-                    // Section ajoutée
-                    if let selectedImage = selectedImage {
-                        Image(uiImage: selectedImage)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 200, height: 200)
-                            .cornerRadius(10)
-                    } else {
-                        Text("Aucune image sélectionnée.")
-                            .foregroundColor(.gray)
-                    }
-                    
-                    if isLoading {
-                        ProgressView("Chargement...")
-                    }
-                    
-                    if let errorMessage = errorMessage {
-                        Text(errorMessage)
-                            .foregroundColor(.red)
-                            .multilineTextAlignment(.center)
-                    }
-                    
-                    PhotosPicker(selection: $selectedItems, matching: .images) {
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 52, height: 52)
-                                .foregroundColor(Color("Button"))
-                                .cornerRadius(16)
-                            
-                            Image("attach")
-                        }
-                    }
-                    .onChange(of: selectedItems) { newValue in
-                        for item in newValue {
-                            Task {
-                                if let data = try? await item.loadTransferable(type: Data.self), let image = UIImage(data: data) {
-                                    savedFilePath = loginViewModel.saveImageToTemporaryDirectory(image: image, fileName: "\(firstName).jpg")
-                                    selectedImage = image
+                    VStack {
+                        Text("Choose your Avatar")
+                                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                                        .foregroundColor(.white)
+                                        .padding()
+
+                        ScrollView {
+                            LazyVGrid(columns: columns, spacing: 20) {
+                                ForEach(pictures, id: \.self) { picture in
+                                    Button(action: {
+                                        selectedPicture = picture
+                                    }) {
+                                        Image(picture)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 80, height: 80)
+                                            .cornerRadius(10)
+                                            .shadow(radius: 5)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 50)
+                                                    .stroke(selectedPicture == picture ? Color.white : Color.clear, lineWidth: 4) )
+                                    }
                                 }
                             }
+                            .padding()
+                            
                         }
                     }
-                    
+                    .padding()
                     ZStack {
                         Rectangle()
                             .frame(height: 50)
@@ -88,14 +77,8 @@ struct RegistrationView: View {
                         
                         Button {
                             if loginViewModel.errorMessage == nil {
-                                guard let savedFilePath = savedFilePath else {
-                                    return
-                                }
-                                print("\(savedFilePath)")
-                                let fileURL = URL(fileURLWithPath: savedFilePath)
-                                let fileURLString = fileURL.absoluteString
-                                print("\(fileURLString)")
-                                loginViewModel.registerUser(email: email, password: password, firstName: firstName, lastName: lastName, picture: savedFilePath)
+                                
+                                loginViewModel.registerUser(email: email, password: password, firstName: firstName, lastName: lastName, picture: selectedPicture)
                                 
                                 dismiss()
                             }

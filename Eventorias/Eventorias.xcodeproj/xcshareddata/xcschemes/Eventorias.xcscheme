@@ -34,7 +34,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "23F0E1AD2D1EAEEF00C9A610"
+               BlueprintIdentifier = "23F9F0C02D206E4100BB2D35"
                BuildableName = "EventoriasTests.xctest"
                BlueprintName = "EventoriasTests"
                ReferencedContainer = "container:Eventorias.xcodeproj">

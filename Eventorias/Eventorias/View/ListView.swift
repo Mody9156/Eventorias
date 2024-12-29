@@ -211,20 +211,15 @@ struct ViewCalendar: View {
                         NavigationLink(destination: UserDetailView(eventEntry: event, userDetailViewModel: UserDetailViewModel(eventEntry: [event], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate())) {
                             HStack{
                                 // Encodage de l'URL de l'image
-                                if let encodedPictureURL = event.picture.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-                                   let pictureURL = URL(string: encodedPictureURL) {
-                                    AsyncImage(url: pictureURL) { image in
-                                        image
-                                            .resizable()
-                                            .cornerRadius(50)
-                                    } placeholder: {
-                                        ProgressView()
-                                    }
-                                    .frame(width: 40, height: 40)
-                                    .padding()
-                                    
+                               
+                                if let picture = event.picture{
+                                    Image(picture)
+                                        .resizable()
+                                        .cornerRadius(50)
+                                        .frame(width: 40, height: 40)
+                                        .padding()
                                 }
-                                
+                             
                                 VStack(alignment: .leading) {
                                     Text(event.title)
                                         .font(.custom("Inter-Medium", size: 16))
@@ -235,12 +230,19 @@ struct ViewCalendar: View {
                                         .lineLimit(1)
                                         .foregroundColor(.white)
                                     
-                                    Text("\(listViewModel.formatDateString(event.dateCreation))")
+                                    Text("\(event.dateCreation)")
                                         .font(.custom("Inter-Regular", size: 14))
                                         .lineSpacing(20 - 14)
                                         .fontWeight(.regular)
                                         .multilineTextAlignment(.leading)
                                         .foregroundColor(.white)
+                                    
+                                    Image(event.poster)
+                                           .resizable()
+                                           .scaledToFit()
+                                           .frame(width: 200, height: 200)
+                                           .clipped()
+                                    
                                 }
                                 
                                 Spacer()
@@ -315,20 +317,15 @@ struct ViewModeList: View {
             Section {
                 ForEach(listViewModel.filterTitle(searchText), id: \.self) { entry in
                     HStack {
-                        // Encodage de l'URL de l'image
-                        if let encodedPictureURL = entry.picture.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-                           let pictureURL = URL(string: encodedPictureURL) {
-                            AsyncImage(url: pictureURL) { image in
-                                image
-                                    .resizable()
-                                    .cornerRadius(50)
-                            } placeholder: {
-                                ProgressView()
-                            }
-                            .frame(width: 40, height: 40)
-                            .padding()
-                            
+                        
+                        if let picture = entry.picture{
+                            Image(picture)
+                                .resizable()
+                                .cornerRadius(50)
+                                .frame(width: 40, height: 40)
+                                .padding()
                         }
+                     
                         
                         VStack(alignment: .leading) {
                             Text(entry.title)

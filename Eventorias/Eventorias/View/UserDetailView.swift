@@ -54,17 +54,16 @@ struct UserDetailView: View {
                                 }
                                 .padding()
                                 Spacer()
-                                
-                                AsyncImage(url: URL(string: eventEntry.picture)) { image in
-                                    image
+                             
+                                .padding(.trailing,40)
+                                if let picture = eventEntry.picture{
+                                    Image(picture)
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
                                         .frame(width: 60, height: 60)
                                         .cornerRadius(50)
-                                } placeholder: {
-                                    ProgressView()
+                                        .padding(.trailing,40)
                                 }
-                                .padding(.trailing,40)
 
                             }
                             

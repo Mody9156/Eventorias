@@ -15,20 +15,7 @@ struct ProfileView: View {
     @State var toggle: Bool = false
     @State private var selectedImage: UIImage? = nil
     
-    func loadImageFromFile() -> UIImage? {
-           guard let picturePath = picture else { return nil }
-           var cleanPath = picturePath
-           if cleanPath.hasPrefix("file://") {
-               cleanPath = String(cleanPath.dropFirst(7))  // Enlever "file://"
-           }
-           let fileURL = URL(fileURLWithPath: cleanPath)
-           
-           if let data = try? Data(contentsOf: fileURL) {
-               return UIImage(data: data)
-           }
-           return nil
-       }
-
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -53,18 +40,13 @@ struct ProfileView: View {
                             .lineSpacing(6)
                             .multilineTextAlignment(.leading)
                             .foregroundColor(.white)
+                        
                         Spacer()
-                        // Encodage de l'URL de l'image
-                        if let image = loadImageFromFile() {
-                            Image(uiImage: image)
-                                .resizable()
-                                .cornerRadius(50)
-                                .frame(width: 40, height: 40)
-                                .padding()
-                        } else {
-                            Text("Image non trouvée.")
-                        }
+                        
+                        
+                        
                     }
+                    
                     Spacer()
                 }
                 .toolbar {
@@ -75,10 +57,16 @@ struct ProfileView: View {
                             .foregroundColor(.white)
                             .lineSpacing(24.2 - 20)
                             .kerning(0.02)
+                        
                     }
-                    
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        //
+                        if let picture {
+                            Image("\(picture)")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 48, height: 48)
+                        }
+                        
                     }
                 }
             }
@@ -88,7 +76,7 @@ struct ProfileView: View {
 
 //struct MyPreviewProvider_Previews: PreviewProvider {
 //    @State static var name = "Modibo"
-//    
+//
 //    static var previews: some View {
 //        ProfileView(
 //            loginViewModel: ,

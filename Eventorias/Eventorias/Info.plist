@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<?xml version="1.0" encoding="UTF-8"?>
 <plist version="1.0">
 <dict>
     <!-- Permet de gérer les permissions de géolocalisation -->
@@ -18,6 +17,25 @@
     <dict>
         <key>NSAllowsArbitraryLoads</key>
         <true/>
+    </dict>
+
+    <!-- Configuration des scènes pour iOS 13 et versions ultérieures -->
+    <key>UIApplicationSceneManifest</key>
+    <dict>
+        <key>UIApplicationSupportsMultipleScenes</key>
+        <false/>
+        <key>UISceneConfigurations</key>
+        <dict>
+            <key>UIWindowSceneSessionRoleApplication</key>
+            <array>
+                <dict>
+                    <key>UISceneDelegateClassName</key>
+                    <string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+                    <key>UISceneClassName</key>
+                    <string>UIWindowScene</string>
+                </dict>
+            </array>
+        </dict>
     </dict>
 </dict>
 </plist>
