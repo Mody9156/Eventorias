@@ -219,17 +219,17 @@ struct ViewCalendar: View {
                                         .clipShape(Circle())
                                 }
 
-                             
+                                VStack{
                                     Text(event.title)
                                         .font(.custom("Inter-Medium", size: 16))
                                         .fontWeight(.medium)
                                         .lineLimit(1)
                                         .foregroundColor(.white)
-
+                                    
                                     Text(listViewModel.formatDateString(event.dateCreation))
                                         .font(.custom("Inter-Regular", size: 14))
                                         .foregroundColor(.white)
-
+                                }
                                     if let poster = event.poster.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
                                        let posterURL = URL(string: poster) {
                                         AsyncImage(url: posterURL) { image in
@@ -245,6 +245,7 @@ struct ViewCalendar: View {
                                
                                 Spacer()
                             }
+                            .navigationBarTitle(event.title)
                             .padding(.vertical, 8)
                         }
                     }
@@ -291,81 +292,80 @@ struct ToggleViewButton: View {
         .padding()
     }
 }
-
 struct ViewModeList: View {
     @Binding var searchText: String
     @StateObject var listViewModel: ListViewModel
-    
+
     var body: some View {
-        List {
-            Section {
-                ForEach(listViewModel.filterTitle(searchText), id: \.self) { entry in
-                    HStack {
-                        
-                        if let picture = entry.picture{
-                            Image(picture)
-                                .resizable()
-                                .cornerRadius(50)
-                                .frame(width: 40, height: 40)
-                                .padding()
-                        }
-                     
-                        
-                        VStack(alignment: .leading) {
-                            Text(entry.title)
-                                .font(.custom("Inter-Medium", size: 16))
-                                .lineSpacing(24 - 16)
-                                .fontWeight(.medium)
-                                .multilineTextAlignment(.leading)
-                                .truncationMode(.tail)
-                                .lineLimit(1)
-                                .foregroundColor(.white)
-                            
-                            Text("\(listViewModel.formatDateString(entry.dateCreation))")
-                                .font(.custom("Inter-Regular", size: 14))
-                                .lineSpacing(20 - 14)
-                                .fontWeight(.regular)
-                                .multilineTextAlignment(.leading)
-                                .foregroundColor(.white)
-                        }
-                        
-                        Spacer()
-                        
-                        // Encodage de l'URL de l'affiche
-                        if let encodedPosterURL = entry.poster.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-                           let posterURL = URL(string: encodedPosterURL) {
-                            AsyncImage(url: posterURL) { image in
-                                image
+        NavigationView { // Ajout d'une navigation pour la barre de titre
+            List {
+                Section {
+                    ForEach(listViewModel.filterTitle(searchText), id: \.self) { entry in
+                        HStack {
+                            if let picture = entry.picture {
+                                Image(picture)
                                     .resizable()
-                            } placeholder: {
-                                ProgressView()
+                                    .cornerRadius(50)
+                                    .frame(width: 40, height: 40)
+                                    .padding()
                             }
-                            .frame(width: 136, height: 80)
-                            .cornerRadius(12)
+
+                            VStack(alignment: .leading) {
+                                Text(entry.title)
+                                    .font(.custom("Inter-Medium", size: 16))
+                                    .lineSpacing(24 - 16)
+                                    .fontWeight(.medium)
+                                    .multilineTextAlignment(.leading)
+                                    .truncationMode(.tail)
+                                    .lineLimit(1)
+                                    .foregroundColor(.white)
+
+                                Text("\(listViewModel.formatDateString(entry.dateCreation))")
+                                    .font(.custom("Inter-Regular", size: 14))
+                                    .lineSpacing(20 - 14)
+                                    .fontWeight(.regular)
+                                    .multilineTextAlignment(.leading)
+                                    .foregroundColor(.white)
+                            }
+
+                            Spacer()
+
+                            // Encodage de l'URL de l'affiche
+                            if let encodedPosterURL = entry.poster.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                               let posterURL = URL(string: encodedPosterURL) {
+                                AsyncImage(url: posterURL) { image in
+                                    image
+                                        .resizable()
+                                } placeholder: {
+                                    ProgressView()
+                                }
+                                .frame(width: 136, height: 80)
+                                .cornerRadius(12)
+                            }
                         }
+                        .overlay(NavigationLink(destination: {
+                            UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate())
+                        }, label: {
+                            EmptyView()
+                        }))
+                        .navigationBarTitle(entry.title)
                     }
-                    .overlay(NavigationLink(destination: {
-                        UserDetailView(eventEntry: entry, userDetailViewModel: UserDetailViewModel(eventEntry: [entry], listViewModel: ListViewModel(), googleMapView: GoogleMapView()), locationCoordinate: LocationCoordinate())
-                    }, label: {
-                        EmptyView()
-                    }))
+                }
+                .listRowBackground(
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color("BackgroundDocument"))
+                        .frame(width: 358, height: 80)
+                        .padding(2)
+                )
+            }
+            .listStyle(GroupedListStyle())
+            .scrollContentBackground(.hidden)
+            .background(Color("Background"))
+            .onAppear {
+                Task {
+                    try? await listViewModel.getAllProducts()
                 }
             }
-            .listRowBackground(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(Color("BackgroundDocument"))
-                    .frame(width: 358, height: 80)
-                    .padding(2)
-            )
         }
-        .listStyle(GroupedListStyle())
-        .scrollContentBackground(.hidden)
-        .background(Color("Background"))
-        .onAppear {
-            Task {
-                try? await listViewModel.getAllProducts()
-            }
-        }
-        .padding()
     }
 }
