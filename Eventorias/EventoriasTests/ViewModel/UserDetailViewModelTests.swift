@@ -17,10 +17,8 @@ final class UserDetailViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        // Crée un mock de GoogleMapView
         mockGoogleMapView = MockGoogleMapView()
         
-        // Crée un mock de ListViewModel avec des événements fictifs
         mockListViewModel = MockListViewModel(eventEntry: [ EventEntry(
                         picture: "https://example.com/event-picture.jpg",
                         title: "Annual Tech Conference",
@@ -32,7 +30,6 @@ final class UserDetailViewModelTests: XCTestCase {
                         place: Address(street: "123 Innovation Drive", city: "Techville", postalCode: "94016", country: "USA" ,localisation: GeoPoint(latitude: 37.3811, longitude: -122.3348))
                     )])
         
-        // Initialise le ViewModel avec les mocks
         viewModel = UserDetailViewModel(eventEntry: mockListViewModel.eventEntry, listViewModel: ListViewModel(), googleMapView: mockGoogleMapView)
     }
     
@@ -43,16 +40,14 @@ final class UserDetailViewModelTests: XCTestCase {
         super.tearDown()
     }
 
-    // Test de la méthode loadAPIKey()
     func testLoadAPINotNil() throws {
        let key =  try viewModel.loadAPIKey()
         
         XCTAssertNotNil(key)
     }
 
-    // Test de la méthode showMapsStatic()
     func testShowMapsStaticSuccess() async {
-        // Simuler une réponse réussie de GoogleMapView
+
         let latitude: Double = 37.3811
         let longitude: Double = -122.3348
         let apiKey = "mockAPIKey"
@@ -70,11 +65,10 @@ final class UserDetailViewModelTests: XCTestCase {
     }
     
     func testShowMapsStaticFailure() async {
-        // Simuler une erreur de la méthode showMapsWithURLRequest
+
         let latitude: Double = 37.3811
         let longitude: Double = -122.3348
         
-        // Simule une erreur d'API
         mockGoogleMapView.mockError = NSError(domain: "GoogleMap", code: 500, userInfo: nil)
         
         do {
@@ -87,15 +81,13 @@ final class UserDetailViewModelTests: XCTestCase {
         }
     }
     func testFormatHourString() {
-           // Prépare une date d'exemple
-           let dateFormatter = DateFormatter()
+
+        let dateFormatter = DateFormatter()
            dateFormatter.dateFormat = "HH:mm"
            let testDate = dateFormatter.date(from: "14:30")!
            
-           // Appelle la méthode formatHourString
            let formattedString = viewModel.formatHourString(testDate)
            
-           // Vérifie que la chaîne retournée est correcte
            XCTAssertNotNil(formattedString)
        }
 }

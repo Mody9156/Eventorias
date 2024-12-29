@@ -19,24 +19,21 @@ public class ListRepository : EventListRepresentable {
         self.collectionPath = collectionPath
     }
     
-    // Méthode pour récupérer tous les produits (événements)
     func getAllProducts() async throws -> [EventEntry] {
         let query = firestoreService.collection(collectionPath)
-        return try await firestoreService.getDocuments(from: query) // Utilise la méthode générique
+        return try await firestoreService.getDocuments(from: query) 
     }
     
-    // Méthode pour récupérer tous les produits triés par date
     func getAllProductsSortedByDate() async throws -> [EventEntry] {
         let query = firestoreService.collection(collectionPath)
             .order(by: "dateCreationString", descending: true)
-        return try await firestoreService.getDocuments(from: query) // Utilise la méthode générique
+        return try await firestoreService.getDocuments(from: query)
     }
     
-    // Méthode pour récupérer tous les produits triés par catégorie
     func getAllProductsSortedByCategory() async throws -> [EventEntry] {
         let query = firestoreService.collection(collectionPath)
             .order(by: "category", descending: true)
-        return try await firestoreService.getDocuments(from: query) // Utilise la méthode générique
+        return try await firestoreService.getDocuments(from: query)
     }
 }
 

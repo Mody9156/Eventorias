@@ -1,21 +1,15 @@
-//
-//  RegistrationViewModel.swift
-//  Eventorias
-//
-//  Created by KEITA on 17/12/2024.
-//
-
 import Foundation
 import PhotosUI
 import CoreLocation
 import FirebaseStorage
-import FirebaseAppCheckInterop
-import FirebaseAuthInterop
-import FirebaseCoreExtension
-import FirebaseStorageInternal
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseAuth
 
-class AddEventViewModel : ObservableObject {
+class AddEventViewModel: ObservableObject {
     let eventRepository: EventManagerProtocol
+    
+    @Published var imageUrl: String?
     
     init(eventRepository: EventManagerProtocol = EventRepository()) {
         self.eventRepository = eventRepository
@@ -33,50 +27,50 @@ class AddEventViewModel : ObservableObject {
                          postalCode: String,
                          country: String,
                          latitude: Double,
-                         longitude: Double
-    ){
-        
-        let geoPoint =  GeoPoint(latitude: latitude, longitude: longitude)
-        
+                         longitude: Double) {
+        let geoPoint = GeoPoint(latitude: latitude, longitude: longitude)
         let adresse = Address(street: street, city: city, postalCode: postalCode, country: country, localisation: geoPoint)
-        
-        let event  = EventEntry(picture: picture, title: title, dateCreation: dateCreation, poster: poster, description: description, hour: hour, category: category, place: adresse )
+        let event = EventEntry(picture: picture, title: title, dateCreation: dateCreation, poster: poster, description: description, hour: hour, category: category, place: adresse)
         
         eventRepository.saveToFirestore(event) { success, error in
             if success {
                 print("L'évènement a été sauvegardé avec succès.")
-            }else{
+            } else {
                 print("Erreur, \(error?.localizedDescription ?? "Inconnue")")
             }
         }
     }
-        
-    func saveImageToDocumentsDirectory(image: UIImage, fileName: String) -> String? {
-        guard let data = image.jpegData(compressionQuality: 1.0) else {
-            print("Échec de la conversion de l'image en données JPEG.")
-            return nil
-        }
-        
-        let fileManager = FileManager.default
-        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let fileURL = documentsURL.appendingPathComponent(fileName)
-        
-        do {
-            try data.write(to: fileURL)
-            print("Image sauvegardée à : \(fileURL.path)")
-            return fileURL.path
-        } catch {
-            print("Erreur lors de la sauvegarde de l'image : \(error)")
-            return nil
+    
+    func formatHourString(_ hour: Date) -> String {
+        return Date.stringFromHour(hour)
+    }
+    
+    func uploadImageToFirebaseStorage(imageData: Data) async {
+        await eventRepository.uploadImageToFirebaseStorage(imageData: imageData) { [weak self] imageUrl, error in
+            if let error = error {
+                print("Erreur lors du téléchargement de l'image : \(error.localizedDescription)")
+                return
+            }
+            
+            if let imageUrl = imageUrl {
+                print("Image téléchargée avec succès. URL : \(imageUrl)")
+                self?.imageUrl = imageUrl
+                
+                self?.saveImageUrlToFirestore(url: imageUrl)
+            }
         }
     }
     
-    
-    func formatHourString(_ hour:Date) -> String{
-        let date = Date.stringFromHour(hour)
-        return date
+    func saveImageUrlToFirestore(url: String) {
+        
+        let eventID = "ID de l'événement à mettre ici"
+        
+        eventRepository.saveImageUrlToFirestore(url: url, eventID: eventID) { success, error in
+            if success {
+                print("URL de l'image sauvegardée avec succès dans Firestore.")
+            } else if let error = error {
+                print("Erreur lors de la sauvegarde de l'URL dans Firestore : \(error.localizedDescription)")
+            }
+        }
     }
-    
-
-    
 }

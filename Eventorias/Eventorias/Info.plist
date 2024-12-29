@@ -2,21 +2,38 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <!-- Permet de gérer les permissions de géolocalisation -->
+    <!-- Permissions pour la géolocalisation -->
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Nous avons besoin de votre position pour...</string>
+    <string>Nous avons besoin de votre position pour localiser les événements proches de vous.</string>
     <key>NSLocationAlwaysUsageDescription</key>
-    <string>Nous avons besoin de votre position en arrière-plan pour...</string>
+    <string>Nous avons besoin de votre position en arrière-plan pour détecter les événements proches même lorsque l'application n'est pas ouverte.</string>
 
-    <!-- Configuration de MapKit (si nécessaire pour les directions) -->
-    <key>MKDirectionsApplicationSupportedModes</key>
-    <array/>
-    
+    <!-- Permissions pour la bibliothèque de photos -->
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Nous avons besoin d'accéder à votre bibliothèque pour sélectionner des photos.</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>Nous avons besoin d'enregistrer des images dans votre bibliothèque.</string>
+
     <!-- Configuration du transport d'application (ATS) -->
     <key>NSAppTransportSecurity</key>
     <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>firebaseio.com</key>
+            <dict>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+            </dict>
+            <key>googleapis.com</key>
+            <dict>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+            </dict>
+        </dict>
     </dict>
 
     <!-- Configuration des scènes pour iOS 13 et versions ultérieures -->

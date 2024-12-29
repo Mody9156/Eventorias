@@ -73,9 +73,3 @@ struct ErrorDialog: View {
         }
     }
 }
-
-struct ErrorDialog_Previews: PreviewProvider {
-    static var previews: some View {
-        ErrorDialog(listViewModel: ListViewModel())
-    }
-}

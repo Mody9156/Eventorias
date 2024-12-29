@@ -25,7 +25,6 @@ final class GoogleMapViewTests: XCTestCase {
         super.tearDown()
     }
     
-    // Test pour vérifier que la URL est correcte
     func testFetchURLRequest() throws {
         let latitude: Double = 37.3811
         let longitude: Double = -122.3348
@@ -33,7 +32,6 @@ final class GoogleMapViewTests: XCTestCase {
         
         let request = try googleMapView.fetchURLRequest(latitude, longitude, apiKey)
         
-        // Vérifie que la requête a été bien formée
         let expectedURLString = "https://maps.googleapis.com/maps/api/staticmap?center=\(latitude),\(longitude)&zoom=12&size=149x72&maptype=roadmap&key=\(apiKey)"
         
         XCTAssertEqual(request.url?.absoluteString, expectedURLString)
@@ -41,13 +39,11 @@ final class GoogleMapViewTests: XCTestCase {
         XCTAssertEqual(request.value(forHTTPHeaderField: "Content-Type"), "application/json")
     }
     
-    // Test pour vérifier que la méthode showMapsWithURLRequest fonctionne correctement
     func testShowMapsWithURLRequest_Success() async {
         let latitude: Double = 37.3811
         let longitude: Double = -122.3348
         let apiKey = "mockAPIKey"
         
-        // Mock les données de la réponse
         mockHTTPService.mockData = Data([0x01, 0x02, 0x03])
         mockHTTPService.mockResponse = HTTPURLResponse(url: URL(string: "https://example.com")!,
                                                        statusCode: 200,
@@ -62,7 +58,6 @@ final class GoogleMapViewTests: XCTestCase {
         }
     }
     
-    // Test pour vérifier que showMapsWithURLRequest lance une erreur si les coordonnées sont invalides
     func testShowMapsWithURLRequest_InvalidData() async {
         let latitude: Double = 0.0
         let longitude: Double = 0.0
@@ -72,19 +67,16 @@ final class GoogleMapViewTests: XCTestCase {
             _ = try await googleMapView.showMapsWithURLRequest(latitude, longitude, apiKey)
             XCTFail("Expected invalidData error, but no error was thrown.")
         } catch GoogleMapView.AuthenticationError.invalidData {
-            // Expected error
         } catch {
             XCTFail("Expected invalidData error, but got \(error).")
         }
     }
     
-    // Test pour vérifier que showMapsWithURLRequest lance une erreur si le statut HTTP n'est pas 200
     func testShowMapsWithURLRequest_BadServerResponse() async {
         let latitude: Double = 37.3811
         let longitude: Double = -122.3348
         let apiKey = "mockAPIKey"
         
-        // Mock une réponse avec un code de statut 500 (erreur serveur)
         mockHTTPService.mockData = Data([0x01, 0x02, 0x03])
         mockHTTPService.mockResponse = HTTPURLResponse(url: URL(string: "https://example.com")!,
                                                        statusCode: 500,
@@ -102,13 +94,11 @@ final class GoogleMapViewTests: XCTestCase {
     }
     
     
-    // Test pour vérifier que showMapsWithURLRequest lance une erreur si les données sont vides
     func testShowMapsWithURLRequest_EmptyData() async {
         let latitude: Double = 37.3811
         let longitude: Double = -122.3348
         let apiKey = "mockAPIKey"
         
-        // Mock une réponse avec des données vides
         mockHTTPService.mockData = Data()
         mockHTTPService.mockResponse = HTTPURLResponse(url: URL(string: "https://example.com")!,
                                                        statusCode: 200,
@@ -119,7 +109,6 @@ final class GoogleMapViewTests: XCTestCase {
             _ = try await googleMapView.showMapsWithURLRequest(latitude, longitude, apiKey)
             XCTFail("Expected invalidData error, but no error was thrown.")
         } catch GoogleMapView.AuthenticationError.invalidData {
-            // Expected error
         } catch {
             XCTFail("Expected invalidData error, but got \(error).")
         }

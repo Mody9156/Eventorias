@@ -42,11 +42,11 @@ class ListViewModel : ObservableObject {
             self.isError = false
         }catch{
             self.isError = true
+            throw error
         }
     }
     
     @MainActor
-    // verifier l'incrémentation
     func filterSelected(option : FilterOption) async throws {
         self.FilterOption = option
         

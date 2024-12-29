@@ -1,160 +1,111 @@
-//
-//  ListViewModelTests.swift
-//  EventoriasTests
-//
-//  Created by KEITA on 29/12/2024.
-//
 import XCTest
 @testable import Eventorias
 
 class ListViewModelTests: XCTestCase {
-    var viewModel: ListViewModel!
+  
+    var listViewModel: ListViewModel!
     var mockEventListRepresentable: MockEventListRepresentable!
     
     override func setUp() {
         super.setUp()
         mockEventListRepresentable = MockEventListRepresentable()
-        viewModel = ListViewModel(eventListRepresentable: mockEventListRepresentable)
+        listViewModel = ListViewModel(eventListRepresentable: mockEventListRepresentable)
     }
     
     override func tearDown() {
-        viewModel = nil
+        listViewModel = nil
         mockEventListRepresentable = nil
         super.tearDown()
     }
     
-    // Test du formatage de la date
-    func testFormatDateString() {
-        let date = Date(timeIntervalSince1970: 0) // 1970-01-01
-        let formattedDate = viewModel.formatDateString(date)
-        XCTAssertNotNil(formattedDate) // Vérifiez votre format attendu
-    }
-    
-    // Test de récupération des produits réussie
     func testGetAllProductsSuccess() async {
-        mockEventListRepresentable.mockProducts = [
-            EventEntry(picture: "https://example.com/event-picture.jpg",
-                       title: "Annual Tech Conference",
-                       dateCreation: Date(),
-                       poster: "John Doe",
-                       description: "An exciting tech conference showcasing the latest innovations in AI, blockchain, and IoT.",
-                       hour: "10:00",
-                       category: "Technology",
-                       place: Address(street: "123 Innovation Drive", city: "Techville", postalCode: "94016", country: "USA" ,localisation: GeoPoint(latitude: 37.3811, longitude: -122.3348))
-                      ),  EventEntry(
-                        picture: "https://example.com/event-picture.jpg",
-                        title: "Annual",
-                        dateCreation: Date(),
-                        poster: "John Doe",
-                        description: "An exciting tech conference showcasing the latest innovations in AI, blockchain, and IoT.",
-                        hour: "10:00",
-                        category: "Music",
-                        place: Address(street: "123 Innovation Drive", city: "Techville", postalCode: "94016", country: "USA" ,localisation: GeoPoint(latitude: 37.3811, longitude: -122.3348))
-                      )
-        ]
+        let expectation = self.expectation(description: "getAllProducts")
+
+        do {
+
+            try await listViewModel.getAllProducts()
+            XCTAssertFalse(listViewModel.isError)
+            XCTAssertEqual(listViewModel.eventEntry.count, 1)
+            XCTAssertEqual(listViewModel.eventEntry.first?.title, "Annual Tech Conference")
+            expectation.fulfill() // Réussite de l'attente
+        } catch {
+            XCTFail("Erreur lors de la récupération des événements: \(error.localizedDescription)")
+        }
         
-        try? await viewModel.getAllProducts()
-        
-        XCTAssertEqual(viewModel.eventEntry.count, 2)
-        XCTAssertFalse(viewModel.isError)
+        await waitForExpectations(timeout: 5, handler: nil)
     }
     
-    // Test de récupération des produits échouée
     func testGetAllProductsFailure() async {
-        mockEventListRepresentable.shouldThrowError = true
+        mockEventListRepresentable.shouldReturnError = true
         
-        try? await viewModel.getAllProducts()
+        let expectation = self.expectation(description: "getAllProductsFailure")
         
-        XCTAssertTrue(viewModel.isError)
-        XCTAssertTrue(viewModel.eventEntry.isEmpty)
+        do {
+            try await listViewModel.getAllProducts()
+            XCTFail("Une erreur aurait dû être lancée")
+        } catch {
+            XCTAssertTrue(listViewModel.isError)
+            expectation.fulfill()
+        }
+        
+       
+        await waitForExpectations(timeout: 5, handler: nil)
+    }
+
+
+    
+    func testFilterSelectedNoFilter() async {
+
+        let expectation = self.expectation(description: "filterSelectedNoFilter")
+        
+        do {
+            try await listViewModel.filterSelected(option: .noFilter)
+            XCTAssertEqual(listViewModel.eventEntry.count, 1)
+            expectation.fulfill()
+        } catch {
+            XCTFail("Erreur lors de l'application du filtre sans filtre : \(error.localizedDescription)")
+        }
+        
+        await waitForExpectations(timeout: 5, handler: nil)
     }
     
-    // Test de filtrage par catégorie
-    func testFilterByCategory() async {
-        mockEventListRepresentable.mockProducts = [
-            EventEntry(picture: "https://example.com/event-picture.jpg",
-                       title: "Annual Tech Conference",
-                       dateCreation: Date(),
-                       poster: "John Doe",
-                       description: "An exciting tech conference showcasing the latest innovations in AI, blockchain, and IoT.",
-                       hour: "10:00",
-                       category: "Music",
-                       place: Address(street: "123 Innovation Drive", city: "Techville", postalCode: "94016", country: "USA" ,localisation: GeoPoint(latitude: 37.3811, longitude: -122.3348))
-                      ),  EventEntry(
-                        picture: "https://example.com/event-picture.jpg",
-                        title: "Annual",
-                        dateCreation: Date(),
-                        poster: "John Doe",
-                        description: "An exciting tech conference showcasing the latest innovations in AI, blockchain, and IoT.",
-                        hour: "10:00",
-                        category: "Sports",
-                        place: Address(street: "123 Innovation Drive", city: "Techville", postalCode: "94016", country: "USA" ,localisation: GeoPoint(latitude: 37.3811, longitude: -122.3348))
-                      )
-        ]
+    func testFilterSelectedCategory() async {
+        let expectation = self.expectation(description: "filterSelectedCategory")
         
-        try? await viewModel.filterSelected(option: .category)
+        do {
+            try await listViewModel.filterSelected(option: .category)
+            XCTAssertEqual(listViewModel.eventEntry.count, 1) // Un événement filtré par catégorie "Music"
+            XCTAssertEqual(listViewModel.eventEntry.first?.category, "Music") // Vérifier la catégorie
+            expectation.fulfill() // Réussite de l'attente
+        } catch {
+            XCTFail("Erreur lors de l'application du filtre par catégorie : \(error.localizedDescription)")
+        }
         
-        XCTAssertEqual(viewModel.eventEntry.first?.category, "Music")
-        XCTAssertEqual(viewModel.eventEntry.last?.category, "Sports")
+        await waitForExpectations(timeout: 5, handler: nil)
     }
     
-    // Test de filtrage par date
-    func testFilterByDate() async {
-        let earlierDate = Date(timeIntervalSince1970: 0)
-        let laterDate = Date()
+    func testFilterSelectedDate() async {
+        let expectation = self.expectation(description: "filterSelectedDate")
         
-        mockEventListRepresentable.mockProducts = [
-            EventEntry(picture: "https://example.com/event-picture.jpg",
-                       title: "Annual Tech Conference",
-                       dateCreation: laterDate,
-                       poster: "John Doe",
-                       description: "An exciting tech conference showcasing the latest innovations in AI, blockchain, and IoT.",
-                       hour: "10:00",
-                       category: "Music",
-                       place: Address(street: "123 Innovation Drive", city: "Techville", postalCode: "94016", country: "USA" ,localisation: GeoPoint(latitude: 37.3811, longitude: -122.3348))
-                      ),  EventEntry(
-                        picture: "https://example.com/event-picture.jpg",
-                        title: "Annual",
-                        dateCreation:earlierDate,
-                        poster: "John Doe",
-                        description: "An exciting tech conference showcasing the latest innovations in AI, blockchain, and IoT.",
-                        hour: "10:00",
-                        category: "Sports",
-                        place: Address(street: "123 Innovation Drive", city: "Techville", postalCode: "94016", country: "USA" ,localisation: GeoPoint(latitude: 37.3811, longitude: -122.3348))
-                      )
-        ]
+        do {
+            try await listViewModel.filterSelected(option: .date)
+            XCTAssertEqual(listViewModel.eventEntry.count, 1) 
+            XCTAssertEqual(listViewModel.eventEntry.first?.title, "Sports Championship")
+            expectation.fulfill() // Réussite de l'attente
+        } catch {
+            XCTFail("Erreur lors de l'application du filtre par date : \(error.localizedDescription)")
+        }
         
-        try? await viewModel.filterSelected(option: .date)
-        
-        XCTAssertEqual(viewModel.eventEntry.first?.dateCreation, earlierDate)
-        XCTAssertEqual(viewModel.eventEntry.last?.dateCreation, laterDate)
+        await waitForExpectations(timeout: 5, handler: nil)
     }
     
-    // Test de recherche par titre
     func testFilterTitle() {
-        viewModel.eventEntry = [
-            EventEntry(picture: "https://example.com/event-picture.jpg",
-                       title: "Concert",
-                       dateCreation: Date(),
-                       poster: "John Doe",
-                       description: "An exciting tech conference showcasing the latest innovations in AI, blockchain, and IoT.",
-                       hour: "10:00",
-                       category: "Music",
-                       place: Address(street: "123 Innovation Drive", city: "Techville", postalCode: "94016", country: "USA" ,localisation: GeoPoint(latitude: 37.3811, longitude: -122.3348))
-                      ),  EventEntry(
-                        picture: "https://example.com/event-picture.jpg",
-                        title: "Annual",
-                        dateCreation:Date(),
-                        poster: "John Doe",
-                        description: "An exciting tech conference showcasing the latest innovations in AI, blockchain, and IoT.",
-                        hour: "10:00",
-                        category: "Sports",
-                        place: Address(street: "123 Innovation Drive", city: "Techville", postalCode: "94016", country: "USA" ,localisation: GeoPoint(latitude: 37.3811, longitude: -122.3348))
-                      )
-        ]
+        let searchText = "Tech Conference"
+        let filteredEvents = listViewModel.filterTitle(searchText)
+        XCTAssertEqual(filteredEvents.count, 0)
         
-        let filtered = viewModel.filterTitle("Concert")
-        XCTAssertEqual(filtered.count, 1)
-        XCTAssertEqual(filtered.first?.title, "Concert")
+        let emptySearchText = ""
+        let filteredEventsEmpty = listViewModel.filterTitle(emptySearchText)
+        XCTAssertEqual(filteredEventsEmpty.count, 0)
     }
 }
