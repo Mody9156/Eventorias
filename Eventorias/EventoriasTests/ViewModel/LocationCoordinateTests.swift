@@ -59,7 +59,7 @@ class LocationCoordinateTests: XCTestCase {
                 XCTFail("Le géocodage a réussi alors que l'adresse était invalide")
             case .failure(let error):
                 // Vérifiez que l'erreur contient le domaine "GeocodeError"
-                XCTFail("Le géocodage a réussi alors que l'adresse était invalide")
+                XCTAssertEqual((error as NSError).domain, kCLErrorDomain, "Le domaine de l'erreur n'est pas celui attendu")
             }
             
             expectation.fulfill()

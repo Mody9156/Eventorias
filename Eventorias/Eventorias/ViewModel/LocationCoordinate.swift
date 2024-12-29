@@ -25,8 +25,10 @@ class LocationCoordinate: ObservableObject{
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) { (placemarks, error) in
             if let error = error {
+                print("Erreur lors de la récupération de la localisation : \(error.localizedDescription)")
+
                 let customError = NSError(domain: "GeocodeError", code: 404, userInfo: [NSLocalizedDescriptionKey: "No matching location found."])
-                completion(.failure(error))
+                            completion(.failure(customError))
                 return
             }
             
