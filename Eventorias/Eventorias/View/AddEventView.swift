@@ -173,18 +173,24 @@ struct AddEventView: View {
                 .padding()
             }
         }
-        .navigationBarTitle(Text("Creation of an event"), displayMode: .inline)
-        .navigationBarItems(leading: Text("")
-            .font(.custom("Inter-SemiBold", size: 20))
-            .fontWeight(.semibold)
-            .foregroundColor(.white)
-            .lineSpacing(24.2 - 20)
-            .tracking(0.02)
-            .padding(.leading, 10)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .accessibilityLabel("Back Button")
-        )
-        .navigationBarBackButtonHidden(false)
+        .navigationTitle("")
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    dismiss()
+                }) {
+                    HStack {
+                        Image(systemName: "arrow.backward")
+                            .foregroundColor(.white)
+                        Text("Creation of an event")
+                            .font(.custom("Inter-SemiBold", size: 20))
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                    }
+                }
+            }
+        }
     }
     
     private func validateAndSave() {

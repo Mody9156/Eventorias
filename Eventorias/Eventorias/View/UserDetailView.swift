@@ -12,7 +12,7 @@ struct UserDetailView: View {
     @State private var showError = false
     @State private var errorMessage = ""
     @Environment(\.dismiss) var dismiss
-
+    
     var body: some View {
         VStack {
             ZStack {
@@ -97,7 +97,7 @@ struct UserDetailView: View {
                                             .font(.custom("Inter-Medium", size: 16))
                                             .fontWeight(.medium)
                                             .lineLimit(1)
-                                            .accessibilityLabel("Postal code: \(eventEntry.place.postalCode)") 
+                                            .accessibilityLabel("Postal code: \(eventEntry.place.postalCode)")
                                     }
                                     
                                     HStack {
@@ -127,33 +127,23 @@ struct UserDetailView: View {
                 }
             }
         }
-//        .navigationBarTitle(Text("eventEntry.title"), displayMode: .inline)
-//        .navigationBarItems(leading: Text(eventEntry.title)
-//            .font(.custom("Inter-SemiBold", size: 20))
-//            .fontWeight(.semibold)
-//            .foregroundColor(.white)
-//            .lineSpacing(24.2 - 20)
-//            .tracking(0.02)
-//            .padding()
-//            .frame(maxWidth: .infinity, alignment: .leading)
-//            .accessibilityLabel("Event title: \(eventEntry.title)")
-//        )
-        .navigationTitle(eventEntry.title)
+        
+        .navigationTitle("")
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
-                                   dismiss()
-                               }) {
-                HStack {
-                    Image(systemName: "arrow.left.circle.fill")
-                        .foregroundColor(.white)
-                    Text(eventEntry.title)
-                        .font(.custom("Inter-SemiBold", size: 20))
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
+                    dismiss()
+                }) {
+                    HStack {
+                        Image(systemName: "arrow.backward")
+                            .foregroundColor(.white)
+                        Text(eventEntry.title)
+                            .font(.custom("Inter-SemiBold", size: 20))
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                    }
                 }
-            }
             }
         }
     }
