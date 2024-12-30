@@ -41,6 +41,7 @@ class UserDetailViewModel: ObservableObject{
         }
         throw Failure.missingAPIKey
     }
+    
     func showMapsStatic( Latitude:Double, Longitude:Double) async throws -> Data {
         do{
             let api =  try loadAPIKey()

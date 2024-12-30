@@ -110,7 +110,7 @@
 		236060AA2D0DE48200E3504F /* EventListRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListRepresentable.swift; sourceTree = "<group>"; };
 		236060AC2D0DE48200E3504F /* ProtocolsFirebaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtocolsFirebaseData.swift; sourceTree = "<group>"; };
 		23AB66A92D20B0990012B313 /* Eventorias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventorias.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		23AB66AA2D20B0990012B313 /* EventoriasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventoriasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		23AB66AA2D20B0990012B313 /* EventoriasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = EventoriasTests.xctest; path = "/Users/keita/Movies/Eventorias/Eventorias/build/Debug-iphoneos/EventoriasTests.xctest"; sourceTree = "<absolute>"; };
 		23AB66AB2D20B7AD0012B313 /* MockFirebaseAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFirebaseAuthenticationManager.swift; sourceTree = "<group>"; };
 		23AB66AD2D20B8330012B313 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		23AB66AF2D20BBA30012B313 /* MockEventListRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventListRepresentable.swift; sourceTree = "<group>"; };
@@ -169,7 +169,6 @@
 				23F9F0C22D206E4100BB2D35 /* EventoriasTests */,
 				23F41BCC2D2092EC000D904E /* Frameworks */,
 				23AB66A92D20B0990012B313 /* Eventorias.app */,
-				23AB66AA2D20B0990012B313 /* EventoriasTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
